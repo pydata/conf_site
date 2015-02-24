@@ -48,6 +48,18 @@ You should now be able to run the development server::
 
     python manage.py runserver
 
+Build Static Resources
+------------------------
+
+By default, the project uses Bootstrap and LESS. The LESS files can be found in
+``conf_site/static/conf_site/less``. When done editing your LESS files, you will
+want to build the compiled CSS. Fortunately, there is a Makefile to assist in building
+both JS and CSS resources. It is predicated on having NPM and a few related dependencies::
+
+    sudo npm install -g uglify-js less
+    cd conf_site/static/conf_site/
+    make
+
 Deployment
 ------------------------
 
