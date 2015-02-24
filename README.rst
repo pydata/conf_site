@@ -28,7 +28,7 @@ Then create a local settings file and set your ``DJANGO_SETTINGS_MODULE`` to use
 
     cp conf_site/settings/local.example.py conf_site/settings/local.py
     echo "export DJANGO_SETTINGS_MODULE=conf_site.settings.local" >> $VIRTUAL_ENV/bin/postactivate
-    echo "unset DJANGO_SETTINGS_MODULE" >> $VIRTUAL_ENV/bin/postdeactivate
+
 
 Exit the virtualenv and reactivate it to activate the settings just changed::
 
@@ -39,8 +39,6 @@ Create the Postgres database and run the initial syncdb/migrate::
 
     createdb -E UTF-8 conf_site
     python manage.py migrate
-    python manage.py migrate
-    python manage.py runserver
 
 To load the default fixtures for Symposion::
 
