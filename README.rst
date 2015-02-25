@@ -2,7 +2,7 @@
 PyData Symposion
 ========================
 
-Below you will find basic setup and deployment instructions for the Counter Tools
+Below you will find basic setup and deployment instructions for the PyData Symposion Site
 project. To begin you should have the following applications installed on your
 local development system::
 
