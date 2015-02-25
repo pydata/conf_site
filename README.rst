@@ -2,7 +2,7 @@
 PyData Symposion
 ========================
 
-Below you will find basic setup and deployment instructions for the PyData Symposion Site
+Below you will find basic setup and deployment instructions for the PyData website
 project. To begin you should have the following applications installed on your
 local development system::
 
