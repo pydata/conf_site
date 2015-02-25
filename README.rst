@@ -18,12 +18,13 @@ To setup your local conda environment with the necessary requirements::
     conda create --name conf_site python=2
     pip install -r requirements/dev.txt
 
-Then create a local settings file and set your ``DJANGO_SETTINGS_MODULE`` to use it::
+Export local Django settings to the conda environmnet::
 
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/activate.d/
     echo "export DJANGO_SETTINGS_MODULE=conf_site.settings.local" > ~/anaconda/envs/conf_site/etc/conda/activate.d/django.sh
 
-Then unset the Django settings module::
+They should be unset during deacivation::
+
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/deactivate.d/
     echo "unset DJANGO_SETTINGS_MODULE" > ~/anaconda/envs/conf_site/etc/conda/deactivate.d/django.sh
 
