@@ -1,6 +1,4 @@
 
-
-
 PyData Symposion
 ========================
 
@@ -8,39 +6,34 @@ Below you will find basic setup and deployment instructions for the Counter Tool
 project. To begin you should have the following applications installed on your
 local development system::
 
-- Python >= 2.7.6 < 3.0
-- `pip <http://www.pip-installer.org/>`_ >= 1.5
-- `virtualenv <http://www.virtualenv.org/>`_ >= 1.10
-- `virtualenvwrapper <http://pypi.python.org/pypi/virtualenvwrapper>`_ >= 3.0
+- Anaconda <http://docs.continuum.io/anaconda/install.html>
 - git >= 1.7
 
 
 Getting Started 
 ------------------------
 
-To setup your local environment you should create a virtualenv and install the
-necessary requirements::
+To setup your local conda environment with the necessary requirements::
 
-    mkvirtualenv conf_site
-    $VIRTUAL_ENV/bin/pip install -r $PWD/requirements/dev.txt
-
-Alternately, using Anaconda::
-
-    conda create -n conf_site --file requirements/list.txt    
+    conda create --name conf_site python=2
+    pip install -r requirements/dev.txt
 
 Then create a local settings file and set your ``DJANGO_SETTINGS_MODULE`` to use it::
 
-    cp conf_site/settings/local.example.py conf_site/settings/local.py
-    echo "export DJANGO_SETTINGS_MODULE=conf_site.settings.local" >> $VIRTUAL_ENV/bin/postactivate
+    mkdir -p ~/anaconda/envs/conf_site/etc/conda/activate.d/
+    cp conf_site/settings/local.py ~/anaconda/envs/conf_site/etc/conda/activate.d/django.sh
 
+Then unset the Django settings module::
+    mkdir -p ~/anaconda/envs/conf_site/etc/conda/deactivate.d/
+    echo "unset DJANGO_SETTINGS_MODULE" > ~/anaconda/envs/conf_site/etc/conda/deactivate.d/django.sh
 
-Exit the virtualenv and reactivate it to activate the settings just changed::
+Activate the site::
 
-    deactivate
-    workon conf_site
+    source activate conf_site
 
 Create the Postgres database and run the initial syncdb/migrate::
 
+    postgres -D /usr/local/var/postgres
     createdb -E UTF-8 conf_site
     python manage.py migrate
 
@@ -51,6 +44,7 @@ To load the default fixtures for Symposion::
 You should now be able to run the development server::
 
     python manage.py runserver
+
 
 Build Static Resources
 ------------------------
