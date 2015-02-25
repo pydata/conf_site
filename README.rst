@@ -21,7 +21,7 @@ To setup your local conda environment with the necessary requirements::
 Then create a local settings file and set your ``DJANGO_SETTINGS_MODULE`` to use it::
 
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/activate.d/
-    cp conf_site/settings/local.py ~/anaconda/envs/conf_site/etc/conda/activate.d/django.sh
+    echo "export DJANGO_SETTINGS_MODULE=conf_site.settings.local" > ~/anaconda/envs/conf_site/etc/conda/activate.d/django.sh
 
 Then unset the Django settings module::
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/deactivate.d/
