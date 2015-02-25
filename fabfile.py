@@ -35,7 +35,7 @@ def deploy():
             env.project_root, env.environment))
         run('{0}/env/bin/python manage.py collectstatic --noinput --settings=conf_site.settings.{1}'.format(
             env.project_root, env.environment))
-    sudo('/etc/init.d/apache2 restart')
+    # TBD restart nginx
 
 
 @task
