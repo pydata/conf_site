@@ -10,6 +10,7 @@ def production():
     env.project_root = '/www/conf_site'
     env.code_root = os.path.join(env.project_root, 'source')
     env.environment = 'production'
+    env.forward_agent = True
 
 
 @task
@@ -29,12 +30,12 @@ def deploy():
         run('git pull')
     update_requirements()
     with cd(env.project_root):
-        run('{0}/env/bin/python manage.py syncdb --settings=conf_site.settings.{1}'.format(
-            env.project_root, env.environment))
-        run('{0}/env/bin/python manage.py migrate --settings=conf_site.settings.{1}'.format(
-            env.project_root, env.environment))
-        run('{0}/env/bin/python manage.py collectstatic --noinput --settings=conf_site.settings.{1}'.format(
-            env.project_root, env.environment))
+        run('{0}/env/bin/python {1}/manage.py syncdb --settings=conf_site.settings.{2}'.format(
+            env.project_root, env.code_root, env.environment))
+        run('{0}/env/bin/python {1}/manage.py migrate --settings=conf_site.settings.{2}'.format(
+            env.project_root, env.code_root, env.environment))
+        run('{0}/env/bin/python {1}/manage.py collectstatic --noinput --settings=conf_site.settings.{2}'.format(
+            env.project_root, env.code_root, env.environment))
     # TBD restart nginx
 
 
