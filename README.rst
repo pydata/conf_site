@@ -15,7 +15,7 @@ local development system::
 - git >= 1.7
 
 
-Getting Started
+Getting Started 
 ------------------------
 
 To setup your local environment you should create a virtualenv and install the
@@ -23,6 +23,10 @@ necessary requirements::
 
     mkvirtualenv conf_site
     $VIRTUAL_ENV/bin/pip install -r $PWD/requirements/dev.txt
+
+Alternately, using Anaconda::
+
+    conda create -n conf_site --file requirements/list.txt    
 
 Then create a local settings file and set your ``DJANGO_SETTINGS_MODULE`` to use it::
 
