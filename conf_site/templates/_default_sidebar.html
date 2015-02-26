@@ -2,7 +2,7 @@
 {% load thumbnail %}
 {% load boxes_tags %}
 
-{% sponsor_levels as levels %}
+    {% sponsor_levels as levels %}
 
 <h4>Sponsors</h4>
 
@@ -11,7 +11,6 @@
     {% for level in levels %}
         {% if level.sponsors %}
             <h3 style="margin-top: 3em;">{{ level.name }}</h3>
-\
             {% for sponsor in level.sponsors %}
                 <div style="margin: 10px 0;">
                     <a href="{{ sponsor.external_url }}">
