@@ -26,7 +26,7 @@ Activate the site::
     source activate conf_site
 
 Install the necessary requirements::
-
+    conda install pip
     pip install -r requirements/dev.txt
 
 Create the Postgres database and run the initial syncdb/migrate::
