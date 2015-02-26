@@ -13,24 +13,20 @@ local development system::
 Getting Started 
 ------------------------
 
-To setup your local conda environment with the necessary requirements::
+To setup your local conda environment:
 
     conda create --name conf_site python=2
-    pip install -r requirements/dev.txt
-
-Export local Django settings to the conda environmnet::
-
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/activate.d/
     echo "export DJANGO_SETTINGS_MODULE=conf_site.settings.local" > ~/anaconda/envs/conf_site/etc/conda/activate.d/django.sh
-
-They should be unset during deacivation::
-
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/deactivate.d/
     echo "unset DJANGO_SETTINGS_MODULE" > ~/anaconda/envs/conf_site/etc/conda/deactivate.d/django.sh
 
 Activate the site::
 
     source activate conf_site
+
+with the necessary requirements::
+    pip install -r requirements/dev.txt
 
 Create the Postgres database and run the initial syncdb/migrate::
 
