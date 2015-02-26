@@ -13,7 +13,7 @@ local development system::
 Getting Started 
 ------------------------
 
-To setup your local conda environment:
+To setup your local conda environment::
 
     conda create --name conf_site python=2
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/activate.d/
