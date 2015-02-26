@@ -8,13 +8,13 @@ TEMPLATE_DEBUG = DEBUG
 EMAIL_DEBUG = DEBUG
 
 DATABASES = {
-    "default": {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR + '/conf_site.db',
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "",
-        "PORT": "",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'pydata_seattle2015',
+        'USER': 'pydata_seattle2015',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
