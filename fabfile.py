@@ -24,30 +24,37 @@ def update_requirements():
 
 
 @task
+def manage_run(command):
+    """
+    Run a Django management command on the remote server.
+    """
+    require('environment')
+    # Setup the call
+    settings = 'conf_site.settings.{0}'.format(env.environment)
+    manage_sh = u"DJANGO_SETTINGS_MODULE={0} /www/conf_site/manage.sh ".format(settings)
+    sudo(manage_sh + command)
+
+
+@task
+def manage_shell():
+    manage_run('shell')
+
+
+@task
 def deploy():
     require('code_root')
     with cd(env.code_root):
         run('git pull')
     update_requirements()
-    with cd(env.project_root):
-        run('{0}/env/bin/python {1}/manage.py syncdb --settings=conf_site.settings.{2}'.format(
-            env.project_root, env.code_root, env.environment))
-        run('{0}/env/bin/python {1}/manage.py migrate --settings=conf_site.settings.{2}'.format(
-            env.project_root, env.code_root, env.environment))
-        run('{0}/env/bin/python {1}/manage.py collectstatic --noinput --settings=conf_site.settings.{2}'.format(
-            env.project_root, env.code_root, env.environment))
+    manage_run('syncdb')
+    manage_run('migrate')
+    manage_run('collectstatic --noinput')
     # TBD restart nginx
 
 
 @task
-def manage(command):
-    """
-    Runs Django management commands
-    """
-    require('environment')
-    with cd(env.project_root):
-        run('{0}/bin/python manage.py {1} --settings=conf_site.settings.{2}'.format(
-            env.code_root, command, env.environment))
+def collectstatic():
+    manage_run('collectstatic --noinput')
 
 
 @task
