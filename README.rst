@@ -29,10 +29,6 @@ Install the necessary requirements::
 
     conda install pip
     pip install -r requirements/dev.txt
-    
-Temporary until psycopg2 is in conda::
-    
-    CIO_TEST=2 conda install psycopg2
 
 Create the Postgres database and run the initial syncdb/migrate::
 
