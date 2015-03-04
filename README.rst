@@ -15,7 +15,7 @@ Getting Started
 
 To setup your local conda environment::
 
-    conda create --name conf_site python=2
+    conda create --name conf_site pip python=2
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/activate.d/
     echo "export DJANGO_SETTINGS_MODULE=conf_site.settings.local" > ~/anaconda/envs/conf_site/etc/conda/activate.d/django.sh
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/deactivate.d/
