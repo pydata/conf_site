@@ -8,15 +8,6 @@ TEMPLATE_DEBUG = DEBUG
 EMAIL_DEBUG = DEBUG
 
 DATABASES = {
-<<<<<<< HEAD
-    "default": {
-        "ENGINE": 'django.db.backends.postgresql_psycopg2',
-        "NAME": "conf_site",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "",
-        "PORT": "",
-=======
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'conf_site',
@@ -24,7 +15,6 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
->>>>>>> debug-toolbar
     }
 }
 
