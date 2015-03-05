@@ -8,6 +8,7 @@ TEMPLATE_DEBUG = DEBUG
 EMAIL_DEBUG = DEBUG
 
 DATABASES = {
+<<<<<<< HEAD
     "default": {
         "ENGINE": 'django.db.backends.postgresql_psycopg2',
         "NAME": "conf_site",
@@ -15,6 +16,15 @@ DATABASES = {
         "PASSWORD": "",
         "HOST": "",
         "PORT": "",
+=======
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'conf_site',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+>>>>>>> debug-toolbar
     }
 }
 
@@ -128,7 +138,7 @@ FIXTURE_DIRS = (
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
-INSTALLED_APPS = [
+BASE_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -169,6 +179,8 @@ INSTALLED_APPS = [
     "conf_site",
     "conf_site.proposals"
 ]
+
+INSTALLED_APPS = BASE_APPS
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
