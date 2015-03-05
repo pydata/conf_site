@@ -10,8 +10,8 @@ EMAIL_DEBUG = DEBUG
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pydata_seattle2015',
-        'USER': 'pydata_seattle2015',
+        'NAME': 'conf_site',
+        'USER': '',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
