@@ -6,7 +6,7 @@ Below you will find basic setup and deployment instructions for the PyData websi
 project. To begin you should have the following applications installed on your
 local development system::
 
-- Anaconda <http://docs.continuum.io/anaconda/install.html>
+- Anaconda <http://docs.continuum.io/anaconda/install.html> >=3.8 
 - git >= 1.7
 
 
@@ -15,7 +15,7 @@ Getting Started
 
 To setup your local conda environment::
 
-    conda create --name conf_site python=2
+    conda create --name conf_site pip python=2
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/activate.d/
     echo "export DJANGO_SETTINGS_MODULE=conf_site.settings.local" > ~/anaconda/envs/conf_site/etc/conda/activate.d/django.sh
     mkdir -p ~/anaconda/envs/conf_site/etc/conda/deactivate.d/
