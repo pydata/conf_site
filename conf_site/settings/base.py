@@ -10,15 +10,16 @@ EMAIL_DEBUG = DEBUG
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'conf_site',
-        'USER': '',
+        'NAME': 'pydata_seattle2015',
+        'USER': 'pydata_seattle2015',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
     }
 }
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -128,7 +129,7 @@ FIXTURE_DIRS = (
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
-BASE_APPS = [
+INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -169,8 +170,6 @@ BASE_APPS = [
     "conf_site",
     "conf_site.proposals"
 ]
-
-INSTALLED_APPS = BASE_APPS
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

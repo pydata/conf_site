@@ -9,7 +9,7 @@
 .coverage
 .vagrant
 */settings
-conf_site/urls.py
+*/conf_site/urls.py
 public/static/
 public/media/
 *.log
