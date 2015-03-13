@@ -10,5 +10,4 @@
 .vagrant
 */settings/base.py
 */conf_site/urls.py
-*/templates/pydata-home
 *.log
