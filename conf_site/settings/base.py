@@ -200,6 +200,13 @@ LOGGING = {
     }
 }
 
+ADMINS = (
+    ('Admins', 'aapplewhite@continuum.io'),
+)
+
+DEFAULT_FROM_EMAIL = 'noreply@conf.pydata.org'
+
+SERVER_EMAIL = 'noreply@conf.pydata.org'
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
@@ -207,7 +214,7 @@ ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
 ACCOUNT_LOGIN_REDIRECT_URL = "dashboard"
-ACCOUNT_SIGNUP_REDIRECT_URL = "dashboard"
+ACCOUNT_SIGNUP_REDIRECT_URL = "home"
 ACCOUNT_LOGOUT_REDIRECT_URL = "home"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
