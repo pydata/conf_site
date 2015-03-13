@@ -8,7 +8,8 @@
 *.DS_Store
 .coverage
 .vagrant
-*/settings/local.py
+*/settings
+conf_site/urls.py
 public/static/
 public/media/
 *.log
