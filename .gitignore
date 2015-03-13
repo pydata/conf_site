@@ -8,7 +8,8 @@
 *.DS_Store
 .coverage
 .vagrant
-*/settings
+*/settings/base.py
 */conf_site/urls.py
+*/templates/pydata-home
 public/static/
 *.log
