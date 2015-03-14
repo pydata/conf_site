@@ -2,7 +2,7 @@ import os
 
 from .base import *  # noqa
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 

@@ -14,7 +14,7 @@ WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
 urlpatterns = patterns(
     "",
     url(r"^$", TemplateView.as_view(template_name="pydata-home/index.html"), name="index"),
-    url(r"^seattle2015/$", TemplateView.as_view(template_name="homepage.html"), name="home"),
+    url(r"^seattle2015/$", TemplateView.as_view(template_name="seattle2015/index.html"), name="seattle_index"),
     url(r"^seattle2015/home/$", TemplateView.as_view(template_name="homepage.html"), name="home"),
     url(r"^seattle2015/admin/", include(admin.site.urls)),
 
