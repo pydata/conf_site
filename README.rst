@@ -1,17 +1,16 @@
 
 PyData Symposion
-========================
+================
 
-Below you will find basic setup and deployment instructions for the PyData website
-project. To begin you should have the following applications installed on your
-local development system::
 
-- Anaconda <http://docs.continuum.io/anaconda/install.html> >=3.8 
-- git >= 1.7
+Below you will find basic setup and deployment instructions for the conference
+website. These instructions assume you are using an Anaconda_ environment >= 3.8.
+
+.. _Anaconda: http://docs.continuum.io/anaconda/install.html
 
 
 Getting Started 
-------------------------
+---------------
 
 To setup your local conda environment::
 
@@ -30,13 +29,14 @@ Install the necessary requirements::
     conda install pip
     pip install -r requirements/dev.txt
 
-Create the Postgres database and run the initial syncdb/migrate::
+Local Development
+-----------------
 
-    postgres -D /usr/local/var/postgres
-    createdb -E UTF-8 conf_site
+By default the local setup uses sqlite. To start off, first create the database::
+
     python manage.py migrate
 
-To load the default fixtures for Symposion::
+Load the default fixtures for Symposion::
 
     python manage.py loaddata fixtures/*
 
@@ -44,9 +44,39 @@ You should now be able to run the development server::
 
     python manage.py runserver
 
+Vagrant Development
+-------------------
+
+Use Vagrant combined with Fabric to get an environment locally that matches how
+things are set up in production. You must have Vagrant installed for this to work::
+
+    vagrant up
+    fab vagrant deploy
+
+By default this will check out the master branch of the repo on the vagrant box.
+
+.. Note::
+    It would be helpful to mount a local directory so that you can edit and run
+    with local changes, but this is not ready yet. You can push work-in-progress
+    to a branch as a workaround for now.
+
+
+Deployment with Fabric
+----------------------
+
+The website is deployed via Fabric, and tasks are defined in the fabfile.py
+Please see the comments in the fabfile.py to read more about how to use it.
+
+To use Fabric with a VM, you need to have ssh credentials for that VM. When using
+Vagrant this is handled for you.
+
 
 Build Static Resources
-------------------------
+----------------------
+
+.. Warning:: 
+    This section may not be accurate. Proceed with caution. I'm leaving this in from
+    the first version of the README
 
 By default, the project uses Bootstrap and LESS. The LESS files can be found in
 ``conf_site/static/conf_site/less``. When done editing your LESS files, you will
@@ -57,13 +87,4 @@ both JS and CSS resources. It is predicated on having NPM and a few related depe
     cd conf_site/static/conf_site/
     make
 
-Deployment
-------------------------
 
-You can deploy changes to a particular environment with
-the ``deploy`` command::
-
-    fab staging deploy
-
-New requirements or migrations are detected by parsing the VCS changes and
-will be installed/run automatically.
