@@ -30,7 +30,12 @@ class TalkProposal(Proposal):
     class Meta:
         verbose_name = "talk proposal"
 
+    def __unicode__(self):
+        return self.title
 
 class TutorialProposal(Proposal):
     class Meta:
         verbose_name = "tutorial proposal"
+
+    def __unicode__(self):
+        return self.title
