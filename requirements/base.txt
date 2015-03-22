@@ -16,6 +16,10 @@ Pillow==2.6.1
 easy-thumbnails==2.2
 html5lib==0.95
 psycopg2==2.6
+django-extensions==1.5.1
+fabtools==0.19.0
+Fabric==1.10.1
+jinja2==2.7.3
 
 
 # @@@ Pin this once we get to stable release

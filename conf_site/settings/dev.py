@@ -1,13 +1,18 @@
 # Top settings file for development
 from .base import *  # noqa
+from . import secrets
 
 COMPRESS_ENABLED = False
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-ALLOWED_HOSTS = ['localhost', '0.0.0.0']
+SERVE_MEDIA = DEBUG
 
-DEV_APPS = [
-    'debug_toolbar',
+SITE_ID = 2
+ALLOWED_HOSTS = ["localhost", "0.0.0.0"]
+
+INSTALLED_APPS += [
+    "debug_toolbar",
 ]
 
-INSTALLED_APPS = BASE_APPS + DEV_APPS
+LOGGING["loggers"]["django.request"]["level"] = "DEBUG"
+

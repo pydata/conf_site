@@ -1,11 +1,13 @@
 from .base import *  # noqa
 from . import secrets
 
-
-DEBUG = False
+COMPRESS_ENABLED = False
+DEBUG = True 
 TEMPLATE_DEBUG = DEBUG
-# tells Pinax to serve media through the staticfiles app.
 SERVE_MEDIA = DEBUG
+SITE_ID = 2
+ALLOWED_HOSTS = ["*"]
+LOGGING["loggers"]["django.request"]["level"] = "DEBUG"
 
 DATABASES = {
     "default": {
@@ -17,15 +19,20 @@ DATABASES = {
     }
 }
 
-SITE_ID = 1
+INSTALLED_APPS += [
+    "debug_toolbar",
+]
 
-ALLOWED_HOSTS = ["confsite.pydata.org"]
 
 SECRET_KEY = secrets.SECRET_KEY
-
 EMAIL_BACKEND = secrets.EMAIL_BACKEND
 EMAIL_USE_TLS = secrets.EMAIL_USE_TLS
 EMAIL_HOST = secrets.EMAIL_HOST
 EMAIL_HOST_USER = secrets.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = secrets.EMAIL_HOST_PASSWORD
 EMAIL_PORT = secrets.EMAIL_PORT
+try:
+    # local local settings if they exist
+    from .local import *
+except:
+    pass
