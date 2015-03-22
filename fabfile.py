@@ -184,8 +184,8 @@ def deploy_files(version='master'):
     with cd(env.code_root):
         # discard any local changes to the repo
         sudo('git reset --hard', user=env.webuser)
-        sudo('git fetch', user=env.webuser)
         sudo('git checkout {}'.format(version), user=env.webuser)
+        sudo('git pull', user=env.webuser)
 
 def deploy_nginx():
     """ ensure that nginx is installed and our site is enabled """
