@@ -231,6 +231,7 @@ SERVER_EMAIL = 'noreply@conf.pydata.org'
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+ACCOUNT_USER_DISPLAY = lambda user: user.email
 ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
