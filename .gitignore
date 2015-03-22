@@ -13,3 +13,4 @@ local.py
 secrets.py
 deploy/authorized_keys
 public/static
+build
