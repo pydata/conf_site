@@ -8,18 +8,12 @@ TEMPLATE_DEBUG = DEBUG
 SERVE_MEDIA = DEBUG
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "seattle2015",
-        "USER": "seattle2015",
-        # ubuntu's default pg_hba.conf allows passwordless connections from localhost
-        # when a user connects to a database with the same name as the user
-    }
+    "default": secrets.DATABASES_DEFAULT,
 }
 
 SITE_ID = 1
 
-ALLOWED_HOSTS = ["confsite.pydata.org"]
+ALLOWED_HOSTS = ["conf.pydata.org"]
 
 SECRET_KEY = secrets.SECRET_KEY
 

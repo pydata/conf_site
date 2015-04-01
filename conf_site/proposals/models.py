@@ -1,8 +1,10 @@
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 from symposion.proposals.models import ProposalBase
 
 
+@python_2_unicode_compatible
 class Proposal(ProposalBase):
 
     AUDIENCE_LEVEL_NOVICE = 1
@@ -19,8 +21,14 @@ class Proposal(ProposalBase):
 
     recording_release = models.BooleanField(
         default=True,
-        help_text="By submitting your proposal, you agree to give permission to the conference organizers to record, edit, and release audio and/or video of your presentation. If you do not agree to this, please uncheck this box."
+        help_text="By submitting your proposal, you agree to give permission to "
+                  "the conference organizers to record, edit, and release audio and/or "
+                  "video of your presentation. If you do not agree to this, please uncheck "
+                  "this box."
     )
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         abstract = True
