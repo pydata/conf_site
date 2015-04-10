@@ -231,6 +231,7 @@ SERVER_EMAIL = 'noreply@conf.pydata.org'
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+LOGIN_URL = '/seattle2015/account/login/'
 ACCOUNT_USER_DISPLAY = lambda user: user.email
 ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_EMAIL_UNIQUE = True

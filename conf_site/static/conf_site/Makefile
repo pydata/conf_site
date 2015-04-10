@@ -23,6 +23,6 @@ build:
 	rm -f ${JS_OUTPUT_PATH}/bootstrap.js
 	mkdir -p ${CSS_OUTPUT_PATH}
 #	PRODUCTION ::
-#	lessc --compress --include-path=${LESS_INCLUDE_PATH} ${SITE_LESS} > ${CSS_OUTPUT_FILENAME}
+	lessc --compress --include-path=${LESS_INCLUDE_PATH} ${SITE_LESS} > ${CSS_OUTPUT_FILENAME}
 #	DEVELOPMENT ::
-	lessc --source-map-map-inline --include-path=${LESS_INCLUDE_PATH} ${SITE_LESS} > ${CSS_OUTPUT_FILENAME}
+	# lessc --source-map-map-inline --include-path=${LESS_INCLUDE_PATH} ${SITE_LESS} > ${CSS_OUTPUT_FILENAME}
