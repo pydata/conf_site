@@ -80,8 +80,8 @@ def deploy(version='master'):
     """
     require('environment')
     setup_user()
-    deploy_files(version)
     update_system_dependencies()
+    deploy_files(version)
     setup_database()
     require_virtualenv()
     update_requirements()
