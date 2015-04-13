@@ -15,7 +15,7 @@ server {
         alias /www/conf_site/source/public/static/;
     }
 
-    location /seattle2015 {
+    location / {
         proxy_pass http://127.0.0.1:8001;
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-Host $server_name;
