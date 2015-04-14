@@ -1,0 +1,10 @@
+// Colors
+$orange: rgba(236, 144, 74, 1);
+$blue: rgba(74, 157, 184, 1);
+$grey: rgba(103, 123, 131, 1);
+
+//Override padding on first column
+.row > .row {
+margin-left: -0.9375rem;
+margin-right: -0.9375rem;
+}
