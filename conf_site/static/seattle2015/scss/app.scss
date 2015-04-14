@@ -111,7 +111,10 @@ figcaption {
   	}
   }
 }
-
+#aside-sponsors > a {
+  display: block;
+  text-align: center;
+}
 //Override padding on first column
 .row > .row {
   margin-left: -0.9375rem;
