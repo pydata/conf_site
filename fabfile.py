@@ -50,7 +50,7 @@ env.webuser = 'seattle2015'
 def production():
     """ Use production. Preface tasks with production to run in production. """
     env.environment = 'production'
-    env.hosts = ['confsite.pydata.org']
+    env.hosts = ['104.239.175.74']
     env.server_name = 'confsite.pydata.org'
     env.requirements = 'production.txt'
 
