@@ -1,13 +1,23 @@
 {% extends "site_base.html" %}
 
-{% load i18n %}
-{% load boxes_tags %}
-
-{% block head_title %}{% trans "Welcome" %}{% endblock %}
+{% load i18n boxes_tags staticfiles %}
 
 {% block body_class %}home{% endblock %}
 
+{% block body_before %}
+<div id="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <img src="{% static "seattle2015/images/TiffanyVonArnim-Seattle.jpg" %}" alt="Seattle panorama on sunny day with cityscape in foreground, landscape behind">
+        <figcaption><a href="http://www.flickr.com/photos/tiffany98101/15451334271"><i>Seattle</i>, Tiffany Von Arnim</a></figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
 {% block body %}
-    {% box "homepage" %}
-    &nbsp;
+<h1>{{ SITE_NAME }}</h1>
+{% box "homepage" %}
 {% endblock %}

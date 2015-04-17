@@ -1,27 +1,21 @@
 {% extends "theme_bootstrap/base.html" %}
 
-{% load sitetree %}
-{% load staticfiles %}
-{% load markitup_tags %}
-{% load metron_tags %}
-{% load i18n %}
-
-{% block viewport %}{% endblock %}
+{% load sitetree staticfiles markitup_tags metron_tags i18n %}
 
 {% block style_base %}
-    <link href="{% static "pinax/css/theme.css" %}" rel="stylesheet">
-    <link href="{% static "css/site.css" %}" rel="stylesheet">
-    {% block extra_style %}{% endblock %}
+<link href="{% static "css/site.css" %}" rel="stylesheet">
+{% block extra_style %}{% endblock %}
 {% endblock %}
 
-
 {% block extra_head_base %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     {% block extra_head %}{% endblock %}
 {% endblock %}
 
 {% block navbar_class %}navbar-fixed-top{% endblock %}
+
 {% block wrapper_class %}outer-container{% endblock %}
+
 {% block site_brand %}
     <a class="navbar-brand" href="{% url "home" %}">{{ SITE_NAME }}</a>
 {% endblock %}
@@ -31,6 +25,7 @@
 {% endblock %}
 
 {% block body_base %}
+    {% block body_before %}{% endblock %}
     <div class="container">
         {% include "_messages.html" %}
         {% block body_outer %}
@@ -49,7 +44,7 @@
         <hr />
         <footer class="footer">
             <div class="pull-left">
-                &copy;2015
+              &copy; {% now "Y" %}
             </div>
 
             <div class="pull-right">
