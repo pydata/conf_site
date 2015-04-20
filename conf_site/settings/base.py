@@ -251,7 +251,7 @@ AUTHENTICATION_BACKENDS = [
 
 
 MARKITUP_SET = "markitup/sets/markdown"
-MARKITUP_FILTER = ["symposion.markdown_parser.parse", {}]
+MARKITUP_FILTER = ["conf_site.markdown_parser.parse", {}]
 MARKITUP_SKIN = "markitup/skins/simple"
 
 CONFERENCE_ID = 1
