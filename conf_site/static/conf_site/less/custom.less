@@ -1,9 +1,42 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,300italic,300);
+
 body {
-    padding-top: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  padding-top: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: lighter;
+}
+
+h1 {
+  color: #336f82;
+  font-size: 2.75em;
+}
+
+h2 {
+  color: #ec904a;
+}
+
+h4 {
+  font-size: 1.2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h5 {
+  font-style: italic;
+  font-size: 1.125em;
+  letter-spacing: 0.01em;
+}
+
+p {
+  font-size: 1.1em;
 }
 
 .container {
-  max-width: 970px;
+  max-width: 1000px;
 }
 
 section {
@@ -14,21 +47,70 @@ footer {
     padding-bottom: 20px;
 }
 
-.feature-columns {
-    .make-row();
-
-    > div {
-        i.fa {
-            margin-bottom: 0.2em;
-        }
-        .make-sm-column(4);
-        .text-center;
-        margin: 2em 0;
+figcaption {
+  background-color: black;
+  bottom: 1em;
+  font-weight: lighter;
+  padding: 0 0.5em;
+  position: absolute;
+  right: 1.5em;
+  text-align: right;
+  a {
+    color: white;
+    &:hover {
+      color: #ec904a;
     }
+  }
+}
+
+#logo {
+  margin: 4px 0 0;
+  width: 250px;
+  > a {
+    display: block;
+  }
+}
+#banner {
+  background: url("../images/CubeWhite.svg");
+  background-color: #a6cfdc;
+  background-size: 3.6em;
+  margin: 1em 0 2em;
+  padding: 2em 0;
+  z-index: 0;
+  img {
+    max-width: 100%;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    &:hover {
+      -webkit-filter: grayscale(0);
+      filter: grayscale(0);
+    }
+  }
+}
+
+#aside-sponsors > a {
+  display: block;
+  text-align: center;
+  > img {
+    margin-bottom: 1.5em;
+  }
+}
+
+.feature-columns {
+  .make-row();
+
+  > div {
+      i.fa {
+          margin-bottom: 0.2em;
+      }
+      .make-sm-column(4);
+      .text-center;
+      margin: 2em 0;
+  }
 }
 
 .modal-open .modal {
-    display: block !important;
+  display: block !important;
 }
 
 .modal-form {
@@ -38,81 +120,49 @@ footer {
   min-width: 300px;
   position: relative;
 }
-
-
-
-@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,300italic,300);
-
-body, h1, h2, h3, h4, h5, h6, p, li {
-  font-family: 'Lato', sans-serif;
+.navbar-default {
+  background: none;
+  border: none;
+}
+.navbar-header {
+  margin: 0!important;
+}
+.navbar-toggle {
+  margin-right: 0!important;
 }
 
-h1, h2, h3, h4, h5 {
-  font-weight: lighter;
+@media(min-width: 768px){
+  .navbar .navbar-nav {
+    background-color: #008cba;
+    -moz-border-radius: 0 0 3px 3px;
+    -webkit-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    float: right;
+    font-size: .9em;
+    .dropdown-menu {
+      left: auto;
+      right: 0;
+    }
+    > li {
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      &:first-child {
+        border-left: none;
+      }
+      > a {
+        -moz-appearance: none;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        padding: 1em 2em;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 300ms ease-out 0s;
+        &:hover, &:focus {
+          background-color: #007095;
+          color: #fac05a;
+        }
+      }
+    }
+  }
 }
-
-h1 {
-  color: #336f82;
-}
-
-h2 {
-  color: #ec904a;
-}
-
-h4 {
-  font-size: 1.2em;
-  text-transform: uppercase;
-}
-
-h5 {
-  font-style: italic;
-  letter-spacing: 0.01em;
-}
-
-p {
-  font-size: 1.1em;
-}
-
-figcaption {
-  background-color: black;
-  bottom: 1em;
-  font-weight: lighter;
-  padding: 0 0.5em;
-  position: absolute;
-  right: 1.5em;
-  text-align: right;
-}
-figcaption a {
-  color: white;
-}
-figcaption a:hover {
-  color: #ec904a;
-}
-
-#banner {
-  background: url("../images/CubeWhite.svg");
-  background-color: #a6cfdc;
-  background-size: 3.6em;
-  margin: 1em 0 2em;
-  padding: 2em 0;
-  z-index: 0;
-}
-#banner img {
-  max-width: 100%;
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-}
-#banner img:hover {
-  -webkit-filter: grayscale(0);
-  filter: grayscale(0);
-}
-
-#aside-sponsors > a {
-  display: block;
-  text-align: center;
-}
-
-a > img {
-  margin-bottom: 1.5em;
-}
-
