@@ -8,6 +8,7 @@ body {
 
 h1, h2, h3, h4, h5 {
   font-weight: lighter;
+  margin: .2em 0 .5em;
 }
 
 h1 {
@@ -17,6 +18,11 @@ h1 {
 
 h2 {
   color: #ec904a;
+  font-size: 2.25em;
+}
+
+h3 {
+  font-size: 1.75em;
 }
 
 h4 {
@@ -33,6 +39,26 @@ h5 {
 
 p {
   font-size: 1.1em;
+  margin-bottom: 1.25em;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  > img {
+    transition: opacity .25s;
+  }
+  &:hover, &:focus {
+    > img {
+      opacity: .8;
+    }
+  }
+} 
+
+hr {
+  border-color: #ddd;
 }
 
 .container {
@@ -81,14 +107,15 @@ figcaption {
     max-width: 100%;
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
-    &:hover {
-      -webkit-filter: grayscale(0);
-      filter: grayscale(0);
-    }
+    transition: all .5s;
+  }
+  .container:hover img {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
   }
 }
 
-#aside-sponsors > a {
+.sponsor-list a {
   display: block;
   text-align: center;
   > img {
@@ -107,6 +134,10 @@ figcaption {
       .text-center;
       margin: 2em 0;
   }
+}
+
+.dashboard-panel .dashboard-panel-header {
+  padding: 0 1em;
 }
 
 .modal-open .modal {
@@ -131,17 +162,28 @@ figcaption {
   margin-right: 0!important;
 }
 
-@media(min-width: 768px){
+.markItUp,
+.markItUpEditor {
+  max-width: 100%!important;
+}
+
+@media(min-width: @screen-sm){
+  .navbar-collapse {
+    text-align: center;
+  }
   .navbar .navbar-nav {
     background-color: #008cba;
     -moz-border-radius: 0 0 3px 3px;
     -webkit-border-radius: 0 0 3px 3px;
     border-radius: 0 0 3px 3px;
-    float: right;
+    float: none;
+    display: inline-block;
+    margin: 20px auto 0;
     font-size: .9em;
     .dropdown-menu {
       left: auto;
       right: 0;
+      text-align: right;
     }
     > li {
       border-left: 1px solid rgba(255, 255, 255, 0.5);
@@ -158,6 +200,7 @@ figcaption {
         text-align: center;
         text-decoration: none;
         transition: background-color 300ms ease-out 0s;
+        
         &:hover, &:focus {
           background-color: #007095;
           color: #fac05a;
@@ -166,3 +209,11 @@ figcaption {
     }
   }
 }
+@media(min-width: @screen-md) {
+  .navbar .navbar-nav {
+    float: right;
+    margin: 0;
+  }
+}
+
+
