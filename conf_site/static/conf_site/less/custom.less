@@ -73,9 +73,10 @@ footer {
     padding-bottom: 20px;
 }
 
-figcaption {
+p.caption, figcaption {
   background-color: black;
   bottom: 1em;
+  font-size: 1em;
   font-weight: lighter;
   padding: 0 0.5em;
   position: absolute;
@@ -103,6 +104,9 @@ figcaption {
   margin: 1em 0 2em;
   padding: 2em 0;
   z-index: 0;
+  p {
+    margin-bottom: 0;
+  }
   img {
     max-width: 100%;
     -webkit-filter: grayscale(100%);
@@ -139,11 +143,12 @@ figcaption {
 .dashboard-panel .dashboard-panel-header {
   padding: 0 1em;
 }
-
-.modal-open .modal {
+.modal.in {
   display: block !important;
 }
-
+.modal-backdrop.in {
+  height: 100%!important;
+}
 .modal-form {
   background: #fff;
   margin: 40px auto;
