@@ -4,6 +4,7 @@
 .pydevproject
 *~
 *.db
+*.sql
 *.orig
 *.DS_Store
 .coverage
@@ -12,5 +13,5 @@
 local.py
 secrets.py
 deploy/authorized_keys
-public/static
+public/
 build

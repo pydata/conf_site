@@ -1,59 +1,80 @@
 {% extends "theme_bootstrap/base.html" %}
 
-{% load sitetree %}
-{% load staticfiles %}
-{% load markitup_tags %}
-{% load metron_tags %}
-{% load i18n %}
-
-{% block viewport %}{% endblock %}
+{% load sitetree staticfiles markitup_tags metron_tags i18n %}
 
 {% block style_base %}
-    <link href="{% static "pinax/css/theme.css" %}" rel="stylesheet">
-    <link href="{% static "css/site.css" %}" rel="stylesheet">
-    {% block extra_style %}{% endblock %}
+<link href="{% static "css/site.css" %}" rel="stylesheet">
+{% block extra_style %}{% endblock %}
 {% endblock %}
 
-
 {% block extra_head_base %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ STATIC_URL }}favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ STATIC_URL }}favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_URL }}favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ STATIC_URL }}favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_URL }}favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ STATIC_URL }}favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ STATIC_URL }}favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ STATIC_URL }}favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ STATIC_URL }}favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="{{ STATIC_URL }}favicon/manifest.json">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-TileImage" content="{{ STATIC_URL }}favicon/mstile-144x144.png">
+    <meta name="msapplication-config" content="{{ STATIC_URL }}favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
     {% block extra_head %}{% endblock %}
 {% endblock %}
 
-{% block navbar_class %}navbar-fixed-top{% endblock %}
-{% block wrapper_class %}outer-container{% endblock %}
-{% block site_brand %}
-    <a class="navbar-brand" href="{% url "home" %}">{{ SITE_NAME }}</a>
+
+{% block topbar_base %}
+<header>
+    <div class="navbar navbar-default {% block navbar_class %}{% endblock %}">
+        <div class="container">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="fa fa-bars"></span></button>
+            <div class="navbar-header">
+                <h1 id="logo">
+                    <a href="{% url "home" %}"><img src="{{ STATIC_URL }}images/PyDataSeattleLogo.svg" alt="{{ SITE_NAME }}"></a>
+                </h1>
+            </div>
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">               
+                {% sitetree_menu from "main" include "trunk" template "menu_bootstrap3.html" %}
+                {% include "_account_bar.html" %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 {% endblock %}
 
-{% block nav %}
-    {% sitetree_menu from "main" include "trunk" template "sitetree/menu_bootstrap3.html" %}
-{% endblock %}
 
 {% block body_base %}
+    {% block body_before %}{% endblock %}
     <div class="container">
         {% include "_messages.html" %}
         {% block body_outer %}
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     {% block body %}
                     {% endblock %}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {% block sidebar %}
                         {% include "_default_sidebar.html" %}
                     {% endblock %}
                 </div>
             </div>
         {% endblock %}
-        <hr />
-        <footer class="footer">
-            <div class="pull-left">
-                &copy;2015
-            </div>
-
-            <div class="pull-right">
-                Site powered by <a href="http://eldarion.com/symposion/"><b>Symposion</b></a>.
+        <footer class="footer row">
+            <div class="large-12 columns">
+                <h5>The PyData Conference Series is brought to you by <a href="http://numfocus.org/">NumFOCUS Foundation</a>. </h5>
             </div>
         </footer>
     </div>
