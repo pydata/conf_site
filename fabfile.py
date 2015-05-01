@@ -44,15 +44,30 @@ env.code_root = os.path.join(env.project_root, 'source')
 env.virtualenv = os.path.join(env.project_root, 'env')
 env.repo = 'https://github.com/pydata/conf_site.git'
 env.webuser = 'seattle2015'
+env.nginx_config = 'seattle2015-site.conf.j2'
 
 
 @task
-def production():
+def seattle():
     """ Use production. Preface tasks with production to run in production. """
     env.environment = 'production'
     env.hosts = ['seattle.pydata.org']
     env.server_name = 'seattle.pydata.org'
     env.requirements = 'production.txt'
+    env.webuser = 'seattle2015'
+    env.nginx_config = 'seattle2015-site.conf.j2'
+
+
+@task
+def london():
+    """ Use production. Preface tasks with production to run in production. """
+    env.environment = 'production'
+    env.hosts = ['london.pydata.org']
+    env.server_name = 'london.pydata.org'
+    env.requirements = 'production.txt'
+    env.webuser = 'london2015'
+    env.nginx_config = 'london2015-site.conf.j2'
+
 
 @task
 def vagrant():
@@ -141,7 +156,7 @@ def ssh():
 @task
 def restart_supervisor():
     require('environment')
-    supervisor.restart_process('seattle2015')
+    supervisor.restart_process('gunicorn')
 
 @task
 def restart_nginx():
@@ -192,8 +207,8 @@ def deploy_nginx():
     require('managed', 'server_name')
     nginx.server()
     upload_template(
-        'seattle2015-site.conf.j2',
-        '/etc/nginx/sites-available/seattle2015.conf',
+        env.nginx_config,
+        '/etc/nginx/sites-available/%s.conf' % env.webuser,
         context={
             'server_name': env.server_name,
             'managed': env.managed,
@@ -203,7 +218,7 @@ def deploy_nginx():
         use_sudo=True,
         template_dir=env.deploy_dir,
     )
-    nginx.enabled('seattle2015.conf')
+    nginx.enabled('%s.conf' % env.webuser)
     nginx.disabled('default')
     restart_nginx()
 
@@ -213,7 +228,7 @@ def deploy_supervisor():
     require('environment')
     django_settings = 'DJANGO_SETTINGS_MODULE="conf_site.settings.{}"'.format(env.environment)
     fabtools.require.supervisor.process(
-        'seattle2015',
+        'gunicorn',
         command='/www/conf_site/env/bin/gunicorn conf_site.wsgi:application --bind=0.0.0.0:8001 --workers=3 --timeout=180',
         directory='/www/conf_site/source',
         user=env.webuser,
