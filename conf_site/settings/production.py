@@ -13,7 +13,7 @@ DATABASES = {
 
 SITE_ID = 1
 
-ALLOWED_HOSTS = ["seattle.pydata.org"]
+ALLOWED_HOSTS = secrets.ALLOWED_HOSTS
 
 SECRET_KEY = secrets.SECRET_KEY
 
