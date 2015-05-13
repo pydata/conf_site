@@ -204,7 +204,7 @@
                         {% for team in available_teams %}
                             <tr>
                                 <td>
-                                    <a href="{% url team_detail team.slug %}">{{ team }}</a>
+                                    <a href="{% url "team_detail" team.slug %}">{{ team }}</a>
                                     {% if team.description %}<br>{{ team.description }}{% endif %}
                                 </td>
                                 <td>
