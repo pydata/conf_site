@@ -23,4 +23,5 @@ jinja2==2.7.3
 
 
 # @@@ Pin this once we get to stable release
-git+git://github.com/pinax/symposion.git@7ff4c0b4efdec5bc4559872d6e4275213f479b0e#egg=symposion
+#git+git://github.com/pinax/symposion.git@7ff4c0b4efdec5bc4559872d6e4275213f479b0e#egg=symposion
+git+git://github.com/euroscipy/symposion.git@112123b54871d4fb925e521dfab1135db961bc5c#egg=symposion
