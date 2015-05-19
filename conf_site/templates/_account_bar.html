@@ -4,7 +4,11 @@
 <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <b class="caret"></b></a>
     <ul class="dropdown-menu">
     {% if request.user.is_authenticated %}
-        <li><a href="{% url "speaker_profile" request.user.pk %}#"><i class="fa fa-user"></i> {% user_display request.user %}</a>
+        {% if request.user.speaker_profile %}
+        <li><a href="{% url "speaker_profile" request.user.speaker_profile.pk %}#"><i class="fa fa-user"></i> {% user_display request.user %}</a></li>
+        {% else %}
+        <li><i class="fa fa-user"></i> {% user_display request.user %}</a></li>
+        {% endif %}
         <li><a href="{% url "dashboard" %}"><i class="fa fa-tasks"></i> {% trans "Dashboard" %}</a></li>
         {% if request.user.is_staff %}
         <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i class="fa fa-cog"></i> {% trans "Admin" %}</a></li>
