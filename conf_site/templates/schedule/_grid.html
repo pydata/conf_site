@@ -15,9 +15,8 @@
                     <td class="slot slot-{{ slot.kind.label }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
                       {# this is a kludge until the slot.kind model has a property #}
                       {# to distinguish a presentation from a non-presentation slot #}
-                        {% if slot.kind.label in "Track 4 Track 3 Track 2 Track 1 Tutorial Track 4 Tutorial Track 3 Tutorial Track 2 Tutorial Track 1" %}
-                            {% if not slot.content %}
-                            {% else %}
+                        {% if slot.kind.label in "Track 4 Track 3 Track 2 Track 1 Tutorial Track 4 Tutorial Track 3 Tutorial Track 2 Tutorial Track 1 Tutorials Track 1 Tutorials Track 2" %}
+                            {% if slot.content %}
                                 <span class="title">
                                     <a href="{% url "schedule_presentation_detail" slot.content.pk %}">{{ slot.content.title }}</a>
                                 </span>
