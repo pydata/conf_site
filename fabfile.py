@@ -68,6 +68,15 @@ def london():
     env.webuser = 'london2015'
     env.nginx_config = 'london2015-site.conf.j2'
 
+@task
+def nyc():
+    """ Use production. Preface tasks with production to run in production. """
+    env.environment = 'production'
+    env.hosts = ['172.99.67.21']
+    env.server_name = 'nyc.pydata.org'
+    env.requirements = 'production.txt'
+    env.webuser = 'nyc2015'
+    env.nginx_config = 'nyc2015-site.conf.j2'
 
 @task
 def vagrant():
