@@ -222,7 +222,7 @@ LOGGING = {
 }
 
 ADMINS = (
-    ('Admins', 'aapplewhite@continuum.io'),
+    ('Admins', 'web@pydata.org'),
 )
 
 DEFAULT_FROM_EMAIL = 'noreply@conf.pydata.org'
