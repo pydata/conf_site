@@ -42,6 +42,8 @@ env.managed = "This file is managed by Fabric. Do not edit"
 env.project_root = '/www/conf_site'
 env.code_root = os.path.join(env.project_root, 'source')
 env.virtualenv = os.path.join(env.project_root, 'env')
+env.remote_secrets = os.path.join(
+    env.code_root, 'conf_site/settings/secrets.py')
 env.repo = 'https://github.com/pydata/conf_site.git'
 env.webuser = 'seattle2015'
 env.nginx_config = 'seattle2015-site.conf.j2'
@@ -68,6 +70,7 @@ def london():
     env.webuser = 'london2015'
     env.nginx_config = 'london2015-site.conf.j2'
 
+
 @task
 def nyc():
     """ Use production. Preface tasks with production to run in production. """
@@ -77,6 +80,7 @@ def nyc():
     env.requirements = 'production.txt'
     env.webuser = 'nyc2015'
     env.nginx_config = 'nyc2015-site.conf.j2'
+
 
 @task
 def vagrant():
@@ -90,17 +94,20 @@ def vagrant():
     env.server_name = ''
     env.requirements = 'vagrant.txt'
 
+
 @task
 def uname():
     require('environment')
     sudo('uname -a')
+
 
 @task
 def deploy(version='master'):
     """ Deploys site
 
     version: a git reference. defaults to master.
-    environment: defaults to production. preface with 'vagrant' to deploy to vagrant.
+    environment: defaults to production.
+
     """
     require('environment')
     setup_user()
@@ -114,20 +121,23 @@ def deploy(version='master'):
     deploy_nginx()
     deploy_supervisor()
 
+
 @task
 def manage(command, environment="production"):
     """
     Run a Django management command on the remote server.
     """
     require('virtualenv', 'environment', 'code_root', 'webuser')
-    manage_cmd = '{virtualenv}/bin/django-admin.py {command} --settings=conf_site.settings.{module} --pythonpath={code_root}'.format(**{
-        'command': command,
-        'virtualenv': env.virtualenv,
-        'module': env.environment,
-        'code_root': env.code_root,
-    })
+    manage_cmd = ('{virtualenv}/bin/django-admin.py {command} '
+                  '--settings=conf_site.settings.{module} '
+                  '--pythonpath={code_root}'.format(**{
+                      'command': command,
+                      'virtualenv': env.virtualenv,
+                      'module': env.environment,
+                      'code_root': env.code_root}))
     with cd(env.code_root):
         sudo(manage_cmd, user=env.webuser)
+
 
 @task
 def loadfixtures():
@@ -136,17 +146,20 @@ def loadfixtures():
     require('environment')
     manage('loaddata fixtures/*')
 
+
 @task
 def shell_plus():
     """ Run a Django shell on the remote server """
     require('environment')
     manage('shell_plus')
 
+
 @task
 def migrate():
     """ Run a Django migration on the remote server """
     require('environment')
     manage('migrate')
+
 
 @task
 def collectstatic():
@@ -155,6 +168,7 @@ def collectstatic():
     manage('collectstatic --noinput')
     sudo('chmod -R a+rx %s' % os.path.join(env.code_root, 'public'))
 
+
 @task
 def ssh():
     """ ssh to the remote site
@@ -162,54 +176,53 @@ def ssh():
     require('environment', 'hosts')
     local('ssh {0}'.format(env.hosts[0]))
 
+
 @task
 def restart_supervisor():
     require('environment')
     supervisor.restart_process('gunicorn')
+
 
 @task
 def restart_nginx():
     require('environment')
     sudo('service nginx restart')
 
-def deploy_vagrant_files():
-    """ ensure that the directory tree resembles production
-
-    The Vagrantfile mounts the current working directory where
-    the source directory will be in production.
-    """
-    require('project_root', 'webuser')
-    files.directory(env.project_root, owner=env.webuser, use_sudo=True)
-    files.directory(os.path.join(env.project_root, 'log'), owner=env.webuser, use_sudo=True)
-    files.file(
-        os.path.join(env.code_root, 'conf_site/settings/secrets.py'),
-        source=os.path.join(env.deploy_dir, 'secrets.py'),
-        use_sudo=True,
-        owner=env.webuser)
 
 def deploy_files(version='master'):
-    """ ensure that the directory tree exists and has the requested version of the site """
+    """
+    Ensure that the directory tree exists and has the requested
+    version of the site.
+
+    """
     require('code_root', 'project_root', 'repo', 'webuser')
 
-    if env.environment == "vagrant":
-        deploy_vagrant_files()
-        return
-
     files.directory(env.project_root, owner=env.webuser, use_sudo=True)
-    files.directory(os.path.join(env.project_root, 'log'), owner=env.webuser, use_sudo=True)
-    if not ffiles.exists(env.code_root):
+    files.directory(
+        os.path.join(env.project_root, 'log'),
+        owner=env.webuser,
+        use_sudo=True)
+    if env.environment != "vagrant" and not ffiles.exists(env.code_root):
         with cd(env.project_root):
             sudo('git clone {} source'.format(env.repo), user=env.webuser)
-    files.file(
-        os.path.join(env.code_root, 'conf_site/settings/secrets.py'),
-        source=os.path.join(env.deploy_dir, 'secrets.py'),
-        use_sudo=True,
-        owner=env.webuser)
-    with cd(env.code_root):
-        # discard any local changes to the repo
-        sudo('git reset --hard', user=env.webuser)
-        sudo('git checkout {}'.format(version), user=env.webuser)
-        sudo('git pull', user=env.webuser)
+
+    # Replace remote secrets file only if we are not using Vagrant (because
+    # the secrets file should be automatically synchronized) and the file
+    # does not already exist on the remote server.
+    if env.environment != "vagrant" and not ffiles.exists(env.remote_secrets):
+        files.file(
+            env.remote_secrets,
+            source=os.path.join(env.deploy_dir, 'secrets.py'),
+            use_sudo=True,
+            owner=env.webuser)
+
+    if env.environment != "vagrant":
+        with cd(env.code_root):
+            # discard any local changes to the repo
+            sudo('git reset --hard', user=env.webuser)
+            sudo('git checkout {}'.format(version), user=env.webuser)
+            sudo('git pull', user=env.webuser)
+
 
 def deploy_nginx():
     """ ensure that nginx is installed and our site is enabled """
@@ -235,10 +248,12 @@ def deploy_nginx():
 def deploy_supervisor():
     """ ensure that our supervisor is configured and enabled """
     require('environment')
-    django_settings = 'DJANGO_SETTINGS_MODULE="conf_site.settings.{}"'.format(env.environment)
+    django_settings = 'DJANGO_SETTINGS_MODULE="conf_site.settings.{}"'.format(
+        env.environment)
     fabtools.require.supervisor.process(
         'gunicorn',
-        command='/www/conf_site/env/bin/gunicorn conf_site.wsgi:application --bind=0.0.0.0:8001 --workers=3 --timeout=180',
+        command=('/www/conf_site/env/bin/gunicorn conf_site.wsgi:application '
+                 '--bind=0.0.0.0:8001 --workers=3 --timeout=180'),
         directory='/www/conf_site/source',
         user=env.webuser,
         stdout_logfile='/www/conf_site/log/gunicorn.log',
@@ -253,6 +268,7 @@ def deploy_supervisor():
     )
     supervisor.update_config()
     restart_supervisor()
+
 
 def update_system_dependencies():
     deb.uptodate_index(max_age={'hour': 1})
@@ -281,6 +297,7 @@ def update_system_dependencies():
         'ack-grep',
     ])
 
+
 def update_requirements():
     """ update external dependencies on remote host """
     require('virtualenv', 'requirements', 'code_root', 'webuser')
@@ -289,22 +306,26 @@ def update_requirements():
     cmd += ['--requirement %s' % os.path.join(requirements, env.requirements)]
     sudo(' '.join(cmd), user=env.webuser)
 
+
 def require_virtualenv():
     """ create virtualenv if it does not exist """
     require('virtualenv', 'webuser')
     if not ffiles.exists(env.virtualenv):
         sudo('virtualenv {}'.format(env.virtualenv), user=env.webuser)
 
+
 def setup_user():
     """ creates the user that will run the website.
     """
     require('webuser')
     if env.environment == "vagrant":
-        # This is not required for Vagrant because the user is created during `vagrant up`.
+        # This is not required for Vagrant because the user is created
+        # during `vagrant up`.
         return
 
     if not fabtools.user.exists(env.webuser):
         sudo('useradd {}'.format(env.webuser))
+
 
 def setup_database():
     require('webuser')
@@ -312,7 +333,9 @@ def setup_database():
     if not postgres.user_exists(env.webuser):
         sudo('createuser -S -D -R -w {}'.format(env.webuser), user='postgres')
     if not postgres.database_exists(env.webuser):
-        postgres.database(env.webuser, env.webuser, encoding='UTF8', locale='en_US.UTF-8')
+        postgres.database(
+            env.webuser, env.webuser, encoding='UTF8', locale='en_US.UTF-8')
+
 
 def get_vagrant_config():
     """
@@ -335,4 +358,3 @@ def get_vagrant_config():
         'server_name': '',
     }
     return vc
-
