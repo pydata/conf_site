@@ -172,32 +172,21 @@ def restart_nginx():
     require('environment')
     sudo('service nginx restart')
 
-def deploy_vagrant_files():
-    """ ensure that the directory tree resembles production
-
-    The Vagrantfile mounts the current working directory where
-    the source directory will be in production.
-    """
-    require('project_root', 'webuser')
-    files.directory(env.project_root, owner=env.webuser, use_sudo=True)
-    files.directory(os.path.join(env.project_root, 'log'), owner=env.webuser, use_sudo=True)
-    files.file(
-        os.path.join(env.code_root, 'conf_site/settings/secrets.py'),
-        source=os.path.join(env.deploy_dir, 'secrets.py'),
-        use_sudo=True,
-        owner=env.webuser)
 
 def deploy_files(version='master'):
-    """ ensure that the directory tree exists and has the requested version of the site """
+    """
+    Ensure that the directory tree exists and has the requested
+    version of the site.
+
+    """
     require('code_root', 'project_root', 'repo', 'webuser')
 
-    if env.environment == "vagrant":
-        deploy_vagrant_files()
-        return
-
     files.directory(env.project_root, owner=env.webuser, use_sudo=True)
-    files.directory(os.path.join(env.project_root, 'log'), owner=env.webuser, use_sudo=True)
-    if not ffiles.exists(env.code_root):
+    files.directory(
+        os.path.join(env.project_root, 'log'),
+        owner=env.webuser,
+        use_sudo=True)
+    if env.environment != "vagrant" and not ffiles.exists(env.code_root):
         with cd(env.project_root):
             sudo('git clone {} source'.format(env.repo), user=env.webuser)
     files.file(
@@ -205,11 +194,13 @@ def deploy_files(version='master'):
         source=os.path.join(env.deploy_dir, 'secrets.py'),
         use_sudo=True,
         owner=env.webuser)
-    with cd(env.code_root):
-        # discard any local changes to the repo
-        sudo('git reset --hard', user=env.webuser)
-        sudo('git checkout {}'.format(version), user=env.webuser)
-        sudo('git pull', user=env.webuser)
+    if env.environment != "vagrant":
+        with cd(env.code_root):
+            # discard any local changes to the repo
+            sudo('git reset --hard', user=env.webuser)
+            sudo('git checkout {}'.format(version), user=env.webuser)
+            sudo('git pull', user=env.webuser)
+
 
 def deploy_nginx():
     """ ensure that nginx is installed and our site is enabled """
@@ -335,4 +326,3 @@ def get_vagrant_config():
         'server_name': '',
     }
     return vc
-
