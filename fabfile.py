@@ -42,6 +42,8 @@ env.managed = "This file is managed by Fabric. Do not edit"
 env.project_root = '/www/conf_site'
 env.code_root = os.path.join(env.project_root, 'source')
 env.virtualenv = os.path.join(env.project_root, 'env')
+env.remote_secrets = os.path.join(
+    env.code_root, 'conf_site/settings/secrets.py')
 env.repo = 'https://github.com/pydata/conf_site.git'
 env.webuser = 'seattle2015'
 env.nginx_config = 'seattle2015-site.conf.j2'
@@ -189,11 +191,17 @@ def deploy_files(version='master'):
     if env.environment != "vagrant" and not ffiles.exists(env.code_root):
         with cd(env.project_root):
             sudo('git clone {} source'.format(env.repo), user=env.webuser)
-    files.file(
-        os.path.join(env.code_root, 'conf_site/settings/secrets.py'),
-        source=os.path.join(env.deploy_dir, 'secrets.py'),
-        use_sudo=True,
-        owner=env.webuser)
+
+    # Replace remote secrets file only if we are not using Vagrant (because
+    # the secrets file should be automatically synchronized) and the file
+    # does not already exist on the remote server.
+    if env.environment != "vagrant" and not ffiles.exists(env.remote_secrets):
+        files.file(
+            env.remote_secrets,
+            source=os.path.join(env.deploy_dir, 'secrets.py'),
+            use_sudo=True,
+            owner=env.webuser)
+
     if env.environment != "vagrant":
         with cd(env.code_root):
             # discard any local changes to the repo
