@@ -260,3 +260,6 @@ PROPOSAL_FORMS = {
     "tutorial": "conf_site.proposals.forms.TutorialProposalForm",
     "talk": "conf_site.proposals.forms.TalkProposalForm",
 }
+
+# pinax-theme-bootstrap settings
+THEME_CONTACT_EMAIL = "web@pydata.org"
