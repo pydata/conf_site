@@ -257,6 +257,7 @@ MARKITUP_SKIN = "markitup/skins/simple"
 CONFERENCE_ID = 1
 SYMPOSION_PAGE_REGEX = r"(([\w-]{1,})(/[\w-]{1,})*)/"
 PROPOSAL_FORMS = {
+    "discussion": "conf_site.proposals.forms.TalkProposalForm",
     "tutorial": "conf_site.proposals.forms.TutorialProposalForm",
     "talk": "conf_site.proposals.forms.TalkProposalForm",
 }
