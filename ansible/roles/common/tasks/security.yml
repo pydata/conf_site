@@ -1,0 +1,3 @@
+- name: install fail2ban
+  apt: pkg=fail2ban state=latest
+  sudo: yes

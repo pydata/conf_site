@@ -1,0 +1,4 @@
+database_user: vagrant
+django_database: vagrant
+environment_type: dev
+website_domain: localhost:8080

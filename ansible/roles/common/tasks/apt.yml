@@ -1,0 +1,19 @@
+- name: update package list
+  apt: update_cache=yes
+  sudo: yes
+
+- name: upgrade existing packages
+  apt: upgrade=yes
+  sudo: yes
+
+- name: install common packages
+  apt: pkg={{ item }} state=latest
+  sudo: yes
+  with_items:
+    - git
+    - logrotate
+    - ntp
+    - python-pycurl
+    - supervisor
+    - unattended-upgrades
+    - vim
