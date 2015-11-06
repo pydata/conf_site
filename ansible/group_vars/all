@@ -1,0 +1,8 @@
+admin_email:
+database_host: localhost
+git_version: master
+gunicorn_port: 10501
+
+www_root: "/www/conf_site"
+project_folder_root: "{{ www_root }}/source"
+virtualenv_folder_root: "{{ www_root }}/virtualenvs/"

@@ -1,12 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$script = <<SCRIPT
-groupadd -g 1010 seattle2015
-useradd -M -u 10010 -g seattle2015 seattle2015
-printf "vagrant ALL=(seattle2015) NOPASSWD: ALL\n" >> /etc/sudoers
-SCRIPT
-
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -30,7 +24,12 @@ Vagrant.configure(2) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder ".", "/www/conf_site/source", owner: 10010, group: 1010
+  config.vm.synced_folder ".", "/www/conf_site/source"
 
-  config.vm.provision "shell", inline: $script
+  config.vm.provision "ansible" do |ansible|
+      ansible.inventory_path = "ansible/hosts"
+      ansible.limit = "vagrant"
+      ansible.playbook = "ansible/vagrant.yml"
+      ansible.raw_arguments = ["--ask-vault-pass"]
+  end
 end

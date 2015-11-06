@@ -1,0 +1,7 @@
+- hosts: production
+  roles:
+    - db
+    - web
+  vars_files:
+    - group_vars/production
+    - secrets.yml

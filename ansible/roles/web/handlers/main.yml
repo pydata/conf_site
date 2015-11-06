@@ -1,0 +1,16 @@
+- name: restart nginx
+  service: name=nginx state=restarted
+  sudo: yes
+
+- name: delete other virtualenvs
+  shell: find  -maxdepth 1
+         ! -path '.'
+         ! -path './'$(basename $(readlink current))
+         ! -path './'$(basename $(readlink previous))
+         -type d -exec rm -rf {} +
+  args:
+    chdir: "{{ virtualenv_folder_root }}"
+
+- name: restart gunicorn
+  supervisorctl: name=gunicorn state=restarted
+  sudo: yes
