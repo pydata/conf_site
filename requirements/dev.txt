@@ -1,2 +1,3 @@
 -r base.txt
+ansible==1.9.4
 django-debug-toolbar==1.4
