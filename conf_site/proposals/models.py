@@ -29,16 +29,3 @@ class Proposal(ProposalBase):
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        abstract = True
-
-
-class TalkProposal(Proposal):
-    class Meta:
-        verbose_name = "talk proposal"
-
-
-class TutorialProposal(Proposal):
-    class Meta:
-        verbose_name = "tutorial proposal"
