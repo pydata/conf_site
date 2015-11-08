@@ -20,3 +20,6 @@ EMAIL_HOST_USER = 'noreply@pydata.org'
 EMAIL_HOST_PASSWORD = '{{ email_host_password }}'
 EMAIL_PORT = '587'
 ALLOWED_HOSTS = ['*']
+
+MEDIA_URL = "{{ website_url }}/media/"
+STATIC_URL = "{{ website_url }}/static/"
