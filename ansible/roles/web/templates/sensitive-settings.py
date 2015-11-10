@@ -11,7 +11,7 @@ DATABASES_DEFAULT = {
 
 
 SECRET_KEY = "{{ django_secret_key }}"
-
+SESSION_COOKIE_PATH = "{{ subdirectory }}" or "/"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
