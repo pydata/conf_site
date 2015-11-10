@@ -16,3 +16,6 @@ INSTALLED_APPS += [
 
 LOGGING["loggers"]["django.request"]["level"] = "DEBUG"
 
+LOGIN_URL = secrets.LOGIN_URL
+MEDIA_URL = secrets.MEDIA_URL
+STATIC_URL = secrets.STATIC_URL

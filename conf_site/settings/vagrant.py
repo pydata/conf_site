@@ -2,7 +2,7 @@ from .base import *  # noqa
 from . import secrets
 
 COMPRESS_ENABLED = False
-DEBUG = True 
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 SERVE_MEDIA = DEBUG
 SITE_ID = 2
@@ -31,6 +31,11 @@ EMAIL_HOST = secrets.EMAIL_HOST
 EMAIL_HOST_USER = secrets.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = secrets.EMAIL_HOST_PASSWORD
 EMAIL_PORT = secrets.EMAIL_PORT
+
+LOGIN_URL = secrets.LOGIN_URL
+MEDIA_URL = secrets.MEDIA_URL
+STATIC_URL = secrets.STATIC_URL
+
 try:
     # local local settings if they exist
     from .local import *
