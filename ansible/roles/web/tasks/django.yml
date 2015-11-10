@@ -8,6 +8,7 @@
   when: environment_type == "production"
   notify:
     - restart nginx
+    - restart gunicorn
 
 - name: install python packages and associated libraries
   apt: pkg={{ item }} state=latest
@@ -23,6 +24,7 @@
     - libxslt-dev
     - libxslt1-dev
     - zlib1g-dev
+  notify: restart gunicorn
 
 - name: change ownership of everything to this user
   command: /bin/chown -R {{ ansible_user_id }}:www-data {{ www_root }}
@@ -56,6 +58,7 @@
 - name: update virtualenv with requirements
   pip: requirements={{ project_folder_root }}/requirements/{{ environment_type }}.txt
        virtualenv={{ virtualenv_folder_root }}current
+  notify: restart gunicorn
 
 - name: add supervisor configuration file for gunicorn
   template: src=supervisor.conf
@@ -63,24 +66,24 @@
   sudo: yes
   notify:
     - restart supervisor
+    - restart gunicorn
 
 - name: create sensitive settings file
   template: src=sensitive-settings.py
             dest={{ project_folder_root }}/conf_site/settings/secrets.py
             mode=0644
+  notify: restart gunicorn
 
 - name: database migrate
   django_manage: command=migrate
                  app_path={{ project_folder_root }}
                  settings=conf_site.settings.{{ environment_type }}
                  virtualenv={{ virtualenv_folder_root }}current
-  notify:
-    - restart gunicorn
+  notify: restart gunicorn
 
 - name: collect static files
   django_manage: command=collectstatic
                  app_path={{ project_folder_root }}
                  settings=conf_site.settings.{{ environment_type }}
                  virtualenv={{ virtualenv_folder_root }}current
-  notify:
-    - restart nginx
+  notify: restart nginx
