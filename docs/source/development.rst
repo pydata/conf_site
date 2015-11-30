@@ -67,11 +67,6 @@ The fabfile has commands to do that.
 * fab vagrant collectstatic
 * fab vagrant restart_supervisor
 
-.. Warning::
-    Redirects go to 127.0.0.1/path/ rather than 127.0.0.1:8080/path/.
-    For now I workaround this by adding the port number by hand. This is an
-    annoyance.
-
 The main vagrant commands to use are:
 
 vagrant up
