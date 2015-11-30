@@ -257,7 +257,8 @@ MARKITUP_SKIN = "markitup/skins/simple"
 CONFERENCE_ID = 1
 SYMPOSION_PAGE_REGEX = r"(([\w-]{1,})(/[\w-]{1,})*)/"
 PROPOSAL_FORMS = {
-    "proposal": "conf_site.proposals.forms.ProposalForm",
+    "talk": "conf_site.proposals.forms.ProposalForm",
+    "tutorial": "conf_site.proposals.forms.ProposalForm",
 }
 
 # pinax-theme-bootstrap settings
