@@ -19,7 +19,10 @@ EMAIL_HOST = '{{ email_host_name }}'
 EMAIL_HOST_USER = 'noreply@pydata.org'
 EMAIL_HOST_PASSWORD = '{{ email_host_password }}'
 EMAIL_PORT = '587'
+
 ALLOWED_HOSTS = ['*']
+USE_X_FORWARDED_HOST = {% if subdirectory %}True{% else %}False{% endif %}
+
 
 FORCE_SCRIPT_NAME = "{{ subdirectory }}" or None
 LOGIN_URL = "{{ website_url }}/account/login/"
