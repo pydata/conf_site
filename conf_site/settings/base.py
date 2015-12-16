@@ -124,10 +124,6 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-FIXTURE_DIRS = (
-    os.path.join(BASE_DIR, 'fixtures'),
-)
-
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 INSTALLED_APPS = [
