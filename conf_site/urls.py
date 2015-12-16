@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.views.generic import TemplateView
 
-from django.contrib import admin
-
+from account.views import LoginView, SignupView
 import symposion.views
 
 
@@ -15,8 +15,8 @@ urlpatterns = [
     url(r"^admin/", include(admin.site.urls)),
 
     url(r"^$", TemplateView.as_view(template_name="homepage.html"), name="home"),
-    url(r"^account/signup/$", symposion.views.SignupView.as_view(), name="account_signup"),
-    url(r"^account/login/$", symposion.views.LoginView.as_view(), name="account_login"),
+    url(r"^account/signup/$", SignupView.as_view(), name="account_signup"),
+    url(r"^account/login/$", LoginView.as_view(), name="account_login"),
     url(r"^account/", include("account.urls")),
     url(r"^dashboard/", symposion.views.dashboard, name="dashboard"),
     url(r"^speaker/", include("symposion.speakers.urls")),
