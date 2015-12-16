@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
@@ -11,7 +11,7 @@ import symposion.views
 WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
 
 
-urlpatterns = patterns("",
+urlpatterns = [
     url(r"^admin/", include(admin.site.urls)),
 
     url(r"^$", TemplateView.as_view(template_name="homepage.html"), name="home"),
@@ -26,6 +26,6 @@ urlpatterns = patterns("",
     url(r"^reviews/", include("symposion.reviews.urls")),
     url(r"^schedule/", include("symposion.schedule.urls")),
     url(r"^markitup/", include("markitup.urls")),
-)
+]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
