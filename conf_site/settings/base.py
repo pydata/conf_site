@@ -154,11 +154,9 @@ INSTALLED_APPS = [
     "reversion",
     "sitetree",
     "taggit",
-    "timezones",
 
     # symposion
     "symposion",
-    "symposion.cms",
     "symposion.conference",
     "symposion.proposals",
     "symposion.reviews",
