@@ -10,6 +10,10 @@ SERVE_MEDIA = DEBUG
 SITE_ID = 2
 ALLOWED_HOSTS = ["localhost", "0.0.0.0"]
 
+DATABASES = {
+    "default": secrets.DATABASES_DEFAULT,
+}
+
 INSTALLED_APPS += [
     "debug_toolbar",
 ]
