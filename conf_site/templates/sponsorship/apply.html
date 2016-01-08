@@ -1,8 +1,6 @@
 {% extends "site_base.html" %}
 
-{% load bootstrap %}
-{% load i18n %}
-{% load boxes_tags %}
+{% load bootstrap django_markdown flatblocks i18n %}
 
 {% block head_title %}{% trans "Apply to be a Sponsor" %}{% endblock %}
 
@@ -10,7 +8,7 @@
 
 {% block body %}
 
-    {% box "sponsorship-apply" %}
+    {% flatblock "sponsorship-apply" %}
 
     <form method="POST" action="" class="form-horizontal">
         {% csrf_token %}

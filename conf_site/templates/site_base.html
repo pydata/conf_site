@@ -1,6 +1,6 @@
 {% extends "theme_bootstrap/base.html" %}
 
-{% load sitetree staticfiles markitup_tags metron_tags boxes_tags i18n %}
+{% load flatblocks i18n markitup_tags metron_tags sitetree staticfiles %}
 
 {% block style_base %}
 <link href="{% static "css/site.css" %}" rel="stylesheet">
@@ -39,11 +39,10 @@
         <div class="container">
             <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="fa fa-bars"></span></button>
             <div class="navbar-header">
-              {% box "logo" %}
+              {% flatblock "logo" %}
             </div>
-            {#    <a href="{% url "home" %}">{% box "logo" %}<img src="{{ STATIC_URL }}images/PyDataSeattleLogo.svg" alt="{{ SITE_NAME }}"></a> #}
             <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav">               
+                <ul class="nav navbar-nav">
                 {% sitetree_menu from "main" include "trunk" template "menu_bootstrap3.html" %}
                 {% include "_account_bar.html" %}
                 </ul>

@@ -145,6 +145,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "easy_thumbnails",
     "eventlog",
+    "flatblocks",
     "markitup",
     "metron",
     "reversion",
