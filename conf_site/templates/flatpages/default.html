@@ -10,15 +10,8 @@
 {% block breadcrumbs %}{% sitetree_breadcrumbs from "main" %}{% endblock %}
 
 {% block body %}
-    {% if editable %}
-        <div class="pull-right">
-            <a href="{% url 'cms_page_edit' page.path %}" class="btn btn-default"><i class="fa fa-pencil fa-2x"></i> Edit this page</a>
-        </div>
-    {% endif %}
-    <h2>{{ page.title }}</h2>
-    
+    <h2>{{ flatpage.title }}</h2>
     <div class="page-content">
-        {{ page.body }}
+        {{ flatpage.content }}
     </div>
-    
 {% endblock %}
