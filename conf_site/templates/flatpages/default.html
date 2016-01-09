@@ -1,7 +1,5 @@
 {% extends "site_base.html" %}
-
-{% load sitetree %}
-{% load i18n %}
+{% load django_markdown i18n sitetree %}
 
 {% block body_class %}cms-page{% endblock %}
 
@@ -12,6 +10,6 @@
 {% block body %}
     <h2>{{ flatpage.title }}</h2>
     <div class="page-content">
-        {{ flatpage.content }}
+        {{ flatpage.content|markdown }}
     </div>
 {% endblock %}

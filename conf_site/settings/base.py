@@ -144,6 +144,7 @@ INSTALLED_APPS = [
     # external
     "account",
     "django_extensions",
+    "django_markdown",
     "easy_thumbnails",
     "eventlog",
     "flatblocks",

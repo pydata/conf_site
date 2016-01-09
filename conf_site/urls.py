@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 from account.views import LoginView, SignupView
+from django_markdown import flatpages as markdown_flatpages
 import symposion.views
 
 
@@ -25,7 +26,9 @@ urlpatterns = [
     url(r"^teams/", include("symposion.teams.urls")),
     url(r"^reviews/", include("symposion.reviews.urls")),
     url(r"^schedule/", include("symposion.schedule.urls")),
+    url("^markdown/", include("django_markdown.urls")),
     url(r"^markitup/", include("markitup.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+markdown_flatpages.register()
