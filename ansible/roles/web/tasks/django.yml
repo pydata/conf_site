@@ -74,8 +74,15 @@
             mode=0644
   notify: restart gunicorn
 
+- name: workaround for troublesome bug
+  django_manage: command="migrate auth"
+                 app_path={{ project_folder_root }}
+                 settings=conf_site.settings.{{ environment_type }}
+                 virtualenv={{ virtualenv_folder_root }}current
+  notify: restart gunicorn
+
 - name: database migrate
-  django_manage: command=migrate
+  django_manage: command="migrate --fake-initial"
                  app_path={{ project_folder_root }}
                  settings=conf_site.settings.{{ environment_type }}
                  virtualenv={{ virtualenv_folder_root }}current

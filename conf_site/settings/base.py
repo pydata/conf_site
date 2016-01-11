@@ -110,9 +110,9 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.auth.middleware.SessionAuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    # "django.middleware.transaction.TransactionMiddleware",  -- Deprecated in 1.6 (https://docs.djangoproject.com/en/dev/topics/db/transactions/#transaction-middleware)
     "reversion.middleware.RevisionMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 ]
 
 ROOT_URLCONF = "conf_site.urls"
@@ -124,16 +124,13 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-FIXTURE_DIRS = (
-    os.path.join(BASE_DIR, 'fixtures'),
-)
-
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.flatpages",
     "django.contrib.messages",
     "django.contrib.sessions",
     "django.contrib.sites",
@@ -147,19 +144,18 @@ INSTALLED_APPS = [
     # external
     "account",
     "django_extensions",
+    "django_markdown",
     "easy_thumbnails",
     "eventlog",
+    "flatblocks",
     "markitup",
     "metron",
     "reversion",
     "sitetree",
     "taggit",
-    "timezones",
 
     # symposion
     "symposion",
-    "symposion.boxes",
-    "symposion.cms",
     "symposion.conference",
     "symposion.proposals",
     "symposion.reviews",
