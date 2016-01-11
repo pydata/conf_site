@@ -1,23 +1,22 @@
-{% extends "proposals/base.html" %}
+{% extends "symposion/speakers/base.html" %}
 
 {% load bootstrap %}
-{% load markitup_tags %}
+{% load i18n %}
 
-{% block head_title %}Editing {{ proposal.title }}{% endblock %}
+{% block page_title %}{% trans "Edit Speaker Profile" %}{% endblock %}
 
 {% block body %}
-    <h1>Edit: {{ proposal.title }}</h1>
-
-    <p><a href="{% url "proposal_speaker_manage" proposal.pk %}">Manage speakers</a></p>
+    {% box "speaker-profile" %}
 
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
+        <legend>{% trans "Edit Speaker Profile" %}</legend>
         <fieldset>
             {{ form|bootstrap }}
         </fieldset>
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="Save" />
-            <a class="btn btn-default" href="{% url "proposal_detail" proposal.pk %}">Cancel</a>
+            <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
         </div>
     </form>
 {% endblock %}
