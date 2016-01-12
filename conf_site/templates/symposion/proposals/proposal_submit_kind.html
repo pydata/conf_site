@@ -1,13 +1,11 @@
-{% extends "proposals/base.html" %}
+{% extends "symposion/proposals/base.html" %}
 
-{% load bootstrap %}
-{% load i18n %}
-{% load markitup_tags %}
+{% load bootstrap flatblocks i18n markitup_tags %}
 
 {% block page_title %}Submit a Proposal for a {{ kind.name }}{% endblock %}
 
 {% block body %}
-    {% box "example_proposal" %}
+    {% flatblock "example_proposal" %}
 
     <form method="POST" action="" enctype="multipart/form-data" class="form-horizontal">
         {% csrf_token %}

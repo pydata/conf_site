@@ -1,0 +1,5 @@
+database_user: madrid2016
+django_database: madrid2016
+subdirectory: /madrid2016
+website_domain: pydata.org
+website_url: http://pydata.org{{ subdirectory }}

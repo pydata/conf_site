@@ -1,16 +1,15 @@
-{% extends "speakers/base.html" %}
+{% extends "symposion/speakers/base.html" %}
 
-{% load bootstrap %}
-{% load i18n %}
+{% load bootstrap flatblocks i18n %}
 
-{% block page_title %}{% trans "Edit Speaker Profile" %}{% endblock %}
+{% block page_title %}{% trans "Create Speaker Profile" %}{% endblock %}
 
 {% block body %}
-    {% box "speaker-profile" %}
+    {% flatblock "speaker-profile" %}
 
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        <legend>{% trans "Edit Speaker Profile" %}</legend>
+        <legend>{% trans "Create Speaker Profile" %}</legend>
         <fieldset>
             {{ form|bootstrap }}
         </fieldset>

@@ -1,11 +1,11 @@
-{% extends "proposals/base.html" %}
+{% extends "symposion/proposals/base.html" %}
 
-{% load i18n %}
+{% load flatblocks i18n %}
 
 {% block page_title %}{% trans "Submit A Proposal" %}{% endblock %}
 
 {% block body %}
-    {% box "proposal_submit" %}
+    {% flatblock "proposal_submit" %}
 
     {% if kinds %}
         <p>Select what kind of proposal you'd like to submit:</p>

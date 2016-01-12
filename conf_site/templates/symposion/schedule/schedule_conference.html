@@ -1,7 +1,6 @@
 {% extends "site_base.html" %}
 
-{% load cache %}
-{% load i18n %}
+{% load cache flatblocks i18n %}
 
 {% block head_title %}Conference Schedule{% endblock %}
 
@@ -15,7 +14,7 @@
         <h1>Conference Schedule</h1>
         {% block breadcrumbs %}{% endblock %}
     </div>
-    {% box "schedule_top" %}
+    {% flatblock "schedule_top" %}
 
     {% for section in sections %}
         {% cache 600 "schedule-table" section.schedule.section %}
@@ -26,5 +25,5 @@
         {% endcache %}
     {% endfor %}
 
-    {% box "schedule_bottom" %}
+    {% flatblock "schedule_bottom" %}
 {% endblock %}
