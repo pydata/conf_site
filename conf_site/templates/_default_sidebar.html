@@ -1,5 +1,4 @@
-{% load sponsorship_tags %}
-{% load thumbnail %}
+{% load flatblocks sponsorship_tags  thumbnail %}
 
 {% sponsor_levels as levels %}
 
@@ -16,4 +15,4 @@
 {% endfor %}
 </div>
 
-<h5 class="text-center"><a href="http://pydata.org/sponsor/info">Become a sponsor</a>.</h5>
+{% flatblock "sidebar-bottom" %}
