@@ -44,7 +44,7 @@
                             <th>Actions</th>
                         </tr>
                         {% for proposal in user.speaker_profile.proposals.all %}
-                            {% include "proposals/_proposal_row.html" %}
+                            {% include "symposion/proposals/_proposal_row.html" %}
                         {% endfor %}
                     </table>
                 {% else %}
@@ -62,7 +62,7 @@
                             <th>Actions</th>
                         </tr>
                         {% for proposal in associated_proposals %}
-                            {% include "proposals/_proposal_row.html" %}
+                            {% include "symposion/proposals/_proposal_row.html" %}
                         {% endfor %}
                     </table>
                 {% endif %}
@@ -78,7 +78,7 @@
                             <th>Actions</th>
                         </tr>
                         {% for proposal in pending_proposals %}
-                            {% include "proposals/_pending_proposal_row.html" %}
+                            {% include "symposion/proposals/_pending_proposal_row.html" %}
                         {% endfor %}
                     </table>
                 {% endif %}

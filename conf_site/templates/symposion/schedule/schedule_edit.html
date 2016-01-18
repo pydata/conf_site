@@ -18,7 +18,7 @@
 
     {% for timetable in days %}
         <h2>{{ timetable.day.date }}</h2>
-        {% include "schedule/_edit_grid.html" %}
+        {% include "symposion/schedule/_edit_grid.html" %}
     {% endfor %}
     <form id="schedule-builder" action="." method="post" enctype="multipart/form-data">{% csrf_token %}
         {{ form.as_p }}

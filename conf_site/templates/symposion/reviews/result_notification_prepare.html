@@ -39,7 +39,7 @@
                 <input type="hidden" name="notification_template" value="{{ notification_template.pk }}" />
                 <input type="hidden" name="proposal_pks" value="{{ proposal_pks }}" />
 
-                {% include "reviews/_result_notification_prepare_help.html" %}
+                {% include "symposion/reviews/_result_notification_prepare_help.html" %}
 
                 <button type="submit" class="btn btn-primary">Send {{ proposals|length }} Email{{ proposals|length|pluralize }}</button>
                 <a class="btn" href="{% url "result_notification" section_slug status %}">Cancel</a>
