@@ -4,9 +4,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from account.views import LoginView, SignupView
+from account.views import SignupView
 from django_markdown import flatpages as markdown_flatpages
 import symposion.views
+
+from misc.views import LoginEmailView
 
 
 WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
@@ -17,7 +19,7 @@ urlpatterns = [
 
     url(r"^$", TemplateView.as_view(template_name="homepage.html"), name="home"),
     url(r"^account/signup/$", SignupView.as_view(), name="account_signup"),
-    url(r"^account/login/$", LoginView.as_view(), name="account_login"),
+    url(r"^account/login/$", LoginEmailView.as_view(), name="account_login"),
     url(r"^account/", include("account.urls")),
     url(r"^dashboard/", symposion.views.dashboard, name="dashboard"),
     url(r"^speaker/", include("symposion.speakers.urls")),
