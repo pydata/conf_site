@@ -11,7 +11,7 @@
         {% csrf_token %}
         <legend>{% trans "Edit Speaker Profile" %}</legend>
         <fieldset>
-            {{ form|bootstrap }}
+            {{ speaker_form|bootstrap }}
         </fieldset>
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="Save" />
