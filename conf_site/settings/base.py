@@ -166,7 +166,8 @@ INSTALLED_APPS = [
 
     # project
     "conf_site",
-    "conf_site.proposals"
+    "conf_site.misc",
+    "conf_site.proposals",
 ]
 
 # A sample logging configuration. The only tangible logging
