@@ -1,6 +1,6 @@
 {% extends "site_base.html" %}
 
-{% load flatblocks i18n sponsorship_tags %}
+{% load flatblocks i18n markup sponsorship_tags %}
 
 {% block head_title %}{% trans "About Our Sponsors" %}{% endblock %}
 
@@ -27,7 +27,7 @@
                         <div class="col-md-9">
                             <h5>{{ sponsor.name }}</h5>
                             <p><a href="{{ sponsor.external_url }}">{{ sponsor.external_url }}</a></p>
-                            <p>{{ sponsor.listing_text|urlize|linebreaks }}</p>
+                            <p>{{ sponsor.listing_text|markdown }}</p>
                         </div>
                     </div>
                 {% endif %}
