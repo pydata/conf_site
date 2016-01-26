@@ -1,5 +1,6 @@
-database_user: london2016
-django_database: london2016
-subdirectory: /london2016
+conference_identifier: london2016
+database_user: "{{ conference_identifier }}"
+django_database: "{{ conference_identifier }}"
+subdirectory: /{{ conference_identifier }}
 website_domain: pydata.org
 website_url: http://pydata.org{{ subdirectory }}
