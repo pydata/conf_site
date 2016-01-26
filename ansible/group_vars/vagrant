@@ -1,7 +1,8 @@
-database_user: vagrant
-django_database: vagrant
+conference_identifier: vagrant
+database_user: "{{ conference_identifier }}"
+django_database: "{{ conference_identifier }}"
 environment_type: dev
-subdirectory: /vagrant
+subdirectory: /{{ conference_identifier }}
 website_domain: localhost
 website_port: 8080
 website_url: http://{{ website_domain }}:{{ website_port }}{{ subdirectory }}
