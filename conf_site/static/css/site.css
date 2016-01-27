@@ -1556,7 +1556,9 @@ footer{padding-bottom:20px}
 p.caption,figcaption{background-color:#000;bottom:1em;font-size:1em;font-weight:lighter;padding:0 .5em;position:absolute;right:1.5em;text-align:right}p.caption a,figcaption a{color:#fff}p.caption a:hover,figcaption a:hover{color:#ec904a}
 #logo,.block-logo{margin:4px 0 0;width:250px}#logo a,.block-logo a{display:block}
 #logo p,.block-logo p{margin:0}
-#banner{margin:1em 0 2em;padding:2em 0;z-index:0}#banner p{margin-bottom:0}
+.block-hashtag{float: right;position: relative;top: 50px}
+@media (max-width:768px){.block-hashtag{float: inherit;position: inherit;top: inherit}.block-hashtag p{margin: 0}}
+#banner{margin:1em 0 2em;padding:0;z-index:0}#banner p{margin-bottom:0}
 #banner img{max-width:100%;-webkit-filter:grayscale(100%);filter:grayscale(100%);transition:all .5s}
 #banner .container:hover img{-webkit-filter:grayscale(0);filter:grayscale(0)}
 .sponsor-list a{display:block;text-align:center}.sponsor-list a>img{margin-bottom:1.5em}
