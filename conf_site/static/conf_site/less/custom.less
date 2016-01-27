@@ -101,6 +101,21 @@ p.caption, figcaption {
     margin: 0;
   }
 }
+.block-hashtag {
+    float: right;
+    position: relative;
+    top: 50px;
+}
+@media(max-width: @screen-sm){
+  .block-hashtag {
+      float: inherit;
+      position: inherit;
+      top: inherit;
+      p {
+        margin: 0;
+      }
+  }
+}
 #banner {
   margin: 1em 0 2em;
   padding: 0;
