@@ -1,6 +1,6 @@
 {% extends "theme_bootstrap/base.html" %}
 
-{% load flatblocks i18n markitup_tags metron_tags sitetree staticfiles %}
+{% load flatblocks i18n markitup_tags sitetree staticfiles %}
 
 {% block style_base %}
 <link href="{% static "css/site.css" %}" rel="stylesheet">
@@ -82,7 +82,6 @@
 {% block footer_base %}{% endblock %}
 
 {% block extra_body_base %}
-    {% analytics %}
     {% block extra_body %}{% endblock %}
 {% endblock %}
 

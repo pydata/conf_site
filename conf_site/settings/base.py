@@ -149,7 +149,6 @@ INSTALLED_APPS = [
     "eventlog",
     "flatblocks",
     "markitup",
-    "metron",
     "reversion",
     "sitetree",
     "taggit",
