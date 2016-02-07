@@ -1,8 +1,9 @@
 {% extends "theme_bootstrap/base.html" %}
 
-{% load flatblocks i18n markitup_tags sitetree staticfiles %}
+{% load analytical flatblocks i18n markitup_tags sitetree staticfiles %}
 
 {% block style_base %}
+{% analytical_head_top %}
 <link href="{% static "css/site.css" %}" rel="stylesheet">
 {% block extra_style %}{% endblock %}
 {% endblock %}
@@ -30,10 +31,12 @@
     <meta name="msapplication-config" content="{{ STATIC_URL }}favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     {% block extra_head %}{% endblock %}
+    {% analytical_head_bottom %}
 {% endblock %}
 
 
 {% block topbar_base %}
+{% analytical_body_top %}
 <header>
     <div class="navbar navbar-default {% block navbar_class %}{% endblock %}">
         <div class="container">
@@ -82,6 +85,7 @@
 {% block footer_base %}{% endblock %}
 
 {% block extra_body_base %}
+    {% analytical_body_bottom %}
     {% block extra_body %}{% endblock %}
 {% endblock %}
 

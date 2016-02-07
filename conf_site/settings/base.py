@@ -143,6 +143,7 @@ INSTALLED_APPS = [
 
     # external
     "account",
+    "analytical",
     "django_extensions",
     "django_markdown",
     "easy_thumbnails",
