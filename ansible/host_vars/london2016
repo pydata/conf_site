@@ -1,6 +1,7 @@
 conference_identifier: london2016
 database_user: "{{ conference_identifier }}"
 django_database: "{{ conference_identifier }}"
+google_analytics_id: UA-41850464-2
 subdirectory: /{{ conference_identifier }}
 website_domain: pydata.org
 website_url: http://pydata.org{{ subdirectory }}
