@@ -2,6 +2,7 @@ conference_identifier: vagrant
 database_user: "{{ conference_identifier }}"
 django_database: "{{ conference_identifier }}"
 environment_type: dev
+google_analytics_id: UA-00000-0
 subdirectory: /{{ conference_identifier }}
 website_domain: localhost
 website_port: 8080

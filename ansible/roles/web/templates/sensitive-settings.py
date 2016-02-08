@@ -28,3 +28,5 @@ FORCE_SCRIPT_NAME = "{{ subdirectory }}" or None
 LOGIN_URL = "{{ website_url }}/account/login/"
 MEDIA_URL = "{{ website_url }}/media/"
 STATIC_URL = "{{ website_url }}/static/"
+
+GOOGLE_ANALYTICS_PROPERTY_ID = "{{ google_analytics_id }}"
