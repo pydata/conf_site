@@ -11,6 +11,7 @@
         <th>{% trans "-0" %}</th>
         <th>{% trans "-1" %}</th>
         <th><a href="#" class="tip" title="{% trans "Your Rating" %}"><i class="fa fa-user"></i></a></th>
+        <th>{% trans "Status" %}</th>
     </thead>
 
     <tbody>
@@ -24,13 +25,14 @@
                         {{ proposal.title }}
                     </a>
                 </td>
-                <td>{{ proposal.track }}</td>
+                <td>{{ proposal.kind.name }}</td>
                 <td>{{ proposal.comment_count }}</td>
                 <td>{{ proposal.plus_one }}</td>
                 <td>{{ proposal.plus_zero }}</td>
                 <td>{{ proposal.minus_zero }}</td>
                 <td>{{ proposal.minus_one }}</td>
                 <td>{{ proposal.user_vote|default:"" }}</td>
+                <td>{{ proposal.result.status }}</td>
             </tr>
         {% endfor %}
     </tbody>
