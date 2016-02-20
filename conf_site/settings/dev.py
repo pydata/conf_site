@@ -9,6 +9,8 @@ SERVE_MEDIA = DEBUG
 
 SITE_ID = 2
 ALLOWED_HOSTS = ["localhost", "0.0.0.0"]
+TIME_FORMAT = secrets.TIME_FORMAT
+TIME_ZONE = secrets.TIME_ZONE
 
 DATABASES = {
     "default": secrets.DATABASES_DEFAULT,
