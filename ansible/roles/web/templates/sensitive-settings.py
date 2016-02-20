@@ -12,6 +12,7 @@ DATABASES_DEFAULT = {
 
 SECRET_KEY = "{{ django_secret_key }}"
 SESSION_COOKIE_PATH = "{{ subdirectory }}" or "/"
+TIME_FORMAT = "{{ time_format }}"
 TIME_ZONE = "{{ timezone }}"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
