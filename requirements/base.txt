@@ -14,4 +14,4 @@ Pillow==2.6.1
 pinax-theme-bootstrap==5.7.1
 psycopg2==2.6.1
 
-git+git://github.com/pydata/symposion.git@5b9f4fb71ed74b8c944c332e6b23763188fe636b#egg=symposion
+git+git://github.com/pydata/symposion.git@patched#egg=symposion
