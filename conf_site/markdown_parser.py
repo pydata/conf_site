@@ -1,4 +1,4 @@
-from html5lib import html5parser, sanitizer
+from html5lib import html5parser, sanitizer, getTreeBuilder
 
 import markdown
 
@@ -13,7 +13,8 @@ def parse(text):
 
     # Sanitize using html5lib
     bits = []
-    parser = html5parser.HTMLParser(tokenizer=sanitizer.HTMLSanitizer)
+    parser = html5parser.HTMLParser(
+        tokenizer=sanitizer.HTMLSanitizer, tree=getTreeBuilder("dom"))
     for token in parser.parseFragment(text).childNodes:
         bits.append(token.toxml())
     return "".join(bits)
