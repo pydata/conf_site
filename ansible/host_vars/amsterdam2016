@@ -2,5 +2,6 @@ database_user: amsterdam2016
 django_database: amsterdam2016
 git_version: amsterdam2016
 subdirectory: /amsterdam2016
+timezone: Europe/Amsterdam
 website_domain: pydata.org
 website_url: http://pydata.org{{ subdirectory }}
