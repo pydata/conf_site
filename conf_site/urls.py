@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import TemplateView
 
 from account.views import SignupView
@@ -9,6 +10,7 @@ from django_markdown import flatpages as markdown_flatpages
 import symposion.views
 
 from misc.views import LoginEmailView
+from speakers.views import ExportAcceptedSpeakerEmailView
 
 
 WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
@@ -22,6 +24,9 @@ urlpatterns = [
     url(r"^account/login/$", LoginEmailView.as_view(), name="account_login"),
     url(r"^account/", include("account.urls")),
     url(r"^dashboard/", symposion.views.dashboard, name="dashboard"),
+    url(r"^speaker/export/$",
+        staff_member_required(ExportAcceptedSpeakerEmailView.as_view()),
+        name="speaker_email_export"),
     url(r"^speaker/", include("symposion.speakers.urls")),
     url(r"^proposals/", include("symposion.proposals.urls")),
     url(r"^sponsors/", include("symposion.sponsorship.urls")),
