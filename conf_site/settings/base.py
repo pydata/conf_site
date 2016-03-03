@@ -168,6 +168,7 @@ INSTALLED_APPS = [
     "conf_site",
     "conf_site.misc",
     "conf_site.proposals",
+    "conf_site.speakers",
 ]
 
 # A sample logging configuration. The only tangible logging
