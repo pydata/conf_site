@@ -94,3 +94,10 @@
                  settings=conf_site.settings.{{ environment_type }}
                  virtualenv={{ virtualenv_folder_root }}current
   notify: restart nginx
+
+- name: update review permissions
+  django_manage: command=create_review_permissions
+                 app_path={{ project_folder_root }}
+                 settings=conf_site.settings.{{ environment_type }}
+                 virtualenv={{ virtualenv_folder_root }}current
+  notify: restart gunicorn
