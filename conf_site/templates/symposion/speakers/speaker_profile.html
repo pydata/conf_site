@@ -29,8 +29,9 @@
                     <p>
                         {{ presentation.slot.day.date|date:"l" }}
                         {{ presentation.slot.start}}&ndash;{{ presentation.slot.end }}
-                        in
-                        {{ presentation.slot.rooms|join:", " }}
+                        {% if presentation.slot.rooms %}
+                            in {{ presentation.slot.rooms|join:", " }}
+                        {% endif %}
                     </p>
                 {% endif %}
             {% empty %}
