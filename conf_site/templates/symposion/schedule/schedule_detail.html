@@ -1,6 +1,6 @@
 {% extends "site_base.html" %}
 
-{% load cache flatblocks i18n sitetree %}
+{% load flatblocks i18n sitetree %}
 
 {% block head_title %}Conference Schedule{% endblock %}
 
@@ -16,12 +16,10 @@
     </div>
     {% flatblock "schedule_top" %}
 
-    {% cache 600 "schedule-table" schedule.section %}
         {% for timetable in days %}
             <h3>{{ timetable.day.date }}</h3>
             {% include "symposion/schedule/_grid.html" %}
         {% endfor %}
-    {% endcache %}
 
     {% flatblock "schedule_bottom" %}
 {% endblock %}
