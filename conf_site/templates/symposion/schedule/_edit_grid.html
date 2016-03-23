@@ -10,7 +10,7 @@
     <tbody>
         {% for row in timetable %}
             <tr>
-                <td class="time">{{ row.time|date:"h:iA" }}</td>
+                <td class="time">{{ row.time }}</td>
                 {% for slot in row.slots %}
                     <td class="slot slot-{{ slot.kind.label }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
                       {# this is a kludge until the slot.kind model has a property #}
