@@ -18,7 +18,7 @@
 
     {% for section in sections %}
             {% for timetable in section.days %}
-                <h3>{{ section.schedule.section.name }} — {{ timetable.day.date }}</h3>
+                <h3>{{ section.schedule.section.name }} — {{ timetable.day.date|date:"l" }} {{ timetable.day.date }}</h3>
                 {% include "symposion/schedule/_grid.html" %}
             {% endfor %}
     {% endfor %}
