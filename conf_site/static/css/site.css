@@ -1530,7 +1530,7 @@ table.calendar{background-color:#fff ff;table-layout:fixed;font-size:12px}table.
 table.calendar th{text-align:center}table.calendar th.time{width:60px}
 table.calendar td{text-align:center;vertical-align:middle}table.calendar td.time{vertical-align:top;padding-top:0;margin-top:0;color:#444;font-size:11px}
 table.calendar td.slot{font-weight:bold;text-shadow:#fff 0 1px 0}table.calendar td.slot.slot-break{background-color:#ecffff}
-table.calendar td.slot.slot-plenary{background-color:#ebebff}
+table.calendar td.slot.slot-plenary{background-color:#ffffcc}
 table.calendar td.slot.slot-talk{background-color:#e1edf7}
 table.calendar td.slot.slot-tutorial{background-color:#fbe5d4}
 table.calendar td.slot.slot-discussion{background-color:#b8d9e3}
