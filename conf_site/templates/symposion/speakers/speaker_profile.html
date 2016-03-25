@@ -20,7 +20,7 @@
                 <a class="btn btn-default pull-right" href="{% url "speaker_edit" speaker.pk %}">Edit</a>
             {% endif %}
             <h1>{{ speaker.name }}</h1>
-            <div class="bio">{{ speaker.biography|safe }}</div>
+            <div class="bio">{{ speaker.biography_html|safe }}</div>
 
             <h2>Presentations</h2>
             {% for presentation in presentations %}
