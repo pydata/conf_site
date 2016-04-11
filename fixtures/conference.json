@@ -1,34 +1,34 @@
 [
-{
-  "fields": {
-    "timezone": "US/Pacific",
-    "start_date": "2015-07-24",
-    "end_date": "2015-07-26",
-    "title": "PyData Seattle 2015"
-  },
-  "model": "symposion_conference.conference",
-  "pk": 1
-},
-{
-  "fields": {
-    "conference": 1,
-    "start_date": "2015-07-24",
-    "name": "Tutorials",
-    "end_date": "2015-07-26",
-    "slug": "tutorials"
-  },
-  "model": "symposion_conference.section",
-  "pk": 1
-},
-{
-  "fields": {
-    "conference": 1,
-    "start_date": "2015-07-24",
-    "name": "General Sessions",
-    "end_date": "2015-07-26",
-    "slug": "general-sessions"
-  },
-  "model": "symposion_conference.section",
-  "pk": 2
-}
+    {
+        "pk": 1,
+        "model": "symposion_conference.conference",
+        "fields": {
+            "timezone": "US/Eastern",
+            "start_date": "2040-01-01",
+            "end_date": "2040-01-04",
+            "title": "PyData"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "symposion_conference.section",
+        "fields": {
+            "conference": 1,
+            "start_date": "2040-01-01",
+            "name": "Tutorial Sessions",
+            "end_date": "2040-01-01",
+            "slug": "tutorial-sessions"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "symposion_conference.section",
+        "fields": {
+            "conference": 1,
+            "start_date": "2040-01-01",
+            "name": "General Sessions",
+            "end_date": "2040-01-01",
+            "slug": "general-sessions"
+        }
+    }
 ]
