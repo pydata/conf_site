@@ -1,6 +1,7 @@
 conference_identifier: carolinas2016
 database_user: "{{ conference_identifier }}"
 django_database: "{{ conference_identifier }}"
+git_version: carolinas2016
 google_analytics_id: UA-41850464-6
 subdirectory: /{{ conference_identifier }}
 time_format: "g:i A"
