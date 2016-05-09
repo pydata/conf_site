@@ -7,5 +7,4 @@ carolinas2016 ansible_ssh_host=104.130.1.124
 chicago2016 ansible_ssh_host=104.239.164.118
 dc2016 ansible_ssh_host=104.130.1.97
 london2016 ansible_ssh_host=104.130.9.39
-madrid2016 ansible_ssh_host=104.130.169.140
 paris2016 ansible_ssh_host=162.242.240.194
