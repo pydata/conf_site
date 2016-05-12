@@ -1,6 +1,7 @@
 conference_identifier: paris2016
 database_user: "{{ conference_identifier }}"
 django_database: "{{ conference_identifier }}"
+git_version: "{{ conference_identifier }}"
 google_analytics_id: UA-41850464-9
 subdirectory: /{{ conference_identifier }}
 time_format: "G:i"
