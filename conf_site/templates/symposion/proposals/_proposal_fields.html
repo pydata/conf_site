@@ -29,13 +29,13 @@
     <dd>{{ proposal.description }}&nbsp;</dd>
 
     <dt>{% trans "Abstract" %}</dt>
-    <dd>{{ proposal.abstract|safe }}&nbsp;</dd>
+    <dd>{{ proposal.abstract_html|safe }}&nbsp;</dd>
 
     <dt>{% trans "Notes" %}</dt>
-    <dd>{{ proposal.additional_notes|safe }}&nbsp;</dd>
+    <dd>{{ proposal.additional_notes_html|safe }}&nbsp;</dd>
 
     <dt>{% trans "Speaker Bio" %}</dt>
-    <dd>{{ proposal.speaker.biography|safe }}&nbsp;</dd>
+    <dd>{{ proposal.speaker.biography_html|safe }}&nbsp;</dd>
 
     <dt>{% trans "Documents" %}</dt>
     <dd>
