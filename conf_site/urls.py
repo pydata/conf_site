@@ -35,6 +35,8 @@ urlpatterns = [
     url(r"^schedule/", include("symposion.schedule.urls")),
     url("^markdown/", include("django_markdown.urls")),
     url(r"^markitup/", include("markitup.urls")),
+
+    url(r"^api/", include("conf_site.api.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
