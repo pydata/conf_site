@@ -10,4 +10,5 @@ router.register(r'speaker', views.SpeakerViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+    url(r'^$', views.ConferenceDetail.as_view()),
 ]
