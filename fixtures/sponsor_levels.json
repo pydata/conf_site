@@ -5,9 +5,9 @@
         "fields": {
             "conference": 1,
             "description": "",
-            "cost": 10000,
-            "name": "Gold",
-            "order": 0
+            "cost": 0,
+            "name": "Founding",
+            "order": 1
         }
     },
     {
@@ -16,9 +16,9 @@
         "fields": {
             "conference": 1,
             "description": "",
-            "cost": 5000,
-            "name": "Silver",
-            "order": 1
+            "cost": 10000,
+            "name": "Gold",
+            "order": 2
         }
     },
     {
@@ -27,9 +27,20 @@
         "fields": {
             "conference": 1,
             "description": "",
+            "cost": 5000,
+            "name": "Silver",
+            "order": 3
+        }
+    },
+    {
+        "pk": 4,
+        "model": "symposion_sponsorship.sponsorlevel",
+        "fields": {
+            "conference": 1,
+            "description": "",
             "cost": 2000,
             "name": "Bronze",
-            "order": 2
+            "order": 4
         }
     }
 ]
