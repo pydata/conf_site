@@ -15,22 +15,20 @@
         {% if level.sponsors %}
             <h3>{{ level.name }}</h3>
             {% for sponsor in level.sponsors %}
-                {% if sponsor.website_logo %}
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h2>
-                                <a href="{{ sponsor.external_url }}">
-                                    <img src="{{ sponsor.website_logo.url }}" alt="{{ sponsor.name }}" />
-                                </a>
-                            </h2>
-                        </div>
-                        <div class="col-md-9">
-                            <h5>{{ sponsor.name }}</h5>
-                            <p><a href="{{ sponsor.external_url }}">{{ sponsor.external_url }}</a></p>
-                            <p>{{ sponsor.listing_text|markdown }}</p>
-                        </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        {% if sponsor.website_logo %}
+                            <a href="{{ sponsor.external_url }}">
+                                <img src="{{ sponsor.website_logo.url }}" alt="{{ sponsor.name }}" />
+                            </a>
+                        {% endif %}
                     </div>
-                {% endif %}
+                        <div class="col-md-9">
+                        <h5>{{ sponsor.name }}</h5>
+                        <p><a href="{{ sponsor.external_url }}">{{ sponsor.external_url }}</a></p>
+                        <p>{{ sponsor.listing_text|markdown }}</p>
+                    </div>
+                </div>
             {% endfor %}
         {% endif %}
     {% endfor %}

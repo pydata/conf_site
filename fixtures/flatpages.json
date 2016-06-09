@@ -1,0 +1,92 @@
+[
+{
+    "fields": {
+        "registration_required": false,
+        "title": "Venue",
+        "url": "/venue/",
+        "template_name": "",
+        "sites": [
+            1
+        ],
+        "content": "",
+        "enable_comments": false
+    },
+    "model": "flatpages.flatpage",
+    "pk": 1
+},
+{
+    "fields": {
+        "registration_required": false,
+        "title": "Call For Proposals",
+        "url": "/cfp/",
+        "template_name": "",
+        "sites": [
+            1
+        ],
+        "content": "The event brings together analysts, scientists, developers, engineers, architects and others from the data science community to discuss new techniques and tools for management, analytics and visualization of data. PyData welcomes presentations focusing on Python as well as other languages used in data science (e.g. R, Julia). Presentation content can be at a novice, intermediate or advanced level. Talks will be 45 minutes long. Tutorial slots are available for either 90 minutes or 120 minute slots.\r\n</p>\r\n\r\n<p>\r\nEach submission consists of a talk title, a paragraph-long description of the talk or tutorial, and a detailed outline of the topics that will be covered in the talk or tutorial. An effective submission should include details about what will be covered and why the audience should attend your talk!\r\n</p>\r\n\r\n<p>\r\nAs a reminder, PyData presentations are intended to share knowledge and experience. We welcome talks letting attendees know how how you are using tools in your work, but discourage any proposals with the aim of selling a product.</p>\r\n\r\n<p>If you are interested in presenting a talk or tutorial, we encourage your submission(s). To see the type of topics presented at previous PyData events, please look at our past conference sites at <a href=\"http://pydata.org/\">pydata.org</a> or check out the videos on <a href=\"https://www.youtube.com/user/PyDataTV\">https://www.youtube.com/user/PyDataTV</a>.</p>\r\n\r\n**How to Submit**\r\n<ol>\r\n<li>Register for an account (see dropdown at top right).</li>\r\n<li>Create a speaker profile.</li>\r\n<li>Click on \"Submit a new proposal\".</li>\r\n</ol>\r\n\r\n**Additional Information**\r\n<ul>\r\n<li>Registration will be complimentary for speakers</li>\r\n<li>Any questions can be directed to admin@pydata.org</li>\r\n</ul>",
+        "enable_comments": false
+    },
+    "model": "flatpages.flatpage",
+    "pk": 2
+},
+{
+    "fields": {
+        "registration_required": false,
+        "title": "Press",
+        "url": "/about/press/",
+        "template_name": "",
+        "sites": [
+            1
+        ],
+        "content": "\r\nPyData welcomes journalists and photographers to the only conference specifically for data scientists using high-level dynamic Python tools.\r\nTo apply for a press pass please send all pertinent information to\r\nadmin@pydata.org. PyData will notify approved press by email.\r\n\r\n### Why Attend?\r\n\r\nAt PyData, attendees will encounter prominent scientists in the\r\nPython data community delivering talks, tutorials, and workshops. These range\r\nfrom corporate CEOs, to authors of open-source data analysis software, to\r\npost-doctoral researchers. They will enlighten and inform as they address the\r\nlarge-scale data management challenges affecting all genres of science and\r\nindustry. This is your opportunity to gain access to an exchange of ideas\r\nbetween users, trying to analyze high-volume databases; and developers,\r\nproviding them with accessible solutions. Gain insight into the newest products\r\nand the latest research confronting big-data.\r\n\r\n### Who is eligible for a complimentary pass?\r\n\r\nJournalists for legitimate business, science and technology media; and\r\nphotographers who personally will write articles about the PyData Conference or\r\nphotograph the conference for publication in external media. Journalists are\r\nfree to publicize, Tweet, and otherwise share all information. Quote approval\r\nneeds to be secured from speakers. Press credentials are non-transferable.\r\n\r\n### Not eligible:\r\n\r\nCorporate communications officers, business developers, non-reporting employees\r\nof media organizations, consultants, vendors, etc. should purchase a\r\nregistration.\r\n\r\n### Subject experts:\r\n\r\nTo set up an interview with one of PyData's subject experts or executives or to\r\nreceive information on any of the topics covered at PyData, contact\r\nadmin@pydata.org.\r\n",
+        "enable_comments": false
+    },
+    "model": "flatpages.flatpage",
+    "pk": 3
+},
+{
+    "fields": {
+        "registration_required": false,
+        "title": "NumFOCUS",
+        "url": "/about/numfocus/",
+        "template_name": "",
+        "sites": [
+            1
+        ],
+        "content": "PyData conferences are proudly organized by NumFOCUS, and net proceeds from PyData go to benefit NumFOCUS' projects and programs.\r\n\r\n\r\n\r\nThe purpose of [NumFOCUS](http://numfocus.org) is to promote the use of\r\naccessible and reproducible computing in science and technology. We work to\r\nsupport and promote the ongoing research and development of Python\r\nopen-source computing tools through educational, community, and public\r\nchannels. NumFOCUS operates as a 501(c)(3) public charity in the United States; created exclusively for charitable, educational and scientific purposes.\r\n\r\nFor more information, visit us at: <http://NumFOCUS.org>.\r\n",
+        "enable_comments": false
+    },
+    "model": "flatpages.flatpage",
+    "pk": 4
+},
+{
+    "fields": {
+        "registration_required": false,
+        "title": "Conference Mission",
+        "url": "/about/mission/",
+        "template_name": "",
+        "sites": [
+            1
+        ],
+        "content": "PyData brings together users and developers of data analysis tools in Python and other languages. PyData conferences provide a crucial space for contributors to come together, share ideas, and learn from each other. The PyData community gathers to discuss how best to apply languages and tools to continuously evolving challenges in data management, processing, analytics, and visualization.\r\n\r\nWe aim to be an accessible, community-driven conference, with tutorials for\r\nnovices, advanced topical workshops for practitioners, and opportunities for\r\npackage developers and users to meet in person.\r\n\r\nPyData provides a venue for users across all the various domains of data analysis to share their experiences and techniques. The conference is an opportunity to highlight the triumphs and potential pitfalls of using different languages for certain kinds of problems.\r\n",
+        "enable_comments": false
+    },
+    "model": "flatpages.flatpage",
+    "pk": 5
+},
+{
+    "fields": {
+        "registration_required": false,
+        "title": "Code of Conduct",
+        "url": "/about/code-of-conduct/",
+        "template_name": "",
+        "sites": [
+            1
+        ],
+        "content": "PyData is a community conference intended for networking and collaboration in the developer community.\r\n\r\nWe value the participation of each member of the Python community and want all\r\nattendees to have an enjoyable and fulfilling experience. Accordingly, all\r\nattendees are expected to show respect and courtesy to other attendees\r\nthroughout the conference and at all conference events, whether officially\r\nsponsored by PyData or not.\r\n\r\nTo make clear what is expected, all delegates, speakers, exhibitors and\r\nvolunteers at any PyData event are required to conform to the following Code of\r\nConduct. Organizers will enforce this code throughout the event.\r\n\r\n### The Shorter Version\r\n\r\nPyData is dedicated to providing a harassment-free conference experience for\r\neveryone, regardless of gender, sexual orientation, disability, physical\r\nappearance, body size, race, or religion. We do not tolerate harassment of\r\nconference participants in any form.\r\n\r\nAll communication should be appropriate for a professional audience including\r\npeople of many different backgrounds. Sexual language and imagery is not\r\nappropriate for any conference venue, including talks.\r\n\r\nBe kind to others. Do not insult or put down other attendees. Behave\r\nprofessionally. Remember that harassment and sexist, racist, or exclusionary\r\njokes are not appropriate for PyData.\r\n\r\nAttendees violating these rules may be asked to leave the conference without a\r\nrefund at the sole discretion of the conference organizers.\r\n\r\nThank you for helping make this a welcoming, friendly event for all.\r\n\r\n### The Longer Version\r\n\r\nHarassment includes offensive verbal comments related to gender, sexual\r\norientation, disability, physical appearance, body size, race, religion, sexual\r\nimages in public spaces, deliberate intimidation, stalking, following,\r\nharassing photography or recording, sustained disruption of talks or other\r\nevents, inappropriate physical contact, and unwelcome sexual attention.\r\n\r\nParticipants asked to stop any harassing behavior are expected to comply\r\nimmediately.\r\n\r\nSponsor or vendor booths, or similar activities are also subject to the anti-\r\nharassment policy. In particular, exhibitors should not use sexualized images,\r\nactivities, or other material. Booth staff (including volunteers) should not\r\nuse sexualized clothing/uniforms/costumes, or otherwise create a sexualized\r\nenvironment.\r\n\r\nBe careful in the words that you choose. Remember that sexist, racist, and\r\nother exclusionary jokes can be offensive to those around you. Excessive\r\nswearing and offensive jokes are not appropriate for PyData.\r\n\r\nIf a participant engages in behavior that violates this code of conduct, the\r\nconference organizers may take any action they deem appropriate, including\r\nwarning the offender or expulsion from the conference with no refund.  Contact\r\nInformation\r\n\r\nIf you are being harassed, notice that someone else is being harassed, or have\r\nany other concerns, please contact a member of conference staff at the registration table.\r\n\r\nIf the matter is especially urgent, please call/contact the event organizer:\r\n\r\n    Leah Silen at +1 (972) 896-3688 / admin@pydata.org\r\n\r\nConference staff will be happy to help participants contact hotel/venue\r\nsecurity or local law enforcement, provide escorts, or otherwise assist those\r\nexperiencing harassment to feel safe for the duration of the conference. We\r\nvalue your attendance.\r\n\r\n\r\n### License\r\n\r\nThis Code of Conduct was forked from the example policy from the Geek Feminism\r\nwiki, created by the Ada Initiative and other volunteers, which is under a\r\nCreative Commons Zero license.\r\n",
+        "enable_comments": false
+    },
+    "model": "flatpages.flatpage",
+    "pk": 6
+}
+]
