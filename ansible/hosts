@@ -9,3 +9,4 @@ cologne2016 ansible_ssh_host=104.239.160.248
 dc2016 ansible_ssh_host=104.130.1.97
 london2016 ansible_ssh_host=104.130.9.39
 paris2016 ansible_ssh_host=162.242.240.194
+sfo2016 ansible_ssh_host=174.143.130.147
