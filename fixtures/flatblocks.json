@@ -1,0 +1,83 @@
+[
+{
+    "fields": {
+        "content": "<a href=\"http://pydata.org/sponsor/info/\">Learn how to become a sponsor</a>",
+        "header": "",
+        "slug": "sponsorship-list-top"
+    },
+    "model": "flatblocks.flatblock",
+    "pk": 1
+},
+{
+    "fields": {
+        "content": "<div style=\"text-align:center\">\r\n<img src=\"http://pydata.org/chicago2016/static/images/banner-chicago2016.jpg\">\r\n<span style=\"font-size:12px\"><a href=\"https://commons.wikimedia.org/wiki/File:Chicago_from_North_Avenue_Beach_June_2015_panorama_2.jpg\">Chicago skyline panorama</a> by King of Hearts, licensed under <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA-3.0</a></span>\r\n</div>",
+        "header": "",
+        "slug": "banner"
+    },
+    "model": "flatblocks.flatblock",
+    "pk": 2
+},
+{
+    "fields": {
+        "content": "<h5>The PyData Conference Series is brought to you by <a href=\"http://numfocus.org/\">NumFOCUS Foundation</a>.</h5>\r\n<a href=\"/\"><img src=\"http://pydata.org/static/base/includes/images/pydata-nav.png\"></a>",
+        "header": "",
+        "slug": "footer"
+    },
+    "model": "flatblocks.flatblock",
+    "pk": 3
+},
+{
+    "fields": {
+        "content": "",
+        "header": "",
+        "slug": "hashtag"
+    },
+    "model": "flatblocks.flatblock",
+    "pk": 4
+},
+{
+    "fields": {
+        "content": "# PyData\r\n## \r\n<br>\r\n\r\n\r\n## What is PyData?\r\n\r\nPyData conferences bring together users and developers of data analysis tools to share ideas and learn from each other. The PyData community gathers to discuss how best to apply Python tools, as well as tools using R and Julia, to meet evolving challenges in data management, processing, analytics, and visualization.\r\n\r\nWe aim to be an accessible, community-driven conference, with tutorials for novices, advanced topical workshops for practitioners, and opportunities for package developers and users to meet in person.\r\n\r\nFor more information about the conference series, visit [PyData.org](/).",
+        "header": "",
+        "slug": "homepage"
+    },
+    "model": "flatblocks.flatblock",
+    "pk": 5
+},
+{
+    "fields": {
+        "content": "<a href=\"#\"><img alt=\"pydata logo\" src=\"http://pydata.org/static/base/includes/images/pydatalogo-generic.png\" title=\"PyData\"></a><br>",
+        "header": "",
+        "slug": "logo"
+    },
+    "model": "flatblocks.flatblock",
+    "pk": 6
+},
+{
+    "fields": {
+        "content": "View past PyData event schedules [here](http://pydata.org/events/ \"Past PyData Events\").",
+        "header": "",
+        "slug": "schedule_top"
+    },
+    "model": "flatblocks.flatblock",
+    "pk": 7
+},
+{
+    "fields": {
+        "content": "<h5 class=\"text-center\"><a href=\"http://pydata.org/sponsor/info\">Become a sponsor</a>.</h5>",
+        "header": "",
+        "slug": "sidebar-bottom"
+    },
+    "model": "flatblocks.flatblock",
+    "pk": 8
+},
+{
+    "fields": {
+        "content": "### [PyData Sponsor Levels and Benefits](http://pydata.org/sponsor/info/ \"PyData Sponsorship Levels\")\r\n----------------------------------\r\n",
+        "header": "",
+        "slug": "sponsorship-apply"
+    },
+    "model": "flatblocks.flatblock",
+    "pk": 9
+}
+]
