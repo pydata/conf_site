@@ -9,7 +9,9 @@
 {% for level in levels %}
     {% if level.sponsors %}
         {% for sponsor in level.sponsors %}
-            <a href="{{ sponsor.external_url }}"><img src="{{ sponsor.website_logo.url }}" alt="{{ sponsor.name }}" /></a>
+            <a href="{{ sponsor.external_url }}">
+                {% if sponsor.website_logo %}<img src="{{ sponsor.website_logo.url }}" alt="{{ sponsor.name }}" />
+                {% else %}{{ sponsor.name }}{% endif %}</a>
         {% endfor %}
     {% endif %}
 {% endfor %}
