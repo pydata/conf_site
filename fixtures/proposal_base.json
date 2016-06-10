@@ -11,7 +11,7 @@
         }
     },
     {
-        "pk": 1,
+        "pk": 2,
         "model": "symposion_proposals.proposalsection",
         "fields": {
             "start": null,
@@ -31,21 +31,12 @@
         }
     },
     {
-        "pk": 1,
+        "pk": 2,
         "model": "symposion_proposals.proposalkind",
         "fields": {
             "section": 2,
             "name": "Talk",
             "slug": "talk"
-        }
-    },
-    {
-        "pk": 1,
-        "model": "symposion_proposals.proposalkind",
-        "fields": {
-            "section": 2,
-            "name": "Keynote",
-            "slug": "keynote"
         }
     }
 ]
