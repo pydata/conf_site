@@ -153,6 +153,7 @@ INSTALLED_APPS = [
     "reversion",
     "sitetree",
     "taggit",
+    "rest_framework",
 
     # symposion
     "symposion",
