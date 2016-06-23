@@ -16,8 +16,8 @@
         "fields": {
             "conference": 1,
             "description": "",
-            "cost": 10000,
-            "name": "Gold",
+            "cost": 15000,
+            "name": "Diamond",
             "order": 2
         }
     },
@@ -27,8 +27,8 @@
         "fields": {
             "conference": 1,
             "description": "",
-            "cost": 5000,
-            "name": "Silver",
+            "cost": 8000,
+            "name": "Platinum",
             "order": 3
         }
     },
@@ -38,9 +38,42 @@
         "fields": {
             "conference": 1,
             "description": "",
-            "cost": 2000,
-            "name": "Bronze",
+            "cost": 5000,
+            "name": "Gold",
             "order": 4
+        }
+    },
+    {
+        "pk": 5,
+        "model": "symposion_sponsorship.sponsorlevel",
+        "fields": {
+            "conference": 1,
+            "description": "",
+            "cost": 3000,
+            "name": "Silver",
+            "order": 5
+        }
+    },
+    {
+        "pk": 6,
+        "model": "symposion_sponsorship.sponsorlevel",
+        "fields": {
+            "conference": 1,
+            "description": "",
+            "cost": 1500,
+            "name": "Supporting",
+            "order": 6
+        }
+    },
+    {
+        "pk": 7,
+        "model": "symposion_sponsorship.sponsorlevel",
+        "fields": {
+            "conference": 1,
+            "description": "Open to nonprofit organizations or groups who support the Python data community.",
+            "cost": 1,
+            "name": "Community",
+            "order": 7
         }
     }
 ]
