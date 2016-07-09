@@ -4,10 +4,12 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
 from symposion.conference.models import Conference
 from symposion.speakers.models import Speaker
+from symposion.sponsorship.models import Sponsor
 
 from .serializers import (
     ConferenceSerializer,
     SpeakerSerializer,
+    SponsorSerializer,
 )
 
 
@@ -36,3 +38,11 @@ class ConferenceDetail(views.APIView):
         serializer = ConferenceSerializer(conference)
         return Response(serializer.data)
 
+
+class SponsorViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Returns a the list of all sponsors for the conference.
+    Allows lookups through the `id` parameter.
+    """
+    queryset = Sponsor.objects.defer('annotation').all()
+    serializer_class = SponsorSerializer
