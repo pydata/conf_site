@@ -20,13 +20,14 @@ class Proposal(ProposalBase):
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
     under_represented_population = models.BooleanField(
-        default=False,
-        help_text="Do you feel that you or your talk represent a "
-                  "population under-represented in the Python "
-                  "and/or Data community?")
+        "Do you feel that you or your talk represent a "
+        "population under-represented in the Python "
+        "and/or Data community?",
+        default=False)
     under_represented_short_answer = models.TextField(
+        "",
         blank=True, help_text="Additional information, if needed.")
-    under_represented_short_answer_html = models.TextField(blank=True)
+    under_represented_short_answer_html = models.TextField("", blank=True)
 
     recording_release = models.BooleanField(
         default=True,
