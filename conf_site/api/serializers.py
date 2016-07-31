@@ -5,7 +5,7 @@ from rest_framework import serializers
 from symposion.conference.models import Conference
 from symposion.speakers.models import Speaker, User
 from symposion.schedule.models import Presentation, Slot
-from symposion.sponsorship.models import Sponsor
+from symposion.sponsorship.models import Sponsor, SponsorLevel
 
 
 class SpeakerSerializer(serializers.ModelSerializer):
@@ -55,8 +55,15 @@ class PresentationSerializer(serializers.ModelSerializer):
         exclude = ('id', 'description_html', 'abstract_html', 'proposal_base')
 
 
+class SponsorLevelSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SponsorLevel
+        fields = ('name', 'cost')
+
+
 class SponsorSerializer(serializers.ModelSerializer):
-    level = serializers.SlugRelatedField(read_only=True, slug_field='name')
+    level = SponsorLevelSerializer()
     absolute_url = serializers.URLField(source='get_absolute_url')
 
     class Meta:
