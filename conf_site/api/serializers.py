@@ -1,6 +1,5 @@
-from django.core.urlresolvers import reverse_lazy
-
 from rest_framework import serializers
+from rest_framework.reverse import reverse_lazy
 
 from symposion.conference.models import Conference
 from symposion.speakers.models import Speaker, User
@@ -13,7 +12,11 @@ class SpeakerSerializer(serializers.ModelSerializer):
     absolute_url = serializers.SerializerMethodField()
 
     def get_absolute_url(self, obj):
-        return reverse_lazy('speaker_profile', kwargs={'pk': obj.pk})
+        return reverse_lazy(
+            'speaker_profile',
+            kwargs={'pk': obj.pk},
+            request=self.context['request'],
+        )
 
     class Meta:
         model = Speaker
@@ -48,7 +51,11 @@ class PresentationSerializer(serializers.ModelSerializer):
     absolute_url = serializers.SerializerMethodField()
 
     def get_absolute_url(self, obj):
-        return reverse_lazy('schedule_presentation_detail', args=[obj.pk])
+        return reverse_lazy(
+            'schedule_presentation_detail',
+            args=[obj.pk],
+            request=self.context['request'],
+        )
 
     class Meta:
         model = Presentation
@@ -64,7 +71,14 @@ class SponsorLevelSerializer(serializers.ModelSerializer):
 
 class SponsorSerializer(serializers.ModelSerializer):
     level = SponsorLevelSerializer()
-    absolute_url = serializers.URLField(source='get_absolute_url')
+    absolute_url = serializers.SerializerMethodField()
+
+    def get_absolute_url(self, obj):
+        return reverse_lazy(
+            'sponsor_detail',
+            kwargs={'pk': obj.pk},
+            request=self.context['request'],
+        )
 
     class Meta:
         model = Sponsor

@@ -15,7 +15,14 @@ from .serializers import (
 )
 
 
-class SpeakerViewSet(viewsets.ReadOnlyModelViewSet):
+class BaseViewSet(viewsets.ReadOnlyModelViewSet):
+
+    def get_serializer_context(self):
+        '''Pass request variable to obtain absolute URLs.'''
+        return {'request': self.request}
+
+
+class SpeakerViewSet(BaseViewSet):
     """
     Returns a the list of all speaker profiles.
     Allows lookups through the `id` parameter.
@@ -41,7 +48,7 @@ class ConferenceDetail(views.APIView):
         return Response(serializer.data)
 
 
-class PresentationViewSet(viewsets.ReadOnlyModelViewSet):
+class PresentationViewSet(BaseViewSet):
     """
     Returns a the list of all presentations within the conference.
     Allows lookups through the `id` parameter.
@@ -51,7 +58,7 @@ class PresentationViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PresentationSerializer
 
 
-class SponsorViewSet(viewsets.ReadOnlyModelViewSet):
+class SponsorViewSet(BaseViewSet):
     """
     Returns a the list of all sponsors for the conference.
     Allows lookups through the `id` parameter.
