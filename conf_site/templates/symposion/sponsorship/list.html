@@ -23,8 +23,14 @@
                             </a>
                         {% endif %}
                     </div>
-                        <div class="col-md-9">
-                        <h5>{{ sponsor.name }}</h5>
+                    <div class="col-md-9">
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'sponsor_detail' sponsor.pk %}" title="Edit {{ sponsor.name }}">
+                                <h5>{{ sponsor.name }}</h5>
+                            </a>
+                        {% else %}
+                            <h5>{{ sponsor.name }}</h5>
+                        {% endif %}
                         <p><a href="{{ sponsor.external_url }}">{{ sponsor.external_url }}</a></p>
                         <p>{{ sponsor.listing_text|markdown }}</p>
                     </div>
