@@ -1,4 +1,4 @@
-admin_email:
+admin_email: admin@pydata.org
 database_host: localhost
 git_version: master
 gunicorn_port: 10501
