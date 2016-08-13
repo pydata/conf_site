@@ -4,3 +4,4 @@
 
 - include: nginx.yml
 - include: django.yml
+- include: amy.yml
