@@ -13,7 +13,9 @@ gunicorn==19.6.0
 jinja2==2.7.3
 Pillow==2.6.1
 pinax-theme-bootstrap==5.7.1
+pip==8.1.2
 psycopg2==2.6.1
 unicodecsv==0.14.1
+virtualenv==15.0.3
 
 git+git://github.com/pydata/symposion.git@patched#egg=symposion
