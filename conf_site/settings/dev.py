@@ -16,9 +16,7 @@ DATABASES = {
     "default": secrets.DATABASES_DEFAULT,
 }
 
-INSTALLED_APPS += [
-    "debug_toolbar",
-]
+INTERNAL_IPS = "127.0.0.1"
 
 LOGGING["loggers"]["django.request"]["level"] = "DEBUG"
 
