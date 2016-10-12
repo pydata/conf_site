@@ -6,6 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import TemplateView
 
 from account.views import SignupView
+import debug_toolbar
 from django_markdown import flatpages as markdown_flatpages
 import symposion.views
 
@@ -39,5 +40,7 @@ urlpatterns = [
     url(r"^api/", include("conf_site.api.urls")),
 ]
 
+if settings.DEBUG:
+    urlpatterns += [url(r"^__debug__/", include(debug_toolbar.urls)), ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 markdown_flatpages.register()
