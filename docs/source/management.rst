@@ -7,7 +7,7 @@ use more docs for the perspective of conference organizers.
 
 This page is a start.
 
-.. _Symposion: http://symposion.readthedocs.org/en/latest/index.html
+.. _Symposion: https://symposion.readthedocs.io/en/latest/index.html
 
 Content Management
 ------------------
@@ -98,7 +98,7 @@ you view the tree and see url patterns such as *cms_page "cfp/"*.
 The django-sitetree_ app documents discuss in depth how to use the admin for
 editing sitetree pages.
 
-.. _django-sitetree: http://django-sitetree.readthedocs.org/en/latest/
+.. _django-sitetree: https://django-sitetree.readthedocs.io/en/latest/
 
 .. Warning:: 
     The django admin might not show changes immediately on refresh.
