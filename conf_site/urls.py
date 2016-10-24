@@ -6,7 +6,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import TemplateView
 
 from account.views import SignupView
-import debug_toolbar
+if settings.DEBUG:
+    import debug_toolbar
 from django_markdown import flatpages as markdown_flatpages
 import symposion.views
 
