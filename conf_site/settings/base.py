@@ -104,7 +104,6 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 
 
 MIDDLEWARE_CLASSES = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -145,7 +144,6 @@ INSTALLED_APPS = [
     # external
     "account",
     "analytical",
-    "debug_toolbar",
     "django_extensions",
     "django_markdown",
     "easy_thumbnails",
