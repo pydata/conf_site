@@ -63,5 +63,6 @@ class SponsorViewSet(BaseViewSet):
     Returns a the list of all sponsors for the conference.
     Allows lookups through the `id` parameter.
     """
+    permission_classes = (IsAdminUser,)
     queryset = Sponsor.objects.defer('annotation').all()
     serializer_class = SponsorSerializer
