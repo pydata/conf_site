@@ -1,5 +1,5 @@
 # Top settings file for development
-from .base import *  # noqa
+from .base import *     # noqa: F403
 from . import secrets
 
 COMPRESS_ENABLED = False
@@ -17,11 +17,12 @@ DATABASES = {
 }
 
 MIDDLEWARE_CLASSES = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",] + MIDDLEWARE_CLASSES
-INSTALLED_APPS += ["debug_toolbar",]
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ] + MIDDLEWARE_CLASSES                          # noqa: F405
+INSTALLED_APPS += ["debug_toolbar", ]               # noqa: F405
 INTERNAL_IPS = "127.0.0.1"
 
-LOGGING["loggers"]["django.request"]["level"] = "DEBUG"
+LOGGING["loggers"]["django.request"]["level"] = "DEBUG"    # noqa: F405
 
 FORCE_SCRIPT_NAME = secrets.FORCE_SCRIPT_NAME
 USE_X_FORWARDED_HOST = secrets.USE_X_FORWARDED_HOST

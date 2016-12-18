@@ -31,7 +31,7 @@ class TestSponsor(TestBase):
 
     def test_speaker_detail_api_anonymous_user(self):
         response = self.client.get(
-            reverse('sponsor-detail',args=[self.sponsor.pk])
+            reverse('sponsor-detail', args=[self.sponsor.pk])
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(

@@ -71,13 +71,13 @@ class TestSponsor(TestBase):
 
     def test_presentation_detail_api_anonymous_user(self):
         response = self.client.get(
-            reverse('presentation-detail',args=[self.presentation.pk])
+            reverse('presentation-detail', args=[self.presentation.pk])
         )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_presentation_detail_api_admin_user(self):
         self.client.login(username='admin@pydata.org', password='admin')
         response = self.client.get(
-            reverse('presentation-detail',args=[self.presentation.pk])
+            reverse('presentation-detail', args=[self.presentation.pk])
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)

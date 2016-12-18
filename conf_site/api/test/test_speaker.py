@@ -35,7 +35,8 @@ class TestSpeaker(TestBase):
                 'username': self.speaker.user.username,
                 'name': self.speaker.name,
                 'email': self.speaker.user.email,
-                'absolute_url': reverse('speaker_profile', args=[self.speaker.pk]),
+                'absolute_url': reverse(
+                    'speaker_profile', args=[self.speaker.pk]),
             },
             response.data
         )
@@ -51,7 +52,8 @@ class TestSpeaker(TestBase):
                 'username': self.speaker.user.username,
                 'name': self.speaker.name,
                 'email': self.speaker.user.email,
-                'absolute_url': reverse('speaker_profile', args=[self.speaker.pk]),
+                'absolute_url': reverse(
+                    'speaker_profile', args=[self.speaker.pk]),
             },
             response.data
         )

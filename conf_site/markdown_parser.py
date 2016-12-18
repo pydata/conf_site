@@ -6,7 +6,8 @@ import markdown
 def parse(text):
 
     sanitizer.HTMLSanitizer.allowed_elements.extend(['iframe'])
-    sanitizer.HTMLSanitizer.allowed_attributes.extend(['scrolling', 'allowfullscreen', 'frameborder'])
+    sanitizer.HTMLSanitizer.allowed_attributes.extend([
+        'scrolling', 'allowfullscreen', 'frameborder'])
 
     # First run through the Markdown parser
     text = markdown.markdown(text, extensions=["extra"], safe_mode=False)

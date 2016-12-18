@@ -18,7 +18,7 @@ DATABASES = {
 
 SECRET_KEY = ''
 
-#EMAIL_BACKEND = "mailer.backend.DbBackend"
+# EMAIL_BACKEND = "mailer.backend.DbBackend"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_HOST = ''
