@@ -20,5 +20,5 @@ before_install:
 install:
     - "pip install -r requirements/travis-ci.txt"
 script:
-    - "flake8 --exclude=ansible,migrations ."
+    - "flake8 --exclude=ansible,docs,migrations ."
     - "./manage.py test"
