@@ -1,0 +1,24 @@
+sudo: required
+language: python
+python: "2.7"
+addons:
+    apt:
+        packages:
+            - libffi-dev
+            - libjpeg-dev
+            - libssl-dev
+            - libtiff4-dev
+            - libxml2-dev
+            - libxslt1-dev
+            - zlib1g-dev
+services:
+  - postgresql
+env: >
+    DJANGO_SETTINGS_MODULE="conf_site.settings.travis-ci"
+before_install:
+    - psql -c 'create database travis;' -U postgres
+install:
+    - "pip install -r requirements/travis-ci.txt"
+script:
+    - "flake8 --exclude=ansible,migrations ."
+    - "./manage.py test"
