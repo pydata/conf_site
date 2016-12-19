@@ -13,7 +13,7 @@ class TestSponsor(TestBase):
         super(TestSponsor, cls).setUpTestData()
         cls.sponsor = Sponsor.objects.first()
 
-    def test_speaker_list_api_anonymous_user(self):
+    def test_sponsor_list_api_anonymous_user(self):
         response = self.client.get(reverse('sponsor-list'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn(
@@ -29,7 +29,7 @@ class TestSponsor(TestBase):
             response.data
         )
 
-    def test_speaker_detail_api_anonymous_user(self):
+    def test_sponsor_detail_api_anonymous_user(self):
         response = self.client.get(
             reverse('sponsor-detail', args=[self.sponsor.pk])
         )
