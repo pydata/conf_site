@@ -6,8 +6,10 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import TemplateView
 
 from account.views import SignupView
-if settings.DEBUG:
+try:
     import debug_toolbar
+except ImportError:
+    pass
 from django_markdown import flatpages as markdown_flatpages
 import symposion.views
 
@@ -21,7 +23,8 @@ WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
 urlpatterns = [
     url(r"^admin/", include(admin.site.urls)),
 
-    url(r"^$", TemplateView.as_view(template_name="homepage.html"), name="home"),
+    url(r"^$",
+        TemplateView.as_view(template_name="homepage.html"), name="home"),
     url(r"^account/signup/$", SignupView.as_view(), name="account_signup"),
     url(r"^account/login/$", LoginEmailView.as_view(), name="account_login"),
     url(r"^account/", include("account.urls")),

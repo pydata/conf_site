@@ -147,9 +147,9 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_markdown",
     "easy_thumbnails",
-    "eventlog",
     "flatblocks",
     "markitup",
+    "pinax.eventlog",
     "reversion",
     "sitetree",
     "taggit",
@@ -182,7 +182,8 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
-            "format": "%(asctime)s | %(levelname)s | %(name)s | %(module)s | %(funcName)s | %(process)d | %(thread)d | %(message)s",
+            "format": "%(asctime)s | %(levelname)s | %(name)s | %(module)s | "
+                      "%(funcName)s | %(process)d | %(thread)d | %(message)s",
             "datefmt": "%Y%m%d-%H:%M:%S",
         },
         "simple": {
@@ -231,7 +232,7 @@ SERVER_EMAIL = 'noreply@conf.pydata.org'
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 LOGIN_URL = '/account/login/'
-ACCOUNT_USER_DISPLAY = lambda user: user.email
+ACCOUNT_USER_DISPLAY = lambda user: user.email      # noqa: E731
 ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False

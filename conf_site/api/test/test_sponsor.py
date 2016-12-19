@@ -1,3 +1,5 @@
+import json
+
 from django.core.urlresolvers import reverse
 
 from rest_framework import status
@@ -13,8 +15,15 @@ class TestSponsor(TestBase):
         super(TestSponsor, cls).setUpTestData()
         cls.sponsor = Sponsor.objects.first()
 
-    def test_speaker_list_api_anonymous_user(self):
+    def test_sponsor_list_api_anonymous_user(self):
+        """Verify that anonymous users cannot access list of sponsors."""
         response = self.client.get(reverse('sponsor-list'))
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_sponsor_list_api_admin_user(self):
+        """Verify that admin users can access list of sponsors."""
+        self.client.login(username="admin@pydata.org", password="admin")
+        response = self.client.get(reverse("sponsor-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn(
             {
@@ -22,16 +31,27 @@ class TestSponsor(TestBase):
                 'external_url': self.sponsor.external_url,
                 'contact_name': self.sponsor.contact_name,
                 'contact_email': self.sponsor.contact_email,
-                'level': str(self.sponsor.level),
-                'absolute_url': self.sponsor.get_absolute_url(),
+                'level': {'name': self.sponsor.level.name,
+                          'cost': self.sponsor.level.cost},
+                'absolute_url': (
+                    'http://testserver' + self.sponsor.get_absolute_url()),
                 'annotation': self.sponsor.annotation,
             },
-            response.data
+            json.loads(response.content)
         )
 
-    def test_speaker_detail_api_anonymous_user(self):
+    def test_sponsor_detail_api_anonymous_user(self):
+        """Verify that anonymous users cannot access sponsor details."""
         response = self.client.get(
-            reverse('sponsor-detail',args=[self.sponsor.pk])
+            reverse('sponsor-detail', args=[self.sponsor.pk])
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_sponsor_detail_api_admin_user(self):
+        """Verify that admin users can access sponsor details."""
+        self.client.login(username="admin@pydata.org", password="admin")
+        response = self.client.get(
+            reverse('sponsor-detail', args=[self.sponsor.pk])
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(
@@ -40,9 +60,11 @@ class TestSponsor(TestBase):
                 'external_url': self.sponsor.external_url,
                 'contact_name': self.sponsor.contact_name,
                 'contact_email': self.sponsor.contact_email,
-                'level': str(self.sponsor.level),
-                'absolute_url': self.sponsor.get_absolute_url(),
+                'level': {'name': self.sponsor.level.name,
+                          'cost': self.sponsor.level.cost},
+                'absolute_url': (
+                    'http://testserver' + self.sponsor.get_absolute_url()),
                 'annotation': self.sponsor.annotation,
             },
-            response.data
+            json.loads(response.content)
         )

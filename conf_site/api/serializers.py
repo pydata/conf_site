@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.reverse import reverse_lazy
 
 from symposion.conference.models import Conference
-from symposion.speakers.models import Speaker, User
+from symposion.speakers.models import Speaker
 from symposion.schedule.models import Presentation, Slot
 from symposion.sponsorship.models import Sponsor, SponsorLevel
 
