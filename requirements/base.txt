@@ -6,12 +6,12 @@ django-jsonfield==0.9.13
 django-markdown==0.8.4
 django-markitup==2.2.2
 djangorestframework==3.3.3
-eventlog==0.8.0
 Fabric==1.12.0
 fabtools==0.19.0
 gunicorn==19.6.0
 jinja2==2.7.3
 Pillow==3.3.1
+pinax-eventlog==1.1.2
 pinax-theme-bootstrap==5.7.1
 pip==8.1.2
 psycopg2==2.6.2
