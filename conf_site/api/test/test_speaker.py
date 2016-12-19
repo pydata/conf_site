@@ -1,3 +1,5 @@
+import json
+
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
@@ -35,10 +37,10 @@ class TestSpeaker(TestBase):
                 'username': self.speaker.user.username,
                 'name': self.speaker.name,
                 'email': self.speaker.user.email,
-                'absolute_url': reverse(
+                'absolute_url': 'http://testserver' + reverse(
                     'speaker_profile', args=[self.speaker.pk]),
             },
-            response.data
+            json.loads(response.content)
         )
 
     def test_speaker_detail_api_admin_user(self):
@@ -52,8 +54,8 @@ class TestSpeaker(TestBase):
                 'username': self.speaker.user.username,
                 'name': self.speaker.name,
                 'email': self.speaker.user.email,
-                'absolute_url': reverse(
+                'absolute_url': 'http://testserver' + reverse(
                     'speaker_profile', args=[self.speaker.pk]),
             },
-            response.data
+            json.loads(response.content)
         )

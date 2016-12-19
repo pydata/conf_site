@@ -1,3 +1,5 @@
+import json
+
 from django.core.urlresolvers import reverse
 
 from rest_framework import status
@@ -29,11 +31,13 @@ class TestSponsor(TestBase):
                 'external_url': self.sponsor.external_url,
                 'contact_name': self.sponsor.contact_name,
                 'contact_email': self.sponsor.contact_email,
-                'level': str(self.sponsor.level),
-                'absolute_url': self.sponsor.get_absolute_url(),
+                'level': {'name': self.sponsor.level.name,
+                          'cost': self.sponsor.level.cost},
+                'absolute_url': (
+                    'http://testserver' + self.sponsor.get_absolute_url()),
                 'annotation': self.sponsor.annotation,
             },
-            response.data
+            json.loads(response.content)
         )
 
     def test_sponsor_detail_api_anonymous_user(self):
@@ -56,9 +60,11 @@ class TestSponsor(TestBase):
                 'external_url': self.sponsor.external_url,
                 'contact_name': self.sponsor.contact_name,
                 'contact_email': self.sponsor.contact_email,
-                'level': str(self.sponsor.level),
-                'absolute_url': self.sponsor.get_absolute_url(),
+                'level': {'name': self.sponsor.level.name,
+                          'cost': self.sponsor.level.cost},
+                'absolute_url': (
+                    'http://testserver' + self.sponsor.get_absolute_url()),
                 'annotation': self.sponsor.annotation,
             },
-            response.data
+            json.loads(response.content)
         )
