@@ -1,9 +1,9 @@
 import os
 from tempfile import mkstemp
+from wsgiref.util import FileWrapper
 
 import unicodecsv
 
-from django.core.servers.basehttp import FileWrapper
 from django.http import HttpResponse
 from django.views.generic import View
 
