@@ -10,7 +10,6 @@ try:
     import debug_toolbar
 except ImportError:
     pass
-from django_markdown import flatpages as markdown_flatpages
 import symposion.views
 
 from misc.views import LoginEmailView
@@ -38,7 +37,6 @@ urlpatterns = [
     url(r"^teams/", include("symposion.teams.urls")),
     url(r"^reviews/", include("symposion.reviews.urls")),
     url(r"^schedule/", include("symposion.schedule.urls")),
-    url("^markdown/", include("django_markdown.urls")),
     url(r"^markitup/", include("markitup.urls")),
 
     url(r"^api/", include("conf_site.api.urls")),
@@ -47,4 +45,3 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += [url(r"^__debug__/", include(debug_toolbar.urls)), ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-markdown_flatpages.register()

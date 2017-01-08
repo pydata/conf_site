@@ -98,7 +98,6 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     "account.context_processors.account",
-    "pinax_theme_bootstrap.context_processors.theme",
     "symposion.reviews.context_processors.reviews",
 ]
 
@@ -112,7 +111,6 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "reversion.middleware.RevisionMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 ]
 
 ROOT_URLCONF = "conf_site.urls"
@@ -130,29 +128,23 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    "django.contrib.flatpages",
     "django.contrib.messages",
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
 
-    # theme
-    "bootstrapform",
-    "pinax_theme_bootstrap",
-
     # external
     "account",
     "analytical",
-    "django_markdown",
+    "bootstrapform",
     "easy_thumbnails",
-    "flatblocks",
     "markitup",
     "pinax.eventlog",
+    "rest_framework",
     "reversion",
     "sitetree",
     "taggit",
-    "rest_framework",
 
     # symposion
     "symposion",
@@ -259,6 +251,3 @@ PROPOSAL_FORMS = {
     "talk": "conf_site.proposals.forms.ProposalForm",
     "tutorial": "conf_site.proposals.forms.ProposalForm",
 }
-
-# pinax-theme-bootstrap settings
-THEME_CONTACT_EMAIL = "web@pydata.org"
