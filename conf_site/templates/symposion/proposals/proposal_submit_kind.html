@@ -1,8 +1,8 @@
-{% extends "symposion/proposals/base.html" %}
+{% extends "base.html" %}
 
 {% load bootstrap flatblocks i18n markitup_tags %}
 
-{% block page_title %}Submit a Proposal for a {{ kind.name }}{% endblock %}
+{% block title %}Submit a Proposal for a {{ kind.name }}{% endblock %}
 
 {% block body %}
     {% flatblock "example_proposal" %}

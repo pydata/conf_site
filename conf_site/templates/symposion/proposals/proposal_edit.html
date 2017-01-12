@@ -1,9 +1,9 @@
-{% extends "symposion/proposals/base.html" %}
+{% extends "base.html" %}
 
 {% load bootstrap %}
 {% load markitup_tags %}
 
-{% block head_title %}Editing {{ proposal.title }}{% endblock %}
+{% block title %}Editing {{ proposal.title }}{% endblock %}
 
 {% block body %}
     <h1>Edit: {{ proposal.title }}</h1>

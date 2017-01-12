@@ -1,10 +1,10 @@
-{% extends "symposion/proposals/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 {% load account_tags %}
 {% load bootstrap %}
 
-{% block head_title %}{{ proposal.title }}{% endblock %}
+{% block title %}{{ proposal.title }}{% endblock %}
 
 {% block body %}
     <div class="pull-right">
