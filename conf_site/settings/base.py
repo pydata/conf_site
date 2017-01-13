@@ -250,9 +250,8 @@ AUTHENTICATION_BACKENDS = [
     "account.auth_backends.EmailAuthenticationBackend",
 ]
 
-
+MARKITUP_FILTER = ("markdown.markdown", {"safe_mode": True})
 MARKITUP_SET = "markitup/sets/markdown"
-MARKITUP_FILTER = ["conf_site.markdown_parser.parse", {}]
 MARKITUP_SKIN = "markitup/skins/simple"
 
 CONFERENCE_ID = 1
