@@ -111,6 +111,8 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "reversion.middleware.RevisionMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "wagtail.wagtailcore.middleware.SiteMiddleware",
+    "wagtail.wagtailredirects.middleware.RedirectMiddleware",
 ]
 
 ROOT_URLCONF = "conf_site.urls"
@@ -139,6 +141,7 @@ INSTALLED_APPS = [
     "bootstrapform",
     "easy_thumbnails",
     "markitup",
+    "modelcluster",
     "pinax.eventlog",
     "rest_framework",
     "reversion",
@@ -152,6 +155,17 @@ INSTALLED_APPS = [
     "symposion.sponsorship",
     "symposion.teams",
     "taggit",
+    "wagtail.wagtailforms",
+    "wagtail.wagtailredirects",
+    "wagtail.wagtailembeds",
+    "wagtail.wagtailsites",
+    "wagtail.wagtailusers",
+    "wagtail.wagtailsnippets",
+    "wagtail.wagtaildocs",
+    "wagtail.wagtailimages",
+    "wagtail.wagtailsearch",
+    "wagtail.wagtailadmin",
+    "wagtail.wagtailcore",
 
     "conf_site",
     "conf_site.misc",
@@ -247,3 +261,4 @@ PROPOSAL_FORMS = {
     "talk": "conf_site.proposals.forms.ProposalForm",
     "tutorial": "conf_site.proposals.forms.ProposalForm",
 }
+WAGTAIL_ENABLE_UPDATE_CHECK = False
