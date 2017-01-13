@@ -134,7 +134,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
 
-    # external
     "account",
     "analytical",
     "bootstrapform",
@@ -144,9 +143,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "reversion",
     "sitetree",
-    "taggit",
-
-    # symposion
     "symposion",
     "symposion.conference",
     "symposion.proposals",
@@ -155,8 +151,8 @@ INSTALLED_APPS = [
     "symposion.speakers",
     "symposion.sponsorship",
     "symposion.teams",
+    "taggit",
 
-    # project
     "conf_site",
     "conf_site.misc",
     "conf_site.proposals",
