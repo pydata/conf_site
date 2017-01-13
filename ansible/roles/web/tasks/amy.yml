@@ -1,7 +1,5 @@
 # Tasks specifically related to AMY integration.
 
-# We can't use the Ubuntu python-pexpect package because it is too old
-# on Ubuntu 14.04 LTS.
 - name: install pexpect package systemwide so Ansible can use it
   pip: name=pexpect version=4.2.0
   sudo: yes

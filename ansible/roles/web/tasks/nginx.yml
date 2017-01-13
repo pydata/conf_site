@@ -3,7 +3,7 @@
   sudo: true
 
 - name: add mainline nginx repository
-  apt_repository: repo="deb http://nginx.org/packages/mainline/ubuntu/ {{ ansible_lsb.codename }} nginx" state=present
+  apt_repository: repo="deb http://nginx.org/packages/mainline/debian/ {{ ansible_lsb.codename }} nginx" state=present
   sudo: yes
 
 - name: update package list to get latest nginx
