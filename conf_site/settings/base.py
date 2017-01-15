@@ -168,7 +168,7 @@ INSTALLED_APPS = [
     "wagtail.wagtailcore",
 
     "conf_site",
-    "conf_site.misc",
+    "conf_site.cms",
     "conf_site.proposals",
     "conf_site.speakers",
 ]

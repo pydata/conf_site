@@ -14,7 +14,7 @@ import symposion.views
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
-from misc.views import LoginEmailView
+from cms.views import LoginEmailView
 from speakers.views import ExportAcceptedSpeakerEmailView
 
 
