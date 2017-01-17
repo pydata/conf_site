@@ -10,7 +10,7 @@
   django_manage: command="createsuperuser  --noinput --username {{ amy_username }} --email {{ admin_email }}"
                  app_path={{ project_folder_root }}
                  settings=conf_site.settings.{{ environment_type }}
-                 virtualenv={{ virtualenv_folder_root }}current
+                 virtualenv={{ virtualenv_root }}/current
   ignore_errors: yes
 
 # We can't use the django_manage Ansible module because the
@@ -19,7 +19,7 @@
 # <https://code.djangoproject.com/ticket/18897>.
 - name: change AMY superuser password
   expect:
-    command: "/bin/bash -c 'DJANGO_SETTINGS_MODULE=conf_site.settings.{{ environment_type }} {{ virtualenv_folder_root }}current/bin/python ./manage.py changepassword {{ amy_username }}'"
     chdir: "{{ project_folder_root }}"
+    command: "/bin/bash -c 'DJANGO_SETTINGS_MODULE=conf_site.settings.{{ environment_type }} {{ virtualenv_root }}/current/bin/python ./manage.py changepassword {{ amy_username }}'"
     responses:
       (?i)password: "{{ amy_password }}"

@@ -37,29 +37,29 @@
   register: git_status
 
 - name: determine if virtualenv exists
-  stat: path={{ virtualenv_folder_root }}{{ git_status.stdout }}
+  stat: path={{ virtualenv_root }}/{{ git_status.stdout }}
   register: venv_dir
 
 - name: create virtualenv if necessary
-  shell: virtualenv {{ virtualenv_folder_root }}{{ git_status.stdout }}
+  shell: virtualenv {{ virtualenv_root }}/{{ git_status.stdout }}
   when: venv_dir.stat.isdir is not defined
   notify: delete other virtualenvs
 
 - name: move old "current" symlink to "previous" if virtualenv has changed
   shell: mv
-        {{ virtualenv_folder_root }}current
-        {{ virtualenv_folder_root }}previous
+        {{ virtualenv_root }}/current
+        {{ virtualenv_root }}/previous
   when: venv_dir.stat.isdir is not defined
   ignore_errors: yes
 
 - name: use symlink for easier virtualenv management
   file: state=link
-        path={{ virtualenv_folder_root }}current
-        src={{ virtualenv_folder_root }}{{ git_status.stdout }}
+        path={{ virtualenv_root }}/current
+        src={{ virtualenv_root }}/{{ git_status.stdout }}
 
 - name: update virtualenv with requirements
   pip: requirements={{ project_folder_root }}/requirements/{{ environment_type }}.txt
-       virtualenv={{ virtualenv_folder_root }}current
+       virtualenv={{ virtualenv_root }}/current
   notify: restart gunicorn
 
 - name: add supervisor configuration file for gunicorn
@@ -80,19 +80,19 @@
   django_manage: command="migrate"
                  app_path={{ project_folder_root }}
                  settings=conf_site.settings.{{ environment_type }}
-                 virtualenv={{ virtualenv_folder_root }}current
+                 virtualenv={{ virtualenv_root }}/current
   notify: restart gunicorn
 
 - name: collect static files
   django_manage: command=collectstatic
                  app_path={{ project_folder_root }}
                  settings=conf_site.settings.{{ environment_type }}
-                 virtualenv={{ virtualenv_folder_root }}current
+                 virtualenv={{ virtualenv_root }}/current
   notify: restart nginx
 
 - name: update review permissions
   django_manage: command=create_review_permissions
                  app_path={{ project_folder_root }}
                  settings=conf_site.settings.{{ environment_type }}
-                 virtualenv={{ virtualenv_folder_root }}current
+                 virtualenv={{ virtualenv_root }}/current
   notify: restart gunicorn

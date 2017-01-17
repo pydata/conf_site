@@ -9,7 +9,7 @@
          ! -path './'$(basename $(readlink previous))
          -type d -exec rm -rf {} +
   args:
-    chdir: "{{ virtualenv_folder_root }}"
+    chdir: "{{ virtualenv_root }}"
 
 - name: restart gunicorn
   supervisorctl: name=gunicorn state=restarted
