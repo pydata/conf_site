@@ -1,6 +1,6 @@
 - name: pull repository from Github to project directory
   git: accept_hostkey=yes
-       dest={{ project_folder_root }}
+       dest={{ project_root }}
        repo=https://github.com/pydata/conf_site.git
        update=yes
        version={{ git_version }}
@@ -29,11 +29,11 @@
   notify: restart gunicorn
 
 - name: change ownership of everything to this user
-  command: /bin/chown -R {{ ansible_user_id }}:www-data {{ www_root }}
+  command: /bin/chown -R {{ ansible_user_id }}:www-data {{ project_root }}
   sudo: yes
 
 - name: manually figure out latest Git commit
-  command: git rev-parse HEAD chdir={{ project_folder_root }}
+  command: git rev-parse HEAD chdir={{ project_root }}
   register: git_status
 
 - name: determine if virtualenv exists
@@ -58,7 +58,7 @@
         src={{ virtualenv_root }}/{{ git_status.stdout }}
 
 - name: update virtualenv with requirements
-  pip: requirements={{ project_folder_root }}/requirements/{{ environment_type }}.txt
+  pip: requirements={{ project_root }}/requirements/{{ environment_type }}.txt
        virtualenv={{ virtualenv_root }}/current
   notify: restart gunicorn
 
@@ -72,27 +72,27 @@
 
 - name: create sensitive settings file
   template: src=sensitive-settings.py
-            dest={{ project_folder_root }}/conf_site/settings/secrets.py
+            dest={{ project_root }}/conf_site/settings/secrets.py
             mode=0644
   notify: restart gunicorn
 
 - name: database migrate
   django_manage: command="migrate"
-                 app_path={{ project_folder_root }}
+                 app_path={{ project_root }}
                  settings=conf_site.settings.{{ environment_type }}
                  virtualenv={{ virtualenv_root }}/current
   notify: restart gunicorn
 
 - name: collect static files
   django_manage: command=collectstatic
-                 app_path={{ project_folder_root }}
+                 app_path={{ project_root }}
                  settings=conf_site.settings.{{ environment_type }}
                  virtualenv={{ virtualenv_root }}/current
   notify: restart nginx
 
 - name: update review permissions
   django_manage: command=create_review_permissions
-                 app_path={{ project_folder_root }}
+                 app_path={{ project_root }}
                  settings=conf_site.settings.{{ environment_type }}
                  virtualenv={{ virtualenv_root }}/current
   notify: restart gunicorn

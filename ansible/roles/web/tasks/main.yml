@@ -1,5 +1,5 @@
 - name: create logs directory
-  file: path={{ www_root }}/logs state=directory mode=0755
+  file: path={{ project_root }}/logs state=directory mode=0755
   sudo: yes
 
 - include: nginx.yml

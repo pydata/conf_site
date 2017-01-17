@@ -3,7 +3,5 @@ amy_username: amy
 database_host: localhost
 git_version: master
 gunicorn_port: 10501
-
-www_root: "/www/conf_site"
-project_folder_root: "{{ www_root }}/source"
+project_root: "/srv/pydata"
 virtualenv_root: "/home/{{ ansible_user_id }}/.virtualenvs"
