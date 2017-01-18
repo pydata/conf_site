@@ -20,8 +20,11 @@ from speakers.views import ExportAcceptedSpeakerEmailView
 
 WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
 
-
-urlpatterns = [
+if settings.DEBUG:
+    urlpatterns = [url(r"^__debug__/", include(debug_toolbar.urls)), ]
+else:
+    urlpatterns = []
+urlpatterns += [
     url(r"^admin/", include(admin.site.urls)),
     url(r"^account/signup/$", SignupView.as_view(), name="account_signup"),
     url(r"^account/login/$", LoginEmailView.as_view(), name="account_login"),
@@ -42,6 +45,5 @@ urlpatterns = [
     url(r"", include(wagtail_urls)),
 ]
 
-if settings.DEBUG:
-    urlpatterns += [url(r"^__debug__/", include(debug_toolbar.urls)), ]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
