@@ -23,9 +23,6 @@ WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
 
 urlpatterns = [
     url(r"^admin/", include(admin.site.urls)),
-
-    url(r"^$",
-        TemplateView.as_view(template_name="homepage.html"), name="home"),
     url(r"^account/signup/$", SignupView.as_view(), name="account_signup"),
     url(r"^account/login/$", LoginEmailView.as_view(), name="account_login"),
     url(r"^account/", include("account.urls")),

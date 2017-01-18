@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+{% spaceless %}
+{% load account_tags i18n %}
+{% endspaceless %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}PyData{% endblock %}</title>
+    <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,700|Nunito|Open+Sans:300,400" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
@@ -39,9 +41,11 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
 <header>
+    {% if cfp_open %}
     <div id="stp1" class="text-center">
         <h3><a href="./cfp/">CALL FOR PROPOSALS <strong>NOW OPEN!</strong></a></h3>
     </div>
+    {% endif %}
     <div id="header">
         <div class="container">
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="logo">
@@ -77,61 +81,71 @@
         </div>
     </div>
 </header>
-<section>
-    <div id="sec1x-con-inner">
-        <div class="sec1x-elem sec1x-before"></div>
-        <div class="container" id="sec1">
-            <div class="col-xs-12 sec1-col sec1-inner-page nopd">
-                <div class="col-xs-12">
-                    <h1>{% block page_header %}{% endblock %}</h1>
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                    {% block body %}{% endblock %}
-                </div>
-            </div>
-            <div class="sec1x-elem sec1x-after"></div>
-        </div>
-    </div>
-</section>
+{% block body %}
+{% endblock %}
+{% if mailchimp_url %}
 <section>
     <div id="subscibe">
         <div class="container">
             <div class="col-xs-12 sub-sr">
                 <h2>Subscribe to Receive PyData Updates</h2>
-                <form>
+                <form action="{{ mailchimp_url }}">
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                        <input type="text" name="b_c4bde6125a526b0fe180fdc3d_ba29fc2723" tabindex="-1" value="">
+                    </div>
                     <p>
-                        <input type="email" class="email-bt inputbox-cs" placeholder="email address">
-                        <input type="submit" value="Submit" class="sm-smb">
+                        <input type="email" class="email-bt inputbox-cs" name="EMAIL" id="mce-EMAIL" placeholder="email address">
+                        <input type="submit" value="Submit" class="sm-smb" name="subscribe" id="mc-embedded-subscribe">
                     </p>
                 </form>
             </div>
         </div>
     </div>
 </section>
+{% endif %}
+{% if ticketing_url %}
 <section>
     <div id="early-b2">
         <div class="container">
             <div class="col-xs-12 early-b2-sep">
                 <h2>Tickets</h2>
-                <a href="#" class="btn btn4">Get Now</a>
+                <a href="{{ ticketing_url }}" class="btn btn4">Get Now</a>
             </div>
         </div>
     </div>
 </section>
+{% endif %}
 <footer>
     <div id="footer">
         <div class="container">
             <div class="col-md-5 col-sm-12 col-xs-12 fsec footer1">
                 <h4>CODE OF CONDUCT</h4>
-                <p>PyData is dedicated to providing a harassment-free conference experience for everyone, regardless of gender, sexual orientation, gender identity and expression, disability, physical appearance, body size, race, or religion. We do not tolerate harassment of conference participants in any form. All communication should be appropriate for a professional audience including people of many different backgrounds. Sexual language and imagery is not appropriate for any conference venue, including talks. Be kind to others. Do not insult or put down other attendees. Behave professionally. Remember that harassment and sexist, racist, or exclusionary jokes are not appropriate for PyData. Attendees violating these rules may be asked to leave the conference without a refund at the sole discretion of the conference organizers. Thank you for helping make this a welcoming, friendly event for all.</p>
+                <p>
+                    PyData is dedicated to providing a harassment-free
+                    conference experience for everyone, regardless of gender,
+                    sexual orientation, gender identity and expression,
+                    disability, physical appearance, body size, race, or
+                    religion. We do not tolerate harassment of conference
+                    participants in any form. All communication should be
+                    appropriate for a professional audience including people
+                    of many different backgrounds. Sexual language and imagery
+                    is not appropriate for any conference venue, including
+                    talks. Be kind to others. Do not insult or put down other
+                    attendees. Behave professionally. Remember that harassment
+                    and sexist, racist, or exclusionary jokes are not
+                    appropriate for PyData. Attendees violating these rules
+                    may be asked to leave the conference without a refund at
+                    the sole discretion of the conference organizers. Thank
+                    you for helping make this a welcoming, friendly event
+                    for all.
+                </p>
             </div>
             <div class="col-md-2 col-sm-6 col-xs-12 fsec footer2">
                 <h4>CONTACT</h4>
                 <address>
                     <p></p>
                     <p class="soc">
-                        <a href="#"><i class="fa fa-facebook"></i>Facebook</a>
-                        <a href="#"><i class="fa fa-twitter"></i>Twitter</a>
+                        <a href="https://twitter.com/pydata/"><i class="fa fa-twitter"></i>Twitter</a>
                     </p>
                 </address>
             </div>
@@ -161,7 +175,7 @@
             </div>
             <div class="col-md-3 col-sm-12 col-xs-12 fsec footer4">
                 <h4>The PyData Conference Series is brought to you by </h4>
-                <a href="#"><img src="{{ STATIC_URL }}images/numfocus.png" data-rjs="2"  /></a>
+                <a href="http://numfocus.org"><img src="{{ STATIC_URL }}images/numfocus.png" data-rjs="2"></a>
             </div>
         </div>
     </div>

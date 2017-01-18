@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body %}
+<div id="sli" class="text-center">
+    {% image page.background_image original %}
+</div>
+<section>
+    <div class="container" id="sec1">
+        {% include_block page.venue_info_section %}
+    </div>
+</section>
+{% if page.google_maps_url %}
+<section>
+    <div class="col-xs-12 map-canvas text-center">
+        <iframe src="{{ page.google_maps_url }}" width="600" height="450"
+            frameborder="0" style="border:0" allowfullscreen=""></iframe>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
