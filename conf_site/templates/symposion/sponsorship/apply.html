@@ -7,8 +7,7 @@
 {% block body_class %}sponsorships{% endblock %}
 
 {% block body %}
-
-    {% flatblock "sponsorship-apply" %}
+    <h3><a href="http://pydata.org/sponsor/info/">PyData Sponsor Levels and Benefits</a></h3>
 
     <form method="POST" action="" class="form-horizontal">
         {% csrf_token %}
@@ -19,5 +18,4 @@
             <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
         </div>
     </form>
-
 {% endblock %}

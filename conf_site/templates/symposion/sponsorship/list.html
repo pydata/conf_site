@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 
-{% load flatblocks i18n markup sponsorship_tags %}
+{% load i18n markup sponsorship_tags %}
 
 {% block title %}{% trans "About Our Sponsors" %}{% endblock %}
 
 {% block body_class %}sponsorships{% endblock %}
 
-{% block body_outer %}
+{% block body %}
     <h1>{% trans "About Our Sponsors" %}</h1>
-    {% flatblock "sponsorship-list-top" %}
-
+    <a href="http://pydata.org/sponsor/info/">Learn how to become a sponsor</a>
     {% sponsor_levels as levels %}
     {% for level in levels %}
         {% if level.sponsors %}
