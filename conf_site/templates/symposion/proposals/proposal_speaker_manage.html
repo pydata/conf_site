@@ -4,6 +4,7 @@
 {% load bootstrap %}
 
 {% block body %}
+<div class="container">
     <h1>{% trans 'Proposal:' %} {{ proposal.title }}</h1>
 
     <p>
@@ -30,6 +31,7 @@
             <input type="submit" value="Add speaker" class="btn btn-primary" />
         </div>
     </form>
+</div>
 {% endblock %}
 
 {% block extra_body %}

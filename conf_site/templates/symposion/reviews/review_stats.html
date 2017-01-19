@@ -1,6 +1,7 @@
 {% extends "symposion/reviews/base.html" %}
 
 {% block body %}
+<div class="container">
     <h1>Voting Status ({{ section_slug }})</h1>
 
     {% if key %}
@@ -78,5 +79,5 @@
             </dd>
         </dl>
     {% endif %}
-
+</div>
 {% endblock %}

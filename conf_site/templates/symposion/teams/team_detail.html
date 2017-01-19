@@ -5,6 +5,7 @@
 {% block title %}{{ team.name }}{% endblock %}
 
 {% block body_outer %}
+<div class="container">
     <div class="pull-right">
     {% if can_join %}
         <form method="post" action="{% url "team_join" team.slug %}">
@@ -96,4 +97,5 @@
             </form>
         {% endif %}
     {% endif %}
+</div>
 {% endblock %}

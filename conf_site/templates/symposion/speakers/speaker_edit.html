@@ -5,6 +5,7 @@
 {% block title %}{% trans "Edit Speaker Profile" %}{% endblock %}
 
 {% block body %}
+<div class="container">
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         <legend>{% trans "Edit Speaker Profile" %}</legend>
@@ -16,4 +17,5 @@
             <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
         </div>
     </form>
+</div>
 {% endblock %}

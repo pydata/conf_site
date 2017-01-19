@@ -7,6 +7,7 @@
 {% block body_class %}sponsorships{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>{% trans "About Our Sponsors" %}</h1>
     <a href="http://pydata.org/sponsor/info/">Learn how to become a sponsor</a>
     {% sponsor_levels as levels %}
@@ -37,4 +38,5 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
+</div>
 {% endblock %}

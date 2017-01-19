@@ -8,6 +8,7 @@
 {% block page_header %}{% trans "Login" %}{% endblock %}
 
 {% block body %}
+<div class="container">
     <div class="row">
         <form method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
             {% csrf_token %}
@@ -25,6 +26,7 @@
             </p>
         {% endif %}
     </div>
+</div>
 {% endblock %}
 
 {% block extra_script %}

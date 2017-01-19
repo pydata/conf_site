@@ -8,6 +8,7 @@
 {% block page_title %}{% trans "Sponsorship" %}{% endblock %}
 
 {% block body %}
+<div class="container">
     <h2>{{ sponsor.name }} ({{ sponsor.level }})</h2>
 
     <form enctype="multipart/form-data" method="POST" action="" class="form-horizontal">
@@ -37,4 +38,5 @@
         </div>
 
     </form>
+</div>
 {% endblock %}

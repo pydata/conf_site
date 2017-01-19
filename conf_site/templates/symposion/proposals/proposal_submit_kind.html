@@ -5,6 +5,7 @@
 {% block title %}Submit a Proposal for a {{ kind.name }}{% endblock %}
 
 {% block body %}
+<div class="container">
     <form method="POST" action="" enctype="multipart/form-data" class="form-horizontal">
         {% csrf_token %}
         <fieldset>
@@ -19,4 +20,5 @@
             <input class="btn btn-default" type="submit" name="add-speakers" value="Save and Add Additional Speakers" />
         </div>
     </form>
+</div>
 {% endblock %}

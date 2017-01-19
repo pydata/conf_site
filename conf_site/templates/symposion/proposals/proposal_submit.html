@@ -5,6 +5,7 @@
 {% block title %}{% trans "Submit A Proposal" %}{% endblock %}
 
 {% block body %}
+<div class="container">
     {% if kinds %}
         <p>Select what kind of proposal you'd like to submit:</p>
 
@@ -16,4 +17,5 @@
     {% else %}
         <p>Proposals are not currently open for submission.</p>
     {% endif %}
+</div>
 {% endblock %}

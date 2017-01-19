@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="container">
     <div class="page-head">
         <h1>Conference Schedule</h1>
         {% block breadcrumbs %}{% endblock %}
@@ -21,4 +22,5 @@
                 {% include "symposion/schedule/_grid.html" %}
             {% endfor %}
     {% endfor %}
+</div>
 {% endblock %}

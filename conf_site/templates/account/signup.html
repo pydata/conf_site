@@ -6,6 +6,7 @@
 {% block title %}{% trans "Sign up" %}{% endblock %}
 
 {% block body %}
+<div class="container">
     <div class="row">
         <div class="col-md-4">
             <form id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
@@ -27,6 +28,7 @@
             {% include "account/_signup_sidebar.html" %}
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block extra_script %}

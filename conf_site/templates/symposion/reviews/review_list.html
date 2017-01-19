@@ -1,6 +1,7 @@
 {% extends "symposion/reviews/base.html" %}
 
 {% block body %}
+<div class="container">
 	<h3>{{ section }}</h3>
 	{% if reviewed == 'all_reviews' %}
     	<h4>All proposals</h4>
@@ -11,4 +12,5 @@
     {% endif %}
 
     {% include "symposion/reviews/_review_table.html" %}
+</div>
 {% endblock %}

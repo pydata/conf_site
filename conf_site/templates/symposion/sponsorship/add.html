@@ -8,6 +8,7 @@
 {% block body_class %}sponsorships{% endblock %}
 
 {% block body %}
+<div class="container">
     <form method="POST" action="{% url "sponsor_add" %}" class="form-horizontal">
         {% csrf_token %}
         <legend>{% trans "Add a Sponsor" %}</legend>
@@ -17,5 +18,5 @@
             <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
         </div>
     </form>
-
+</div>
 {% endblock %}
