@@ -2,6 +2,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body %}
+<div class="container sec1-inner-page">
 <div id="sli" class="text-center">
     {% image page.background_image original %}
 </div>
@@ -18,4 +19,5 @@
     </div>
 </section>
 {% endif %}
+</div>
 {% endblock %}
