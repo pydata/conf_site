@@ -48,7 +48,7 @@ class HomePage(CustomPage):
     )
     conference_info_section = StreamField(HTMLBlock())
     pydata_info_section = StreamField(HTMLBlock())
-    ticketing_url = models.URLField(blank=True)
+    ticketing_url = models.URLField(blank=True, max_length=2083)
     mailchimp_list_id = models.CharField(blank=True, max_length=100)
 
     content_panels = Page.content_panels + [
@@ -72,7 +72,7 @@ class VenuePage(CustomPage):
         related_name="+"
     )
     venue_info_section = StreamField(HTMLBlock())
-    google_maps_url = models.URLField(blank=True)
+    google_maps_url = models.URLField(blank=True, max_length=2083)
     hotel_info_section = StreamField(HTMLBlock())
 
     content_panels = Page.content_panels + [
