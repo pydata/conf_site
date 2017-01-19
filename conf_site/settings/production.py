@@ -8,7 +8,7 @@ TEMPLATE_DEBUG = DEBUG
 SERVE_MEDIA = DEBUG
 
 DATABASES = {
-    "default": DATABASES_DEFAULT,
+    "default": DATABASES_DEFAULT,       # noqa: F405
 }
 
 SITE_ID = 1

@@ -3,7 +3,6 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
-from django.views.generic import TemplateView
 
 from account.views import SignupView
 try:

@@ -11,7 +11,7 @@ SITE_ID = 2
 ALLOWED_HOSTS = ["localhost", "0.0.0.0"]
 
 DATABASES = {
-    "default": DATABASES_DEFAULT,
+    "default": DATABASES_DEFAULT,                   # noqa: F405
 }
 
 MIDDLEWARE_CLASSES = [
