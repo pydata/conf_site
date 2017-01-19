@@ -47,7 +47,10 @@ class Proposal(ProposalBase):
     under_represented_population = models.CharField(
         "Do you feel that you or your talk represent a "
         "population under-represented in the Python "
-        "and/or Data community?",
+        "and/or Data community? In no way will this "
+        "data be used as part of your proposal. This will only be "
+        "used to gather diversity statistics in order to further "
+        "NumFOCUS' mission.",
         choices=UNDER_REPRESENTED_ANSWERS,
         default="",
         max_length=1)
