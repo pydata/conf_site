@@ -3,9 +3,11 @@
 
 {% block body %}
 <div class="container sec1-inner-page">
+{% if page.background_image %}
 <div id="sli" class="text-center">
     {% image page.background_image original %}
 </div>
+{% endif %}
 <section>
     <div class="container" id="sec1">
         {% include_block page.venue_info_section %}
