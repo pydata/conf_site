@@ -15,6 +15,7 @@ psycopg2==2.6.2
 pytz==2016.6.1
 unicodecsv==0.14.1
 wagtail==1.8
+wagtailmenus==2.1.2
 virtualenv==15.0.3
 
 git+git://github.com/pydata/symposion.git@patched#egg=symposion

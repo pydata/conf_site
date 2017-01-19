@@ -99,6 +99,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.contrib.messages.context_processors.messages",
     "account.context_processors.account",
     "symposion.reviews.context_processors.reviews",
+    "wagtailmenus.context_processors.wagtailmenus",
 ]
 
 
@@ -166,6 +167,8 @@ INSTALLED_APPS = [
     "wagtail.wagtailsearch",
     "wagtail.wagtailadmin",
     "wagtail.wagtailcore",
+    "wagtail.contrib.modeladmin",
+    "wagtailmenus",
 
     "conf_site",
     "conf_site.cms",
