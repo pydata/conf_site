@@ -22,3 +22,21 @@
     </form>
 </div>
 {% endblock %}
+
+{% block extra_script %}
+<script>
+function checkbox_display(){
+    if( $("#id_under_represented_population").val() == "Y"){
+        $("#id_under_represented_details").closest("div.form-group").show();
+    } else {
+        $("#id_under_represented_details").closest("div.form-group").hide();
+    }
+};
+$(document).ready(function(){
+    checkbox_display();
+});
+$("#id_under_represented_population").change(function(){
+    checkbox_display();
+});
+</script>
+{% endblock %}
