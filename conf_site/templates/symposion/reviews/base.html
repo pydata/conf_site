@@ -1,4 +1,4 @@
-{% extends "site_base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 {% load sitetree %}
@@ -51,6 +51,7 @@
 {% block body_class %}reviews{% endblock %}
 
 {% block body_outer %}
+<div class="container">
     <div class="row">
         <div class="col-md-2">
             {% block sidebar %}
@@ -90,6 +91,7 @@
             {% endblock %}
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block extra_script %}

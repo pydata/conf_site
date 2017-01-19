@@ -1,12 +1,13 @@
-{% extends "symposion/proposals/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 {% load account_tags %}
 {% load bootstrap %}
 
-{% block head_title %}{{ proposal.title }}{% endblock %}
+{% block title %}{{ proposal.title }}{% endblock %}
 
 {% block body %}
+<div class="container">
     <div class="pull-right">
         {% if not proposal.cancelled %}
             {% if request.user == proposal.speaker.user %}
@@ -100,6 +101,7 @@
         </div>
     {% endif %}
     </div>
+</div>
 </div>
 {% endblock %}
 

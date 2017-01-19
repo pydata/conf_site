@@ -98,8 +98,8 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     "account.context_processors.account",
-    "pinax_theme_bootstrap.context_processors.theme",
     "symposion.reviews.context_processors.reviews",
+    "wagtailmenus.context_processors.wagtailmenus",
 ]
 
 
@@ -112,7 +112,8 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "reversion.middleware.RevisionMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
+    "wagtail.wagtailcore.middleware.SiteMiddleware",
+    "wagtail.wagtailredirects.middleware.RedirectMiddleware",
 ]
 
 ROOT_URLCONF = "conf_site.urls"
@@ -130,31 +131,22 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    "django.contrib.flatpages",
     "django.contrib.messages",
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
 
-    # theme
-    "bootstrapform",
-    "pinax_theme_bootstrap",
-
-    # external
     "account",
     "analytical",
-    "django_markdown",
+    "bootstrapform",
     "easy_thumbnails",
-    "flatblocks",
     "markitup",
+    "modelcluster",
     "pinax.eventlog",
+    "rest_framework",
     "reversion",
     "sitetree",
-    "taggit",
-    "rest_framework",
-
-    # symposion
     "symposion",
     "symposion.conference",
     "symposion.proposals",
@@ -163,10 +155,23 @@ INSTALLED_APPS = [
     "symposion.speakers",
     "symposion.sponsorship",
     "symposion.teams",
+    "taggit",
+    "wagtail.wagtailforms",
+    "wagtail.wagtailredirects",
+    "wagtail.wagtailembeds",
+    "wagtail.wagtailsites",
+    "wagtail.wagtailusers",
+    "wagtail.wagtailsnippets",
+    "wagtail.wagtaildocs",
+    "wagtail.wagtailimages",
+    "wagtail.wagtailsearch",
+    "wagtail.wagtailadmin",
+    "wagtail.wagtailcore",
+    "wagtail.contrib.modeladmin",
+    "wagtailmenus",
 
-    # project
     "conf_site",
-    "conf_site.misc",
+    "conf_site.cms",
     "conf_site.proposals",
     "conf_site.speakers",
 ]
@@ -248,9 +253,8 @@ AUTHENTICATION_BACKENDS = [
     "account.auth_backends.EmailAuthenticationBackend",
 ]
 
-
+MARKITUP_FILTER = ("markdown.markdown", {"safe_mode": True})
 MARKITUP_SET = "markitup/sets/markdown"
-MARKITUP_FILTER = ["conf_site.markdown_parser.parse", {}]
 MARKITUP_SKIN = "markitup/skins/simple"
 
 CONFERENCE_ID = 1
@@ -259,6 +263,4 @@ PROPOSAL_FORMS = {
     "talk": "conf_site.proposals.forms.ProposalForm",
     "tutorial": "conf_site.proposals.forms.ProposalForm",
 }
-
-# pinax-theme-bootstrap settings
-THEME_CONTACT_EMAIL = "web@pydata.org"
+WAGTAIL_ENABLE_UPDATE_CHECK = False

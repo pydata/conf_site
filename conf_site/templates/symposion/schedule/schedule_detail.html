@@ -1,25 +1,24 @@
-{% extends "site_base.html" %}
+{% extends "base.html" %}
 
-{% load flatblocks i18n sitetree %}
+{% load i18n sitetree %}
 
-{% block head_title %}Conference Schedule{% endblock %}
+{% block title %}Conference Schedule{% endblock %}
 
 {% block body_class %}full{% endblock %}
 
 {% block right %}
 {% endblock %}
 
-{% block body_outer %}
+{% block body %}
+<div class="container">
     <div class="page-head">
         <h1>{{ schedule.section }} Schedule</h1>
         {% block breadcrumbs %}{% sitetree_breadcrumbs from "main" %}{% endblock %}
     </div>
-    {% flatblock "schedule_top" %}
-
-        {% for timetable in days %}
-            <h3>{{ timetable.day.date }}</h3>
-            {% include "symposion/schedule/_grid.html" %}
-        {% endfor %}
-
-    {% flatblock "schedule_bottom" %}
+    <p>View past PyData event schedules <a href="http://pydata.org/events/" title="Past PyData Events">here</a>.</p>
+    {% for timetable in days %}
+        <h3>{{ timetable.day.date }}</h3>
+        {% include "symposion/schedule/_grid.html" %}
+    {% endfor %}
+</div>
 {% endblock %}

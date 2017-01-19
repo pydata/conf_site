@@ -32,3 +32,4 @@ MEDIA_URL = "{{ website_url }}/media/"
 STATIC_URL = "{{ website_url }}/static/"
 
 GOOGLE_ANALYTICS_PROPERTY_ID = "{{ google_analytics_id }}"
+WAGTAIL_SITE_NAME = "{{ conference_name }}"

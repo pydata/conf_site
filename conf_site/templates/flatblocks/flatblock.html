@@ -1,7 +1,0 @@
-{% load django_markdown %}
-<div class="flatblock block-{{ flatblock.slug }}">
-{% if flatblock.header %}
-    <h2 class="flatblock-title">{{ flatblock.header }}</h2>
-{% endif %}
-    <div class="flatblock-content">{{ flatblock.content|markdown|safe }}</div>
-</div>

@@ -1,10 +1,11 @@
-{% extends "symposion/proposals/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans 'Cancel Proposal' %}{% endblock %}
+{% block title %}{% trans 'Cancel Proposal' %}{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Cancel: {{ proposal.title }}</h1>
 
     <form method="POST" action="" enctype="multipart/form-data">
@@ -13,4 +14,5 @@
         <input class="btn btn-danger" type="submit" value="I am sure" />
         <a class="btn btn-default" href="{% url "proposal_detail" proposal.pk %}">{% trans 'No, keep it for now' %}</a>
     </form>
+</div>
 {% endblock %}

@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-
+<div class="container">
     <ul class="nav nav-pills">
         <li{% if status == 'accepted' %} class="active"{% endif %}><a href="{% url "result_notification" section_slug 'accepted' %}">accepted</a>
         <li{% if status == 'rejected' %} class="active"{% endif %}><a href="{% url "result_notification" section_slug 'rejected' %}">rejected</a>
@@ -78,6 +78,7 @@
             </tbody>
         </table>
     </form>
+</div>
 {% endblock %}
 
 {% block extra_script %}

@@ -1,5 +1,5 @@
-from .base import *  # noqa
-from . import secrets
+from .base import *  # noqa: F403
+from .secrets import *  # noqa: F403
 
 
 DEBUG = False
@@ -8,29 +8,7 @@ TEMPLATE_DEBUG = DEBUG
 SERVE_MEDIA = DEBUG
 
 DATABASES = {
-    "default": secrets.DATABASES_DEFAULT,
+    "default": DATABASES_DEFAULT,       # noqa: F405
 }
 
 SITE_ID = 1
-TIME_ZONE = secrets.TIME_ZONE
-TIME_FORMAT = secrets.TIME_FORMAT
-
-ALLOWED_HOSTS = secrets.ALLOWED_HOSTS
-USE_X_FORWARDED_HOST = secrets.USE_X_FORWARDED_HOST
-
-SECRET_KEY = secrets.SECRET_KEY
-SESSION_COOKIE_PATH = secrets.SESSION_COOKIE_PATH
-
-EMAIL_BACKEND = secrets.EMAIL_BACKEND
-EMAIL_USE_TLS = secrets.EMAIL_USE_TLS
-EMAIL_HOST = secrets.EMAIL_HOST
-EMAIL_HOST_USER = secrets.EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = secrets.EMAIL_HOST_PASSWORD
-EMAIL_PORT = secrets.EMAIL_PORT
-
-FORCE_SCRIPT_NAME = secrets.FORCE_SCRIPT_NAME
-LOGIN_URL = secrets.LOGIN_URL
-MEDIA_URL = secrets.MEDIA_URL
-STATIC_URL = secrets.STATIC_URL
-
-GOOGLE_ANALYTICS_PROPERTY_ID = secrets.GOOGLE_ANALYTICS_PROPERTY_ID

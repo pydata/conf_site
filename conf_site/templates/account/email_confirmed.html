@@ -1,10 +1,12 @@
-{% extends "account/base_simple.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Email confirmed" %}{% endblock %}
+{% block title %}{% trans "Email confirmed" %}{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>{% trans "Email confirmed" %}</h1>
     <p>{% blocktrans with email=confirmation.email_address.email %}You have confirmed <b>{{ email }}</b>{% endblocktrans %}</p>
+</div>
 {% endblock %}

@@ -1,10 +1,11 @@
-{% extends "account/base_simple.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Log out" %}{% endblock %}
+{% block title %}{% trans "Log out" %}{% endblock %}
 
 {% block body %}
+<div class="container">
     <div class="row">
         <div class="col-md-5">
             <form method="POST" action="{% url "account_logout" %}">
@@ -17,4 +18,5 @@
             </form>
         </div>
     </div>
+</div>
 {% endblock %}

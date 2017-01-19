@@ -1,12 +1,11 @@
-{% extends "symposion/proposals/base.html" %}
+{% extends "base.html" %}
 
-{% load bootstrap flatblocks i18n markitup_tags %}
+{% load bootstrap i18n markitup_tags %}
 
-{% block page_title %}Submit a Proposal for a {{ kind.name }}{% endblock %}
+{% block title %}Submit a Proposal for a {{ kind.name }}{% endblock %}
 
 {% block body %}
-    {% flatblock "example_proposal" %}
-
+<div class="container">
     <form method="POST" action="" enctype="multipart/form-data" class="form-horizontal">
         {% csrf_token %}
         <fieldset>
@@ -21,4 +20,5 @@
             <input class="btn btn-default" type="submit" name="add-speakers" value="Save and Add Additional Speakers" />
         </div>
     </form>
+</div>
 {% endblock %}

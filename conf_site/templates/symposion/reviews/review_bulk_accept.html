@@ -3,7 +3,7 @@
 {% load bootstrap %}
 
 {% block body %}
-
+<div class="container">
     <h1>Bulk Accept</h1>
     <form action="" method="POST" class="uniForm" accept-charset="utf-8">
         {% csrf_token %}
@@ -12,4 +12,5 @@
             <input class="btn btn-primary" type="submit" name="submit" value="submit" />
         </div>
     </form>
+</div>
 {% endblock %}

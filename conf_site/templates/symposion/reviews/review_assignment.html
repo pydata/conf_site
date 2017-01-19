@@ -1,6 +1,7 @@
 {% extends "symposion/reviews/base.html" %}
 
 {% block body %}
+<div class="container">
     <h1>Review Assignments</h1>
 
     {% if assignments %}
@@ -29,4 +30,5 @@
     {% else %}
         <p>You do not have any assignments.</p>
     {% endif %}
+</div>
 {% endblock %}

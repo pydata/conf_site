@@ -1,4 +1,5 @@
 conference_identifier: vagrant
+conference_name: Local Development Conference 2017
 database_user: "{{ conference_identifier }}"
 django_database: "{{ conference_identifier }}"
 environment_type: dev

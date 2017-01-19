@@ -1,4 +1,4 @@
-{% extends "site_base.html" %}
+{% extends "base.html" %}
 
 {% load sitetree %}
 
@@ -7,6 +7,7 @@
 {% block breadcrumbs %}{% sitetree_breadcrumbs from "main" %}{% endblock %}
 
 {% block body %}
+<div class="container">
     {% if presentation.slot %}
         <h4>
             {{ presentation.slot.day.date|date:"l" }}
@@ -35,4 +36,5 @@
     <h3>Abstract</h3>
 
     <div class="abstract">{{ presentation.abstract_html|safe }}</div>
+</div>
 {% endblock %}

@@ -1,11 +1,12 @@
-{% extends "symposion/proposals/base.html" %}
+{% extends "base.html" %}
 
 {% load bootstrap %}
 {% load markitup_tags %}
 
-{% block head_title %}Editing {{ proposal.title }}{% endblock %}
+{% block title %}Editing {{ proposal.title }}{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Edit: {{ proposal.title }}</h1>
 
     <p><a href="{% url "proposal_speaker_manage" proposal.pk %}">Manage speakers</a></p>
@@ -20,4 +21,5 @@
             <a class="btn btn-default" href="{% url "proposal_detail" proposal.pk %}">Cancel</a>
         </div>
     </form>
+</div>
 {% endblock %}

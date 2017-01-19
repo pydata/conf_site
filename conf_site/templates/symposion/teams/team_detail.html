@@ -1,10 +1,11 @@
-{% extends "site_base.html" %}
+{% extends "base.html" %}
 
 {% load bootstrap %}
 
-{% block head_title %}{{ team.name }}{% endblock %}
+{% block title %}{{ team.name }}{% endblock %}
 
 {% block body_outer %}
+<div class="container">
     <div class="pull-right">
     {% if can_join %}
         <form method="post" action="{% url "team_join" team.slug %}">
@@ -96,4 +97,5 @@
             </form>
         {% endif %}
     {% endif %}
+</div>
 {% endblock %}
