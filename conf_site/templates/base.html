@@ -73,15 +73,16 @@
 </header>
 {% block body %}
 {% endblock %}
-{% if mailchimp_url %}
+{% if mailchimp_list_id %}
 <section>
     <div id="subscibe">
         <div class="container">
             <div class="col-xs-12 sub-sr">
                 <h2>Subscribe to Receive PyData Updates</h2>
-                <form action="{{ mailchimp_url }}" method="post">
+                <form action="https://numfocus.us9.list-manage.com/subscribe/post?u=c4bde6125a526b0fe180fdc3d&id={{ mailchimp_list_id }}"
+                        method="post">
                     <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                        <input type="text" name="b_c4bde6125a526b0fe180fdc3d_ba29fc2723" tabindex="-1" value="">
+                        <input type="text" name="b_c4bde6125a526b0fe180fdc3d_{{ mailchimp_list_id }}" tabindex="-1" value="">
                     </div>
                     <p>
                         <input type="email" class="email-bt inputbox-cs" name="EMAIL" id="mce-EMAIL" placeholder="email address">

@@ -19,7 +19,7 @@ class CustomPage(Page):
         """Pull additional context from homepage."""
         context = super(CustomPage, self).get_context(request)
         home_page = context['request'].site.root_page.specific
-        context["mailchimp_url"] = home_page.mailchimp_url
+        context["mailchimp_list_id"] = home_page.mailchimp_list_id
         context["ticketing_url"] = home_page.ticketing_url
         return context
 
@@ -49,7 +49,7 @@ class HomePage(CustomPage):
     conference_info_section = StreamField(HTMLBlock())
     pydata_info_section = StreamField(HTMLBlock())
     ticketing_url = models.URLField(blank=True)
-    mailchimp_url = models.URLField(blank=True)
+    mailchimp_list_id = models.CharField(blank=True, max_length=100)
 
     content_panels = Page.content_panels + [
         FieldPanel("logo_image"),
@@ -57,7 +57,7 @@ class HomePage(CustomPage):
         StreamFieldPanel("conference_info_section"),
         StreamFieldPanel("pydata_info_section"),
         FieldPanel("ticketing_url"),
-        FieldPanel("mailchimp_url"),
+        FieldPanel("mailchimp_list_id"),
     ]
     template = "homepage.html"
 
