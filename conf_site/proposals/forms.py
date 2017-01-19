@@ -15,13 +15,11 @@ class ProposalForm(forms.ModelForm):
             "description",
             "abstract",
             "under_represented_population",
-            "under_represented_short_answer",
             "additional_notes",
             "recording_release",
         ]
         widgets = {
             "abstract": MarkItUpWidget(),
-            "under_represented_short_answer": MarkItUpWidget(),
             "additional_notes": MarkItUpWidget(),
         }
 

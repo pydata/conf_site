@@ -24,10 +24,6 @@ class Proposal(ProposalBase):
         "population under-represented in the Python "
         "and/or Data community?",
         default=False)
-    under_represented_short_answer = models.TextField(
-        "",
-        blank=True, help_text="Additional information, if needed.")
-    under_represented_short_answer_html = models.TextField("", blank=True)
 
     recording_release = models.BooleanField(
         default=True,
