@@ -1,5 +1,5 @@
 {% spaceless %}
-{% load account_tags i18n menu_tags %}
+{% load account_tags i18n menu_tags wagtailuserbar %}
 {% endspaceless %}<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +40,7 @@
     {% block extra_head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
+{% wagtailuserbar "bottom-left" %}
 <header>
     {% if cfp_open %}
     <div id="stp1" class="text-center">
