@@ -15,12 +15,14 @@ class ProposalForm(forms.ModelForm):
             "description",
             "abstract",
             "under_represented_population",
+            "under_represented_details",
             "additional_notes",
             "recording_release",
         ]
         widgets = {
             "abstract": MarkItUpWidget(),
             "additional_notes": MarkItUpWidget(),
+            "under_represented_details": forms.CheckboxSelectMultiple(),
         }
 
     def clean_description(self):
