@@ -2,6 +2,7 @@ conference_identifier: london2017
 conference_name: "PyData London 2017"
 database_user: "{{ conference_identifier }}"
 django_database: "{{ conference_identifier }}"
+git_version: "{{ conference_identifier }}"
 google_analytics_id: UA-41850464-12
 subdirectory: /{{ conference_identifier }}
 time_format: "G:i"
