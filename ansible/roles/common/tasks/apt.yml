@@ -1,3 +1,7 @@
+- name: install aptitude
+  apt: pkg=aptitude state=latest
+  become: true
+
 - name: update package list & upgrade existing packages
   apt: update_cache=yes upgrade=yes cache_valid_time=3600
   sudo: yes

@@ -1,5 +1,5 @@
 {% spaceless %}
-{% load account_tags i18n menu_tags %}
+{% load account_tags i18n menu_tags wagtailuserbar %}
 {% endspaceless %}<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +40,7 @@
     {% block extra_head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
+{% wagtailuserbar "bottom-left" %}
 <header>
     {% if cfp_open %}
     <div id="stp1" class="text-center">
@@ -73,15 +74,16 @@
 </header>
 {% block body %}
 {% endblock %}
-{% if mailchimp_url %}
+{% if mailchimp_list_id %}
 <section>
     <div id="subscibe">
         <div class="container">
             <div class="col-xs-12 sub-sr">
                 <h2>Subscribe to Receive PyData Updates</h2>
-                <form action="{{ mailchimp_url }}">
+                <form action="https://numfocus.us9.list-manage.com/subscribe/post?u=c4bde6125a526b0fe180fdc3d&id={{ mailchimp_list_id }}"
+                        method="post">
                     <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                        <input type="text" name="b_c4bde6125a526b0fe180fdc3d_ba29fc2723" tabindex="-1" value="">
+                        <input type="text" name="b_c4bde6125a526b0fe180fdc3d_{{ mailchimp_list_id }}" tabindex="-1" value="">
                     </div>
                     <p>
                         <input type="email" class="email-bt inputbox-cs" name="EMAIL" id="mce-EMAIL" placeholder="email address">
@@ -144,9 +146,7 @@
                 {% if request.user.is_authenticated %}
                 <ul>
                     {% if request.user.speaker_profile %}
-                    <li><a href="{% url 'speaker_profile' request.user.speaker_profile.pk %}">{% user_display request.user %}</a></li>
-                    {% else %}
-                    <li>{% user_display request.user %}</a></li>
+                    <li><a href="{% url 'speaker_profile' request.user.speaker_profile.pk %}">Speaker Profile</a></li>
                     {% endif %}
                     <li><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
                     {% if request.user.is_staff %}
