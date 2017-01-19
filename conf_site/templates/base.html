@@ -145,9 +145,7 @@
                 {% if request.user.is_authenticated %}
                 <ul>
                     {% if request.user.speaker_profile %}
-                    <li><a href="{% url 'speaker_profile' request.user.speaker_profile.pk %}">{% user_display request.user %}</a></li>
-                    {% else %}
-                    <li>{% user_display request.user %}</a></li>
+                    <li><a href="{% url 'speaker_profile' request.user.speaker_profile.pk %}">Speaker Profile</a></li>
                     {% endif %}
                     <li><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
                     {% if request.user.is_staff %}
