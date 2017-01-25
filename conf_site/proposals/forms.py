@@ -14,10 +14,13 @@ class ProposalForm(forms.ModelForm):
             "audience_level",
             "description",
             "abstract",
+            "first_time_at_pydata",
+            "affiliation",
             "under_represented_population",
             "under_represented_details",
             "additional_notes",
             "recording_release",
+            "phone_number",
         ]
         widgets = {
             "abstract": MarkItUpWidget(),

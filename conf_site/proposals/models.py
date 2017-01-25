@@ -44,6 +44,13 @@ class Proposal(ProposalBase):
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
+    first_time_at_pydata = models.CharField(
+        "Is this your first time speaking at a PyData event?",
+        choices=YES_NO_OTHER_ANSWERS,
+        blank=True,
+        default="",
+        max_length=1)
+    affiliation = models.CharField(blank=True, default="", max_length=200)
     under_represented_population = models.CharField(
         "Do you feel that you or your talk represent a "
         "population under-represented in the Python "
@@ -60,6 +67,11 @@ class Proposal(ProposalBase):
         choices=UNDER_REPRESENTED_DETAILED_ANSWERS,
         max_choices=len(UNDER_REPRESENTED_DETAILED_ANSWERS))
 
+    phone_number = models.CharField(
+        "Phone number - to be used for last-minute schedule changes",
+        blank=True,
+        default="",
+        max_length=100)
     recording_release = models.BooleanField(
         default=True,
         help_text="By submitting your proposal, you agree to give permission "
