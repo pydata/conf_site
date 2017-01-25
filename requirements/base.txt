@@ -14,9 +14,11 @@ pinax-eventlog==1.1.2
 pip==9.0.1
 psycopg2==2.6.2
 pytz==2016.6.1
+setuptools==34.0.2
+six==1.10.0
 unicodecsv==0.14.1
 wagtail==1.8
 wagtailmenus==2.1.2
-virtualenv==15.0.3
+virtualenv==15.1.0
 
 git+git://github.com/pydata/symposion.git@983ec0045f34f480059e5b2#egg=symposion
