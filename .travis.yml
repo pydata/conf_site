@@ -17,6 +17,7 @@ env: >
     DJANGO_SETTINGS_MODULE="conf_site.settings.travis-ci"
 before_install:
     - psql -c 'create database travis;' -U postgres
+    - "pip install --upgrade pip"
 install:
     - "pip install -r requirements/travis-ci.txt"
 script:
