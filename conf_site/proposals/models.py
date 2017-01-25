@@ -11,10 +11,10 @@ class Proposal(ProposalBase):
     AUDIENCE_LEVEL_NOVICE = 1
     AUDIENCE_LEVEL_EXPERIENCED = 2
     AUDIENCE_LEVEL_INTERMEDIATE = 3
-    UNDER_REPRESENTED_YES = "Y"
-    UNDER_REPRESENTED_NO = "N"
+    YES_NO_OTHER_YES = "Y"
+    YES_NO_OTHER_NO = "N"
     # https://en.wikipedia.org/wiki/Bartleby,_the_Scrivener
-    UNDER_REPRESENTED_BARTLEBY = "O"
+    YES_NO_OTHER_BARTLEBY = "O"
     UNDER_REPRESENTED_ETHNICITY = "E"
     UNDER_REPRESENTED_AGE = "A"
     UNDER_REPRESENTED_GENDER = "G"
@@ -27,11 +27,11 @@ class Proposal(ProposalBase):
         (AUDIENCE_LEVEL_INTERMEDIATE, "Intermediate"),
         (AUDIENCE_LEVEL_EXPERIENCED, "Experienced"),
     ]
-    UNDER_REPRESENTED_ANSWERS = (
+    YES_NO_OTHER_ANSWERS = (
         ("", "----"),
-        (UNDER_REPRESENTED_YES, "Yes"),
-        (UNDER_REPRESENTED_NO, "No"),
-        (UNDER_REPRESENTED_BARTLEBY, "I would prefer not to answer"),
+        (YES_NO_OTHER_YES, "Yes"),
+        (YES_NO_OTHER_NO, "No"),
+        (YES_NO_OTHER_BARTLEBY, "I would prefer not to answer"),
     )
     UNDER_REPRESENTED_DETAILED_ANSWERS = (
         (UNDER_REPRESENTED_ETHNICITY, "Ethnicity"),
@@ -51,7 +51,7 @@ class Proposal(ProposalBase):
         "data be used as part of your proposal. This will only be "
         "used to gather diversity statistics in order to further "
         "NumFOCUS' mission.",
-        choices=UNDER_REPRESENTED_ANSWERS,
+        choices=YES_NO_OTHER_ANSWERS,
         default="",
         max_length=1)
     under_represented_details = MultiSelectField(
