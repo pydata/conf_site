@@ -11,10 +11,10 @@ class Proposal(ProposalBase):
     AUDIENCE_LEVEL_NOVICE = 1
     AUDIENCE_LEVEL_EXPERIENCED = 2
     AUDIENCE_LEVEL_INTERMEDIATE = 3
-    UNDER_REPRESENTED_YES = "Y"
-    UNDER_REPRESENTED_NO = "N"
+    YES_NO_OTHER_YES = "Y"
+    YES_NO_OTHER_NO = "N"
     # https://en.wikipedia.org/wiki/Bartleby,_the_Scrivener
-    UNDER_REPRESENTED_BARTLEBY = "O"
+    YES_NO_OTHER_BARTLEBY = "O"
     UNDER_REPRESENTED_ETHNICITY = "E"
     UNDER_REPRESENTED_AGE = "A"
     UNDER_REPRESENTED_GENDER = "G"
@@ -27,11 +27,11 @@ class Proposal(ProposalBase):
         (AUDIENCE_LEVEL_INTERMEDIATE, "Intermediate"),
         (AUDIENCE_LEVEL_EXPERIENCED, "Experienced"),
     ]
-    UNDER_REPRESENTED_ANSWERS = (
+    YES_NO_OTHER_ANSWERS = (
         ("", "----"),
-        (UNDER_REPRESENTED_YES, "Yes"),
-        (UNDER_REPRESENTED_NO, "No"),
-        (UNDER_REPRESENTED_BARTLEBY, "I would prefer not to answer"),
+        (YES_NO_OTHER_YES, "Yes"),
+        (YES_NO_OTHER_NO, "No"),
+        (YES_NO_OTHER_BARTLEBY, "I would prefer not to answer"),
     )
     UNDER_REPRESENTED_DETAILED_ANSWERS = (
         (UNDER_REPRESENTED_ETHNICITY, "Ethnicity"),
@@ -44,6 +44,13 @@ class Proposal(ProposalBase):
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
+    first_time_at_pydata = models.CharField(
+        "Is this your first time speaking at a PyData event?",
+        choices=YES_NO_OTHER_ANSWERS,
+        blank=True,
+        default="",
+        max_length=1)
+    affiliation = models.CharField(blank=True, default="", max_length=200)
     under_represented_population = models.CharField(
         "Do you feel that you or your talk represent a "
         "population under-represented in the Python "
@@ -51,7 +58,7 @@ class Proposal(ProposalBase):
         "data be used as part of your proposal. This will only be "
         "used to gather diversity statistics in order to further "
         "NumFOCUS' mission.",
-        choices=UNDER_REPRESENTED_ANSWERS,
+        choices=YES_NO_OTHER_ANSWERS,
         default="",
         max_length=1)
     under_represented_details = MultiSelectField(
@@ -60,6 +67,11 @@ class Proposal(ProposalBase):
         choices=UNDER_REPRESENTED_DETAILED_ANSWERS,
         max_choices=len(UNDER_REPRESENTED_DETAILED_ANSWERS))
 
+    phone_number = models.CharField(
+        "Phone number - to be used for last-minute schedule changes",
+        blank=True,
+        default="",
+        max_length=100)
     recording_release = models.BooleanField(
         default=True,
         help_text="By submitting your proposal, you agree to give permission "
