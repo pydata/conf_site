@@ -19,4 +19,4 @@ wagtail==1.8
 wagtailmenus==2.1.2
 virtualenv==15.1.0
 
-git+git://github.com/pydata/symposion.git@983ec0045f34f480059e5b2#egg=symposion
+git+git://github.com/pydata/symposion.git@d664b2bdfb901029937b7f8#egg=symposion
