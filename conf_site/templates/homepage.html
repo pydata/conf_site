@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load sponsorship_tags wagtailcore_tags wagtailimages_tags %}
 {% block body %}
 <div id="sli" class="text-center">
     <div class="bg-xc col-xs-12" data-stellar-background-ratio="1.1" data-stellar-vertical-offset="50"
@@ -37,6 +37,31 @@
             <div class="sec-ov-2">
                 {{ page.pydata_info_section }}
             </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container sp-logo-cs" style="background-color: #fff; display:table; padding-bottom:60px; position:relative;">
+        <h2 style="text-transform:uppercase">Our Sponsors</h2>
+        <div class="row text-center">
+            {% sponsor_levels as levels %}
+            {% for level in levels %}
+                {% if level.sponsors %}
+                    {% for sponsor in level.sponsors %}
+                        {# We don't display sponsors without logos. #}
+                        {% if sponsor.website_logo %}
+                        <div class="col-md-3 col-sm-4 col-xs-12 sp">
+                            <a href="{{ sponsor.external_url }}">
+                                <img src="{{ sponsor.website_logo.url }}" alt="{{ sponsor.name }}">
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row" style="margin: 0 33%;">
+            <a href="{% url 'sponsor_apply' %}" class="btn btn3">Become a Sponsor</a>
         </div>
     </div>
 </section>
