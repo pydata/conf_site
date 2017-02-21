@@ -51,6 +51,10 @@ class HomePage(CustomPage):
     ticketing_section = RichTextField(default="<h2>Tickets</h2>")
     ticketing_url = models.URLField(blank=True, max_length=2083)
     mailchimp_list_id = models.CharField(blank=True, max_length=100)
+    footer_email = models.EmailField(
+        blank=True, default="admin@pydata.org", max_length=254)
+    footer_twitter = models.CharField(
+        blank=True, default="PyData", max_length=15)
 
     content_panels = Page.content_panels + [
         FieldPanel("logo_image"),
@@ -60,6 +64,8 @@ class HomePage(CustomPage):
         FieldPanel("ticketing_section"),
         FieldPanel("ticketing_url"),
         FieldPanel("mailchimp_list_id"),
+        FieldPanel("footer_email"),
+        FieldPanel("footer_twitter"),
     ]
     template = "homepage.html"
 

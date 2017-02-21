@@ -140,7 +140,12 @@
                 <address>
                     <p></p>
                     <p class="soc">
-                        <a href="https://twitter.com/pydata/"><i class="fa fa-twitter"></i>Twitter</a>
+                        {% if page.footer_email %}
+                        <a href="mailto:{{ page.footer_email }}"><i class="fa fa-envelope"></i>Email</a>
+                        {% endif %}
+                        {% if page.footer_twitter %}
+                        <a href="https://twitter.com/{{ page.footer_twitter }}/"><i class="fa fa-twitter"></i>Twitter</a>
+                        {% endif %}
                     </p>
                 </address>
             </div>
