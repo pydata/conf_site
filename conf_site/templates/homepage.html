@@ -40,6 +40,20 @@
         </div>
     </div>
 </section>
+{% if ticketing_url %}
+<section>
+    <div id="sec3" class="parallax-ef">
+        <div class="container">
+            <div class="col-md-offset-4 col-md-4 col-sm-12 text-center col-xs-12 bgcx">
+                <div class="col-xs-12 bc-center">
+                {{ page.ticketing_section|safe }}
+                <p><a href="{{ ticketing_url }}" class="btn btn2">Get Now</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
 <section>
     <div class="container sp-logo-cs" style="background-color: #fff; display:table; padding-bottom:60px; position:relative;">
         <h2 style="text-transform:uppercase">Our Sponsors</h2>
