@@ -5,3 +5,4 @@ default ansible_ssh_host=localhost ansible_ssh_port=2222
 amsterdam2017 ansible_ssh_host=162.242.248.200
 berlin2017 ansible_ssh_host=104.130.11.244
 london2017 ansible_ssh_host=104.239.230.84
+seattle2017 ansible_ssh_host=23.253.236.10
