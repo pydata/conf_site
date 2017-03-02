@@ -20,6 +20,7 @@ libraries/packages should also be installed.
   - libpython-dev
   - pip
   - virtualenv
+  - virtualenvwrapper
 
 Local Development
 -----------------
@@ -32,6 +33,7 @@ Use Vagrant and Virtualbox to create a local environment in a virtual machine
 
     git clone https://github.com/pydata/conf_site.git
     cd conf_site
+    mkvirtualenv conf_site
     vagrant up --provision
 
 The main vagrant commands to use are:
