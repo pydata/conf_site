@@ -49,7 +49,7 @@ Suggested variables in this file include:
   (with a preceding slash).
 - **time_format**: A string in `Django date/time templating format`_
   explaining how times should be formatted on the conference site.
-  American sites use `"g:i A"`, while European sites use `"G:i"`.
+  American sites use "`g:i A`", while European sites use "`G:i`".
 - **timezone**: The conference site's timezone. This should be in
   `tz database format`_.
 - **website_domain**: The domain where the conference site is located. For
@@ -113,7 +113,7 @@ Deployment occurs by running the `ansible-playbook` command.
    Make sure that your virtualenv is activated (`workon conf_site`)
    before trying to deploy.
 
-> ansible-playbook -i ansible/hosts --ask-vault ansible/production.yml -l gotham2017,metropolis2017
+> `ansible-playbook -i ansible/hosts --ask-vault ansible/production.yml -l gotham2017,metropolis2017`
 
 .. note::
    The `-l` parameter limits the deployment to a specific host or group of
@@ -130,8 +130,9 @@ steps are only necessary for PyData conference sites, and are marked as such.
   (using the admin email address defined in `ansible\group_vars\all` and
   the admin password defined in the Ansible Vault file) in the Wagtail admin
   (in the `cms` subfolder of the conference site's URL) and `adding users`_.
-- **Create a new root page** using the HomePage model (see `Page Types`_)
-  to replace the default "Welcome to Wagtail" page.
+- **Create a new root page** using the HomePage model
+  (see :ref:`wagtail-page-types`) to replace the default "Welcome to Wagtail"
+  page.
 - **Update the default Wagtail Site** with the correct name and the
   new root page. This can be found in the "Settings" menu.
 - **Delete or unpublish the "Welcome to Wagtail" page**.

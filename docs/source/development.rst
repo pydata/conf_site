@@ -15,12 +15,12 @@ virtual machine containing your development environment.
 In order to successfully build virtualenvs, a number of development Python
 libraries/packages should also be installed.
 
-  - libffi-dev
-  - libpq-dev
-  - libpython-dev
-  - pip
-  - virtualenv
-  - virtualenvwrapper
+- libffi-dev
+- libpq-dev
+- libpython-dev
+- pip
+- virtualenv
+- virtualenvwrapper
 
 Local Development
 -----------------

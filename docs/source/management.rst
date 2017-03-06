@@ -16,16 +16,18 @@ needs to be managed by Wagtail and its admin (located in the
 Content Management
 ------------------
 
+.. _wagtail-page-types:
+
 Page Types
 ~~~~~~~~~~
 
 There are three types of Wagtail pages that can be created.
 
-  - **HomePage** - a page containing specialized homepage data and sections.
-    Each site should only have one of these.
-  - **VenuePage** - a page containing specialized information relating to the
-    venue and hotel.
-  - **HTMLPage** - a generic page containing rich text and/or raw HTML.
+- **HomePage** - a page containing specialized homepage data and sections.
+  Each site should only have one of these.
+- **VenuePage** - a page containing specialized information relating to the
+  venue and hotel.
+- **HTMLPage** - a generic page containing rich text and/or raw HTML.
 
 Most of the pages you create should be HTMLPages.
 
@@ -51,7 +53,7 @@ Wagtail should show the page as well as all of its child pages. Click
 You now have a *Call for Proposals* page at `http://mysite/cfp/`.
 
 Main Menu
-+++++++++
+~~~~~~~~~
 
 The main menu is managed from the "Settings" menu of the Wagtail admin. Only
 top-level menu items need to be added. *All pages that need to appear in the
