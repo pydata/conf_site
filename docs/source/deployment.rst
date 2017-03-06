@@ -109,11 +109,11 @@ Deploying
 
 Deployment occurs by running the `ansible-playbook` command.
 
+    ansible-playbook -i ansible/hosts --ask-vault ansible/production.yml -l gotham2017,metropolis2017
+
 .. warning::
    Make sure that your virtualenv is activated (`workon conf_site`)
    before trying to deploy.
-
-    `ansible-playbook -i ansible/hosts --ask-vault ansible/production.yml -l gotham2017,metropolis2017`
 
 .. note::
    The `-l` parameter limits the deployment to a specific host or group of
