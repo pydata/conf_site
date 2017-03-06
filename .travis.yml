@@ -22,4 +22,5 @@ install:
     - "pip install -r requirements/travis-ci.txt"
 script:
     - "flake8 --exclude=ansible,docs,migrations ."
+    - "rstcheck --report warning docs/source/*.rst"
     - "./manage.py test"
