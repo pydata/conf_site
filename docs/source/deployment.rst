@@ -107,7 +107,7 @@ Required variables include:
 Deploying
 ~~~~~~~~~
 
-Deployment occurs by running the `ansible-playbook` command.
+Deployment occurs by running the `ansible-playbook` command::
 
     ansible-playbook -i ansible/hosts --ask-vault ansible/production.yml -l gotham2017,metropolis2017
 
