@@ -113,7 +113,7 @@ Deployment occurs by running the `ansible-playbook` command.
    Make sure that your virtualenv is activated (`workon conf_site`)
    before trying to deploy.
 
-> `ansible-playbook -i ansible/hosts --ask-vault ansible/production.yml -l gotham2017,metropolis2017`
+    `ansible-playbook -i ansible/hosts --ask-vault ansible/production.yml -l gotham2017,metropolis2017`
 
 .. note::
    The `-l` parameter limits the deployment to a specific host or group of
@@ -143,10 +143,10 @@ steps are only necessary for PyData conference sites, and are marked as such.
   activate the current virtualenv, and run the Django management command
   to load fixtures::
 
-  > ssh <conference site IP address>
-  > cd /srv/pydata
-  > source ~/.virtualenvs/current/bin/activate
-  > ./manage loaddata fixtures/*
+    ssh <conference site IP address>
+    cd /srv/pydata
+    source ~/.virtualenvs/current/bin/activate
+    ./manage loaddata fixtures/*
 
   At some point in the future, these fixtures might be converted to
   database migrations, making this step unnecessary.
