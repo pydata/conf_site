@@ -1,2 +1,4 @@
 -r production.txt
 flake8==3.2.1
+rstcheck==3.0.1
+sphinx==1.5.3
