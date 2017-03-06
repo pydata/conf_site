@@ -1,34 +1,35 @@
 Conference Management
 =====================
 
-This site is built on the Symposion_ conference management system.
-Symposion has some basic docs that discuss its data models. It could
-use more docs for the perspective of conference organizers.
-
-This page is a start.
+This site is built on a combination of Symposion_, a conference management
+system and Wagtail_, a content management system. Most structured conference
+data (e.g. proposals, speaker profiles, schedules) is located in Symposion
+and be edited through the Django admin (located in the
+``http://mysite/admin/`` directory), while most of the general content on
+the site (e.g. the homepage's banner image, the text on the Venue page)
+needs to be managed by Wagtail and its admin (located in the
+``http://mysite/cms/`` directory).
 
 .. _Symposion: https://symposion.readthedocs.io/en/latest/index.html
+.. _Wagtail: http://docs.wagtail.io/en/latest/
 
 Content Management
 ------------------
 
-Content is managed by the Symposion CMS and Symposion Boxes apps.
+.. _wagtail-page-types:
 
-Boxes
-+++++
+Page Types
+~~~~~~~~~~
 
-Boxes provide a wiki-like experience for edited small blocks of
-text in sections of a page. The boxes app will present an *Edit this content*
-link to edit a section of a page.
+There are three types of Wagtail pages that can be created.
 
-CMS Pages
-+++++++++
+- **HomePage** - a page containing specialized homepage data and sections.
+  Each site should only have one of these.
+- **VenuePage** - a page containing specialized information relating to the
+  venue and hotel.
+- **HTMLPage** - a generic page containing rich text and/or raw HTML.
 
-Content is also stored at the page level by using the Symposion CMS app.
-This app provides a wiki-like editor for an entire page rather than a section.
-
-You can create a new page by navigating to a url path that does not yet exist.
-The app will redirect you to an edit page where you can add and save content.
+Most of the pages you create should be HTMLPages.
 
 Example: Creating a Call For Proposals
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41,67 +42,23 @@ Example: Creating a Call For Proposals
     For this example, we want to create a Call for Proposals on our
     site, at `http://mysite/cfp/`
 
-* In order to create the page, use your browser to nagivate to `http://mysite/cfp/`.
-* Because this page does not exist yet, your browser is redirected to an edit page.
-* In the *Title* field, type *Call for Proposals*
-* In the *Body* text area, type the text for your CFP. *Proposals are now open!*
-* Click the *Save* button.
+Login to the Wagtail admin at ``http://mysite/cms/``. Navigate to the
+root page - it should be the first page that appears when you click the
+"Explorer" button in the left sidebar.
 
-You now have a *Call for Proposals* page at `http://mysite/cfp/` Now you can
-add it to your *Site Tree* so that it appears in the navigation bar.
+Wagtail should show the page as well as all of its child pages. Click
+"Add a Child Page" and choose a `HTMLPage`. Edit the page and choose
+`cfp` as its slug on the "Promote" tab.
 
-Site Tree
-+++++++++
+You now have a *Call for Proposals* page at `http://mysite/cfp/`.
 
-The Site-tree app creates navigation menus. These are edited in the Django
-admin.
+Main Menu
+~~~~~~~~~
 
-.. note:
-
-    Our site-tree is created when the site is deployed. The starting contents
-    are build from a fixture in the site's source code called sitetree.json
-
-We have a sitetree called `main`.  You can view and edit the tree with the
-*Site Trees* Django admin view.
-
-Most of our site tree elements point to CMS Pages, and you can see this when
-you view the tree and see url patterns such as *cms_page "cfp/"*.
-
-.. admonition:: Goal
-    :class: adminition note
-
-    Add the Call for Proposals page as a top-level item in the navigation bar.
-
-* Navigate to the Django admin page, `http://mysite/admin/`.
-* Scroll to the *Site Trees* box and select the *Site Trees* element inside
-  the box.
-* From the resulting page, select *main*.
-.. Warning:: 
-    If *main* doesn't exist, stop! Something wrong happened when the site was
-    deployed. Ask for help.
-* When you select on this you will see a page that has a *Site Tree Items main*
-  section.
-* Select *Add Site Tree Item +*. This takes you to a new page.
-* For this goal, we want to add the Call for Proposals page as a top-level
-  item in the navaigation bar, so leave the *Parent:* option alone.
-* Enter a title in the *Title* text field.
-* In the *URL:* text field, type `cms_page "cfp/"`
-* Ignore the *Access settings* section.
-* In the *Display settings* section, Check the options that you
-  want. For this example, be sure to select *Show in menu*.
-* In the *Additional settings*, be sure that *URL as Pattern* is checked.
-* Click *Save* to save the item.
-* This will redirect you back to the *Change Site Tree* page for *main*. Don't
-  forget to click *Save* on this page. If you forget, the Call for Proposals
-  won't be added.
-
-The django-sitetree_ app documents discuss in depth how to use the admin for
-editing sitetree pages.
-
-.. _django-sitetree: https://django-sitetree.readthedocs.io/en/latest/
-
-.. Warning:: 
-    The django admin might not show changes immediately on refresh.
+The main menu is managed from the "Settings" menu of the Wagtail admin. Only
+top-level menu items need to be added. *All pages that need to appear in the
+menu must have the "Show in menus" settings enabled* (found on the
+"Promote" tab when editing a page).
 
 Conference Committees
 ---------------------
