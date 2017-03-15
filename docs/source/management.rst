@@ -5,7 +5,7 @@ This site is built on a combination of Symposion_, a conference management
 system and Wagtail_, a content management system. Most structured conference
 data (e.g. proposals, speaker profiles, schedules) is located in Symposion
 and be edited through the Django admin (located in the
-``http://mysite/admin/`` directory), while most of the general content on
+``https://mysite/admin/`` directory), while most of the general content on
 the site (e.g. the homepage's banner image, the text on the Venue page)
 needs to be managed by Wagtail and its admin (located in the
 ``http://mysite/cms/`` directory).
@@ -40,9 +40,9 @@ Example: Creating a Call For Proposals
     Create a Call for Proposals page
 
     For this example, we want to create a Call for Proposals on our
-    site, at `http://mysite/cfp/`
+    site, at `https://mysite/cfp/`
 
-Login to the Wagtail admin at ``http://mysite/cms/``. Navigate to the
+Login to the Wagtail admin at ``https://mysite/cms/``. Navigate to the
 root page - it should be the first page that appears when you click the
 "Explorer" button in the left sidebar.
 
@@ -50,7 +50,7 @@ Wagtail should show the page as well as all of its child pages. Click
 "Add a Child Page" and choose a `HTMLPage`. Edit the page and choose
 `cfp` as its slug on the "Promote" tab.
 
-You now have a *Call for Proposals* page at `http://mysite/cfp/`.
+You now have a *Call for Proposals* page at `https://mysite/cfp/`.
 
 Main Menu
 ~~~~~~~~~

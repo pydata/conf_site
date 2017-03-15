@@ -12,3 +12,5 @@ DATABASES = {
 }
 
 SITE_ID = 1
+
+SECURE_SSL_REDIRECT = True

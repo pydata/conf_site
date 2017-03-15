@@ -7,4 +7,4 @@ subdirectory: /{{ conference_identifier }}
 time_format: "G:i"
 timezone: Europe/Warsaw
 website_domain: pydata.org
-website_url: http://pydata.org{{ subdirectory }}
+website_url: https://pydata.org{{ subdirectory }}
