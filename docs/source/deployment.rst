@@ -152,7 +152,7 @@ steps are only necessary for PyData conference sites, and are marked as such.
   database migrations, making this step unnecessary.
 - For PyData sites, you need to **manually fix the Continuum sponsor** in
   the Django admin (in the `admin` subfolder of the conference site's URL) by
-  adding `a logo image <http://pydata.org/images/sponsors/continuum.png>`_
+  adding `a logo image <https://pydata.org/images/sponsors/continuum.png>`_
   and description).
 - **Add a banner image** (required), appropriate text sections (recommended),
   Mailchimp list ID (optional, but necessary to have the mailing list

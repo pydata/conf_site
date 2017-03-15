@@ -115,8 +115,8 @@ html_theme_options = {
     'github_user': 'pydata',
     'github_repo': 'conf_site',
     'extra_nav_links': {
-        'PyData.org': 'http://pydata.org/',
-        'PyData Events': 'http://pydata.org/events/',
+        'PyData.org': 'https://pydata.org/',
+        'PyData Events': 'https://pydata.org/events/',
     }
 }
 
