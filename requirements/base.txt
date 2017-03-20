@@ -4,7 +4,7 @@ django-bootstrap-form==3.2.1
 django-markdown==0.8.4
 django-markitup==3.0.0
 django-multiselectfield==0.1.5
-djangorestframework==3.3.3
+djangorestframework==3.6.2
 Fabric==1.13.1
 fabtools==0.20.0
 gunicorn==19.7.0
