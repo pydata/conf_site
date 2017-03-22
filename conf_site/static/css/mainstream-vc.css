@@ -676,7 +676,16 @@ margin-bottom:45px;}
   text-align: center;
   color: #12ccea;}
 
-table.calendar{background-color:#fff;table-layout:fixed;font-size:12px}
+table.calendar{
+  background-color:#fff;
+  table-layout:fixed;
+  font-family: 'Open Sans';
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.67;
+}
 table.calendar tr{min-height:36px}
 table.calendar th{text-align:center}table.calendar th.time{width:60px}
 table.calendar td{text-align:center;vertical-align:middle}
