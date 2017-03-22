@@ -1,3 +1,28 @@
+<style>
+table.calendar{
+  background-color:#fff;
+  table-layout:fixed;
+  font-family: 'Open Sans';
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.67;
+}
+table.calendar tr{min-height:36px}
+table.calendar th{text-align:center}table.calendar th.time{width:60px}
+table.calendar td{text-align:center;vertical-align:middle}
+table.calendar td.time{vertical-align:top;padding-top:0;margin-top:0;color:#444;font-size:11px}
+table.calendar td.slot{font-weight:bold;text-shadow:#fff 0 1px 0}
+table.calendar td.slot.slot-break{background-color:#ecffff}
+table.calendar td.slot.slot-plenary{background-color:#ffffcc}
+table.calendar td.slot.slot-talk{background-color:#e1edf7}
+table.calendar td.slot.slot-tutorial{background-color:#fbe5d4}
+table.calendar td.slot.slot-discussion{background-color:#b8d9e3}
+table.calendar td.slot p{padding:0;margin:0}
+table.calendar td span.title{font-weight:bold;display:block}
+table.calendar td span.speaker{font-weight:normal;display:block}
+</style>
 <table class="calendar table table-bordered">
     <thead>
         <tr>
