@@ -12,6 +12,7 @@ except ImportError:
 import symposion.views
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
+from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 from cms.views import LoginEmailView
 from speakers.views import ExportAcceptedSpeakerEmailView
@@ -31,6 +32,7 @@ urlpatterns += [
     url(r"^api/", include("conf_site.api.urls")),
     url(r"^cms/", include(wagtailadmin_urls)),
     url(r"^dashboard/", symposion.views.dashboard, name="dashboard"),
+    url(r"^documents/", include(wagtaildocs_urls)),
     url(r"^speaker/export/$",
         staff_member_required(ExportAcceptedSpeakerEmailView.as_view()),
         name="speaker_email_export"),
