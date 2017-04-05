@@ -1,4 +1,4 @@
-Django==1.9.12
+Django==1.9.13
 django-analytical==2.2.2
 django-bootstrap-form==3.2.1
 django-markdown==0.8.4
