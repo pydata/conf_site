@@ -700,6 +700,10 @@ table.calendar td.slot p{padding:0;margin:0}
 table.calendar td span.title{font-weight:bold;display:block}
 table.calendar td span.speaker{font-weight:normal;display:block}
 
+ul.dropdown-menu {
+    z-index: 9999 !important;
+}
+
   @media (max-width:800px) {
 
 #logo {padding: 5px 10px 0px 15px !important;}
