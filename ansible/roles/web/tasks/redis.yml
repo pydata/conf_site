@@ -1,0 +1,5 @@
+- name: install redis package
+  apt: pkg=redis-server state=latest
+  become: true
+  notify:
+    - restart redis

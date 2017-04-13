@@ -13,6 +13,7 @@ addons:
             - zlib1g-dev
 services:
   - postgresql
+  - redis-server
 env: >
     DJANGO_SETTINGS_MODULE="conf_site.settings.travis-ci"
 before_install:
