@@ -179,23 +179,3 @@
     </div>
 </div>
 {% endblock %}
-
-{% block extra_script %}
-    <script src="{% static 'symposion/js/jquery.history.js' %}"></script>
-    <script type="text/javascript">
-        $(function() {
-            var History = window.History;
-
-            $(window).bind("anchorchange", function() {
-                $(".nav-tabs a[href='" + location.hash + "']").click();
-            });
-
-            $('#.nav-tabs a[data-toggle="tab"]').on('shown', function (e) {
-                if (History.enabled) {
-                    History.pushState(null, null, $(e.target).attr("href"));
-                }
-            });
-        });
-    </script>
-
-{% endblock %}
