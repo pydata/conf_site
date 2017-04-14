@@ -4,6 +4,7 @@
 {% load markitup_tags %}
 {% load bootstrap %}
 {% load account_tags %}
+{% load static from staticfiles %}
 
 {% block extra_head %}
     <style type="text/css">
@@ -180,7 +181,7 @@
 {% endblock %}
 
 {% block extra_script %}
-    <script src="{{ STATIC_URL }}symposion/js/jquery.history.js"></script>
+    <script src="{% static 'symposion/js/jquery.history.js' %}"></script>
     <script type="text/javascript">
         $(function() {
             var History = window.History;
