@@ -89,7 +89,7 @@
   notify: restart gunicorn
 
 - name: collect static files
-  django_manage: command=collectstatic
+  django_manage: command="collectstatic --noinput --clear"
                  app_path={{ project_root }}
                  settings=conf_site.settings.{{ environment_type }}
                  virtualenv={{ virtualenv_root }}/current

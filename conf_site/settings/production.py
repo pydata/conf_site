@@ -14,3 +14,5 @@ DATABASES = {
 SITE_ID = 1
 
 SECURE_SSL_REDIRECT = True
+STATICFILES_STORAGE = (
+    "django.contrib.staticfiles.storage.ManifestStaticFilesStorage")

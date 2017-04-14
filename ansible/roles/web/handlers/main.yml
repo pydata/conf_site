@@ -1,3 +1,7 @@
+- name: restart redis
+  service: name=redis-server state=restarted
+  become: true
+
 - name: restart nginx
   service: name=nginx state=restarted
   sudo: yes

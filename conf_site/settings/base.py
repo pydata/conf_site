@@ -256,8 +256,14 @@ AUTHENTICATION_BACKENDS = [
 MARKITUP_FILTER = ("markdown.markdown", {"safe_mode": True})
 MARKITUP_SET = "markitup/sets/markdown"
 MARKITUP_SKIN = "markitup/skins/simple"
-
+CACHES = {
+    "default": {
+        "BACKEND": "redis_cache.RedisCache",
+        "LOCATION": "localhost:6379",
+    }
+}
 CONFERENCE_ID = 1
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 SYMPOSION_PAGE_REGEX = r"(([\w-]{1,})(/[\w-]{1,})*)/"
 PROPOSAL_FORMS = {
     "talk": "conf_site.proposals.forms.ProposalForm",
