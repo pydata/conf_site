@@ -1,5 +1,6 @@
 {% spaceless %}
 {% load account_tags google_analytics i18n menu_tags wagtailuserbar %}
+{% load static from staticfiles %}
 {% endspaceless %}<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,28 +9,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,700|Nunito|Open+Sans:300,400" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/mainstream-vc.css" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ STATIC_URL }}favicon/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{ STATIC_URL }}favicon/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_URL }}favicon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ STATIC_URL }}favicon/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_URL }}favicon/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ STATIC_URL }}favicon/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ STATIC_URL }}favicon/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ STATIC_URL }}favicon/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ STATIC_URL }}favicon/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="{{ STATIC_URL }}favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="{{ STATIC_URL }}favicon/manifest.json">
-    <link rel="shortcut icon" href="{{ STATIC_URL }}favicon/favicon.ico">
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/mainstream-vc.css' %}" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicon/apple-touch-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicon/apple-touch-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicon/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicon/apple-touch-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicon/apple-touch-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicon/apple-touch-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicon/apple-touch-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicon/apple-touch-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-194x194.png' %}" sizes="194x194">
+    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-96x96.png' %}" sizes="96x96">
+    <link rel="icon" type="image/png" href="{% static 'favicon/android-chrome-192x192.png' %}" sizes="192x192">
+    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="manifest" href="{% static 'favicon/manifest.json' %}">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
     <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta name="msapplication-TileImage" content="{{ STATIC_URL }}favicon/mstile-144x144.png">
-    <meta name="msapplication-config" content="{{ STATIC_URL }}favicon/browserconfig.xml">
+    <meta name="msapplication-TileImage" content="{% static 'favicon/mstile-144x144.png' %}">
+    <meta name="msapplication-config" content="{% static 'favicon/browserconfig.xml' %}">
     <meta name="theme-color" content="#ffffff">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,7 +54,7 @@
     <div id="header">
         <div class="container">
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="logo">
-                <a href="/"><img alt="PyData" src="{{ STATIC_URL }}images/logo.png" data-rjs="2"></a>
+                <a href="/"><img alt="PyData" src="{% static 'images/logo.png' %}" data-rjs="2"></a>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="menu">
                 <nav class="navbar">
@@ -173,7 +174,7 @@
             </div>
             <div class="col-md-3 col-sm-12 col-xs-12 fsec footer4">
                 <h4>The PyData Conference Series is brought to you by </h4>
-                <a href="http://numfocus.org"><img src="{{ STATIC_URL }}images/numfocus.png" data-rjs="2"></a>
+                <a href="http://numfocus.org"><img src="{% static 'images/numfocus.png' %}" data-rjs="2"></a>
             </div>
         </div>
     </div>
@@ -181,10 +182,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
         integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
         crossorigin="anonymous"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.js"></script>
-<script src="{{ STATIC_URL }}js/retina.min.js"></script>
-<script src="{{ STATIC_URL }}js/jquery.sticky.js"></script>
-<script src="{{ STATIC_URL }}js/jquery.stellar.js"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/retina.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/jquery.stellar.js' %}"></script>
 <!--
 <script>
     jQuery(function($) {

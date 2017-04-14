@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load static from staticfiles %}
 
 {% block title %}Conference Schedule Edit{% endblock %}
 
@@ -10,7 +11,7 @@
 {% endblock %}
 
 {% block extra_head %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}chosen/chosen.css" />
+    <link rel="stylesheet" href="{% static 'chosen/chosen.css' %}"/>
 {% endblock %}
 
 {% block body %}
@@ -31,7 +32,7 @@
 {% endblock %}
 
 {% block extra_script %}
-    <script src="{{ STATIC_URL }}chosen/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="{% static 'chosen/chosen.jquery.min.js' %}" type="text/javascript"></script>
     <script type="text/javascript">
         $(function() {
             $("a.edit-slot").click(function(e) {
