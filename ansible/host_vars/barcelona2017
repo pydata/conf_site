@@ -2,7 +2,7 @@ conference_identifier: barcelona2017
 conference_name: "PyData Barcelona 2017"
 database_user: "{{ conference_identifier }}"
 django_database: "{{ conference_identifier }}"
-git_version: barcelona2017
+git_version: pdf-prospectus
 google_analytics_id: UA-41850464-16
 subdirectory: /{{ conference_identifier }}
 time_format: "G:i"
