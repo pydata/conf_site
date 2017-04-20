@@ -15,7 +15,6 @@ SESSION_COOKIE_PATH = "{{ subdirectory }}" or "/"
 TIME_FORMAT = "{{ time_format }}"
 TIME_ZONE = "{{ timezone }}"
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_HOST = '{{ email_host_name }}'
 EMAIL_HOST_USER = 'noreply@pydata.org'

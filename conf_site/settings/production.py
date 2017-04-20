@@ -13,4 +13,5 @@ DATABASES = {
 
 SITE_ID = 1
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 SECURE_SSL_REDIRECT = True
