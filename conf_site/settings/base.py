@@ -228,6 +228,7 @@ LOGGING = {
 ADMINS = (
     ('Admins', 'web@pydata.org'),
 )
+MANAGERS = [("PyData Admin", "admin@pydata.org"), ]
 
 DEFAULT_FROM_EMAIL = 'noreply@conf.pydata.org'
 
