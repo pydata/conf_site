@@ -36,6 +36,7 @@ class HomePage(CustomPage):
         "wagtailimages.Image",
         blank=True,
         null=True,
+        help_text="Maximum file size is 10 MB",
         on_delete=models.SET_NULL,
         related_name="+"
     )
@@ -43,6 +44,7 @@ class HomePage(CustomPage):
         "wagtailimages.Image",
         blank=True,
         null=True,
+        help_text="Maximum file size is 10 MB",
         on_delete=models.SET_NULL,
         related_name="+"
     )
@@ -76,6 +78,7 @@ class VenuePage(CustomPage):
         "wagtailimages.Image",
         blank=True,
         null=True,
+        help_text="Maximum file size is 10 MB",
         on_delete=models.SET_NULL,
         related_name="+"
     )
