@@ -3,6 +3,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
+from django.views.generic.base import TemplateView
 
 from account.views import SignupView
 try:
@@ -43,6 +44,7 @@ urlpatterns += [
     url(r"^reviews/", include("symposion.reviews.urls")),
     url(r"^schedule/", include("symposion.schedule.urls")),
     url(r"^markitup/", include("markitup.urls")),
+    url(r"^413/", TemplateView.as_view(template_name="413.html")),
     url(r"", include(wagtail_urls)),
 ]
 
