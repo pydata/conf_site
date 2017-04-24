@@ -15,7 +15,7 @@
         <h1>Conference Schedule</h1>
         {% block breadcrumbs %}{% endblock %}
     </div>
-    <p>View past PyData event schedules <a href="https://pydata.org/events/" title="Past PyData Events">here</a>.</p>
+    <p>View past PyData event schedules <a href="https://pydata.org/past-events.html" title="Past PyData Events">here</a>.</p>
     {% for section in sections %}
             {% for timetable in section.days %}
                 <h3>{{ section.schedule.section.name }} — {{ timetable.day.date|date:"l" }} {{ timetable.day.date }}</h3>
