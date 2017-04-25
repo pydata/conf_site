@@ -435,6 +435,9 @@ flex-wrap: wrap;
   line-height: 1.67;
   color: #ffffff;
 }
+#footer a {
+    color: #12ccea;
+}
 #footer .footer1 {
     padding-left: 0px !important;
 }
