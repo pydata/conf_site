@@ -297,6 +297,7 @@ flex-wrap: wrap;
         align-self: center;
         margin: 23px 0px;
         }
+.sp-logo-cs .sp img { height: 100%; width: 100%; }
         .our-sp {margin-bottom: 90px;}
   .sp-logo-cs h2{  font-family: 'Dosis';
   font-size: 97px;margin-top:50px;margin-bottom:70px;
