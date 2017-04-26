@@ -105,7 +105,7 @@ html,body {font-family:'Dosis'}
   text-align: center !important;
   margin-left: 10px;
   }
-  #menu .navbar-collapse ul ul {border-top: solid 3px #0274a4;padding: 0px;z-index: 1;max-height:0;overflow:hidden;-webkit-transform:perspective(400) rotate3d(1,0,0,-90deg);-webkit-transform-origin:50% 0;-webkit-transition:350ms;-moz-transition:350ms;-o-transition:350ms;transition:350ms;display:block}
+  #menu .navbar-collapse ul ul {padding: 0px;z-index: 1;max-height:0;overflow:hidden;-webkit-transform:perspective(400) rotate3d(1,0,0,-90deg);-webkit-transform-origin:50% 0;-webkit-transition:350ms;-moz-transition:350ms;-o-transition:350ms;transition:350ms;display:block}
 #menu .hero-btn:hover { background:#2ee6b6 !important;color:#FFF !important}
 }
 
@@ -704,6 +704,7 @@ table.calendar td span.title{font-weight:bold;display:block}
 table.calendar td span.speaker{font-weight:normal;display:block}
 
 ul.dropdown-menu {
+    border: none !important;
     z-index: 9999 !important;
 }
 
