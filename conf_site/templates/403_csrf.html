@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}CSRF Error{% endblock %}
+
+{% block body %}
+<div class="container news-xl">
+    <h1>CSRF Security Token is Missing or Incorrect</h1>
+    <p>The site could not find a required security token. Please try:</p>
+    <ul>
+        <li>clearing all pydata.org cookies</li>
+        <li>reloading the previous page and re-entering your data</li>
+    </ul>
+    <p>
+        If neither of these steps work, please
+        <a href="mailto:admin@pydata.org">contact PyData</a> directly.
+    </p>
+{% endblock %}
