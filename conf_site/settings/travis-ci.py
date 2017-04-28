@@ -13,6 +13,7 @@ DATABASES = {
         "PORT": "", }
 }
 
+GOOGLE_ANALYTICS_PROPERTY_ID = "UA-000000-0"
 SECRET_KEY = "foobar"
 STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.StaticFilesStorage")

@@ -15,7 +15,7 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
-from cms.views import LoginEmailView
+from cms.views import csrf_failure, LoginEmailView
 from speakers.views import ExportAcceptedSpeakerEmailView
 
 
@@ -44,6 +44,7 @@ urlpatterns += [
     url(r"^reviews/", include("symposion.reviews.urls")),
     url(r"^schedule/", include("symposion.schedule.urls")),
     url(r"^markitup/", include("markitup.urls")),
+    url(r"^403-csrf/", csrf_failure, name="403-csrf"),
     url(r"^413/", TemplateView.as_view(template_name="413.html")),
     url(r"", include(wagtail_urls)),
 ]
