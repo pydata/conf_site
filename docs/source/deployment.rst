@@ -107,7 +107,7 @@ Required variables include:
 Deploying
 ~~~~~~~~~
 
-Deployment occurs by running the `ansible-playbook` command.
+Deployment occurs by running the `ansible-playbook` command::
 
     ansible-playbook -i ansible/hosts --ask-vault ansible/production.yml -l gotham2017,metropolis2017
 
@@ -146,7 +146,7 @@ steps are only necessary for PyData conference sites, and are marked as such.
     ssh <conference site IP address>
     cd /srv/pydata
     source ~/.virtualenvs/current/bin/activate
-    ./manage loaddata fixtures/*
+    DJANGO_SETTINGS_MODULE="conf_site.settings.production" ./manage loaddata fixtures/*
 
   At some point in the future, these fixtures might be converted to
   database migrations, making this step unnecessary.
