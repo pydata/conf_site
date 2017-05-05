@@ -82,3 +82,17 @@ class Proposal(ProposalBase):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        # Update associated presentation if it exists.
+        if hasattr(self, "presentation") and self.presentation:
+            self.presentation.title = self.title
+            self.presentation.description = self.description
+            self.presentation.abstract = self.abstract
+            self.presentation.speaker = self.speaker
+            for speaker in self.additional_speakers.all():
+                    self.presentation.additional_speakers.add(speaker)
+            self.presentation.section = self.section
+            self.presentation.save()
+
+        return super(Proposal, self).save(*args, **kwargs)
