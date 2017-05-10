@@ -1,2 +1,2 @@
-sphinx
-alabaster
+sphinx==1.5.5
+alabaster==0.7.10
