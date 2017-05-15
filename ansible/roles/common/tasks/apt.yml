@@ -17,3 +17,8 @@
     - supervisor
     - unattended-upgrades
     - vim
+
+- name: copy apt configuration file (50unattended-upgrades)
+  template: src=50unattended-upgrades
+            dest=/etc/apt/apt.conf.d/50unattended-upgrades
+  become: yes
