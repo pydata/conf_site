@@ -18,6 +18,11 @@
     - unattended-upgrades
     - vim
 
+- name: copy apt configuration file (20auto-upgrades)
+  template: src=20auto-upgrades
+            dest=/etc/apt/apt.conf.d/20auto-upgrades
+  become: true
+
 - name: copy apt configuration file (50unattended-upgrades)
   template: src=50unattended-upgrades
             dest=/etc/apt/apt.conf.d/50unattended-upgrades
