@@ -76,7 +76,9 @@
         </div>
     </div>
 </header>
-{% block body %}
+{% block body_outer %}
+    {% block body %}
+    {% endblock %}
 {% endblock %}
 {% if mailchimp_list_id %}
 <section>
