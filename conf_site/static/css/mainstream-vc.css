@@ -722,7 +722,13 @@ ul.dropdown-menu {
     }
     #menu ul li a {border-bottom:1px solid #ccc;text-align:center;display:block;}
     #menu ul li:last-child a {border:none}
-  body #sec1 .sec1x {padding-top:0px !important;overflow: hidden;}
+
+    div.blu-lf, div.gree-md, div.blu-rt { display:none !important; }
+    body #sec1 .sec1x {padding-top:0px !important;overflow: hidden;}
+    #sec1x-con .sec1x-elem.sec1x-before, #sec1x-con .sec1x-elem.sec1x-after {
+      background: none;
+    }
+
   #sec2 h1 {font-size:71px;margin-bottom: 240px;}
   #sec3 .bgcx {width: 90%;display: table;min-height: 100%;margin: 0px auto !important;float: none;}
   .sp-logo-cs h2 {font-size:47px}
