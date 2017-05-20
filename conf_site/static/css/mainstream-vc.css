@@ -730,7 +730,7 @@ ul.dropdown-menu {
     }
 
   #sec2 h1 {font-size:71px;margin-bottom: 240px;}
-  #sec3 .bgcx {width: 90%;display: table;min-height: 100%;margin: 0px auto !important;float: none;}
+  #sec3 .bgcx {width: 90%;display: table;min-height: 100%;margin-top: 50%;float: none;}
   .sp-logo-cs h2 {font-size:47px}
   .sp-logo-cs .sp {text-align:center !important;display: block;}
   .btn.btn1, .btn.btn2, .btn.btn3, .btn.btn4, .btn.btn6 {width:95%;padding-left:0px;padding-right:0px;min-width: 260px;}
