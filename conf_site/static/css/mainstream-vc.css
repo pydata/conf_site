@@ -306,6 +306,7 @@ flex-wrap: wrap;
   font-stretch: normal;
   text-align: center;
   color: #12ccea;}
+#become-a-sponsor-row { margin: 0 33%; }
 .mgt70 {margin-top:70px;}
     img {max-width:100%}
 
@@ -733,6 +734,7 @@ ul.dropdown-menu {
   #sec3 .bgcx {width: 90%;display: table;min-height: 100%;margin-top: 50%;float: none;}
   .sp-logo-cs h2 {font-size:47px}
   .sp-logo-cs .sp {text-align:center !important;display: block;}
+  #become-a-sponsor-row { margin: 0; }
   .btn.btn1, .btn.btn2, .btn.btn3, .btn.btn4, .btn.btn6 {width:95%;padding-left:0px;padding-right:0px;min-width: 260px;}
 #nst-con {overflow:hidden}
  #sec3 {width: 100%;display:block;padding-bottom: 0px;}
