@@ -26,14 +26,21 @@ Creating Rooms
 --------------
 
 The name of the room will appear on the schedule at the top of each column.
+Rooms are associated with Schedules, so conferences with multiple sessions
+might have duplicates.
 
+Adding Presentations to the Schedule
+------------------------------------
 
-Adding Presentations
---------------------
+`Presentation` objects are automatically created when a `Proposal` is accepted.
 
 *to be written*
 
-Adding Plenary Slots
-++++++++++++++++++++
+Adding Plenary Sessions
++++++++++++++++++++++++
+
+Plenary sessions that do not have associated `Presentations` (e.g.
+"Registration") are added directly as slots. In order to ensure that they
+contain the correct content, the "Content overrride" field must be filled out.
 
 *to be written*
