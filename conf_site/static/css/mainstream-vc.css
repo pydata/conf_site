@@ -724,7 +724,9 @@ ul.dropdown-menu {
     #menu ul li a {border-bottom:1px solid #ccc;text-align:center;display:block;}
     #menu ul li:last-child a {border:none}
 
-    div.blu-lf, div.gree-md, div.blu-rt { display:none !important; }
+    div.logo-ovr, div.blu-lf, div.gree-md, div.blu-rt {
+      display:none !important;
+    }
     body #sec1 .sec1x {padding-top:0px !important;overflow: hidden;}
     #sec1x-con .sec1x-elem.sec1x-before, #sec1x-con .sec1x-elem.sec1x-after {
       background: none;
