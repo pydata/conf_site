@@ -712,8 +712,8 @@ ul.dropdown-menu {
 
   @media (max-width:800px) {
 
-#logo {padding: 5px 10px 0px 15px !important;}
-.navbar-header button {background-color:#12ccea;position:absolute;top:-65px;right: -5px;}
+#logo {padding: 5px 10px 20px 15px !important;}
+.navbar-header button {background-color:#12ccea;position:absolute;top:-50px;right: -5px;}
 .navbar-toggle .icon-bar {border:1px solid #FFF;}
   .navbar {min-height:0px;margin: 0px;width: 100%;border-bottom: none;}
   #menu ul{float:none;width:100%;padding: 0px 0px !important;margin: 0px;}
