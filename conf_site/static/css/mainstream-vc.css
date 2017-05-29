@@ -731,7 +731,10 @@ ul.dropdown-menu {
     #sec1x-con .sec1x-elem.sec1x-before, #sec1x-con .sec1x-elem.sec1x-after {
       background: none;
     }
-
+    .sec1-col h3 { font-size: 14px; }
+    .sec1-inner-page h1 { font-size: 50px; }
+    .sec1-inner-page p { font-size: 14px; }
+    .sec1-inner-page .btn-large { font-size: 24px; }
   #sec2 h1 {font-size:71px;margin-bottom: 240px;}
   #sec3 .bgcx {width: 90%;display: table;min-height: 100%;margin-top: 50%;float: none;}
   .sp-logo-cs h2 {font-size:47px}
