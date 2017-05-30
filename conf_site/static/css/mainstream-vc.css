@@ -710,6 +710,11 @@ ul.dropdown-menu {
     z-index: 9999 !important;
 }
 
+@media (max-width: 1500px) {
+  #sec1x-con .sec1-col { margin-left: 150px; }
+}
+
+
   @media (max-width:800px) {
 
 #logo {padding: 5px 10px 20px 15px !important;}
@@ -731,6 +736,7 @@ ul.dropdown-menu {
     #sec1x-con .sec1x-elem.sec1x-before, #sec1x-con .sec1x-elem.sec1x-after {
       background: none;
     }
+    #sec1x-con .sec1-col { margin-left: 0; }
     .sec1-col h3 { font-size: 14px; }
     .sec1-inner-page h1 { font-size: 50px; }
     .sec1-inner-page p { font-size: 14px; }
