@@ -1,11 +1,11 @@
-<tr>
-    <td>
+<tr id="proposal-{{ proposal.pk }}">
+    <td class="proposal-title">
         <a href="{% url "proposal_detail" proposal.pk %}">{{ proposal.title }}</a>
     </td>
 
-    <td>{{ proposal.kind.name }}</td>
+    <td class="proposal-kind">{{ proposal.kind.name }}</td>
 
-    <td>
+    <td class="proposal-result-status">
         {% if proposal.cancelled %}
             <span class="label label-danger">Cancelled</span>
         {% else %}
