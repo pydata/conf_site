@@ -23,8 +23,6 @@
                       {% else %}
                         {% if slot.content_override_html %}
                             {{ slot.content_override_html|safe }}
-                        {% else %}
-                            {{ slot.kind.label }}
                         {% endif %}
                       {% endif %}
                     </td>
