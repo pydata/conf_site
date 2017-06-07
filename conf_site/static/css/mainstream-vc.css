@@ -284,15 +284,15 @@ html,body {font-family:'Dosis'}
   }
 
   .sp-logo-cs .row:before ,.sp-logo-cs .row:after {display:none !important}
-  .sp-logo-cs .row {display: -webkit-flex;display: -ms-flexbox;display: flex;
--webkit-flex-wrap: wrap;
--ms-flex-wrap: wrap;
-flex-wrap: wrap;
+  .sp-logo-cs .row {
+      display: -webkit-flex;
+      display: -moz-flex;
+      -webkit-flex-wrap: wrap;
+      -moz-flex-wrap: wrap;
 }
     .sp-logo-cs .sp  {
         display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
+        display: -moz-flexbox;
         align-items: flex-start;
         align-self: center;
         margin: 23px 0px;
