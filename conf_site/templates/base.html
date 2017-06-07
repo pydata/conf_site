@@ -51,8 +51,8 @@
     ga('require', 'outboundFormTracker');
     ga('require', 'outboundLinkTracker');
     ga('send', 'pageview');
-
     </script>
+    <script async src="{% static 'js/autotrack.js' %}"></script>
     {% endif %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
