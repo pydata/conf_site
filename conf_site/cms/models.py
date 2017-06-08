@@ -50,6 +50,7 @@ class HomePage(CustomPage):
     )
     conference_info_section = StreamField(HTMLBlock())
     pydata_info_section = StreamField(HTMLBlock())
+    news_keynote_section = StreamField(HTMLBlock())
     ticketing_section = RichTextField(default="<h2>Tickets</h2>")
     ticketing_url = models.URLField(blank=True, max_length=2083)
     mailchimp_list_id = models.CharField(blank=True, max_length=100)
@@ -63,6 +64,7 @@ class HomePage(CustomPage):
         FieldPanel("background_image"),
         StreamFieldPanel("conference_info_section"),
         StreamFieldPanel("pydata_info_section"),
+        StreamFieldPanel("news_keynote_section"),
         FieldPanel("ticketing_section"),
         FieldPanel("ticketing_url"),
         FieldPanel("mailchimp_list_id"),
