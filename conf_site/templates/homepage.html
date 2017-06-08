@@ -80,4 +80,22 @@
         </div>
     </div>
 </section>
+{% if page.news_keynote_section %}<section>
+    <div id="nst-ovx">
+        <div class="nst-ovx sec1x-before" data-stellar-background-ratio="1.2" data-stellar-ratio="1.2"   data-stellar-vertical-offset="-1900"></div>
+        <div class="container" id="nst-con">
+            <div class="col-xs-12 nopd vcs">
+                <div class="news-xl-heading news1 col-xs-12"><h1>NEWS</h1></div>
+                {% for block in page.news_keynote_section %}<div class="news-xl news1 col-xs-12">
+                    {% include_block block %}
+                </div>{% endfor %}
+                <div class="news-xl news1 col-xs-12">
+                    <div class="col-md-5 col-sm-4 col-xs-12 nst-img text-left">&nbsp;</div>
+                    <div class="col-md-5 col-sm-4 col-xs-12 nst-img text-left">&nbsp;</div>
+                </div>
+            </div>
+            <div class="nst-ovx sec1x-after" data-stellar-background-ratio="1.2" data-stellar-ratio="1.2" ></div>
+        </div>
+    </div>
+</section>{% endif %}
 {% endblock %}
