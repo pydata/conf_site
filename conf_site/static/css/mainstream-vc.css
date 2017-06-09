@@ -714,6 +714,11 @@ ul.dropdown-menu {
   #sec1x-con .sec1-col, #nst-con .vcs { margin-left: 150px; }
 }
 
+@media (min-width:992px) {
+  .sponsor-logo-row .col-md-3:nth-child(4n+1) {
+      clear: both;
+  }
+}
 
   @media (max-width:800px) {
 
