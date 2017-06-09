@@ -58,7 +58,7 @@
 <section>
     <div class="container sp-logo-cs" style="background-color: #fff; display:table; padding-bottom:60px; position:relative;">
         <h2 style="text-transform:uppercase">Our Sponsors</h2>
-        <div class="row text-center">
+        <div class="row sponsor-logo-row text-center">
             {% sponsor_levels as levels %}
             {% for level in levels %}
                 {% if level.sponsors %}
@@ -74,6 +74,7 @@
                     {% endfor %}
                 {% endif %}
             {% endfor %}
+            <div class="clearfix"></div>
         </div>
         <div class="row" id="become-a-sponsor-row">
             <a href="{% url 'sponsor_apply' %}" class="btn btn3">Become a Sponsor</a>
