@@ -774,7 +774,7 @@ ul.dropdown-menu {
     table.calendar { font-size: 11px; }
     table.calendar td { overflow: hidden; }
   }
-    .bg-xc {height:100%;width:100%;position: absolute;background-size: cover;top: 0px;padding: 0px !important;overflow: hidden;background-position-x: 0px !important;}
+    .bg-xc {height:100%;width:100%;position: absolute;background-size: cover !important;top: 0px;padding: 0px !important;overflow: hidden;background-position-x: 0px !important;}
     #sli {min-height:600px;position: relative;overflow: hidden;width: 100%;}
 
     .logo-ovr {position: absolute;top: 200px;display: block !important;width: 100%;text-align: center;z-index: 999;}
