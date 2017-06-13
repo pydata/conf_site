@@ -98,6 +98,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     "account.context_processors.account",
+    "django_settings_export.settings_export",
     "symposion.reviews.context_processors.reviews",
     "wagtailmenus.context_processors.wagtailmenus",
 ]

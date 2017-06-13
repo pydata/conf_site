@@ -15,5 +15,6 @@ DATABASES = {
 
 GOOGLE_ANALYTICS_PROPERTY_ID = "UA-000000-0"
 SECRET_KEY = "foobar"
+SETTINGS_EXPORT = ["GOOGLE_ANALYTICS_PROPERTY_ID", ]
 STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.StaticFilesStorage")
