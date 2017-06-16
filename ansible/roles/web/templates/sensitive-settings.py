@@ -20,6 +20,13 @@ EMAIL_HOST = '{{ email_host_name }}'
 EMAIL_HOST_USER = 'noreply@pydata.org'
 EMAIL_HOST_PASSWORD = '{{ email_host_password }}'
 EMAIL_PORT = '587'
+# Determine which email backend to use. Note that previous variables
+# are only relevant to the SMTP backend.
+{% if environment_type == "production" %}
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+{% else %}
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+{% endif %}
 
 ALLOWED_HOSTS = ['*']
 USE_X_FORWARDED_HOST = {% if subdirectory %}True{% else %}False{% endif %}
