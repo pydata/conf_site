@@ -231,10 +231,6 @@ ADMINS = (
 )
 MANAGERS = [("PyData Admin", "admin@pydata.org"), ]
 
-DEFAULT_FROM_EMAIL = 'noreply@conf.pydata.org'
-
-SERVER_EMAIL = 'noreply@conf.pydata.org'
-
 LOGIN_URL = '/account/login/'
 ACCOUNT_USER_DISPLAY = lambda user: user.email      # noqa: E731
 ACCOUNT_OPEN_SIGNUP = True
