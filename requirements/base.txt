@@ -16,6 +16,7 @@ pip==9.0.1
 psycopg2==2.7.1
 pytz==2017.2
 redis==2.10.5
+sendgrid-django==4.0.4
 unicodecsv==0.14.1
 wagtail==1.9
 wagtailmenus==2.2.1
