@@ -1,0 +1,11 @@
+conference_identifier: delhi2017
+conference_name: "PyData Delhi 2017"
+database_user: "{{ conference_identifier }}"
+django_database: "{{ conference_identifier }}"
+git_version: master
+google_analytics_id: UA-41850464-20
+subdirectory: /{{ conference_identifier }}
+time_format: "g:i A"
+timezone: Asia/Kolkata
+website_domain: pydata.org
+website_url: https://pydata.org{{ subdirectory }}
