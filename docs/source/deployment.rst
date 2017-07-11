@@ -147,7 +147,7 @@ steps are only necessary for PyData conference sites, and are marked as such.
     ssh <conference site IP address>
     cd /srv/pydata
     source ~/.virtualenvs/current/bin/activate
-    DJANGO_SETTINGS_MODULE="conf_site.settings.production" ./manage loaddata fixtures/*
+    DJANGO_SETTINGS_MODULE="conf_site.settings.production" ./manage.py loaddata fixtures/*
 
   At some point in the future, these fixtures might be converted to
   database migrations, making this step unnecessary.
