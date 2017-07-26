@@ -7,6 +7,7 @@ barcelona2017 ansible_ssh_host=104.130.13.215
 berlin2017 ansible_ssh_host=104.130.11.244
 delhi2017 ansible_ssh_host=119.9.106.106
 london2017 ansible_ssh_host=104.239.230.84
+nyc2017 ansible_ssh_host=23.253.156.143
 sanluis2017 ansible_ssh_host=23.253.119.220
 seattle2017 ansible_ssh_host=23.253.236.10
 warsaw2017 ansible_ssh_host=104.130.6.102
