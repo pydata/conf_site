@@ -2,8 +2,8 @@ Email
 =====
 
 Conference sites send email for a variety of transactional reasons, including
-email address confirmations, password resets, and proposal result
-notifications.
+email address confirmations, password resets, sponsorship applications and
+proposal result notifications.
 
 There are currently two possible ways to send email: SendGrid and SMTP.
 
