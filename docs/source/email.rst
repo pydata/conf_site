@@ -10,10 +10,13 @@ There are currently two possible ways to send email: SendGrid and SMTP.
 SendGrid
 --------
 
-SendGrid is an external email service provider (ESP). Conference sites
-integrate with SendGrid through the sendgrid_django library. Setting the
+`SendGrid`_ is an external email service provider (ESP). Conference sites
+integrate with SendGrid through the `sendgrid_django library`_. Setting the
 Ansible variable ``sendgrid_api_key`` will automatically cause SendGrid to be
 used in production environments.
+
+.. _SendGrid: https://sendgrid.com/
+.. _sendgrid_django library: https://github.com/elbuo8/sendgrid-django
 
 SMTP
 ----
