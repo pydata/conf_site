@@ -43,7 +43,7 @@
                     <tr>
                         <td>{{ membership.user.email }}{% if user == membership.user %} <span class="label label-info">you</span>{% endif %}</td>
                         <td>
-                            <form style="margin: 0;" method="post" action="{% url "team_demote" membership.pk %}">{% csrf_token %}<button type="submit" class="btn btn-xs">demote</button></form>
+                            <form style="margin: 0;" method="post" action="{% url "team_demote" membership.pk %}">{% csrf_token %}<button type="submit" class="btn">demote</button></form>
                         </td>
                     </tr>
                 {% endfor %}
@@ -56,7 +56,7 @@
                     <tr>
                         <td>{{ membership.user.email }}{% if user == membership.user %} <span class="label label-info">you</span>{% endif %}</td>
                         <td>
-                            <form style="margin: 0;" method="post" action="{% url "team_promote" membership.pk %}">{% csrf_token %}<button type="submit" class="btn btn-xs">promote</button></form>
+                            <form style="margin: 0;" method="post" action="{% url "team_promote" membership.pk %}">{% csrf_token %}<button type="submit" class="btn">promote</button></form>
                         </td>
                     </tr>
                 {% endfor %}
@@ -69,8 +69,8 @@
                     <tr>
                         <td>{{ membership.user.email }}</td>
                         <td>
-                            <form style="margin: 0; float: left;" method="post" action="{% url "team_accept" membership.pk %}">{% csrf_token %}<button type="submit" class="btn btn-xs">accept</button></form>
-                            <form style="margin: 0; float: left;" method="post" action="{% url "team_reject" membership.pk %}">{% csrf_token %}<button type="submit" class="btn btn-xs">reject</button></form>
+                            <form style="margin: 0; float: left;" method="post" action="{% url "team_accept" membership.pk %}">{% csrf_token %}<button type="submit" class="btn">accept</button></form>
+                            <form style="margin: 0; float: left;" method="post" action="{% url "team_reject" membership.pk %}">{% csrf_token %}<button type="submit" class="btn">reject</button></form>
                         </td>
                     </tr>
                 {% endfor %}
