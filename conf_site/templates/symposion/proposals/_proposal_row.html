@@ -24,8 +24,8 @@
     <td>
         {% if not proposal.cancelled %}
             {% if request.user == proposal.speaker.user and proposal.can_edit %}
-                <a href="{% url "proposal_edit" proposal.pk %}" class="btn btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-                <a href="{% url "proposal_speaker_manage" proposal.id %}" class="btn btn-xs"><i class="fa fa-user"></i> Manage Additional Speakers</a>
+                <a href="{% url "proposal_edit" proposal.pk %}" class="btn"><i class="fa fa-pencil"></i> Edit</a>
+                <a href="{% url "proposal_speaker_manage" proposal.id %}" class="btn"><i class="fa fa-user"></i> Manage Additional Speakers</a>
             {% endif %}
         {% endif %}
     </td>

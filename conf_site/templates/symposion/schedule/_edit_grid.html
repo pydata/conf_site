@@ -17,7 +17,7 @@
                       {# to distinguish a presentation from a non-presentation slot #}
                       {% if slot.kind.label in "Track 5 Track 4 Track 3 Track 2 Track 1 Tutorial Track 5 Tutorial Track 4 Tutorial Track 3 Tutorial Track 2 Tutorial Track 1 Tutorials Track 1 Tutorials Track 2" %}
                             {% if not slot.content %}
-                                <a class="btn btn-xs edit-slot" data-action="{% url "schedule_slot_edit" schedule.section.slug slot.pk %}" href="#">+</a>
+                                <a class="btn edit-slot" data-action="{% url "schedule_slot_edit" schedule.section.slug slot.pk %}" href="#">+</a>
                             {% else %}
                                 <span class="title"><a class="edit-slot" data-action="{% url "schedule_slot_edit" schedule.section.slug slot.pk %}" href="#">{{ slot.content.title }}</a></span>
                                 <span class="speaker">{{ slot.content.speaker }}</span>

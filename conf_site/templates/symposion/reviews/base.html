@@ -115,6 +115,8 @@
                     "sSwfPath": "{% static 'tabletools/swf/copy_csv_xls.swf' %}"
                 }
             });
+            // Fix Bootstrap pagination styling.
+            $("div.dataTables_paginate ul").addClass("pagination");
         });
     </script>
 {% endblock %}
