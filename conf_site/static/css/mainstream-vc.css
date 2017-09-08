@@ -472,16 +472,6 @@ html,body {font-family:'Dosis'}
 #nst-ovx .nst-ovx.sec1x-before {position:absolute;left: 0px;bottom: 0px;background:url('../images/pydata-fullbocks9.png') no-repeat scroll left bottom;height:100%;width:100%;content:'';display:block;}
 #nst-ovx .nst-ovx.sec1x-after {position:absolute;right: 0px;bottom: 30px;background: url('../images/pydata-fullbocks10.png') no-repeat scroll right bottom;height:100%;width:100%;content:'';display:block;z-index: -1;background-position-x: right !important;}
 
-.sec1-inner-page h1 {
-  font-family: 'Dosis';
-  font-size: 100px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  letter-spacing: 1.3px;
-  color: #12ccea;
-  margin-bottom: 30px;
-  }
 p {font-family: 'Open Sans';
   font-size: 20px; margin-bottom:30px;line-height:33px;
   font-weight: normal;
@@ -489,16 +479,31 @@ p {font-family: 'Open Sans';
   font-stretch: normal;
   letter-spacing: 0.6px;
   color: #595f73;}
-
-  .sec1-inner-page h3  {
-  font-size: 48px;
-  font-weight: normal;
-  font-style: normal; margin-top:0px !important;
+h1, h2, h3, h4, h5, h6 {
+  font-style: normal;
   font-stretch: normal;
+}
+h1 {
+  font-family: 'Dosis';
+  font-size: 100px;
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  color: #12ccea;
+  margin-bottom: 30px;
+  }
+h2, h3, h4, h5, h6 {
+  color: #f7802f;
+  font-weight: normal;
+  margin-top:0px !important;
   line-height: 1.19;
   letter-spacing: 1.5px;
-  color: #f7802f;}
-
+}
+h2 { font-size: 60px; }
+h3  { font-size: 40px; }
+h4, h5, h6 { color: #595f73; }
+h4 { font-size: 32px; }
+h5 { font-size: 24px; }
+h6 { font-size: 20px; }
   .sec1-inner-page ol {padding:0px 0px 0px 20px}
   .sec1-inner-page ol li { font-family: 'Open Sans';
   font-size: 20px;
@@ -749,7 +754,12 @@ ul.dropdown-menu {
     }
     #sec1x-con .sec1-col, #nst-con .vcs { margin-left: 0; }
     .sec1-col h3 { font-size: 14px; }
-    .sec1-inner-page h1 { font-size: 50px; }
+    h1 { font-size: 50px; }
+    h2 { font-size: 40px; }
+    h3 { font-size: 30px; }
+    h4 { font-size: 20px; }
+    h5 { font-size: 16px; }
+    h6 { font-size: 14px; }
     p { font-size: 14px; }
     .sec1-inner-page .btn-large { font-size: 24px; }
   #sec2 h1 {font-size:71px;margin-bottom: 240px;}
