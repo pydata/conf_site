@@ -11,17 +11,11 @@ class HTMLBlock(StreamBlock):
     rich_text = RichTextBlock()
 
 
+# This class previously had a custom get_context method. It has
+# been retained to make future customizations easier.
 class CustomPage(Page):
     class Meta:
         abstract = True
-
-    def get_context(self, request):
-        """Pull additional context from homepage."""
-        context = super(CustomPage, self).get_context(request)
-        home_page = context['request'].site.root_page.specific
-        context["mailchimp_list_id"] = home_page.mailchimp_list_id
-        context["ticketing_url"] = home_page.ticketing_url
-        return context
 
 
 class HTMLPage(CustomPage):

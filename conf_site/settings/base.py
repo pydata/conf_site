@@ -101,6 +101,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django_settings_export.settings_export",
     "symposion.reviews.context_processors.reviews",
     "wagtailmenus.context_processors.wagtailmenus",
+    "conf_site.cms.context_processors.homepage_context",
 ]
 
 
