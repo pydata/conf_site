@@ -6,6 +6,8 @@
 {% load account_tags %}
 {% load static from staticfiles %}
 
+{% block title %} - #{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker }}){% endblock %}
+
 {% block extra_head %}
     <style type="text/css">
         body.reviews .markItUpEditor {
