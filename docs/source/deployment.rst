@@ -5,13 +5,13 @@ Initial Deployment and Creation
 -------------------------------
 
 It is assumed that each conference site will run on its own virtual private
-server (VPS) running `Debian 8 (Jessie)`_. PyData uses Rackspace, but other
+server (VPS) running `Debian 9 (Stretch)`_. PyData uses Rackspace, but other
 VPS providers like DigitalOcean_, Linode_, or `Amazon Lightsail`_ should also
 be acceptable.
 
 The user account on the server  should have passwordless sudo access.
 
-.. _Debian 8 (Jessie): https://wiki.debian.org/DebianJessie
+.. _Debian 9 (Stretch): https://wiki.debian.org/DebianStretch
 .. _DigitalOcean: https://www.digitalocean.com/
 .. _Linode: https://www.linode.com/
 .. _Amazon Lightsail: https://amazonlightsail.com/
