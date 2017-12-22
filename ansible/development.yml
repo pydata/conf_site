@@ -1,0 +1,8 @@
+- name: deploy to local development servers
+  hosts: development
+  roles:
+    - db
+    - web
+  vars_files:
+    - group_vars/development
+    - secrets.yml

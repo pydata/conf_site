@@ -1,49 +1,49 @@
 - name: add nginx package key
   apt_key: id=7BD9BF62 url=http://nginx.org/keys/nginx_signing.key state=present
-  sudo: true
+  become: true
 
 - name: add mainline nginx repository
   apt_repository: repo="deb http://nginx.org/packages/mainline/debian/ {{ ansible_lsb.codename }} nginx" state=present
-  sudo: yes
+  become: true
 
 - name: update package list to get latest nginx
   apt: update_cache=yes
-  sudo: yes
+  become: true
 
 - name: install nginx
   apt:  pkg=nginx state=latest
-  sudo: yes
+  become: true
   notify: restart nginx
 
 - name: remove default nginx global configuration file
   command: rm -rf /etc/nginx/nginx.conf
-  sudo: yes
+  become: true
   notify: restart nginx
 
 - name: add customized nginx global configuration file
   template: src=nginx-global.conf dest=/etc/nginx/nginx.conf
             force=yes
             owner=root group=root mode=644
-  sudo: yes
+  become: true
   notify: restart nginx
 
 - name: remove default nginx site configuration file
   command: rm -rf /etc/nginx/conf.d/default.conf
-  sudo: yes
+  become: true
 
 - name: add customized nginx site configuration file
   template: src=nginx-site.conf
             dest=/etc/nginx/conf.d/{{ website_domain }}.conf
             owner=root group=root mode=644
-  sudo: yes
+  become: true
   notify: restart nginx
 
 - name: remove default nginx ssl site configuration file
   command: rm -rf /etc/nginx/conf.d/example-ssl.conf
-  sudo: yes
+  become: true
   notify: restart nginx
 
 - name: add custom logrotate configuration for nginx
   template: src=logrotate-nginx.conf dest=/etc/logrotate.d/nginx
             owner=root group=root mode=644
-  sudo: yes
+  become: true

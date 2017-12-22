@@ -1,4 +1,14 @@
-- hosts: production
+- name: bootstrap server for Ansible
+  gather_facts: false
+  hosts: production
+  tasks:
+    - import_tasks: tasks/bootstrap.yml
+  vars:
+    - deployment_user: pydata
+
+
+- name: deploy to production servers
+  hosts: production
   roles:
     - db
     - web

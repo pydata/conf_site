@@ -1,22 +1,22 @@
 - name: install PostgreSQL packages
   apt: pkg={{ item }} state=latest
-  sudo: yes
+  become: true
   with_items:
     - libpq-dev
     - postgresql
     - python-psycopg2
 
 - name: create a PostgreSQL database for this project
-  sudo: yes
-  sudo_user: postgres
+  become: true
+  become_user: postgres
   postgresql_db: name={{ django_database }}
                  encoding="UTF-8"
                  state=present
                  template=template0
 
 - name: create a PostgreSQL user for this project
-  sudo: yes
-  sudo_user: postgres
+  become: true
+  become_user: postgres
   postgresql_user: db={{ django_database }}
                    name={{ database_user }}
                    password={{ database_password }}

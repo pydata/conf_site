@@ -4,7 +4,7 @@
        repo=https://github.com/pydata/conf_site.git
        update=yes
        version={{ git_version }}
-  sudo: yes
+  become: true
   when: environment_type == "production"
   notify:
     - restart nginx
@@ -12,7 +12,7 @@
 
 - name: install python packages and associated libraries
   apt: pkg={{ item }} state=latest
-  sudo: yes
+  become: true
   with_items:
     - python-dev
     - python-pip
@@ -30,7 +30,7 @@
 
 - name: change ownership of everything to this user
   command: /bin/chown -R {{ ansible_user_id }}:www-data {{ project_root }}
-  sudo: yes
+  become: true
 
 - name: manually figure out latest Git commit
   command: git rev-parse HEAD chdir={{ project_root }}
@@ -70,7 +70,7 @@
 - name: add supervisor configuration file for gunicorn
   template: src=supervisor.conf
             dest=/etc/supervisor/conf.d/gunicorn.conf
-  sudo: yes
+  become: true
   notify:
     - restart supervisor
     - restart gunicorn

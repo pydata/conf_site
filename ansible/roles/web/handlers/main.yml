@@ -4,7 +4,7 @@
 
 - name: restart nginx
   service: name=nginx state=restarted
-  sudo: yes
+  become: true
 
 - name: delete other virtualenvs
   shell: find  -maxdepth 1
@@ -17,4 +17,4 @@
 
 - name: restart gunicorn
   supervisorctl: name=gunicorn state=restarted
-  sudo: yes
+  become: true

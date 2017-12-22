@@ -4,11 +4,11 @@
 
 - name: update package list & upgrade existing packages
   apt: update_cache=yes upgrade=yes cache_valid_time=3600
-  sudo: yes
+  become: true
 
 - name: install common packages
   apt: pkg={{ item }} state=latest
-  sudo: yes
+  become: true
   with_items:
     - git
     - logrotate
