@@ -27,7 +27,7 @@ The Host Variables file
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Once a virtual server is set up, information related to the conference
-should be instead into an Ansible host variables file. This file should be
+should be added into an Ansible host variables file. This file should be
 placed in the `ansible/host_vars` directory.
 
 .. note::
