@@ -1,5 +1,5 @@
-[vagrant]
-default ansible_ssh_host=localhost ansible_ssh_port=2222
+[development]
+local ansible_ssh_host=localhost ansible_ssh_port=2222
 
 [production]
 amsterdam2017 ansible_ssh_host=162.242.248.200

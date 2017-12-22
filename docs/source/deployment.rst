@@ -32,7 +32,7 @@ placed in the `ansible/host_vars` directory.
 
 .. note::
    Many of these host variables are overridden in local development by
-   group variables defined in `ansible/group_vars/vagrant`.
+   group variables defined in `ansible/group_vars/development`.
 
 Suggested variables in this file include:
 

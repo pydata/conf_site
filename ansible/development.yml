@@ -1,7 +1,7 @@
-- hosts: vagrant
+- hosts: development
   roles:
     - db
     - web
   vars_files:
-    - group_vars/vagrant
+    - group_vars/development
     - secrets.yml
