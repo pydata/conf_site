@@ -1,0 +1,24 @@
+# Tasks that are needed to bootstrap servers before Ansible
+# configures everything else. All tasks here should need
+# gather_facts to be false. If they rely on Ansible or don't need
+# to be as root without sudo, they should live in roles/common/tasks
+# or somewhere else that's not here.
+# See https://gist.github.com/gwillem/4ba393dceb55e5ae276a87300f6b8e6f.
+- name: install Python 2 if needed
+  raw: test -e /usr/bin/python2 || (apt install -y python-minimal)
+  become: true
+  register: output
+  changed_when: output.stdout != ""
+
+- name: install aptitude if needed
+  raw: test -e /usr/bin/aptitude || (apt install -y aptitude)
+  become: true
+  register: output
+  changed_when: output.stdout != ""
+
+- name: ensure that we can login to deployment user account
+  copy:
+    dest: /home/{{ deployment_user }}/.ssh/authorized_keys
+    force: yes
+    src: ../files/authorized_keys
+  become: true

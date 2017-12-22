@@ -1,4 +1,5 @@
-- hosts: development
+- name: deploy to local development servers
+  hosts: development
   roles:
     - db
     - web
