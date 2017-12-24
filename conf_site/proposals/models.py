@@ -20,7 +20,10 @@ class Proposal(ProposalBase):
     UNDER_REPRESENTED_GENDER = "G"
     UNDER_REPRESENTED_SEXUAL_ORIENTATION = "S"
     UNDER_REPRESENTED_DISABILITY = "D"
+    UNDER_REPRESENTED_SOCIOECONOMIC = "C"
+    UNDER_REPRESENTED_RELIGION = "R"
     UNDER_REPRESENTED_OPT_OUT = "O"
+    UNDER_REPRESENTED_OTHER = "X"
 
     AUDIENCE_LEVELS = [
         (AUDIENCE_LEVEL_NOVICE, "Novice"),
@@ -31,15 +34,19 @@ class Proposal(ProposalBase):
         ("", "----"),
         (YES_NO_OTHER_YES, "Yes"),
         (YES_NO_OTHER_NO, "No"),
-        (YES_NO_OTHER_BARTLEBY, "I would prefer not to answer"),
+        (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
     )
     UNDER_REPRESENTED_DETAILED_ANSWERS = (
-        (UNDER_REPRESENTED_ETHNICITY, "Ethnicity"),
+        (UNDER_REPRESENTED_GENDER, "Gender identity"),
+        (UNDER_REPRESENTED_ETHNICITY, "Ethnicity, nationality, "
+                                      "skin color, race"),
+        (UNDER_REPRESENTED_SEXUAL_ORIENTATION, "Sexual orientation"),
+        (UNDER_REPRESENTED_SOCIOECONOMIC, "Socioeconomic status"),
+        (UNDER_REPRESENTED_RELIGION, "Religion"),
         (UNDER_REPRESENTED_AGE, "Age"),
-        (UNDER_REPRESENTED_GENDER, "Gender"),
-        (UNDER_REPRESENTED_SEXUAL_ORIENTATION, "Sexual Orientation"),
-        (UNDER_REPRESENTED_DISABILITY, "Disability"),
-        (UNDER_REPRESENTED_OPT_OUT, "Opt-out"),
+        (UNDER_REPRESENTED_DISABILITY, "Ability"),
+        (UNDER_REPRESENTED_OPT_OUT, "Do not wish to provide"),
+        (UNDER_REPRESENTED_OTHER, "Other (please specify)"),
     )
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
@@ -52,20 +59,22 @@ class Proposal(ProposalBase):
         max_length=1)
     affiliation = models.CharField(blank=True, default="", max_length=200)
     under_represented_population = models.CharField(
-        "Do you feel that you or your talk represent a "
-        "population under-represented in the Python "
-        "and/or Data community? In no way will this "
-        "data be used as part of your proposal. This will only be "
-        "used to gather diversity statistics in order to further "
-        "NumFOCUS' mission.",
+        "Do you self-identify as an underrepresented minority in "
+        "either the PyData/NumFOCUS community or in your "
+        "professional field?",
         choices=YES_NO_OTHER_ANSWERS,
         default="",
         max_length=1)
     under_represented_details = MultiSelectField(
+        "Along which dimension(s) you self-identify as underrepresented? "
         "Check all that apply:",
         blank=True,
         choices=UNDER_REPRESENTED_DETAILED_ANSWERS,
         max_choices=len(UNDER_REPRESENTED_DETAILED_ANSWERS))
+    # Text for an prospoal submitter to input additional details about
+    # their under represented dimensions.
+    under_represented_other = models.CharField(
+        "", blank=True, default="", max_length=200)
 
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
