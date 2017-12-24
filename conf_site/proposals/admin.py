@@ -20,4 +20,4 @@ class ProposalAdmin(admin.ModelAdmin):
         'cancelled',
         'recording_release',
     )
-    date_heirarchy = 'submitted'
+    date_hierarchy = 'submitted'
