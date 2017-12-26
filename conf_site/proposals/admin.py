@@ -5,6 +5,11 @@ from .models import Proposal
 
 @admin.register(Proposal)
 class ProposalAdmin(admin.ModelAdmin):
+    exclude = (
+        "under_represented_population",
+        "under_represented_details",
+        "under_represented_other",
+    )
     list_display = (
         'number',
         'title',
@@ -20,4 +25,4 @@ class ProposalAdmin(admin.ModelAdmin):
         'cancelled',
         'recording_release',
     )
-    date_heirarchy = 'submitted'
+    date_hierarchy = 'submitted'

@@ -18,6 +18,7 @@ class ProposalForm(forms.ModelForm):
             "affiliation",
             "under_represented_population",
             "under_represented_details",
+            "under_represented_other",
             "additional_notes",
             "recording_release",
             "phone_number",
