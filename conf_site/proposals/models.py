@@ -51,6 +51,17 @@ class Proposal(ProposalBase):
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
+    slides_url = models.URLField(
+        default="",
+        help_text="Location of slides for this proposal.",
+        max_length=2083,
+        verbose_name="Slides")
+    code_url = models.URLField(
+        default="",
+        help_text="Location of this proposal's code repository.",
+        max_length=2083,
+        verbose_name="Repository")
+
     first_time_at_pydata = models.CharField(
         "Is this your first time speaking at a PyData event?",
         choices=YES_NO_OTHER_ANSWERS,
