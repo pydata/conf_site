@@ -89,6 +89,15 @@ class Proposal(ProposalBase):
                   "agree to this, please uncheck this box."
     )
 
+    date_created = models.DateTimeField(
+        auto_now_add=True,
+        null=True,
+        verbose_name="Created")
+    date_last_modified = models.DateTimeField(
+        auto_now=True,
+        null=True,
+        verbose_name="Last Modified")
+
     def __str__(self):
         return self.title
 
