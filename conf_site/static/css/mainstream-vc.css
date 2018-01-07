@@ -743,9 +743,7 @@ ul.dropdown-menu {
     #menu ul li:last-child a {border:none}
 
     #sli { min-height: 200px !important; }
-    div.blu-lf, div.gree-md, div.blu-rt {
-      display:none !important;
-    }
+    div.logo-ovr { display:none !important; }
     body #sec1 .sec1x {padding-top:0px !important;overflow: hidden;}
     #sec1x-con .sec1x-elem.sec1x-before, #sec1x-con .sec1x-elem.sec1x-after {
       background: none;
@@ -791,6 +789,4 @@ ul.dropdown-menu {
     .bg-xc {height:100%;width:100%;position: absolute;background-size: cover !important;top: 0px;padding: 0px !important;overflow: hidden;background-position-x: 0px !important;}
     #sli {min-height:600px;position: relative;overflow: hidden;width: 100%;}
 
-        .blu-lf {position: absolute;top: -376px;left: 0px !important;width: 33.3%;min-width: 352px;display: block;float: left;}
-        .gree-md {position: absolute;top: 0px;left: 185px;width: 33.3%;min-width: 352px;/* display: block; *//* float: left; */}
-        .blu-rt {position: absolute;top: 215px;left: 380px !important;width: 33.3%;min-width: 352px;}
+    .logo-ovr {position: absolute;top: 200px;display: block !important;width: 100%;text-align: center;z-index: 999;}
