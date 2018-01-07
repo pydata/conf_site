@@ -22,6 +22,8 @@ class ProposalForm(forms.ModelForm):
             "additional_notes",
             "recording_release",
             "phone_number",
+            "slides_url",
+            "code_url",
         ]
         widgets = {
             "abstract": MarkItUpWidget(),
