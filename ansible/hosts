@@ -1,2 +1,5 @@
 [development]
 local ansible_ssh_host=localhost ansible_ssh_port=2222
+
+[production]
+london2018 ansible_ssh_host=104.130.26.133
