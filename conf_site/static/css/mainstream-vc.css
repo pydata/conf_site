@@ -180,7 +180,7 @@ html,body {
  #sec1x-con .sec1x-elem.sec1x-before {background:url('../images/layer-1.png') no-repeat scroll center left;content:'';position:absolute;left: 0px;top:0px;width:100%;height:100%;z-index:-1;display:block;}
   #sec1x-con .sec1x-elem.sec1x-after {background: url('../images/pydata-fullbocks1.png') no-repeat scroll 100% 250%;content:'';position:absolute;right: 0px;bottom: 0px;width:100%;height:100%;z-index:-1;display:block;}
 
-  #sec2 {background-color: #2ee8b7;/* min-height: 1280px; */width: 100%;float: left;position: relative;display: table;}
+  #sec2 {background-color: #3cb3d3;/* min-height: 1280px; */width: 100%;float: left;position: relative;display: table;}
 
 .sec2 {text-align:center}
 .sec2 #mono2 {position:absolute;top:0px;margin: 0px 0px 0px -52px;display: inline-block;left: 40%;}
@@ -238,10 +238,10 @@ html,body {
 .btn.btn1:after ,.btn.btn2:after , .btn3.btn:after , .btn.btn4:after , .btn.btn6:after{content:'';position:absolute;left:0px;width:100%;height:0%;background-color:#FFF;top:0px;z-index:-10;transition:all 233ms ease-in-out}
 .btn.btn1:hover:after , .btn.btn2:hover:after , .btn3.btn:hover:after , .btn.btn4:hover:after , .btn.btn6:hover:after{height:100%}
 .btn3.btn:hover:after{background-color:#12ccea}
-.btn.btn1:hover {color:#2ee8b7;}
+.btn.btn1:hover {color:#3cb3d3;}
 .btn.btn2:hover {color:#12ccea;}
 .btn.btn3:hover {color:#fff;}
-.btn.btn4:hover {color:#2ee8b7;}
+.btn.btn4:hover {color:#3cb3d3;}
   .btn.btn6:hover {color:#fff;}
   .btn6.btn:hover:after {background-color:#0274a4}
 
@@ -337,7 +337,7 @@ html,body {
   font-weight: 600;
   font-style: normal;
   font-stretch: normal;
-  color: #2ee8b7;
+  color: #3cb3d3;
   line-height: 1;
   margin-top: 30px;
   }
@@ -416,7 +416,7 @@ html,body {
 }
 #subscibe form .sm-smb:hover {background-color: #595f73;color: #12ccea;border-color:#FFF}
 
-#early-b2 {min-height: 352px;text-align:center;background-color: #2ee8b7;padding-bottom: 20px;}
+#early-b2 {min-height: 352px;text-align:center;background-color: #3cb3d3;padding-bottom: 20px;}
 #early-b2 h2 {  font-family: 'Dosis';
   font-size: 52px; margin-top:70px;
   font-weight: normal; margin-bottom:50px;
@@ -593,7 +593,7 @@ background:#f7802f !important
   .sug-box {margin-bottom:30px}
 
   #strip2 {  min-height: 306px;
-  background-color: #2ee8b7;
+  background-color: #3cb3d3;
 }
 #strip2 h2 {  font-family: Dosis;
   font-size: 52px;
@@ -611,7 +611,7 @@ background:#f7802f !important
   text-align: center;
   color: #ffffff;
 }
-.btn.btn6:hover {color:#2ee8b7 !important;}
+.btn.btn6:hover {color:#3cb3d3 !important;}
 .btn.btn6:after {background-color:#FFF !important;}
 .foundation-cs h2 {  font-family: Dosis;
   font-size: 100px;
