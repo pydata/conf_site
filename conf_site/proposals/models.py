@@ -54,13 +54,14 @@ class Proposal(ProposalBase):
     slides_url = models.URLField(
         blank=True,
         default="",
-        help_text="Location of slides for this proposal.",
+        help_text=("Location of slides for this proposal "
+                   "(e.g. SlideShare, Google Drive)."),
         max_length=2083,
         verbose_name="Slides")
     code_url = models.URLField(
         blank=True,
         default="",
-        help_text="Location of this proposal's code repository.",
+        help_text="Location of this proposal's code repository (e.g. Github).",
         max_length=2083,
         verbose_name="Repository")
 
