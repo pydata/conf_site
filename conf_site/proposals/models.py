@@ -52,11 +52,13 @@ class Proposal(ProposalBase):
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
     slides_url = models.URLField(
+        blank=True,
         default="",
         help_text="Location of slides for this proposal.",
         max_length=2083,
         verbose_name="Slides")
     code_url = models.URLField(
+        blank=True,
         default="",
         help_text="Location of this proposal's code repository.",
         max_length=2083,
