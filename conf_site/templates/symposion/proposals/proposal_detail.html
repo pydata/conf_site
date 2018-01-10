@@ -28,7 +28,7 @@
         {% endif %}
     </div>
 
-    <h3>#{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker }}, Track: {{ proposal.track }})</h3>
+    <h3>#{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker.name }}, Track: {{ proposal.track }})</h3>
 
     <div class="tabbable">
         <ul class="nav nav-tabs">
@@ -81,7 +81,10 @@
             {% for message in proposal.messages.all %}
                 <div class="review-box">
                     <div class="comment">{{ message.message|safe }}</div>
-                    <div class="dateline"><b>{% user_display message.user %}</b> {{ message.submitted_at|timesince }} ago</div>
+                    <div class="dateline">
+                        <b>{% if message.user == proposal.speaker.user %}{{ proposal.speaker.name }}{% else %}{{ message.user.username }}{% endif %}</b>
+                        {{ message.submitted_at|timesince }} ago
+                    </div>
                 </div>
                 <div class="clear"></div>
             {% endfor %}

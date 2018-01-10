@@ -17,11 +17,7 @@
     <h2>{% trans 'Current Speakers' %}</h2>
 
     {% for speaker in speakers %}
-        {% if speaker.user %}
-            <p><b>{{ speaker.name }}</b> &mdash; {{ speaker.email }}</p>
-        {% else %}
-            <p>{{ speaker.email }} &mdash; {% trans 'pending invitation' %}</p>
-        {% endif %}
+        <p><b>{{ speaker.name }}</b></p>
     {% endfor %}
 
     <h2>{% trans 'Add another speaker' %}</h2>

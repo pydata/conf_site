@@ -20,7 +20,7 @@
                 <td>{{ proposal.number }}</td>
                 <td>
                     <a href="{% url "review_detail" proposal.pk %}">
-                        <small><strong>{{ proposal.speaker }}</strong></small>
+                        <small><strong>{{ proposal.speaker.name }}</strong></small>
                         <br />
                         {{ proposal.title }}
                     </a>

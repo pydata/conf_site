@@ -6,7 +6,7 @@
 {% load account_tags %}
 {% load static from staticfiles %}
 
-{% block title %} - #{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker }}){% endblock %}
+{% block title %} - #{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker.name }}){% endblock %}
 
 {% block extra_head %}
     <style type="text/css">
@@ -71,7 +71,7 @@
         </div>
     {% endif %}
 
-    <h3>#{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker }})</h3>
+    <h3>#{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker.name }})</h3>
 
     <div class="tabbable">
         <ul class="nav nav-tabs">
@@ -137,7 +137,7 @@
                                 </div>
                             {% endif %}
                             <div class="review-content">
-                                <b>{% user_display review.user %}</b>
+                                <b>{{ review.user.username }}</b>
                                 {{ review.submitted_at|timesince }} ago <br />
                                 {{ review.comment|safe }}
                             </div>
@@ -153,7 +153,7 @@
                     {% for message in review_messages %}
                         <div class="comment-box">
                             <div class="commment-content">
-                                <b>{% user_display message.user %}</b>
+                                <b>{% if message.user == proposal.speaker.user %}{{ proposal.speaker.name }}{% else %}{{ message.user.username }}{% endif %}</b>
                                 {{ message.submitted_at|timesince }} ago <br />
                                 {{ message.message|safe }}
                             </div>
