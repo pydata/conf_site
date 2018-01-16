@@ -78,6 +78,12 @@ class Proposal(ProposalBase):
         "professional field?",
         choices=YES_NO_OTHER_ANSWERS,
         default="",
+        help_text="The answer to this question will not be made available "
+                  "to the review committee. Data collected from this survey "
+                  "will be used by NumFOCUS staff to inform decisions about "
+                  "practices and procedures at future conferences, in an "
+                  "effort to create a welcoming and inclusive environment "
+                  "for all.",
         max_length=1)
     under_represented_details = MultiSelectField(
         "Along which dimension(s) you self-identify as underrepresented? "
