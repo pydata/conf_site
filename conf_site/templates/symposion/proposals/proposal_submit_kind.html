@@ -6,12 +6,12 @@
 
 {% block body %}
 <div class="container">
-    <form method="POST" action="" enctype="multipart/form-data" class="form-horizontal">
+    <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset>
-            {{ proposal_form|bootstrap_horizontal }}
+            {{ proposal_form|bootstrap }}
         </fieldset>
-        <div class="form-actions">
+        <div class="form-group form-actions">
             <p>
                 You will be able to edit your proposal after it has been submitted. The program committee may ask questions, provide feedback, and even suggest changes to your proposal as part of the review processes.
             </p>
