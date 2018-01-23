@@ -64,16 +64,5 @@
             "name": "Supporting",
             "order": 6
         }
-    },
-    {
-        "pk": 7,
-        "model": "symposion_sponsorship.sponsorlevel",
-        "fields": {
-            "conference": 1,
-            "description": "Open to nonprofit organizations or groups who support the Python data community.",
-            "cost": 1,
-            "name": "Community",
-            "order": 7
-        }
     }
 ]
