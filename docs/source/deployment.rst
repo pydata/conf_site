@@ -85,7 +85,8 @@ The Secrets File
 The repository includes an encrypted `Ansible Vault`_ file at
 `ansible/secrets.yml` containing sensitive variables that cannot
 be included in plaintext. Non-PyData users should replace this file with
-their own Vault file.
+their own variables file. An example of the file and its format can
+be found at `ansible/secrets.yml.example`.
 
 .. _Ansible Vault: https://docs.ansible.com/ansible/playbooks_vault.html
 
