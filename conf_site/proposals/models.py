@@ -71,7 +71,7 @@ class Proposal(ProposalBase):
         blank=True,
         default="",
         max_length=1)
-    affiliation = models.CharField(blank=True, default="", max_length=200)
+    affiliation = models.CharField(max_length=200)
     under_represented_population = models.CharField(
         "Do you self-identify as an underrepresented minority in "
         "either the PyData/NumFOCUS community or in your "
