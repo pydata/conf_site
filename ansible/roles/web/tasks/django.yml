@@ -5,7 +5,7 @@
        update=yes
        version={{ git_version }}
   become: true
-  when: environment_type == "production"
+  when: environment_type != "development"
   notify:
     - restart nginx
     - restart gunicorn
