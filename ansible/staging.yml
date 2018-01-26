@@ -7,7 +7,7 @@
     - deployment_user: pydata
 
 
-- name: deploy to production servers
+- name: deploy to staging servers
   hosts: staging
   roles:
     - db
