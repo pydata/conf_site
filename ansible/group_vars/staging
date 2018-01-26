@@ -1,0 +1,10 @@
+conference_name: "PyData Test 2018"
+database_user: "{{ conference_identifier }}"
+django_database: "{{ conference_identifier }}"
+environment_type: staging
+google_analytics_id: UA-41850464-X
+subdirectory: /{{ conference_identifier }}
+time_format: "g:i A"
+timezone: America/New_York
+website_domain: pydata.org
+website_url: https://pydata.org{{ subdirectory }}

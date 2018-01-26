@@ -24,10 +24,10 @@ EMAIL_HOST_PASSWORD = '{{ email_host_password }}'
 EMAIL_PORT = '587'
 # Determine which email backend to use. Note that previous variables
 # are only relevant to the SMTP backend.
-{% if sendgrid_api_key and environment_type == "production" %}
+{% if sendgrid_api_key and environment_type != "development" %}
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
 SENDGRID_API_KEY = "{{ sendgrid_api_key }}"
-{% elif environment_type == "production" %}
+{% elif environment_type != "development" %}
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 {% else %}
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
