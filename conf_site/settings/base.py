@@ -142,6 +142,7 @@ INSTALLED_APPS = [
     "account",
     "analytical",
     "bootstrapform",
+    "constance",
     "easy_thumbnails",
     "markitup",
     "modelcluster",
@@ -260,6 +261,7 @@ CACHES = {
     }
 }
 CONFERENCE_ID = 1
+CONSTANCE_CONFIG = {}
 CSRF_FAILURE_VIEW = "conf_site.cms.views.csrf_failure"
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 STATICFILES_STORAGE = (

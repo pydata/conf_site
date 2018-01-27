@@ -1,6 +1,7 @@
 Django==1.9.13
 django-analytical==2.2.2
 django-bootstrap-form==3.2.1
+django-constance[redis]==2.0.0
 django-markdown==0.8.4
 django-markitup==3.0.0
 django-multiselectfield==0.1.5
