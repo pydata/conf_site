@@ -8,6 +8,7 @@ from .models import Proposal, ProposalKeyword
 
 class ProposalForm(forms.ModelForm):
     official_keywords = forms.ModelMultipleChoiceField(
+        label="Official Keywords",
         queryset=ProposalKeyword.objects.filter(official=True).order_by("name"),     # noqa: E501
         widget=forms.CheckboxSelectMultiple())
 
