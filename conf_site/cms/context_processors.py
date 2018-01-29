@@ -21,6 +21,7 @@ def homepage_context(request):
     # won't have any of these custom fields.
     if type(home_page) == HomePage:
         context["ticketing_url"] = home_page.ticketing_url
+        context["footer1_section"] = home_page.footer1_section
         context["footer_email"] = home_page.footer_email
         context["footer_twitter"] = home_page.footer_twitter
 

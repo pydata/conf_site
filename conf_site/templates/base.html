@@ -127,6 +127,7 @@
     <div id="footer">
         <div class="container">
             <div class="col-md-5 col-sm-12 col-xs-12 fsec footer1">
+                {% if footer1_section %}{{ footer1_section }}{% else %}
                 <h4>CODE OF CONDUCT</h4>
                 <p>
                     PyData is dedicated to providing a harassment-free
@@ -147,6 +148,7 @@
                     you for helping make this a welcoming, friendly event
                     for all.
                 </p>
+                {% endif %}
             </div>
             <div class="col-md-2 col-sm-6 col-xs-12 fsec footer2">
                 <h4>CONTACT</h4>
