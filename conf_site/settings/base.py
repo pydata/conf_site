@@ -263,12 +263,13 @@ CACHES = {
 CONFERENCE_ID = 1
 CONSTANCE_CONFIG = {}
 CSRF_FAILURE_VIEW = "conf_site.cms.views.csrf_failure"
-SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
-STATICFILES_STORAGE = (
-    "django.contrib.staticfiles.storage.ManifestStaticFilesStorage")
-SYMPOSION_PAGE_REGEX = r"(([\w-]{1,})(/[\w-]{1,})*)/"
 PROPOSAL_FORMS = {
     "talk": "conf_site.proposals.forms.ProposalForm",
     "tutorial": "conf_site.proposals.forms.ProposalForm",
 }
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+STATICFILES_STORAGE = (
+    "django.contrib.staticfiles.storage.ManifestStaticFilesStorage")
+SYMPOSION_PAGE_REGEX = r"(([\w-]{1,})(/[\w-]{1,})*)/"
+TAGGIT_CASE_INSENSITIVE = True
 WAGTAIL_ENABLE_UPDATE_CHECK = False
