@@ -47,6 +47,11 @@ class HomePage(CustomPage):
     news_keynote_section = StreamField(HTMLBlock())
     ticketing_section = RichTextField(default="<h2>Tickets</h2>")
     ticketing_url = models.URLField(blank=True, max_length=2083)
+    footer1_section = StreamField(
+        HTMLBlock(),
+        default=None,
+        help_text=("Displays on left side of the site's footer section. "
+                   "Will display mini code of conduct by default."))
     footer_email = models.EmailField(
         blank=True, default="admin@pydata.org", max_length=254)
     footer_twitter = models.CharField(
@@ -60,6 +65,7 @@ class HomePage(CustomPage):
         StreamFieldPanel("news_keynote_section"),
         FieldPanel("ticketing_section"),
         FieldPanel("ticketing_url"),
+        StreamFieldPanel("footer1_section"),
         FieldPanel("footer_email"),
         FieldPanel("footer_twitter"),
     ]
