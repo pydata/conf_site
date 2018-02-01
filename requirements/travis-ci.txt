@@ -2,4 +2,4 @@
 beautifulsoup4==4.6.0
 flake8==3.5.0
 rstcheck==3.1
-sphinx==1.5.5
+sphinx==1.6.6
