@@ -1,4 +1,4 @@
 -r base.txt
-ansible==2.4.2.0
+ansible==2.4.3.0
 beautifulsoup4==4.6.0
 django-debug-toolbar==1.8
