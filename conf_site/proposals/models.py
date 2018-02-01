@@ -3,6 +3,28 @@ from django.utils.encoding import python_2_unicode_compatible
 
 from multiselectfield import MultiSelectField
 from symposion.proposals.models import ProposalBase
+from taggit.managers import TaggableManager
+from taggit.models import TagBase, GenericTaggedItemBase
+
+
+class ProposalKeyword(TagBase):
+    official = models.BooleanField(default=False)
+
+    class Meta:
+            verbose_name = "Keyword"
+            verbose_name_plural = "Keywords"
+
+
+class TaggedProposal(GenericTaggedItemBase):
+    tag = models.ForeignKey(
+        ProposalKeyword,
+        related_name="%(app_label)s_%(class)s_items")
+
+
+class UserTaggedProposal(GenericTaggedItemBase):
+    tag = models.ForeignKey(
+        ProposalKeyword,
+        related_name="%(app_label)s_%(class)s_items")
 
 
 @python_2_unicode_compatible
@@ -108,6 +130,19 @@ class Proposal(ProposalBase):
                   "audio and/or video of your presentation. If you do not "
                   "agree to this, please uncheck this box."
     )
+
+    official_keywords = TaggableManager(
+        "Official Keywords",
+        blank=True,
+        help_text="",
+        related_name="official_tagged_proposals",
+        through=TaggedProposal)
+    user_keywords = TaggableManager(
+        "Additional Keywords",
+        blank=True,
+        help_text="Please add keywords as a comma-separated list.",
+        related_name="user_tagged_proposals",
+        through=UserTaggedProposal)
 
     date_created = models.DateTimeField(
         auto_now_add=True,

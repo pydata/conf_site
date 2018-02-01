@@ -1,12 +1,14 @@
 Django==1.9.13
 django-analytical==2.2.2
 django-bootstrap-form==3.2.1
+django-constance[redis]==2.0.0
 django-markdown==0.8.4
 django-markitup==3.0.0
 django-multiselectfield==0.1.5
 django-redis-cache==1.7.1
 djangorestframework==3.6.2
 django-settings-export==1.2.1
+django-taggit==0.22.2
 Fabric==1.13.2
 fabtools==0.20.0
 gunicorn==19.7.1

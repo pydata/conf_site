@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from .models import Proposal
+from .models import Proposal, ProposalKeyword
+
+
+@admin.register(ProposalKeyword)
+class KeywordAdmin(admin.ModelAdmin):
+    list_display = ("name", "slug", "official",)
+    list_filter = ("official",)
 
 
 @admin.register(Proposal)
