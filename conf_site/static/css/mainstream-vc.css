@@ -728,6 +728,11 @@ ul.dropdown-menu {
   }
 }
 
+@media (min-width: 768px) {
+  #proposal-detail .dl-horizontal dt { width: 210px; }
+  #proposal-detail .dl-horizontal dd { margin-left: 230px; }
+}
+
   @media (max-width:800px) {
 
 #logo {padding: 5px 10px 20px 15px !important;}

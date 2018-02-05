@@ -4,8 +4,12 @@
     <dt>{% trans "Submitted by" %}</dt>
     <dd>{{ proposal.speaker.name }}</dd>
 
-    <dt>{% trans "Track" %}</dt>
-    <dd>{{ proposal.track }}&nbsp;</dd>
+    <dt>Official Keywords</dt>
+    <dd>{% for keyword in proposal.official_keywords.all %}{{ keyword }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
+
+    <dt>Additional Keywords</dt>
+    <dd>{% for keyword in proposal.user_keywords.all %}{{ keyword }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
+
 
     <dt>{% trans "Audience Level" %}</dt>
     <dd>{{ proposal.get_audience_level_display }}&nbsp;</dd>
