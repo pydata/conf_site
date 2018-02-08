@@ -45,6 +45,10 @@ class ProposalForm(forms.ModelForm):
         if not config.PROPOSAL_KEYWORDS:
             del self.fields["official_keywords"]
             del self.fields["user_keywords"]
+        # Don't display slide and code repo fields if support is disabled.
+        if not config.PROPOSAL_URL_FIELDS:
+            del self.fields["slides_url"]
+            del self.fields["code_url"]
 
     def clean_description(self):
         value = self.cleaned_data["description"]

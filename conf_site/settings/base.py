@@ -263,6 +263,10 @@ CACHES = {
 CONFERENCE_ID = 1
 CONSTANCE_CONFIG = {
     "PROPOSAL_KEYWORDS": (False, "Support proposal keywords.", bool),
+    "PROPOSAL_URL_FIELDS": (
+        False,
+        "Show slides & code repository fields on proposal submission form.",
+        bool),
 }
 CSRF_FAILURE_VIEW = "conf_site.cms.views.csrf_failure"
 PROPOSAL_FORMS = {
