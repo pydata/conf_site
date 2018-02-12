@@ -15,6 +15,12 @@ class ProposalKeyword(TagBase):
             verbose_name_plural = "Keywords"
 
 
+class EditorTaggedProposal(GenericTaggedItemBase):
+    tag = models.ForeignKey(
+        ProposalKeyword,
+        related_name="%(app_label)s_%(class)s_items")
+
+
 class TaggedProposal(GenericTaggedItemBase):
     tag = models.ForeignKey(
         ProposalKeyword,
@@ -131,6 +137,12 @@ class Proposal(ProposalBase):
                   "agree to this, please uncheck this box."
     )
 
+    editor_keywords = TaggableManager(
+        "Editor Keywords",
+        blank=True,
+        help_text="",
+        related_name="editor_tagged_proposals",
+        through=EditorTaggedProposal)
     official_keywords = TaggableManager(
         "Official Keywords",
         blank=True,

@@ -4,6 +4,11 @@
     <dt>{% trans "Submitted by" %}</dt>
     <dd>{{ proposal.speaker.name }}</dd>
 
+    {% if request.user != proposal.speaker.user %}
+    <dt>Editor Keywords</dt>
+    <dd>{% for keyword in proposal.editor_keywords.all %}{{ keyword }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
+    {% endif %}
+
     <dt>Official Keywords</dt>
     <dd>{% for keyword in proposal.official_keywords.all %}{{ keyword }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
 
