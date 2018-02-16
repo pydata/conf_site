@@ -747,9 +747,8 @@ ul.dropdown-menu {
     #menu ul li a {border-bottom:1px solid #ccc;text-align:center;display:block;}
     #menu ul li:last-child a {border:none}
 
-    #sli { min-height: 200px !important; }
-    div.logo-ovr { display:none !important; }
-    body #sec1 .sec1x {padding-top:0px !important;overflow: hidden;}
+    #sli, div.logo-ovr { display:none !important; }
+    body #sec1 .sec1x {min-height:0; padding-top:0px !important;overflow: hidden;}
     #sec1x-con .sec1x-elem.sec1x-before, #sec1x-con .sec1x-elem.sec1x-after {
       background: none;
     }
@@ -767,7 +766,8 @@ ul.dropdown-menu {
     h6 { font-size: 14px; }
     p { font-size: 14px; }
     .sec1-inner-page .btn-large { font-size: 24px; }
-  #sec2 h1 {font-size:71px;margin-bottom: 240px;}
+  #sec2 h1 {font-size:71px;margin-bottom: 20px;}
+  #sec2 h2 { margin-top: 20px; }
   #sec3 .bgcx {width: 90%;display: table;min-height: 100%;margin-top: 50%;float: none;}
   .sp-logo-cs h2 {font-size:47px}
   .sp-logo-cs .sp {text-align:center !important;display: block;}
@@ -779,7 +779,7 @@ ul.dropdown-menu {
   img {max-width:100% !important}
   #footer .fsec {width:100%;text-align:center;padding: 0px !important;}
   #nst-con .vcs:before , #nst-con .vcs:after ,#sec1 .sec1x:after , #sec1 .sec1x:before {display:none}
-  .sec2 #mono2 {left:5%;margin:0px auto;}
+  .sec2 #mono2 { display:none; }
   .news-xl h1 {font-size:33px}
   .news-xl {margin-bottom: 30px;border-bottom: 1px solid #ccc;}
   #subscibe h2 {margin-top:20px;font-size:31px}
@@ -792,6 +792,6 @@ ul.dropdown-menu {
     table.calendar td { overflow: hidden; }
   }
     .bg-xc {height:100%;width:100%;position: absolute;background-size: cover !important;top: 0px;padding: 0px !important;overflow: hidden;background-position-x: 0px !important;}
-    #sli {min-height:600px;position: relative;overflow: hidden;width: 100%;}
+    #sli {height:300px;position: relative;overflow: hidden;width: 100%;}
 
-    .logo-ovr {position: absolute;top: 200px;display: block !important;width: 100%;text-align: center;z-index: 999;}
+    .logo-ovr {position: absolute;top: 50px;display: block !important;width: 100%;text-align: center;z-index: 999;}
