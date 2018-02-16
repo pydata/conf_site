@@ -747,8 +747,7 @@ ul.dropdown-menu {
     #menu ul li a {border-bottom:1px solid #ccc;text-align:center;display:block;}
     #menu ul li:last-child a {border:none}
 
-    #sli { min-height: 200px !important; }
-    div.logo-ovr { display:none !important; }
+    #sli, div.logo-ovr { display:none !important; }
     body #sec1 .sec1x {padding-top:0px !important;overflow: hidden;}
     #sec1x-con .sec1x-elem.sec1x-before, #sec1x-con .sec1x-elem.sec1x-after {
       background: none;
