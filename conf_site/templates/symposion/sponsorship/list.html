@@ -24,12 +24,11 @@
                         {% endif %}
                     </div>
                     <div class="col-md-9">
+                        <h3 style="display:inline-block">{{ sponsor.name }}</h3>
                         {% if request.user.is_superuser %}
                             <a href="{% url 'sponsor_detail' sponsor.pk %}" title="Edit {{ sponsor.name }}">
-                                <h3>{{ sponsor.name }}</h3>
+                                <i class="fa fa-edit"></i>
                             </a>
-                        {% else %}
-                            <h3>{{ sponsor.name }}</h3>
                         {% endif %}
                         <p><a href="{{ sponsor.external_url }}">{{ sponsor.external_url }}</a></p>
                         <p>{{ sponsor.listing_text|markdown }}</p>
