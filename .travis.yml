@@ -15,12 +15,12 @@ services:
   - postgresql
   - redis-server
 env: >
-    DJANGO_SETTINGS_MODULE="conf_site.settings.travis-ci"
+    DJANGO_SETTINGS_MODULE="conf_site.settings.testing"
 before_install:
-    - psql -c 'create database travis;' -U postgres
+    - psql -c 'create database testing;' -U postgres
     - "pip install --upgrade pip"
 install:
-    - "pip install -r requirements/travis-ci.txt"
+    - "pip install -r requirements/testing.txt"
 script:
     - "flake8 --exclude=ansible,docs,migrations ."
     - "rstcheck --report warning docs/source/*.rst"
