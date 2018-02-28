@@ -23,11 +23,12 @@
         {{ formset.non_form_errors }}
 
         {% for form in formset.forms %}
-            <div class="control-group">
-                <label class="control-label">{{ form.instance.benefit }}</label>
-                <div class="controls">
-                    {{ form }}
-                    <p class="help-block">{{ form.instance.benefit.description }}</p>
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-lg-2">
+                    {{ form.instance.benefit }}
+                </label>
+                <div class="col-sm-10 col-lg-10">
+                    {{ form|bootstrap_horizontal }}
                 </div>
             </div>
         {% endfor %}
