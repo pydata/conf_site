@@ -1,8 +1,8 @@
 [
 {
     "fields": {
-        "added": "2016-04-11T21:55:00Z",
-        "name": "Continuum Analytics",
+        "added": "2017-08-28T12:00:00Z",
+        "name": "Anaconda, Inc.",
         "display_url": "",
         "web_logo_benefit": null,
         "contact_email": "admin@pydata.org",
@@ -11,9 +11,9 @@
         "company_description_benefit": null,
         "contact_name": "Leah Silen",
         "level": 1,
-        "annotation": "Continuum Analytics develops Anaconda, the leading modern open source analytics platform powered by Python. Continuum\u2019s Python-based platform and consulting services empower organizations to analyze, manage and visualize big data - turning massive datasets into actionable insights and business value. Built on proven open-source technology and easily integrated within existing IT environments, Anaconda allows organizations to make critical business decisions based on their data quickly, easily, inexpensively, and with flexibility. Without having to worry about how to access their data, organizations can free up resources to solve actual problems. Continuum\u2019s founders and developers have created or contribute to some of the most popular data science technologies, including NumPy, SciPy, Pandas, IPython, and many others. To learn more about the Anaconda platform, training and consulting services, visit continuum.io.",
+        "annotation": "With over 4.5 million users, Anaconda is the world's most popular Python data science platform. Anaconda, Inc. continues to lead open source projects like Anaconda, NumPy and SciPy that form the foundation of modern data science. Anaconda's flagship product, Anaconda Enterprise, allows organizations to secure, govern, scale and extend Anaconda to deliver actionable insights that drive businesses and industries forward.",
         "print_description_benefit": null,
-        "external_url": "http://continuum.io/"
+        "external_url": "https://www.anaconda.com/"
     },
     "model": "symposion_sponsorship.sponsor",
     "pk": 1
