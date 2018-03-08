@@ -177,6 +177,7 @@ INSTALLED_APPS = [
     "conf_site",
     "conf_site.cms",
     "conf_site.proposals",
+    "conf_site.reviews",
     "conf_site.speakers",
 ]
 

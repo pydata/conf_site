@@ -59,6 +59,9 @@
         <div class="col-md-2">
             {% block sidebar %}
                 <ul class="nav nav-list well">
+                    {% if config.PROPOSAL_KEYWORDS %}
+                        <li><a href="{% url 'review_keyword_list' %}">Keywords</a></li>
+                    {% endif %}
                     {% for section in review_sections %}
                         <li class="nav-header">
                             {{ section }}
