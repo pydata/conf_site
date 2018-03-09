@@ -98,6 +98,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     "account.context_processors.account",
+    "constance.context_processors.config",
     "django_settings_export.settings_export",
     "symposion.reviews.context_processors.reviews",
     "wagtailmenus.context_processors.wagtailmenus",
@@ -176,6 +177,7 @@ INSTALLED_APPS = [
     "conf_site",
     "conf_site.cms",
     "conf_site.proposals",
+    "conf_site.reviews",
     "conf_site.speakers",
 ]
 

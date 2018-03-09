@@ -134,7 +134,11 @@
             </div>
 
             <div class="dashboard-panel-content">
-                <h4>Reviews by Section</h4>
+                <ul>
+                    {% if config.PROPOSAL_KEYWORDS %}
+                    <li><a href="{% url 'review_keyword_list' %}">By Keyword</a></li>
+                    {% endif %}
+                </ul>
 
                 <ul>
                     {% for section in review_sections %}
@@ -142,6 +146,7 @@
                             <li><a href="{% url "review_section" section.section.slug %}">All</a></li>
                             <li><a href="{% url "user_reviewed" section.section.slug %}">Reviewed by you</a></li>
                             <li><a href="{% url "user_not_reviewed" section.section.slug %}">Not Reviewed by you</a></li>
+
                     {% endfor %}
                 </ul>
 

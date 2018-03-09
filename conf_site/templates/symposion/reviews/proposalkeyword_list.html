@@ -1,0 +1,14 @@
+{% extends "symposion/reviews/base.html" %}
+
+{% block body %}
+<div class="container">
+    <h3>Keywords</h3>
+    <ul>{% for keyword in keywords %}
+        <li>
+            <a href="{% url 'review_keyword_detail' keyword.slug %}">
+                {{ keyword.name }}
+            </a>
+        </li>
+    {% endfor %}</ul>
+</div>
+{% endblock %}
