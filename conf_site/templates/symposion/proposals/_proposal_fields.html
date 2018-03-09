@@ -6,7 +6,9 @@
 
     {% if request.user != proposal.speaker.user %}
     <dt>Editor Keywords</dt>
-    <dd>{% for keyword in proposal.editor_keywords.all %}{{ keyword }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
+    <dd>{% for keyword in proposal.editor_keywords.all %}
+        <a href="{% url 'review_keyword_detail' keyword.slug %}">{{ keyword }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}</dd>
     {% endif %}
 
     <dt>Official Keywords</dt>
