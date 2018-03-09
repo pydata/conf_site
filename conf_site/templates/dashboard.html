@@ -13,8 +13,10 @@
 <div class="container">
     <div class="dashboard-panel">
         <div class="dashboard-panel-header">
-            <i class="fa fa-bullhorn"></i>
-            <h3>{% trans "Speaking" %}</h3>
+            <h3>
+                <i class="fa fa-bullhorn"></i>
+                {% trans "Speaking" %}
+            </h3>
             <div class="pull-right header-actions">
                 {% if not user.speaker_profile %}
                     <a href="{% url "speaker_create" %}" class="btn btn-default">
@@ -89,8 +91,10 @@
 
     <div class="dashboard-panel">
         <div class="dashboard-panel-header">
-            <i class="fa fa-briefcase"></i>
-            <h3>{% trans "Sponsorship" %}</h3>
+            <h3>
+                <i class="fa fa-briefcase"></i>
+                {% trans "Sponsorship" %}
+            </h3>
             <div class="pull-right header-actions">
                 {% if not user.sponsorships.exists %}
                     <a href="{% url "sponsor_apply" %}" class="btn btn-default">
@@ -129,8 +133,10 @@
     {% if review_sections %}
         <div class="dashboard-panel">
             <div class="dashboard-panel-header">
-                <i class="fa fa-briefcase"></i>
-                <h3>{% trans "Reviews" %}</h3>
+                <h3>
+                    <i class="fa fa-briefcase"></i>
+                    {% trans "Reviews" %}
+                </h3>
             </div>
 
             <div class="dashboard-panel-content">
@@ -178,8 +184,10 @@
     {% if user.memberships.exists or available_teams %}
         <div class="dashboard-panel">
             <div class="dashboard-panel-header">
-                <i class="fa fa-group"></i>
-                <h3>{% trans "Teams" %}</h3>
+                <h3>
+                    <i class="fa fa-group"></i>
+                    {% trans "Teams" %}
+                </h3>
             </div>
 
             <div class="dashboard-panel-content">
