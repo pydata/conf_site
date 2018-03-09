@@ -12,10 +12,14 @@
     {% endif %}
 
     <dt>Official Keywords</dt>
-    <dd>{% for keyword in proposal.official_keywords.all %}{{ keyword }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
+    <dd>{% for keyword in proposal.official_keywords.all %}
+        <a href="{% url 'review_keyword_detail' keyword.slug %}">{{ keyword }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}</dd>
 
     <dt>Additional Keywords</dt>
-    <dd>{% for keyword in proposal.user_keywords.all %}{{ keyword }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
+    <dd>{% for keyword in proposal.user_keywords.all %}
+        <a href="{% url 'review_keyword_detail' keyword.slug %}">{{ keyword }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}</dd>
 
 
     <dt>{% trans "Audience Level" %}</dt>
