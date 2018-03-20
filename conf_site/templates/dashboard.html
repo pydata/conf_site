@@ -20,14 +20,14 @@
             <div class="pull-right header-actions">
                 {% if not user.speaker_profile %}
                     <a href="{% url "speaker_create" %}" class="btn btn-default">
-                        <i class="fa fa-plus-sign"></i> Create a speaker profile
+                        <i class="fa fa-plus"></i> Create a speaker profile
                     </a>
                 {% else %}
                     <a href="{% url "speaker_edit" %}" class="btn btn-default">
                         <i class="fa fa-pencil"></i> Edit your speaker profile
                     </a>
                     <a href="{% url "proposal_submit" %}" class="btn btn-default">
-                        <i class="fa fa-plus-sign"></i> Submit a new proposal
+                        <i class="fa fa-plus"></i> Submit a new proposal
                     </a>
                 {% endif %}
             </div>
@@ -98,7 +98,7 @@
             <div class="pull-right header-actions">
                 {% if not user.sponsorships.exists %}
                     <a href="{% url "sponsor_apply" %}" class="btn btn-default">
-                        <i class="fa fa-plus-sign"></i> Apply to be a sponsor
+                        <i class="fa fa-plus"></i> Apply to be a sponsor
                     </a>
                 {% endif %}
             </div>
