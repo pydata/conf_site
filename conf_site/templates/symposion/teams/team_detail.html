@@ -11,21 +11,21 @@
         <span class="label label-primary">{{ state }}</span>
     {% endif %}
     {% if can_join %}
-        <form method="post" action="{% url "team_join" team.slug %}">
+        <form style="display:inline" method="post" action="{% url "team_join" team.slug %}">
             {% csrf_token %}
             <input type="submit" class="btn btn-primary" value="join">
         </form>
     {% endif %}
 
     {% if can_leave %}
-        <form method="post" action="{% url "team_leave" team.slug %}">
+        <form style="display:inline" method="post" action="{% url "team_leave" team.slug %}">
             {% csrf_token %}
             <input type="submit" class="btn btn-default" value="leave">
         </form>
     {% endif %}
 
     {% if can_apply %}
-        <form method="post" action="{% url "team_apply" team.slug %}">
+        <form style="display:inline" method="post" action="{% url "team_apply" team.slug %}">
             {% csrf_token %}
             <input type="submit" class="btn btn-primary" value="apply">
         </form>
