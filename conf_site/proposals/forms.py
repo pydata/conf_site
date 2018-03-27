@@ -6,11 +6,31 @@ from markitup.widgets import MarkItUpWidget
 from .models import Proposal, ProposalKeyword
 
 
+class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
+    """
+    Custom form field to allow multiple tag selection.
+
+    See https://stackoverflow.com/a/34207440/113527self.
+
+    """
+    widget = forms.CheckboxSelectMultiple
+
+    def prepare_value(self, value):
+        if hasattr(value, "tag_id"):
+            return value.tag_id
+        elif (hasattr(value, "__iter__")
+                and not isinstance(value, unicode)
+                and not hasattr(value, "_meta")):
+            return [self.prepare_value(v) for v in value]
+        else:
+            return super(ModelMultipleTagChoiceField,
+                         self).prepare_value(value)
+
+
 class ProposalForm(forms.ModelForm):
-    official_keywords = forms.ModelMultipleChoiceField(
+    official_keywords = ModelMultipleTagChoiceField(
         label="Official Keywords",
-        queryset=ProposalKeyword.objects.filter(official=True).order_by("name"),     # noqa: E501
-        widget=forms.CheckboxSelectMultiple())
+        queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501
 
     class Meta:
         model = Proposal
