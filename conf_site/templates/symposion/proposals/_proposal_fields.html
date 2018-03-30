@@ -4,6 +4,9 @@
     <dt>{% trans "Submitted by" %}</dt>
     <dd>{{ proposal.speaker.name }}</dd>
 
+    <dt>Affiliation</dt>
+    <dd>{{ proposal.affiliation }}</dd>
+
     {% if config.PROPOSAL_KEYWORDS %}
     {% if request.user != proposal.speaker.user %}
     <dt>Editor Keywords</dt>
