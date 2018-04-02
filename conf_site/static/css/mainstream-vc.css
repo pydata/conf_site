@@ -104,7 +104,7 @@ html,body {
 }
 
 
-@media (min-width:800px) {
+@media (min-width:768px) {
   #menu .hero-btn {
   min-width: 180px;
   /* height: 54px; */
@@ -733,7 +733,7 @@ ul.dropdown-menu {
   #proposal-detail .dl-horizontal dd { margin-left: 230px; }
 }
 
-  @media (max-width:800px) {
+  @media (max-width:767px) {
 
 #logo {padding: 5px 10px 20px 15px !important;}
 .navbar-header button {background-color:#12ccea;position:absolute;top:-50px;right: -5px;}
