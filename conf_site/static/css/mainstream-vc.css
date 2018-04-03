@@ -77,7 +77,7 @@ html,body {
 #menu .navbar-collapse .caret {margin:-8px 0px 0px 0px}
 #menu .navbar-collapse  li   a {
   font-family: 'Dosis';
-  font-size: 22px;
+  font-size: 18px;
   font-weight: normal;
   font-style: normal;
   background:none !important;
@@ -104,14 +104,12 @@ html,body {
 }
 
 
-@media (min-width:800px) {
+@media (min-width:768px) {
   #menu .hero-btn {
-  min-width: 180px;
   /* height: 54px; */
   border: solid 7px #2ee6b6;
   padding: 8px;
   text-align: center !important;
-  margin-left: 10px;
   }
   #menu .navbar-collapse ul ul {padding: 0px;z-index: 1;max-height:0;overflow:hidden;-webkit-transform:perspective(400) rotate3d(1,0,0,-90deg);-webkit-transform-origin:50% 0;-webkit-transition:350ms;-moz-transition:350ms;-o-transition:350ms;transition:350ms;display:block}
 #menu .hero-btn:hover { background:#2ee6b6 !important;color:#FFF !important}
@@ -728,12 +726,25 @@ ul.dropdown-menu {
   }
 }
 
+@media (max-width:992px) {
+
+  #menu ul li a {
+    padding: 10px;
+  }
+
+  #menu ul li a.hero-btn {
+    padding: 3px;
+  }
+
+}
+
+
 @media (min-width: 768px) {
   #proposal-detail .dl-horizontal dt { width: 210px; }
   #proposal-detail .dl-horizontal dd { margin-left: 230px; }
 }
 
-  @media (max-width:800px) {
+  @media (max-width:767px) {
 
 #logo {padding: 5px 10px 20px 15px !important;}
 .navbar-header button {background-color:#12ccea;position:absolute;top:-50px;right: -5px;}
