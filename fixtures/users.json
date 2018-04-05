@@ -1,0 +1,92 @@
+[
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "!rJtkGqcV9pVuxbIecttRNHO2BJBp9uZD3cNZaLOd",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "martey",
+        "first_name": "Martey",
+        "last_name": "Dodoo",
+        "email": "martey+pydata.org@mobolic.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-01-01T00:00:00Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "!rJtkGqcV9pVuxbIecttRNHO3BJBp2uZd3cNZaLOd",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "leah",
+        "first_name": "Leah",
+        "last_name": "Silen",
+        "email": "leah@numfocus.org",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-01-01T00:00:00Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "!RTJkGqcv9pVuxbIecttRNHO3BJBp2uZd3cNZaLOd",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "jim",
+        "first_name": "Jim",
+        "last_name": "Weiss",
+        "email": "jim@numfocus.org",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-01-01T00:00:00Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+        "password": "!rJtkGqcV9pVuxbIetttRNHO2BJBp9uZD3cNZLeOd",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "gina",
+        "first_name": "Gina",
+        "last_name": "Helfrich",
+        "email": "gina@numfocus.org",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-01-01T00:00:00Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+        "password": "!monkGqcvbpVuxbIecttRNiHO3JBp3uZd4cNZ5LOd",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "andy",
+        "first_name": "Andy",
+        "last_name": "Terrel",
+        "email": "andy@numfocus.org",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-01-01T00:00:00Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

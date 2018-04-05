@@ -1,0 +1,81 @@
+[
+{
+    "model": "wagtailmenus.mainmenu",
+    "pk": 1,
+    "fields": {
+        "site": 1,
+        "max_levels": 2,
+        "use_specific": 1
+    }
+},
+{
+    "model": "wagtailmenus.mainmenuitem",
+    "pk": 1,
+    "fields": {
+        "sort_order": 0,
+        "link_page": 2,
+        "link_url": "",
+        "link_text": "Home",
+        "handle": "",
+        "url_append": "",
+        "allow_subnav": true,
+        "menu": 1
+    }
+},
+{
+    "model": "wagtailmenus.mainmenuitem",
+    "pk": 2,
+    "fields": {
+        "sort_order": 1,
+        "link_page": 3,
+        "link_url": "",
+        "link_text": "",
+        "handle": "",
+        "url_append": "",
+        "allow_subnav": true,
+        "menu": 1
+    }
+},
+{
+    "model": "wagtailmenus.mainmenuitem",
+    "pk": 3,
+    "fields": {
+        "sort_order": 2,
+        "link_page": 6,
+        "link_url": "",
+        "link_text": "CFP",
+        "handle": "",
+        "url_append": "",
+        "allow_subnav": true,
+        "menu": 1
+    }
+},
+{
+    "model": "wagtailmenus.mainmenuitem",
+    "pk": 4,
+    "fields": {
+        "sort_order": 4,
+        "link_page": null,
+        "link_url": "/CONFERENCE/sponsors/",
+        "link_text": "Sponsors",
+        "handle": "",
+        "url_append": "",
+        "allow_subnav": true,
+        "menu": 1
+    }
+},
+{
+    "model": "wagtailmenus.mainmenuitem",
+    "pk": 5,
+    "fields": {
+        "sort_order": 3,
+        "link_page": 7,
+        "link_url": "",
+        "link_text": "",
+        "handle": "",
+        "url_append": "",
+        "allow_subnav": true,
+        "menu": 1
+    }
+}
+]

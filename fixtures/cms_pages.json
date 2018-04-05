@@ -1,0 +1,51 @@
+[
+{
+    "model": "cms.homepage",
+    "pk": 2,
+    "fields": {
+        "logo_image": null,
+        "background_image": null,
+        "conference_info_section": "[{\"type\": \"raw_html\", \"value\": \"<div class=\\\"col-sm-6 col-xs-12 sec1-col sec1-main\\\">\\r\\n<h1>PyData CONFERENCE 2018</h1>\\r\\n<h3>INSERT DATE 2018</h3>\\r\\n\\r\\n<h3>Have questions? Interested in sponsoring? Email us at <a href=\\\"mailto:admin@pydata.org\\\">admin@pydata.org</a>.</h3>\\r\\n</div>\"}]",
+        "pydata_info_section": "[{\"type\": \"raw_html\", \"value\": \"<div class=\\\"col-xs-12 sec2\\\">\\r\\n<img src=\\\"./static/images/pydata-fullbocks.png\\\" data-rjs=\\\"2\\\" id=\\\"mono2\\\">\\r\\n<h2>WHAT IS</h2>\\r\\n<h1>PYDATA</h1>\\r\\n<p>PyData conferences bring together users and developers of data analysis tools to share ideas and learn from each other. The PyData community gathers to discuss how best to apply Python tools, as well as tools using R and Julia, to meet evolving challenges in data management, processing, analytics, and visualization.\\r\\n</p><p>\\r\\nWe aim to be an accessible, community-driven conference, with tutorials for novices, advanced topical workshops for practitioners, and opportunities for package developers and users to meet in person.\\r\\n</p><p>\\r\\nFor more information about the conference series, visit:</p>\\r\\n<p><a href=\\\"https://pydata.org\\\" class=\\\"btn btn1\\\">PyData.org</a></p>\\r\\n</div>\"}]",
+        "news_keynote_section": "[]",
+        "ticketing_section": "<h2>Tickets</h2>",
+        "ticketing_url": "",
+        "footer1_section": "[]",
+        "footer_email": "admin@pydata.org",
+        "footer_twitter": "PyData"
+    }
+},
+{
+    "model": "cms.htmlpage",
+    "pk": 3,
+    "fields": {
+        "content": "[]"
+    }
+},
+{
+    "model": "cms.htmlpage",
+    "pk": 4,
+    "fields": {
+        "content": "[{\"type\": \"rich_text\", \"value\": \"<p>PyData is an educational program of <a href=\\\"https://www.numfocus.org/\\\">NumFOCUS</a>, a 501(c)3 non-profit organization in the United States. PyData provides a forum for the international community of users and developers of data analysis tools to share ideas and learn from each other. The global PyData network promotes discussion of best practices, new approaches, and emerging technologies for data management, processing, analytics, and visualization. PyData communities approach data science using many languages, including (but not limited to) Python, Julia, and R.</p><p>We aim to be an accessible, community-driven conference, with novice to advanced level presentations. PyData tutorials and talks bring attendees the latest project features along with cutting-edge use cases.</p>\"}]"
+    }
+},
+{
+    "model": "cms.htmlpage",
+    "pk": 5,
+    "fields": {
+        "content": "[{\"type\": \"rich_text\", \"value\": \"<p>PyData is a community conference intended for networking and collaboration in the developer community.</p><p>We value the participation of each member of the Python community and want all attendees to have an enjoyable and fulfilling experience. Accordingly, all attendees are expected to show respect and courtesy to other attendees throughout the conference and at all conference events, whether officially sponsored by PyData or not.<br/></p><p>To make clear what is expected, all delegates, speakers, exhibitors and volunteers at any PyData event are required to conform to the following Code of Conduct. Organizers will enforce this code throughout the event.</p><h2>The Shorter Version</h2><p>PyData is dedicated to providing a harassment-free conference experience for everyone, regardless of gender, sexual orientation, gender identity and expression, disability, physical appearance, body size, race, or religion. We do not tolerate harassment of conference participants in any form.</p><p>All communication should be appropriate for a professional audience including people of many different backgrounds. Sexual language and imagery is not appropriate for any conference venue, including talks.</p><p>Be kind to others. Do not insult or put down other attendees. Behave professionally. Remember that harassment and sexist, racist, or exclusionary jokes are not appropriate for PyData.<br/></p><p>Attendees violating these rules may be asked to leave the conference without a refund at the sole discretion of the conference organizers.<br/></p><p>Thank you for helping make this a welcoming, friendly event for all.</p><h2>The Longer Version</h2><p>Harassment includes offensive verbal comments related to gender, sexual orientation, gender identity or expression, disability, physical appearance, body size, race, religion, sexual images in public spaces, deliberate intimidation, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention.</p><p>Participants asked to stop any harassing behavior are expected to comply immediately.<br/></p><p>Sponsor or vendor booths, or similar activities are also subject to the anti-harassment policy. In particular, exhibitors should not use sexualized images, activities, or other material. Booth staff (including volunteers) should not use sexualized clothing/uniforms/costumes, or otherwise create a sexualized environment.<br/></p><p>Be careful in the words that you choose. Remember that sexist, racist, and other exclusionary jokes can be offensive to those around you. Excessive swearing and offensive jokes are not appropriate for PyData.<br/></p><p>If a participant engages in behavior that violates this code of conduct, the conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference with no refund.</p><h2>Contact</h2><p>If you are being harassed, notice that someone else is being harassed, or have any other concerns, please contact a member of conference staff. Conference staff will be wearing \\\"PyData Staff\\\" t-shirts and you can email the committee, in confidence, at\\u00a0<a href=\\\"mailto:admin@pydata.org\\\">admin@pydata.org</a>.</p><p>If the matter is especially urgent or with regards to the conduct of the committee itself, then please call/contact:</p><p><b>Leah Silen</b><br/>NumFocus, Executive Director<br/><a href=\\\"mailto:leah@numfocus.org\\\">leah@numfocus.org</a><br/>+1 (972) 896-3688</p><p>Conference staff will be happy to help participants contact hotel/venue security or local law enforcement, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the conference. We value your attendance.</p><h2>License</h2><p>This Code of Conduct was forked from the example policy from the Geek Feminism wiki, created by the Ada Initiative and other volunteers. which is under a Creative Commons Zero license.</p><p>Conference Code of Conduct by PyData is licensed under a Creative Commons Attribution 3.0 Unported License.</p><p><br/></p>\"}]"
+    }
+},
+{
+    "model": "cms.htmlpage",
+    "pk": 6,
+    "fields": {
+        "content": "[{\"type\": \"raw_html\", \"value\": \"<div class=\\\"col-sm-6 col-xs-12\\\">\\r\\n<p>The event brings together analysts, scientists, developers, engineers, architects and others from the data science community to discuss new techniques and tools for management, analytics and visualization of data. PyData welcomes presentations focusing on Python as well as other languages used in data science (e.g. R, Julia). Presentation content can be at a novice, intermediate or advanced level. Talks will run 30-40 min and hands-on tutorials will run 90-120 min.\\r\\n</p><p>\\r\\nAs a reminder, PyData presentations are intended to share knowledge and experience. We welcome talks letting attendees know how you are using tools in your work, but discourage any proposals with the aim of selling a product.\\r\\n</p><p>\\r\\nIf you are interested in presenting a talk or tutorial, we encourage your submission(s). To see the type of topics presented at previous PyData events, please look at our past conference sites at pydata.org or check out the videos on <a href=\\\"https://www.youtube.com/user/PyDataTV\\\">https://www.youtube.com/user/PyDataTV</a>.</p>\\r\\n</div>\\r\\n<div class=\\\"col-sm-6 col-xs-12 \\\">\\r\\n<p>Registration will be complimentary for speakers<br>\\r\\nAny questions can be directed to <a href=\\\"mailto:admin@pydata.org\\\">admin@pydata.org</a>.<br>\\r\\n<br>\\r\\n<a class=\\\"btn btn3\\\" href=\\\"https://pydata.org/CONFERENCE/proposals/submit/\\\">Submit a new proposal</a><br><br></div>\"}]"
+    }
+},
+{
+    "model": "cms.venuepage",
+    "pk": 7,
+    "fields": {}
+}
+]

@@ -1,0 +1,13 @@
+[
+{
+    "model": "wagtailcore.site",
+    "pk": 1,
+    "fields": {
+        "hostname": "pydata.org",
+        "port": 80,
+        "site_name": "PyData Conference 2018",
+        "root_page": 2,
+        "is_default_site": true
+    }
+}
+]
