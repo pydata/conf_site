@@ -56,7 +56,7 @@
     "fields": {
         "sort_order": 4,
         "link_page": null,
-        "link_url": "/CONFERENCE/sponsors/",
+        "link_url": "/{{ conference_identifier }}/sponsors/",
         "link_text": "Sponsors",
         "handle": "",
         "url_append": "",

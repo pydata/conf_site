@@ -3,9 +3,9 @@
     "model": "wagtailcore.site",
     "pk": 1,
     "fields": {
-        "hostname": "pydata.org",
+        "hostname": "{{ website_domain }}",
         "port": 80,
-        "site_name": "PyData Conference 2018",
+        "site_name": "{{ conference_name }}",
         "root_page": 2,
         "is_default_site": true
     }
