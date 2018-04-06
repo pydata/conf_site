@@ -18,3 +18,10 @@
 - name: restart gunicorn
   supervisorctl: name=gunicorn state=restarted
   become: true
+
+- name: mark fixtures as applied
+  file:
+    path: "{{ project_root }}/fixtures/.applied"
+    state: touch
+  tags:
+    - fixtures
