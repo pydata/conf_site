@@ -1,5 +1,30 @@
 [
 {
+    "model": "wagtailcore.page",
+    "pk": 2,
+    "fields": {
+        "path": "00010002",
+        "depth": 2,
+        "numchild": 3,
+        "title": "PyData Conference 2018",
+        "slug": "home",
+        "content_type": 80,
+        "live": true,
+        "has_unpublished_changes": false,
+        "url_path": "/",
+        "owner": 2,
+        "seo_title": "",
+        "show_in_menus": true,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": "2018-01-01T00:00:00Z",
+        "latest_revision_created_at": "2018-01-01T00:00:00Z"
+    }
+},
+{
     "model": "cms.homepage",
     "pk": 2,
     "fields": {
@@ -16,10 +41,60 @@
     }
 },
 {
+    "model": "wagtailcore.page",
+    "pk": 3,
+    "fields": {
+        "path": "000100020001",
+        "depth": 3,
+        "numchild": 2,
+        "title": "About",
+        "slug": "about",
+        "content_type": 79,
+        "live": true,
+        "has_unpublished_changes": false,
+        "url_path": "/about/",
+        "owner": 2,
+        "seo_title": "",
+        "show_in_menus": true,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": "2018-01-01T00:00:00Z",
+        "latest_revision_created_at": "2018-01-01T00:00:00Z"
+    }
+},
+{
     "model": "cms.htmlpage",
     "pk": 3,
     "fields": {
         "content": "[]"
+    }
+},
+{
+    "model": "wagtailcore.page",
+    "pk": 4,
+    "fields": {
+        "path": "0001000200010002",
+        "depth": 4,
+        "numchild": 0,
+        "title": "Conference Mission",
+        "slug": "mission",
+        "content_type": 79,
+        "live": true,
+        "has_unpublished_changes": false,
+        "url_path": "/about/mission/",
+        "owner": 2,
+        "seo_title": "",
+        "show_in_menus": true,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": "2018-01-01T00:00:00Z",
+        "latest_revision_created_at": "2018-01-01T00:00:00Z"
     }
 },
 {
@@ -30,6 +105,31 @@
     }
 },
 {
+    "model": "wagtailcore.page",
+    "pk": 5,
+    "fields": {
+        "path": "0001000200010001",
+        "depth": 4,
+        "numchild": 0,
+        "title": "Code of Conduct",
+        "slug": "code-of-conduct",
+        "content_type": 79,
+        "live": true,
+        "has_unpublished_changes": false,
+        "url_path": "/about/code-of-conduct/",
+        "owner": 2,
+        "seo_title": "",
+        "show_in_menus": true,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": "2018-01-01T00:00:00Z",
+        "latest_revision_created_at": "2018-01-01T00:00:00Z"
+    }
+},
+{
     "model": "cms.htmlpage",
     "pk": 5,
     "fields": {
@@ -37,10 +137,60 @@
     }
 },
 {
+    "model": "wagtailcore.page",
+    "pk": 6,
+    "fields": {
+        "path": "000100020002",
+        "depth": 3,
+        "numchild": 0,
+        "title": "Call for Proposals",
+        "slug": "cfp",
+        "content_type": 79,
+        "live": false,
+        "has_unpublished_changes": true,
+        "url_path": "/cfp/",
+        "owner": 2,
+        "seo_title": "",
+        "show_in_menus": true,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": null,
+        "latest_revision_created_at": "2018-01-01T00:00:00Z"
+    }
+},
+{
     "model": "cms.htmlpage",
     "pk": 6,
     "fields": {
         "content": "[{\"type\": \"raw_html\", \"value\": \"<div class=\\\"col-sm-6 col-xs-12\\\">\\r\\n<p>The event brings together analysts, scientists, developers, engineers, architects and others from the data science community to discuss new techniques and tools for management, analytics and visualization of data. PyData welcomes presentations focusing on Python as well as other languages used in data science (e.g. R, Julia). Presentation content can be at a novice, intermediate or advanced level. Talks will run 30-40 min and hands-on tutorials will run 90-120 min.\\r\\n</p><p>\\r\\nAs a reminder, PyData presentations are intended to share knowledge and experience. We welcome talks letting attendees know how you are using tools in your work, but discourage any proposals with the aim of selling a product.\\r\\n</p><p>\\r\\nIf you are interested in presenting a talk or tutorial, we encourage your submission(s). To see the type of topics presented at previous PyData events, please look at our past conference sites at pydata.org or check out the videos on <a href=\\\"https://www.youtube.com/user/PyDataTV\\\">https://www.youtube.com/user/PyDataTV</a>.</p>\\r\\n</div>\\r\\n<div class=\\\"col-sm-6 col-xs-12 \\\">\\r\\n<p>Registration will be complimentary for speakers<br>\\r\\nAny questions can be directed to <a href=\\\"mailto:admin@pydata.org\\\">admin@pydata.org</a>.<br>\\r\\n<br>\\r\\n<a class=\\\"btn btn3\\\" href=\\\"https://pydata.org/CONFERENCE/proposals/submit/\\\">Submit a new proposal</a><br><br></div>\"}]"
+    }
+},
+{
+    "model": "wagtailcore.page",
+    "pk": 7,
+    "fields": {
+        "path": "000100020003",
+        "depth": 3,
+        "numchild": 0,
+        "title": "Venue",
+        "slug": "venue",
+        "content_type": 81,
+        "live": false,
+        "has_unpublished_changes": true,
+        "url_path": "/venue/",
+        "owner": 2,
+        "seo_title": "",
+        "show_in_menus": true,
+        "search_description": "",
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "first_published_at": null,
+        "latest_revision_created_at": "2018-01-01T00:00:00Z"
     }
 },
 {

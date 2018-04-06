@@ -1,5 +1,263 @@
 [
 {
+    "pk": 1,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 0,
+        "name": "Founding",
+        "order": 1
+    }
+},
+{
+    "pk": 2,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 15000,
+        "name": "Diamond",
+        "order": 2
+    }
+},
+{
+    "pk": 3,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 8000,
+        "name": "Platinum",
+        "order": 3
+    }
+},
+{
+    "pk": 4,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 5000,
+        "name": "Gold",
+        "order": 4
+    }
+},
+{
+    "pk": 5,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 3000,
+        "name": "Silver",
+        "order": 5
+    }
+},
+{
+    "pk": 6,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 1500,
+        "name": "Supporting",
+        "order": 6
+    }
+},
+{
+    "fields": {
+        "type": "weblogo",
+        "name": "Web Logo",
+        "content_type": "simple",
+        "description": "Logo to appear on the website"
+    },
+    "model": "symposion_sponsorship.benefit",
+    "pk": 2
+},
+{
+    "fields": {
+        "type": "file",
+        "name": "Print Logo",
+        "content_type": "simple",
+        "description": "Logo to appear in print"
+    },
+    "model": "symposion_sponsorship.benefit",
+    "pk": 3
+},
+{
+    "fields": {
+        "type": "text",
+        "name": "Sponsor Description",
+        "content_type": "simple",
+        "description": "Description to appear on website and in print"
+    },
+    "model": "symposion_sponsorship.benefit",
+    "pk": 4
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 2,
+        "max_words": null,
+        "level": 1
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 1
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 2,
+        "max_words": null,
+        "level": 2
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 2
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 2,
+        "max_words": null,
+        "level": 3
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 3
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 3,
+        "max_words": null,
+        "level": 1
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 5
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 3,
+        "max_words": null,
+        "level": 2
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 6
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 3,
+        "max_words": null,
+        "level": 3
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 7
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 4,
+        "max_words": null,
+        "level": 1
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 9
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 4,
+        "max_words": null,
+        "level": 2
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 10
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 4,
+        "max_words": null,
+        "level": 3
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 11
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 2,
+        "max_words": null,
+        "level": 5
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 12
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 4,
+        "max_words": null,
+        "level": 5
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 14
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 2,
+        "max_words": null,
+        "level": 4
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 15
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 3,
+        "max_words": null,
+        "level": 4
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 16
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 4,
+        "max_words": null,
+        "level": 4
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 17
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 2,
+        "max_words": null,
+        "level": 6
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 18
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 4,
+        "max_words": null,
+        "level": 6
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 19
+},
+{
+    "model": "symposion_sponsorship.sponsor",
+    "pk": 1,
     "fields": {
         "added": "2017-08-28T12:00:00Z",
         "name": "Anaconda, Inc.",
@@ -14,8 +272,6 @@
         "annotation": "With over 4.5 million users, Anaconda is the world's most popular Python data science platform. Anaconda, Inc. continues to lead open source projects like Anaconda, NumPy and SciPy that form the foundation of modern data science. Anaconda's flagship product, Anaconda Enterprise, allows organizations to secure, govern, scale and extend Anaconda to deliver actionable insights that drive businesses and industries forward.",
         "print_description_benefit": null,
         "external_url": "https://www.anaconda.com/"
-    },
-    "model": "symposion_sponsorship.sponsor",
-    "pk": 1
+    }
 }
 ]
