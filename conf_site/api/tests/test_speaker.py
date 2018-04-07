@@ -6,10 +6,10 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from symposion.speakers.models import Speaker
 
-from .base import TestBase
+from conf_site.api.tests import ConferenceSiteAPITestCase
 
 
-class TestSpeaker(TestBase):
+class TestSpeaker(ConferenceSiteAPITestCase):
 
     @classmethod
     def setUpTestData(cls):

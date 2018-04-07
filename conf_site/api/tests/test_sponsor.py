@@ -3,17 +3,34 @@ import json
 from django.core.urlresolvers import reverse
 
 from rest_framework import status
-from symposion.sponsorship.models import Sponsor
+from symposion.sponsorship.models import Sponsor, SponsorLevel
 
-from .base import TestBase
+from conf_site.api.tests import ConferenceSiteAPITestCase
 
 
-class TestSponsor(TestBase):
+class ConferenceSiteAPISponsorTestCase(ConferenceSiteAPITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        super(TestSponsor, cls).setUpTestData()
-        cls.sponsor = Sponsor.objects.first()
+        super(ConferenceSiteAPISponsorTestCase, cls).setUpTestData()
+
+        # Create a sponsor.
+        sponsor_level = SponsorLevel.objects.create(
+            conference=cls.conference,
+            name="Vibrantium",
+            cost=42
+        )
+        # We don't use Sponsor.objects.create() here because it
+        # fails with an IntegrityError.
+        cls.sponsor = Sponsor(
+            name="FooBar Inc.",
+            external_url="http://example.com",
+            contact_name="Foo Bar",
+            contact_email="foobar@example.com",
+            level=sponsor_level,
+            active=True,
+        )
+        cls.sponsor.save()
 
     def test_sponsor_list_api_anonymous_user(self):
         """Verify that anonymous users cannot access list of sponsors."""

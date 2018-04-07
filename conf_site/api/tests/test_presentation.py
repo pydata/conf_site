@@ -3,33 +3,40 @@ import datetime
 from django.core.urlresolvers import reverse
 
 from rest_framework import status
+from symposion.conference.models import Section
 from symposion.schedule.models import (
     Presentation,
     Slot,
     SlotKind,
-    Section,
     Schedule,
     Day,
 )
 from symposion.proposals.models import ProposalKind
 from symposion.speakers.models import Speaker, User
 
+from conf_site.api.tests import ConferenceSiteAPITestCase
 from conf_site.proposals.models import Proposal
 
-from .base import TestBase
 
-
-class TestSponsor(TestBase):
+class ConferenceSiteAPISponsorTestCase(ConferenceSiteAPITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        super(TestSponsor, cls).setUpTestData()
+        super(ConferenceSiteAPISponsorTestCase, cls).setUpTestData()
         cls.speaker = Speaker.objects.create(
             user=User.objects.create_user('test', 'test@pydata.org', 'test'),
             name='test speaker',
         )
-        cls.schedule = Schedule.objects.create(
-            section=Section.objects.first(),
+        section = Section.objects.create(
+            name="FooBarSection",
+            slug="foo-bar",
+            conference=cls.conference,
+        )
+        cls.schedule = Schedule.objects.create(section=section)
+        proposal_kind = ProposalKind.objects.create(
+            section=section,
+            name="Kind of Proposal",
+            slug="proposal-kind",
         )
         cls.presentation = Presentation.objects.create(
             slot=Slot.objects.create(
@@ -50,7 +57,7 @@ class TestSponsor(TestBase):
             abstract='test abstract',
             speaker=cls.speaker,
             proposal_base=Proposal.objects.create(
-                kind=ProposalKind.objects.first(),
+                kind=proposal_kind,
                 title='Test proposal',
                 description='lorem ipsum'*15,
                 abstract='lorem ipsum'*15,
