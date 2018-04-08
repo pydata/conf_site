@@ -88,6 +88,42 @@
                  virtualenv={{ virtualenv_root }}/current
   notify: restart gunicorn
 
+- name: figure out whether fixtures have already been applied
+  stat:
+    path: "{{ project_root }}/fixtures/.applied"
+  register: fixtures_applied
+  tags:
+    - fixtures
+
+# https://serverfault.com/a/616976/48777
+- name: create list of fixture templates
+  local_action: "shell ls roles/web/templates/fixtures/* | sed 's~.*/~~g'"
+  register: fixture_templates
+  tags:
+    - fixtures
+
+- name: create fixtures from templates
+  template:
+    dest: "{{ project_root }}/fixtures/{{ item }}"
+    src: "templates/fixtures/{{ item }}"
+  with_items: "{{ fixture_templates.stdout.splitlines() }}"
+  when: fixtures_applied.stat.exists == False
+  tags:
+    - fixtures
+
+- name: load fixtures
+  django_manage:
+    app_path: "{{ project_root }}"
+    command: loaddata
+    fixtures: "{{ project_root }}/fixtures/{{ item }}"
+    settings: "conf_site.settings.{{ environment_type }}"
+    virtualenv: "{{ virtualenv_root }}/current"
+  with_items: "{{ fixture_templates.stdout.splitlines() }}"
+  when: fixtures_applied.stat.exists == False
+  notify: mark fixtures as applied
+  tags:
+    - fixtures
+
 - name: collect static files
   django_manage: command="collectstatic --noinput --clear"
                  app_path={{ project_root }}

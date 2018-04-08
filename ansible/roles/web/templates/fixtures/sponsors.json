@@ -1,5 +1,71 @@
 [
 {
+    "pk": 1,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 0,
+        "name": "Founding",
+        "order": 1
+    }
+},
+{
+    "pk": 2,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 15000,
+        "name": "Diamond",
+        "order": 2
+    }
+},
+{
+    "pk": 3,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 8000,
+        "name": "Platinum",
+        "order": 3
+    }
+},
+{
+    "pk": 4,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 5000,
+        "name": "Gold",
+        "order": 4
+    }
+},
+{
+    "pk": 5,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 3000,
+        "name": "Silver",
+        "order": 5
+    }
+},
+{
+    "pk": 6,
+    "model": "symposion_sponsorship.sponsorlevel",
+    "fields": {
+        "conference": 1,
+        "description": "",
+        "cost": 1500,
+        "name": "Supporting",
+        "order": 6
+    }
+},
+{
     "fields": {
         "type": "weblogo",
         "name": "Web Logo",
@@ -188,5 +254,24 @@
     },
     "model": "symposion_sponsorship.benefitlevel",
     "pk": 19
+},
+{
+    "model": "symposion_sponsorship.sponsor",
+    "pk": 1,
+    "fields": {
+        "added": "2017-08-28T12:00:00Z",
+        "name": "Anaconda, Inc.",
+        "display_url": "",
+        "web_logo_benefit": null,
+        "contact_email": "admin@pydata.org",
+        "print_logo_benefit": null,
+        "active": true,
+        "company_description_benefit": null,
+        "contact_name": "Leah Silen",
+        "level": 1,
+        "annotation": "With over 4.5 million users, Anaconda is the world's most popular Python data science platform. Anaconda, Inc. continues to lead open source projects like Anaconda, NumPy and SciPy that form the foundation of modern data science. Anaconda's flagship product, Anaconda Enterprise, allows organizations to secure, govern, scale and extend Anaconda to deliver actionable insights that drive businesses and industries forward.",
+        "print_description_benefit": null,
+        "external_url": "https://www.anaconda.com/"
+    }
 }
 ]

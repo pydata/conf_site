@@ -3,8 +3,8 @@
         "pk": 1,
         "model": "sites.site",
         "fields": {
-            "domain": "pydata.org",
-            "name": "PyData"
+            "domain": "{{ website_domain }}",
+            "name": "{{ conference_name }}"
         }
     }
 ]
