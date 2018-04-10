@@ -4,4 +4,6 @@ local ansible_ssh_host=localhost ansible_ssh_port=2222
 [production]
 amsterdam2018 ansible_ssh_host=104.130.4.138
 berlin2018 ansible_ssh_host=104.130.4.110
+delhi2018 ansible_ssh_host=119.9.91.18
+la2018 ansible_ssh_host=104.239.141.129
 london2018 ansible_ssh_host=104.130.26.133
