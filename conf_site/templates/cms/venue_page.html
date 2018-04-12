@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
+{% block body_class %}venue-page{% endblock %}
+
 {% block body %}
 <div class="container sec1-inner-page">
 {% if page.background_image %}
