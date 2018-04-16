@@ -36,5 +36,20 @@
     <h3>Abstract</h3>
 
     <div class="abstract">{{ presentation.abstract_html|safe }}</div>
+
+    {% if config.PROPOSAL_URL_FIELDS %}
+        {# Don't show this section if there aren't either slides_url or code_url. #}
+        {% if presentation.proposal.slides_url or presentation.proposal.code_url %}
+            <h3>Links</h3>
+            <ul>
+            {% if presentation.proposal.slides_url %}
+                <li>Slides: <a href="{{ presentation.proposal.slides_url }}">{{ presentation.proposal.slides_url }}</a></li>
+            {% endif %}
+            {% if presentation.proposal.code_url %}
+                <li>Code: <a href="{{ presentation.proposal.code_url }}">{{ presentation.proposal.code_url }}</a></li>
+            {% endif %}
+            </ul>
+        {% endif %}
+    {% endif %}
 </div>
 {% endblock %}
