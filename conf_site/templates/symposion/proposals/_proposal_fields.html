@@ -47,6 +47,17 @@
     <dt>{% trans "Notes" %}</dt>
     <dd>{{ proposal.additional_notes_html|safe }}&nbsp;</dd>
 
+    {% if config.PROPOSAL_URL_FIELDS %}
+        {% if proposal.slides_url %}
+            <dt>Slides</dt>
+            <dd><a href="{{ proposal.slides_url }}">{{ proposal.slides_url }}</a></dd>
+        {% endif %}
+        {% if proposal.code_url %}
+            <dt>Code</dt>
+            <dd><a href="{{ proposal.code_url }}">{{ proposal.code_url }}</a></dd>
+        {% endif %}
+    {% endif %}
+
     <dt>{% trans "Speaker Bio" %}</dt>
     <dd>{{ proposal.speaker.biography_html|safe }}&nbsp;</dd>
 
