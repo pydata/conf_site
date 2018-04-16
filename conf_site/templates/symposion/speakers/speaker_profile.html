@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load static from staticfiles %}
 {% load thumbnail %}
 
 
@@ -9,11 +10,17 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 speaker-social">
             {% if speaker.photo %}
                 <img src="{% thumbnail speaker.photo '128x128' %}" alt="{{ speaker.name }}" />
             {% else %}
                 &nbsp;
+            {% endif %}
+            {% if speaker.twitter_username %}
+            <div><a href="https://twitter.com/{{ speaker.twitter_username }}/">
+                <i class="fa fa-twitter"></i>
+                @{{ speaker.twitter_username }}
+            </a></div>
             {% endif %}
         </div>
         <div class="col-md-6">

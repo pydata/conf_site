@@ -716,6 +716,11 @@ ul.dropdown-menu {
     z-index: 9999 !important;
 }
 
+.speaker-social a:hover {
+  border-bottom: 1px dotted;
+  text-decoration: none;
+}
+
 @media (max-width: 1500px) {
   #sec1x-con .sec1-col, #nst-con .vcs { margin-left: 150px; }
 }
