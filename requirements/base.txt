@@ -14,7 +14,7 @@ fabtools==0.20.0
 gunicorn==19.7.1
 Pillow==4.1.1
 pinax-eventlog==1.1.2
-pip==9.0.1
+pip==10.0.0
 psycopg2==2.7.1
 pytz==2017.2
 redis==2.10.5
@@ -24,4 +24,4 @@ wagtail==1.9
 wagtailmenus==2.2.1
 virtualenv==15.1.0
 
-git+git://github.com/pydata/symposion.git@e5e19525049d201d14545a7#egg=symposion
+-e git+git://github.com/pydata/symposion.git@e5e19525049d201d1454#egg=symposion
