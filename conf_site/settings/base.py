@@ -145,7 +145,6 @@ INSTALLED_APPS = [
     "bootstrapform",
     "constance",
     "easy_thumbnails",
-    "markitup",
     "modelcluster",
     "pinax.eventlog",
     "rest_framework",
@@ -253,9 +252,6 @@ AUTHENTICATION_BACKENDS = [
     "account.auth_backends.EmailAuthenticationBackend",
 ]
 
-MARKITUP_FILTER = ("markdown.markdown", {"safe_mode": True})
-MARKITUP_SET = "markitup/sets/markdown"
-MARKITUP_SKIN = "markitup/skins/simple"
 CACHES = {
     "default": {
         "BACKEND": "redis_cache.RedisCache",

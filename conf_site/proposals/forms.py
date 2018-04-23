@@ -1,7 +1,6 @@
 from django import forms
 
 from constance import config
-from markitup.widgets import MarkItUpWidget
 
 from .models import Proposal, ProposalKeyword
 
@@ -54,8 +53,6 @@ class ProposalForm(forms.ModelForm):
             "user_keywords",
         ]
         widgets = {
-            "abstract": MarkItUpWidget(),
-            "additional_notes": MarkItUpWidget(),
             "under_represented_details": forms.CheckboxSelectMultiple(),
         }
 
