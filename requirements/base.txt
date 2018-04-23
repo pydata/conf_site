@@ -1,25 +1,25 @@
-Django==1.9.13
-django-analytical==2.2.2
-django-bootstrap-form==3.2.1
-django-constance[redis]==2.0.0
-django-multiselectfield==0.1.5
+Django==1.11.12
+django-analytical==2.4.0
+django-bootstrap-form==3.4
+django-constance[redis]==2.2.0
+django-multiselectfield==0.1.8
 django-redis-cache==1.7.1
-djangorestframework==3.6.2
+djangorestframework==3.8.2
 django-settings-export==1.2.1
 django-taggit==0.22.2
-Fabric==1.13.2
+Fabric==1.14.0
 fabtools==0.20.0
 gunicorn==19.7.1
-Pillow==4.1.1
-pinax-eventlog==1.1.2
+Pillow==5.1.0
+pinax-eventlog==2.0.3
 pip==10.0.0
-psycopg2==2.7.1
-pytz==2017.2
-redis==2.10.5
-sendgrid-django==4.0.4
+psycopg2==2.7.4
+pytz==2018.4
+redis==2.10.6
+sendgrid-django==4.2.0
 unicodecsv==0.14.1
-wagtail==1.9
-wagtailmenus==2.2.1
+wagtail==1.13.1
+wagtailmenus==2.6.0
 virtualenv==15.1.0
 
--e git+git://github.com/pydata/symposion.git@e5e19525049d201d1454#egg=symposion
+-e git+git://github.com/pydata/symposion.git@7de42e163cc649416705#egg=symposion
