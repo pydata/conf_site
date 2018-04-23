@@ -35,6 +35,7 @@ class ProposalForm(forms.ModelForm):
     class Meta:
         model = Proposal
         fields = [
+            "kind",
             "title",
             "audience_level",
             "description",
@@ -61,6 +62,11 @@ class ProposalForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProposalForm, self).__init__(*args, **kwargs)
 
+        # Don't display kind if this proposal does not already exist,
+        # since the kind will be overwritten by
+        # symposion.proposals.views.proposal_submit_kind.
+        if not self.instance.pk:
+            del self.fields["kind"]
         # Don't display keyword fields if keyword support is disabled.
         if not config.PROPOSAL_KEYWORDS:
             del self.fields["official_keywords"]
