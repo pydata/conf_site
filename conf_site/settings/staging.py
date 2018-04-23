@@ -3,7 +3,6 @@ from .secrets import *  # noqa: F403
 
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     "default": DATABASES_DEFAULT,       # noqa: F405

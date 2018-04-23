@@ -1,6 +1,5 @@
-import datetime
-
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 
 from rest_framework import status
 from symposion.conference.models import Section
@@ -43,14 +42,14 @@ class ConferenceSiteAPISponsorTestCase(ConferenceSiteAPITestCase):
                 name='test slot',
                 day=Day.objects.create(
                     schedule=cls.schedule,
-                    date=datetime.date.today(),
+                    date=timezone.now().date(),
                 ),
                 kind=SlotKind.objects.create(
                     schedule=cls.schedule,
                     label='45-min talk',
                 ),
-                start=datetime.time(),
-                end=datetime.time(),
+                start=timezone.now(),
+                end=timezone.now(),
             ),
             title='test presentation',
             description='test description',

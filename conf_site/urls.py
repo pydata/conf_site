@@ -52,7 +52,6 @@ urlpatterns += [
         name="review_keyword_detail"),
     url(r"^reviews/", include("symposion.reviews.urls")),
     url(r"^schedule/", include("symposion.schedule.urls")),
-    url(r"^markitup/", include("markitup.urls")),
     url(r"^403-csrf/", csrf_failure, name="403-csrf"),
     url(r"^413/", TemplateView.as_view(template_name="413.html")),
     url(r"", include(wagtail_urls)),

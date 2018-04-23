@@ -1,7 +1,6 @@
 from base import *    # noqa: F401,F403
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     "default": {

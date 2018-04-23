@@ -37,7 +37,6 @@ ALLOWED_HOSTS = ['*']
 USE_X_FORWARDED_HOST = {% if subdirectory %}True{% else %}False{% endif %}
 
 
-FORCE_SCRIPT_NAME = "{{ subdirectory }}" or None
 LOGIN_URL = "{{ website_url }}/account/login/"
 MEDIA_URL = "{{ website_url }}/media/"
 STATIC_URL = "{{ website_url }}/static/"
