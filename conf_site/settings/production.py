@@ -3,7 +3,6 @@ from .secrets import *  # noqa: F403
 
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 # tells Pinax to serve media through the staticfiles app.
 SERVE_MEDIA = DEBUG
 

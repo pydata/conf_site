@@ -4,7 +4,6 @@ from .secrets import *  # noqa: F403
 
 COMPRESS_ENABLED = False
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 SERVE_MEDIA = DEBUG
 
 SITE_ID = 2
