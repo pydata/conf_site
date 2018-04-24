@@ -41,6 +41,25 @@ LOGIN_URL = "{{ website_url }}/account/login/"
 MEDIA_URL = "{{ website_url }}/media/"
 STATIC_URL = "{{ website_url }}/static/"
 
+{% if environment_type != "development" and sentry_secret_key != "" %}
+RAVEN_CONFIG = {
+    "dsn": ("https://{{ sentry_public_key }}:{{ sentry_secret_key }}@sentry.io"
+            "/{{ sentry_project_id }}"),
+    "environment": "{{ environment_type }}",
+    "name": "{{ conference_identifier }}",
+    "processors": ("raven.processors.SanitizePasswordsProcessor", ),
+    "release": "{{ git_status.stdout }}",
+    "site": "{{ conference_name }}",
+}
+SENTRY_PUBLIC_DSN = "https://{{ sentry_public_key }}@sentry.io/{{ sentry_project_id }}"
+{% else %}
+SENTRY_PUBLIC_DSN = False
+{% endif %}
+
 GOOGLE_ANALYTICS_PROPERTY_ID = "{{ google_analytics_id }}"
-SETTINGS_EXPORT = ["GOOGLE_ANALYTICS_PROPERTY_ID", ]
+
+SETTINGS_EXPORT = [
+    "GOOGLE_ANALYTICS_PROPERTY_ID",
+    "SENTRY_PUBLIC_DSN",
+]
 WAGTAIL_SITE_NAME = "{{ conference_name }}"

@@ -15,6 +15,7 @@ pinax-eventlog==2.0.3
 pip==10.0.0
 psycopg2==2.7.4
 pytz==2018.4
+raven==6.7.0
 redis==2.10.6
 sendgrid-django==4.2.0
 unicodecsv==0.14.1

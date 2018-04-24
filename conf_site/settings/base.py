@@ -144,6 +144,7 @@ INSTALLED_APPS = [
     "easy_thumbnails",
     "modelcluster",
     "pinax.eventlog",
+    "raven.contrib.django.raven_compat",
     "rest_framework",
     "reversion",
     "sitetree",
@@ -177,53 +178,53 @@ INSTALLED_APPS = [
     "conf_site.speakers",
 ]
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
+# Note that this logging configuration DOES NOT SEND ERROR REPORTS
+# BY EMAIL IF SENTRY IS NOT CONFIGURED. If this functionality is
+# needed, simply delete this section to restore the default
+# LOGGING setting
+# (see https://docs.djangoproject.com/en/1.11/ref/settings/#logging).
 LOGGING = {
     "version": 1,
-    "disable_existing_loggers": False,
+    "disable_existing_loggers": True,
+    "root": {
+        "level": "WARNING",
+        "handlers": ["sentry"],
+    },
     "formatters": {
         "verbose": {
-            "format": "%(asctime)s | %(levelname)s | %(name)s | %(module)s | "
-                      "%(funcName)s | %(process)d | %(thread)d | %(message)s",
-            "datefmt": "%Y%m%d-%H:%M:%S",
+            "format": "%(levelname)s %(asctime)s %(module)s "
+                      "%(process)d %(thread)d %(message)s"
         },
-        "simple": {
-            "format": "%(levelname)s %(message)s"
-        },
-    },
-    "filters": {
-        "require_debug_false": {
-            "()": "django.utils.log.RequireDebugFalse"
-        }
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "INFO",
     },
     "handlers": {
-        "mail_admins": {
+        "sentry": {
             "level": "ERROR",
-            "filters": ["require_debug_false"],
-            "class": "django.utils.log.AdminEmailHandler",
-            "formatter": "verbose",
+            "class": (
+                "raven.contrib.django.raven_compat.handlers.SentryHandler"),
         },
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
+            "formatter": "verbose"
+        }
     },
     "loggers": {
-        "django.request": {
-            "handlers": ["mail_admins", "console"],
-            "propagate": True,
-            "formatter": "verbose",
+        "django.db.backends": {
+            "level": "ERROR",
+            "handlers": ["console"],
+            "propagate": False,
         },
-    }
+        "raven": {
+            "level": "DEBUG",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+        "sentry.errors": {
+            "level": "DEBUG",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+    },
 }
 
 ADMINS = (
