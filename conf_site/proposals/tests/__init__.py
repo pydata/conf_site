@@ -11,12 +11,13 @@ class ProposalTestCase(TestCase):
     def setUp(self):
         # Create base conference infrastructure that has to exist in
         # order to create a Proposal.
-        conference = Conference(title="Conference")
-        conference.save()
-        section = Section(
-            conference=conference, name="Section", slug="section")
-        section.save()
-        proposal_kind = ProposalKind(section=section, name="Kind", slug="kind")
+        self.conference = Conference(title="Conference")
+        self.conference.save()
+        self.section = Section(
+            conference=self.conference, name="Section", slug="section")
+        self.section.save()
+        proposal_kind = ProposalKind(
+            section=self.section, name="Kind", slug="kind")
         proposal_kind.save()
         speaker = Speaker(name="Paul Ryan")
         speaker.save()
