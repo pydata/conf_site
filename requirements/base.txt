@@ -1,4 +1,4 @@
-Django==1.11.12
+Django==1.11.13
 django-analytical==2.4.0
 django-bootstrap-form==3.4
 django-constance[redis]==2.2.0
@@ -12,7 +12,7 @@ fabtools==0.20.0
 gunicorn==19.7.1
 Pillow==5.1.0
 pinax-eventlog==2.0.3
-pip==10.0.0
+pip==10.0.1
 psycopg2==2.7.4
 pytz==2018.4
 raven==6.7.0
