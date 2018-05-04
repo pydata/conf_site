@@ -205,7 +205,9 @@
         integrity="sha384-HwE7dFvrH8iD9R5VYUqNwjIhxDycip+e4DjP5nEhXrJtACG8AdNXjvP+AfJWxhJh"
         crossorigin="anonymous"></script>
 <script>
-    Raven.config("{{ settings.SENTRY_PUBLIC_DSN }}").install()
+    Raven.config("{{ settings.SENTRY_PUBLIC_DSN }}", {
+        whitelistUrls: ["pydata.org"]
+    }).install()
 </script>
 {% endif %}
 <!--
