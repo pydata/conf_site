@@ -42,14 +42,20 @@ class HomePage(CustomPage):
         on_delete=models.SET_NULL,
         related_name="+"
     )
-    conference_info_section = StreamField(HTMLBlock())
-    pydata_info_section = StreamField(HTMLBlock())
-    news_keynote_section = StreamField(HTMLBlock())
+    conference_info_section = StreamField(
+        HTMLBlock(required=False),
+        blank=True)
+    pydata_info_section = StreamField(
+        HTMLBlock(required=False),
+        blank=True)
+    news_keynote_section = StreamField(
+        HTMLBlock(required=False),
+        blank=True)
     ticketing_section = RichTextField(default="<h2>Tickets</h2>")
     ticketing_url = models.URLField(blank=True, max_length=2083)
     footer1_section = StreamField(
-        HTMLBlock(),
-        default=None,
+        HTMLBlock(required=False),
+        blank=True,
         help_text=("Displays on left side of the site's footer section. "
                    "Will display mini code of conduct by default."))
     footer_email = models.EmailField(
