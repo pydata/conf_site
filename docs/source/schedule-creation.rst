@@ -32,14 +32,14 @@ Presentations
 -------------
 
 `Presentation` objects are automatically created when a `Proposal` is
-accepted. Updating a presentation's proposal with automatically update the
+accepted. Updating a presentation's proposal will automatically update the
 presentation's information. Presentations that are attached to unaccepted
-proposals may be deleted automatically by symposion.
+proposals will be deleted automatically by symposion.
 
 Creating New Presentations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To create a new presentation:
+To create a new `Presentation` that will not be deleted automatically:
 
   - Create a new `User` for each speaker in the presentation.
   - Create a new `Speaker` attached to the aforementioned `Users`.
@@ -71,7 +71,7 @@ Adding Plenary Sessions
 -----------------------
 
 Plenary sessions that do not have associated `Presentations` (e.g.
-"Registration", "Lunch", etc.) are added directly as slots. In order to
+"Registration", "Lunch", etc.) are added directly as `Slots`. In order to
 ensure that they contain the correct content, the "Content overrride"
 field must be filled out.
 
