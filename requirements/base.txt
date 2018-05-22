@@ -9,7 +9,7 @@ django-settings-export==1.2.1
 django-taggit==0.22.2
 Fabric==1.14.0
 fabtools==0.20.0
-gunicorn==19.7.1
+gunicorn==19.8.1
 Pillow==5.1.0
 pinax-eventlog==2.0.3
 pip==10.0.1
