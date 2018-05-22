@@ -21,6 +21,6 @@ sendgrid-django==4.2.0
 unicodecsv==0.14.1
 wagtail==1.13.1
 wagtailmenus==2.6.0
-virtualenv==15.1.0
+virtualenv==16.0.0
 
 -e git+git://github.com/pydata/symposion.git@9038990f4ee06e02850a#egg=symposion
