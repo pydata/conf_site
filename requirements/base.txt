@@ -9,18 +9,18 @@ django-settings-export==1.2.1
 django-taggit==0.22.2
 Fabric==1.14.0
 fabtools==0.20.0
-gunicorn==19.7.1
+gunicorn==19.8.1
 Pillow==5.1.0
 pinax-eventlog==2.0.3
 pip==10.0.1
 psycopg2==2.7.4
 pytz==2018.4
-raven==6.7.0
+raven==6.8.0
 redis==2.10.6
 sendgrid-django==4.2.0
 unicodecsv==0.14.1
 wagtail==1.13.1
 wagtailmenus==2.6.0
-virtualenv==15.1.0
+virtualenv==16.0.0
 
 -e git+git://github.com/pydata/symposion.git@9038990f4ee06e02850a#egg=symposion
