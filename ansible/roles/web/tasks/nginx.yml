@@ -16,7 +16,9 @@
   notify: restart nginx
 
 - name: remove default nginx global configuration file
-  command: rm -rf /etc/nginx/nginx.conf
+  file:
+    path: "/etc/nginx/nginx.conf"
+    state: absent
   become: true
   notify: restart nginx
 
@@ -28,7 +30,9 @@
   notify: restart nginx
 
 - name: remove default nginx site configuration file
-  command: rm -rf /etc/nginx/conf.d/default.conf
+  file:
+    path: "/etc/nginx/conf.d/default.conf"
+    state: absent
   become: true
 
 - name: add customized nginx site configuration file
@@ -39,7 +43,9 @@
   notify: restart nginx
 
 - name: remove default nginx ssl site configuration file
-  command: rm -rf /etc/nginx/conf.d/example-ssl.conf
+  file:
+    path: "/etc/nginx/conf.d/example-ssl.conf"
+    state: absent
   become: true
   notify: restart nginx
 
