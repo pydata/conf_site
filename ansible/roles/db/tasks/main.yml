@@ -1,5 +1,5 @@
 - name: install PostgreSQL packages
-  apt: pkg={{ item }} state=latest
+  apt: pkg={{ item }} state=present
   become: true
   with_items:
     - libpq-dev

@@ -11,7 +11,7 @@
   become: true
 
 - name: install nginx
-  apt:  pkg=nginx state=latest
+  apt:  pkg=nginx state=present
   become: true
   notify: restart nginx
 
