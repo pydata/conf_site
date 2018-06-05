@@ -23,7 +23,7 @@
 - name: add customized nginx global configuration file
   template: src=nginx-global.conf dest=/etc/nginx/nginx.conf
             force=yes
-            owner=root group=root mode=644
+            owner=root group=root mode=0644
   become: true
   notify: restart nginx
 
@@ -34,7 +34,7 @@
 - name: add customized nginx site configuration file
   template: src=nginx-site.conf
             dest=/etc/nginx/conf.d/{{ website_domain }}.conf
-            owner=root group=root mode=644
+            owner=root group=root mode=0644
   become: true
   notify: restart nginx
 
@@ -45,5 +45,5 @@
 
 - name: add custom logrotate configuration for nginx
   template: src=logrotate-nginx.conf dest=/etc/logrotate.d/nginx
-            owner=root group=root mode=644
+            owner=root group=root mode=0644
   become: true
