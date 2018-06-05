@@ -17,18 +17,18 @@ jobs:
       # Download and cache dependencies.
       - restore_cache:
           keys:
-          - v1-python-dependencies-{{ checksum "requirements/testing.txt" }}-{{ checksum "requirements/base.txt" }}
+          - v1-python-dependencies-{{ checksum "requirements/development.txt" }}-{{ checksum "requirements/base.txt" }}
       - run:
           name: install dependencies
           command: |
             mkdir -p ~/venv
             virtualenv ~/venv
             . ~/venv/bin/activate
-            pip install -r requirements/testing.txt
+            pip install -r requirements/development.txt
       - save_cache:
           paths:
             - ~/venv
-          key: v1-python-dependencies-{{ checksum "requirements/testing.txt" }}-{{ checksum "requirements/base.txt" }}
+          key: v1-python-dependencies-{{ checksum "requirements/development.txt" }}-{{ checksum "requirements/base.txt" }}
       - run:
           name: configure static files
           command: |
