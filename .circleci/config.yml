@@ -45,6 +45,14 @@ jobs:
             . ~/venv/bin/activate
             rstcheck --report warning docs/source/*.rst
       - run:
+          name: run Ansible linting
+          command: |
+            . ~/venv/bin/activate
+            ansible-lint ansible/tasks/bootstrap.yml
+            ansible-lint ansible/development.yml
+            ansible-lint ansible/staging.yml
+            ansible-lint ansible/production.yml
+      - run:
           name: run automated tests
           command: |
             . ~/venv/bin/activate
