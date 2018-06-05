@@ -29,7 +29,11 @@
   notify: restart gunicorn
 
 - name: change ownership of everything to this user
-  command: /bin/chown -R {{ ansible_user_id }}:www-data {{ project_root }}
+  file:
+    path: "{{ project_root }}"
+    recurse: yes
+    owner: "{{ ansible_user_id }}"
+    group: www-data
   become: true
 
 - name: manually figure out latest Git commit
