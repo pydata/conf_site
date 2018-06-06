@@ -53,14 +53,21 @@
   tags:
     - skip_ansible_lint
 
-- name: move old "current" symlink to "previous" if virtualenv has changed
-  shell: mv
-        {{ virtualenv_root }}/current
-        {{ virtualenv_root }}/previous
+- name: add/update "previous" virtualenv symlink
+  shell: >
+    ln -sfn
+    $(readlink {{ virtualenv_root }}/current)
+    {{ virtualenv_root }}/previous
+  args:
+    warn: false
   when: venv_dir.stat.isdir is not defined
   ignore_errors: yes
-  tags:
-    - skip_ansible_lint
+
+- name: add/update "current" virtualenv symlink
+  file:
+    state: link
+    path: "{{ virtualenv_root }}/current"
+    src: "{{ virtualenv_root }}/{{ git_status.stdout }}"
 
 - name: use symlink for easier virtualenv management
   file: state=link
