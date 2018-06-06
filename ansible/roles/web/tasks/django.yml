@@ -62,13 +62,18 @@
         src={{ virtualenv_root }}/{{ git_status.stdout }}
 
 - name: install latest version of pip
-  shell: "{{ virtualenv_root }}/current/bin/pip install --upgrade pip"
+  pip:
+    extra_args: "--upgrade"
+    name: pip
+    state: present
+    virtualenv: "{{ virtualenv_root }}/current"
 
 - name: update virtualenv with requirements
-  shell: >
-    "{{ virtualenv_root }}/current/bin/pip"
-    install -r {{ project_root }}/requirements/{{ environment_type }}.txt
-    --upgrade
+  pip:
+    extra_args: "--upgrade"
+    requirements: "{{ project_root }}/requirements/{{ environment_type }}.txt"
+    state: present
+    virtualenv: "{{ virtualenv_root }}/current"
   notify: restart gunicorn
 
 - name: add supervisor configuration file for gunicorn
