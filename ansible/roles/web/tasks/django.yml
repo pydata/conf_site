@@ -47,7 +47,7 @@
   register: venv_dir
 
 - name: create virtualenv if necessary
-  shell: virtualenv {{ virtualenv_root }}/{{ git_status.stdout }}
+  command: virtualenv {{ virtualenv_root }}/{{ git_status.stdout }}
   when: venv_dir.stat.isdir is not defined
   notify: delete other virtualenvs
   tags:
