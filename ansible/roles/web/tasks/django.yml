@@ -39,6 +39,8 @@
 - name: manually figure out latest Git commit
   command: git rev-parse HEAD chdir={{ project_root }}
   register: git_status
+  tags:
+    - skip_ansible_lint
 
 - name: determine if virtualenv exists
   stat: path={{ virtualenv_root }}/{{ git_status.stdout }}
@@ -48,6 +50,8 @@
   shell: virtualenv {{ virtualenv_root }}/{{ git_status.stdout }}
   when: venv_dir.stat.isdir is not defined
   notify: delete other virtualenvs
+  tags:
+    - skip_ansible_lint
 
 - name: move old "current" symlink to "previous" if virtualenv has changed
   shell: mv
@@ -55,6 +59,8 @@
         {{ virtualenv_root }}/previous
   when: venv_dir.stat.isdir is not defined
   ignore_errors: yes
+  tags:
+    - skip_ansible_lint
 
 - name: use symlink for easier virtualenv management
   file: state=link
