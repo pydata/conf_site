@@ -108,6 +108,7 @@
 - name: create list of fixture templates
   local_action: "shell ls roles/web/templates/fixtures/* | sed 's~.*/~~g'"
   register: fixture_templates
+  when: fixtures_applied.stat.exists == False
   tags:
     - fixtures
 
