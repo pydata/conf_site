@@ -11,7 +11,7 @@
     - restart gunicorn
 
 - name: install python packages and associated libraries
-  apt: pkg={{ item }} state=latest
+  apt: pkg={{ item }} state=present
   become: true
   with_items:
     - python-dev
@@ -29,28 +29,45 @@
   notify: restart gunicorn
 
 - name: change ownership of everything to this user
-  command: /bin/chown -R {{ ansible_user_id }}:www-data {{ project_root }}
+  file:
+    path: "{{ project_root }}"
+    recurse: yes
+    owner: "{{ ansible_user_id }}"
+    group: www-data
   become: true
 
 - name: manually figure out latest Git commit
   command: git rev-parse HEAD chdir={{ project_root }}
   register: git_status
+  tags:
+    - skip_ansible_lint
 
 - name: determine if virtualenv exists
   stat: path={{ virtualenv_root }}/{{ git_status.stdout }}
   register: venv_dir
 
 - name: create virtualenv if necessary
-  shell: virtualenv {{ virtualenv_root }}/{{ git_status.stdout }}
+  command: virtualenv {{ virtualenv_root }}/{{ git_status.stdout }}
   when: venv_dir.stat.isdir is not defined
   notify: delete other virtualenvs
+  tags:
+    - skip_ansible_lint
 
-- name: move old "current" symlink to "previous" if virtualenv has changed
-  shell: mv
-        {{ virtualenv_root }}/current
-        {{ virtualenv_root }}/previous
+- name: add/update "previous" virtualenv symlink
+  shell: >
+    ln -sfn
+    $(readlink {{ virtualenv_root }}/current)
+    {{ virtualenv_root }}/previous
+  args:
+    warn: false
   when: venv_dir.stat.isdir is not defined
   ignore_errors: yes
+
+- name: add/update "current" virtualenv symlink
+  file:
+    state: link
+    path: "{{ virtualenv_root }}/current"
+    src: "{{ virtualenv_root }}/{{ git_status.stdout }}"
 
 - name: use symlink for easier virtualenv management
   file: state=link
@@ -58,13 +75,18 @@
         src={{ virtualenv_root }}/{{ git_status.stdout }}
 
 - name: install latest version of pip
-  shell: "{{ virtualenv_root }}/current/bin/pip install --upgrade pip"
+  pip:
+    extra_args: "--upgrade"
+    name: pip
+    state: present
+    virtualenv: "{{ virtualenv_root }}/current"
 
 - name: update virtualenv with requirements
-  shell: >
-    "{{ virtualenv_root }}/current/bin/pip"
-    install -r {{ project_root }}/requirements/{{ environment_type }}.txt
-    --upgrade
+  pip:
+    extra_args: "--upgrade"
+    requirements: "{{ project_root }}/requirements/{{ environment_type }}.txt"
+    state: present
+    virtualenv: "{{ virtualenv_root }}/current"
   notify: restart gunicorn
 
 - name: add supervisor configuration file for gunicorn
@@ -99,6 +121,7 @@
 - name: create list of fixture templates
   local_action: "shell ls roles/web/templates/fixtures/* | sed 's~.*/~~g'"
   register: fixture_templates
+  when: fixtures_applied.stat.exists == False
   tags:
     - fixtures
 
