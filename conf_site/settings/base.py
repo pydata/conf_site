@@ -141,6 +141,7 @@ INSTALLED_APPS = [
     "analytical",
     "bootstrapform",
     "constance",
+    "condensedinlinepanel",
     "easy_thumbnails",
     "modelcluster",
     "pinax.eventlog",
