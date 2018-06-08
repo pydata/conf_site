@@ -4,6 +4,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailcore.blocks import RawHTMLBlock, RichTextBlock, StreamBlock
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailcore.models import Page
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 
 class HTMLBlock(StreamBlock):
@@ -64,8 +65,8 @@ class HomePage(CustomPage):
         blank=True, default="PyData", max_length=15)
 
     content_panels = Page.content_panels + [
-        FieldPanel("logo_image"),
-        FieldPanel("background_image"),
+        ImageChooserPanel("logo_image"),
+        ImageChooserPanel("background_image"),
         StreamFieldPanel("conference_info_section"),
         StreamFieldPanel("pydata_info_section"),
         StreamFieldPanel("news_keynote_section"),
@@ -93,7 +94,7 @@ class VenuePage(CustomPage):
     hotel_info_section = StreamField(HTMLBlock())
 
     content_panels = Page.content_panels + [
-        FieldPanel("background_image"),
+        ImageChooserPanel("background_image"),
         StreamFieldPanel("venue_info_section"),
         FieldPanel("google_maps_url"),
         StreamFieldPanel("hotel_info_section"),
