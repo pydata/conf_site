@@ -47,6 +47,7 @@ class HomePage(CustomPage):
         on_delete=models.SET_NULL,
         related_name="+"
     )
+    image_credit = RichTextField(blank=True, default="")
     conference_info_section = StreamField(
         HTMLBlock(required=False),
         blank=True)
@@ -70,7 +71,13 @@ class HomePage(CustomPage):
 
     content_panels = Page.content_panels + [
         ImageChooserPanel("logo_image"),
-        ImageChooserPanel("background_image"),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel("background_image"),
+                FieldPanel("image_credit"),
+            ],
+            heading="Banner Image",
+        ),
         StreamFieldPanel("conference_info_section"),
         StreamFieldPanel("pydata_info_section"),
         StreamFieldPanel("news_keynote_section"),
@@ -103,12 +110,19 @@ class VenuePage(CustomPage):
         on_delete=models.SET_NULL,
         related_name="+"
     )
+    image_credit = RichTextField(blank=True, default="")
     venue_info_section = StreamField(HTMLBlock())
     google_maps_url = models.URLField(blank=True, max_length=2083)
     hotel_info_section = StreamField(HTMLBlock())
 
     content_panels = Page.content_panels + [
-        ImageChooserPanel("background_image"),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel("background_image"),
+                FieldPanel("image_credit"),
+            ],
+            heading="Banner Image",
+        ),
         StreamFieldPanel("venue_info_section"),
         FieldPanel("google_maps_url"),
         StreamFieldPanel("hotel_info_section"),

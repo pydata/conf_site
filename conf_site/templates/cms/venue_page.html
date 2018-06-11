@@ -8,6 +8,7 @@
 {% if page.background_image %}
 <div id="sli" class="text-center">
     {% image page.background_image original %}
+    {% if page.image_credit %}<div class="image-credit">{{ page.image_credit|safe }}</div>{% endif %}
 </div>
 {% endif %}
 <section>
