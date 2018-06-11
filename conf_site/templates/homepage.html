@@ -11,6 +11,7 @@
             <div class="logo-ovr" data-stellar-offset-parent="true" data-stellar-ratio="1.22" data-stellar-vertical-offset="75">
                 <img src="{% static 'images/homepage-overlay.png' %}">
             </div>
+            {% if page.image_credit %}<div class="image-credit">{{ page.image_credit|safe }}</div>{% endif %}
     </div>
 </div>
 <section>

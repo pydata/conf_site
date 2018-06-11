@@ -812,3 +812,16 @@ ul.dropdown-menu {
     .venue-page #sli {min-height:600px;}
 
     .logo-ovr {position: absolute;top: 50px;display: block !important;width: 100%;text-align: center;z-index: 999;}
+
+    .image-credit {
+        background-color: #fff;
+        bottom: 0;
+        opacity: 0.8;
+        padding: 0 10px;
+        position: absolute;
+        right: 0;
+    }
+    .image-credit p {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
