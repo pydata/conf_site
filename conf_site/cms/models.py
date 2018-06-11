@@ -1,6 +1,10 @@
 from django.db import models
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailadmin.edit_handlers import (
+    FieldPanel,
+    MultiFieldPanel,
+    StreamFieldPanel,
+)
 from wagtail.wagtailcore.blocks import RawHTMLBlock, RichTextBlock, StreamBlock
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailcore.models import Page
@@ -70,11 +74,21 @@ class HomePage(CustomPage):
         StreamFieldPanel("conference_info_section"),
         StreamFieldPanel("pydata_info_section"),
         StreamFieldPanel("news_keynote_section"),
-        FieldPanel("ticketing_section"),
-        FieldPanel("ticketing_url"),
-        StreamFieldPanel("footer1_section"),
-        FieldPanel("footer_email"),
-        FieldPanel("footer_twitter"),
+        MultiFieldPanel(
+            [
+                FieldPanel("ticketing_section"),
+                FieldPanel("ticketing_url"),
+            ],
+            heading="Ticketing",
+        ),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel("footer1_section"),
+                FieldPanel("footer_email"),
+                FieldPanel("footer_twitter"),
+            ],
+            heading="Footer",
+        ),
     ]
     template = "homepage.html"
 
