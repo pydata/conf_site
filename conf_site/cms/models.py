@@ -111,9 +111,15 @@ class VenuePage(CustomPage):
         related_name="+"
     )
     image_credit = RichTextField(blank=True, default="")
-    venue_info_section = StreamField(HTMLBlock())
+    venue_info_section = StreamField(
+        HTMLBlock(required=False),
+        blank=True,
+        help_text=("Information about the conference's venue."))
     google_maps_url = models.URLField(blank=True, max_length=2083)
-    hotel_info_section = StreamField(HTMLBlock())
+    hotel_info_section = StreamField(
+        HTMLBlock(required=False),
+        blank=True,
+        help_text=("Information about the conference's hotel(s)."))
 
     content_panels = Page.content_panels + [
         MultiFieldPanel(
