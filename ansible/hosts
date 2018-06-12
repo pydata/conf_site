@@ -7,6 +7,9 @@ test2018 ansible_ssh_host=162.242.144.92
 [production]
 amsterdam2018 ansible_ssh_host=104.130.4.138
 berlin2018 ansible_ssh_host=104.130.4.110
+cordoba2018 ansible_ssh_host=104.130.141.30
 delhi2018 ansible_ssh_host=119.9.91.18
+dc2018 ansible_ssh_host=104.239.175.76
 la2018 ansible_ssh_host=104.239.141.129
 london2018 ansible_ssh_host=104.130.26.133
+nyc2018 ansible_ssh_host=104.130.13.148
