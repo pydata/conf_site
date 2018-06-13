@@ -6,7 +6,7 @@
             "timezone": "{{ timezone }}",
             "start_date": "2040-01-01",
             "end_date": "2040-01-04",
-            "title": "{{ conference_identifier }}"
+            "title": "{{ conference_name }}"
         }
     },
     {
