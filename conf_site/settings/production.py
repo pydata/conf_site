@@ -10,6 +10,4 @@ DATABASES = {
     "default": DATABASES_DEFAULT,       # noqa: F405
 }
 
-SITE_ID = 1
-
 SECURE_SSL_REDIRECT = True
