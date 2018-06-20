@@ -6,7 +6,6 @@ COMPRESS_ENABLED = False
 DEBUG = True
 SERVE_MEDIA = DEBUG
 
-SITE_ID = 2
 ALLOWED_HOSTS = ["localhost", "0.0.0.0"]
 
 DATABASES = {
