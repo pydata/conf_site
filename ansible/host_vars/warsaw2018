@@ -1,0 +1,10 @@
+conference_identifier: warsaw2018
+conference_name: "PyData Warsaw 2018"
+database_user: "{{ conference_identifier }}"
+django_database: "{{ conference_identifier }}"
+google_analytics_id: UA-41850464-30
+subdirectory: /{{ conference_identifier }}
+time_format: "G:i"
+timezone: Europe/Warsaw
+website_domain: pydata.org
+website_url: https://pydata.org{{ subdirectory }}
