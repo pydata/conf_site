@@ -1,4 +1,4 @@
-Django==1.11.13
+Django==1.11.14
 django-analytical==2.4.0
 django-bootstrap-form==3.4
 django-constance[redis]==2.2.0
@@ -9,13 +9,13 @@ django-settings-export==1.2.1
 django-taggit==0.22.2
 Fabric==1.14.0
 fabtools==0.20.0
-gunicorn==19.8.1
-Pillow==5.1.0
+gunicorn==19.9.0
+Pillow==5.2.0
 pinax-eventlog==2.0.3
 pip==10.0.1
-psycopg2==2.7.4
-pytz==2018.4
-raven==6.8.0
+psycopg2==2.7.5
+pytz==2018.5
+raven==6.9.0
 redis==2.10.6
 sendgrid-django==4.2.0
 unicodecsv==0.14.1
