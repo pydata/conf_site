@@ -14,7 +14,7 @@ Pillow==5.2.0
 pinax-eventlog==2.0.3
 pip==10.0.1
 psycopg2==2.7.5
-pytz==2018.4
+pytz==2018.5
 raven==6.8.0
 redis==2.10.6
 sendgrid-django==4.2.0
