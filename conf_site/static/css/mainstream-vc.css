@@ -194,6 +194,7 @@ html,body {
   content: '';
   display: block;
   left: 0px;
+  opacity: 0.3;
   top: 0px;
 }
 #sec1x-con .sec1x-elem.sec1x-after {
