@@ -183,27 +183,25 @@ html,body {
   min-height: 635px;
   padding-top: 80px !important;
 }
+#sec1x-con .sec1x-elem {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
 #sec1x-con .sec1x-elem.sec1x-before {
   background: url('../images/layer-1.png') no-repeat scroll center left;
   content: '';
   display: block;
   left: 0px;
-  height: 100%;
-  position: absolute;
   top: 0px;
-  width: 100%;
-  z-index: -1;
 }
 #sec1x-con .sec1x-elem.sec1x-after {
   background: url('../images/pydata-fullbocks1.png') no-repeat scroll 100% 250%;
   bottom: 0px;
   content: '';
   display :block;
-  height:100%;
-  position: absolute;
   right: 0px;
-  width: 100%;
-  z-index: -1;
 }
 #sec2 {
   background-color: #3cb3d3;
