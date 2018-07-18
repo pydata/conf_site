@@ -508,10 +508,10 @@ html,body {
   display:inline-block;
   color: #fff;
   font-size: 27px;
-  height: 40px;
-  padding: 7px 0px;
+  height: 50px;
+  padding: 10px;
   text-align: center;
-  width: 40px;
+  width: 50px;
 }
 #footer a:hover i {
   background-color: #12ccea;
