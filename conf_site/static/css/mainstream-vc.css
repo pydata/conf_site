@@ -463,7 +463,6 @@ html,body {
 }
 
 #footer {
-  background-color: #595f73;
   min-height: 442px;
   padding-top: 60px;
   }
@@ -475,7 +474,6 @@ html,body {
   text-transform:uppercase;
   font-style: normal;
   font-stretch: normal;
-  color: #12ccea;
 }
 #footer p {  font-family: 'Open Sans';
   font-size: 14px;
@@ -483,10 +481,6 @@ html,body {
   font-style: normal;
   font-stretch: normal;
   line-height: 1.67;
-  color: #ffffff;
-}
-#footer a {
-    color: #12ccea;
 }
 #footer .footer1 {
     padding-left: 0px !important;
@@ -509,10 +503,10 @@ html,body {
 }
 #footer .soc a {font-size:0px;margin-right:10px;}
 #footer i {
-  background-color: #12ccea;
+  background-color: #595f73;
   border-radius:100%;
   display:inline-block;
-  color: #595f73;
+  color: #fff;
   font-size: 27px;
   height: 40px;
   padding: 7px 0px;
@@ -520,7 +514,7 @@ html,body {
   width: 40px;
 }
 #footer a:hover i {
-  background-color: #fff;
+  background-color: #12ccea;
 }
 #nst-con .vcs {padding-bottom: 130px;position:relative;padding-top: 150px;}
 #nst-ovx {position:relative;overflow: hidden;}
