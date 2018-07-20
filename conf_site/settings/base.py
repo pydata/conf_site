@@ -148,7 +148,6 @@ INSTALLED_APPS = [
     "raven.contrib.django.raven_compat",
     "rest_framework",
     "reversion",
-    "sitetree",
     "symposion",
     "symposion.conference",
     "symposion.proposals",

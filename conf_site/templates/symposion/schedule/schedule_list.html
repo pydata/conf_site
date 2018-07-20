@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% load i18n %}
-{% load sitetree %}
 
 {% block title %} - Presentation Listing{% endblock %}
 
@@ -23,8 +22,6 @@
         }
     </style>
 {% endblock %}
-
-{% block breadcrumbs %}{% sitetree_breadcrumbs from "main" %}{% endblock %}
 
 {% block body %}
 <div class="container">
