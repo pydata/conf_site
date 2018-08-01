@@ -208,8 +208,8 @@
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/jquery.stellar.js' %}"></script>
 {% if settings.SENTRY_PUBLIC_DSN %}
-<script src="https://cdn.ravenjs.com/3.24.2/raven.min.js"
-        integrity="sha384-HwE7dFvrH8iD9R5VYUqNwjIhxDycip+e4DjP5nEhXrJtACG8AdNXjvP+AfJWxhJh"
+<script src="https://cdn.ravenjs.com/3.26.4/raven.min.js"
+        integrity="sha384-7zaZhdtWTKq5xNtp4WyvUJvEQ+aETU+FlQnpLIbepx2bQAee8znJJjmlydqQjbn/"
         crossorigin="anonymous"></script>
 <script>
     Raven.config("{{ settings.SENTRY_PUBLIC_DSN }}", {
