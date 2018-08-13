@@ -19,7 +19,7 @@ raven==6.9.0
 redis==2.10.6
 sendgrid-django==4.2.0
 unicodecsv==0.14.1
-wagtail==1.13.2
+wagtail==1.13.4
 wagtail-condensedinlinepanel==0.4.2
 wagtailmenus==2.6.0
 virtualenv==16.0.0
