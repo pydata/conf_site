@@ -24,10 +24,7 @@ def zipdir(basedir, archivename):
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        try:
-            os.makedirs(os.path.join(os.getcwd(), "build"))
-        except:
-            pass
+        os.makedirs(os.path.join(os.getcwd(), "build"))
 
         csv_file = csv.writer(
             open(os.path.join(os.getcwd(), "build", "sponsors.csv"), "wb")
@@ -36,10 +33,7 @@ class Command(BaseCommand):
 
         for sponsor in Sponsor.objects.all():
             path = os.path.join(os.getcwd(), "build", slugify(sponsor.name))
-            try:
-                os.makedirs(path)
-            except:
-                pass
+            os.makedirs(path)
 
             data = {
                 "name": sponsor.name,
