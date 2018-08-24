@@ -115,7 +115,9 @@ class LocalizedTextNode(template.Node):
             if self.content_var:
                 context[self.content_var] = s
                 s = ""
-        except:
+        except:                         # noqa: E722
+            # FIXME This is a bare except statement and could be hiding
+            # important errors.
             pass
         return s
 
