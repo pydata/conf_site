@@ -11,13 +11,13 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from pycon.sponsorship.models import (
+from symposion.conference.models import current_conference
+from symposion.sponsorship.models import (
     Benefit,
     Sponsor,
     SponsorBenefit,
     SponsorLevel,
 )
-from symposion.conference.models import current_conference
 
 
 class TestSponsorZipDownload(TestCase):
