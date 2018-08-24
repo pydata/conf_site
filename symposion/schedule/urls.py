@@ -10,9 +10,6 @@ from .views import (
     schedule_detail,
     schedule_slot_edit,
     schedule_json,
-    session_staff_email,
-    session_list,
-    session_detail,
 )
 
 urlpatterns = [
@@ -39,11 +36,4 @@ urlpatterns = [
         name="schedule_slot_edit",
     ),
     url(r"^conference.json", schedule_json, name="schedule_json"),
-    url(
-        r"^sessions/staff.txt$",
-        session_staff_email,
-        name="schedule_session_staff_email",
-    ),
-    url(r"^sessions/$", session_list, name="schedule_session_list"),
-    url(r"^session/(\d+)/$", session_detail, name="schedule_session_detail"),
 ]

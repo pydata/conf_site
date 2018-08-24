@@ -3,9 +3,7 @@ from __future__ import unicode_literals
 import datetime
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.models import User
 from django.db import models
-from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
@@ -262,79 +260,3 @@ class Presentation(models.Model):
         ordering = ["slot"]
         verbose_name = _("presentation")
         verbose_name_plural = _("presentations")
-
-
-@python_2_unicode_compatible
-class Session(models.Model):
-
-    day = models.ForeignKey(
-        Day, related_name="sessions", verbose_name=_("Day")
-    )
-    slots = models.ManyToManyField(
-        Slot, related_name="sessions", verbose_name=_("Slots")
-    )
-
-    def sorted_slots(self):
-        return self.slots.order_by("start")
-
-    def start(self):
-        slots = self.sorted_slots()
-        if slots:
-            return list(slots)[0].start
-        else:
-            return None
-
-    def end(self):
-        slots = self.sorted_slots()
-        if slots:
-            return list(slots)[-1].end
-        else:
-            return None
-
-    def __str__(self):
-        start = self.start()
-        end = self.end()
-        if start and end:
-            return "%s: %s - %s" % (
-                self.day.date.strftime("%a"),
-                start.strftime("%X"),
-                end.strftime("%X"),
-            )
-        return ""
-
-    class Meta:
-        verbose_name = _("Session")
-        verbose_name_plural = _("Sessions")
-
-
-@python_2_unicode_compatible
-class SessionRole(models.Model):
-
-    SESSION_ROLE_CHAIR = 1
-    SESSION_ROLE_RUNNER = 2
-
-    SESSION_ROLE_TYPES = [
-        (SESSION_ROLE_CHAIR, _("Session Chair")),
-        (SESSION_ROLE_RUNNER, _("Session Runner")),
-    ]
-
-    session = models.ForeignKey(Session, verbose_name=_("Session"))
-    user = models.ForeignKey(User, verbose_name=_("User"))
-    role = models.IntegerField(
-        choices=SESSION_ROLE_TYPES, verbose_name=_("Role")
-    )
-    status = models.NullBooleanField(verbose_name=_("Status"))
-
-    submitted = models.DateTimeField(default=timezone.now)
-
-    class Meta:
-        unique_together = [("session", "user", "role")]
-        verbose_name = _("Session role")
-        verbose_name_plural = _("Session roles")
-
-    def __str__(self):
-        return "%s %s: %s" % (
-            self.user,
-            self.session,
-            self.SESSION_ROLE_TYPES[self.role - 1][1],
-        )

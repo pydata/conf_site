@@ -9,8 +9,6 @@ from symposion.schedule.models import (
     Slot,
     SlotRoom,
     Presentation,
-    Session,
-    SessionRole,
 )
 
 
@@ -56,6 +54,4 @@ admin.site.register(SlotRoom, list_display=["slot", "room"])
 admin.site.register(Schedule, ScheduleAdmin)
 admin.site.register(Room, RoomAdmin)
 admin.site.register(Slot, SlotAdmin)
-admin.site.register(Session)
-admin.site.register(SessionRole)
 admin.site.register(Presentation, PresentationAdmin)
