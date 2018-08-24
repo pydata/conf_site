@@ -1,10 +1,6 @@
 from __future__ import unicode_literals
 
-try:
-    from io import StringIO
-except:
-    # Python 2
-    from cStringIO import StringIO
+from io import StringIO
 import itertools
 import logging
 import os
