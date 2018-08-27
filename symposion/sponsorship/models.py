@@ -134,7 +134,7 @@ class Sponsor(models.Model):
             field_name = benefit["field_name"]
             benefit_name = benefit["name"]
             setattr(self, field_name, self.benefit_is_complete(benefit_name))
-            super(Sponsor, self).save(*args, **kwargs)
+        super(Sponsor, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         if self.active:
