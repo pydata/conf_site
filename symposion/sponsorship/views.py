@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from io import StringIO
+from io import BytesIO
 import itertools
 import logging
 import os
@@ -201,8 +201,8 @@ def sponsor_export_data(request):
 def sponsor_zip_logo_files(request):
     """Return a zip file of sponsor web and print logos"""
 
-    zip_stringio = StringIO()
-    zipfile = ZipFile(zip_stringio, "w")
+    zip_bytesio = BytesIO()
+    zipfile = ZipFile(zip_bytesio, "w")
     try:
         benefits = Benefit.objects.all()
         for benefit in benefits:
@@ -245,10 +245,9 @@ def sponsor_zip_logo_files(request):
         zipfile.close()
 
     response = HttpResponse(
-        zip_stringio.getvalue(), content_type="application/zip"
+        zip_bytesio.getvalue(), content_type="application/zip"
     )
-    prefix = settings.CONFERENCE_URL_PREFIXES[settings.CONFERENCE_ID]
     response["Content-Disposition"] = (
-        'attachment; filename="%s_sponsorlogos.zip"' % prefix
+        'attachment; filename="sponsorlogos.zip"'
     )
     return response

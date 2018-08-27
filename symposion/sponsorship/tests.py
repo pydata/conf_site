@@ -4,7 +4,6 @@ import shutil
 import tempfile
 from zipfile import ZipFile
 
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
@@ -59,10 +58,9 @@ class TestSponsorZipDownload(TestCase):
         # Ensure a response from the view looks right, contains a valid
         # zip archive, has files with the right names and sizes.
         self.assertEqual("application/zip", rsp["Content-type"])
-        prefix = settings.CONFERENCE_URL_PREFIXES[settings.CONFERENCE_ID]
 
         self.assertEqual(
-            'attachment; filename="pycon_%s_sponsorlogos.zip"' % prefix,
+            'attachment; filename="sponsorlogos.zip"',
             rsp["Content-Disposition"],
         )
         zipfile = ZipFile(StringIO(rsp.content), "r")
