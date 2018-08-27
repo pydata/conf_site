@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from symposion.conference.models import current_conference
+from symposion.conference.models import Conference
 from symposion.sponsorship.models import (
     Benefit,
     Sponsor,
@@ -33,9 +33,9 @@ class TestSponsorZipDownload(TestCase):
         )
 
         # we need a sponsor
-        conference = current_conference()
+        self.conference = Conference.objects.create()
         self.sponsor_level = SponsorLevel.objects.create(
-            conference=conference, name="Lead", cost=1
+            conference=self.conference, name="Lead", cost=1
         )
         self.sponsor = Sponsor.objects.create(
             name="Big Daddy", level=self.sponsor_level, active=True
@@ -178,9 +178,8 @@ class TestSponsorZipDownload(TestCase):
         #  {print_logos,web_logos,advertisement}/<sponsor_level>/<sponsor_name>/<filename>
 
         # Add another sponsor at a different sponsor level
-        conference = current_conference()
         self.sponsor_level2 = SponsorLevel.objects.create(
-            conference=conference, name="Silly putty", cost=1
+            conference=self.conference, name="Silly putty", cost=1
         )
         self.sponsor2 = Sponsor.objects.create(
             name="Big Mama", level=self.sponsor_level2, active=True
@@ -251,7 +250,7 @@ class TestBenefitValidation(TestCase):
 
     def setUp(self):
         # we need a sponsor
-        conference = current_conference()
+        conference = Conference.objects.create()
         self.sponsor_level = SponsorLevel.objects.create(
             conference=conference, name="Lead", cost=1
         )
