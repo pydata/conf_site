@@ -85,8 +85,12 @@ class TestSponsorZipDownload(TestCase):
         # If not logged in, doesn't redirect, just serves up a login view
         self.client.logout()
         rsp = self.client.get(self.url)
-        self.assertEqual(200, rsp.status_code)
-        self.assertIn("""<body class="login">""", rsp.content)
+        login_url_with_next = "{}?next={}".format(
+            reverse("admin:login"), self.url
+        )
+        self.assertRedirects(
+            response=rsp, expected_url=login_url_with_next,
+        )
 
     def test_must_be_staff(self):
         # Only staff can use the view
@@ -95,8 +99,12 @@ class TestSponsorZipDownload(TestCase):
         self.user.is_staff = False
         self.user.save()
         rsp = self.client.get(self.url)
-        self.assertEqual(200, rsp.status_code)
-        self.assertIn("""<body class="login">""", rsp.content)
+        login_url_with_next = "{}?next={}".format(
+            reverse("admin:login"), self.url
+        )
+        self.assertRedirects(
+            response=rsp, expected_url=login_url_with_next,
+        )
         rsp = self.client.get(reverse("dashboard"))
         self.assertNotIn(self.url, rsp.content)
 
@@ -109,7 +117,6 @@ class TestSponsorZipDownload(TestCase):
         self.assertIn(self.url, rsp.content)
 
     def test_different_benefit_types(self):
-        # We only get files from the benefits named "Print logo" and "Web logo"
         # And we ignore any non-existent files
         try:
             # Create a temp dir for media files
@@ -161,8 +168,9 @@ class TestSponsorZipDownload(TestCase):
 
                 rsp = self.client.get(self.url)
                 expected = [
-                    ("web_logos/lead/big_daddy/file2", 20),
-                    ("print_logos/lead/big_daddy/file4", 40),
+                    ("file/lead/big_daddy/file1", 10),
+                    ("web_logo/lead/big_daddy/file2", 20),
+                    ("print_logo/lead/big_daddy/file4", 40),
                     ("advertisement/lead/big_daddy/file5", 50),
                 ]
                 self.validate_response(rsp, expected)
@@ -173,7 +181,7 @@ class TestSponsorZipDownload(TestCase):
 
     def test_file_org(self):
         # The zip file is organized into directories:
-        #  {print_logos,web_logos,advertisement}/<sponsor_level>/<sponsor_name>/<filename>
+        #  {print_logo,web_logo,advertisement}/<sponsor_level>/<sponsor_name>/<filename>
 
         # Add another sponsor at a different sponsor level
         self.sponsor_level2 = SponsorLevel.objects.create(
@@ -226,10 +234,10 @@ class TestSponsorZipDownload(TestCase):
 
                 rsp = self.client.get(self.url)
                 expected = [
-                    ("web_logos/lead/big_daddy/file1", 10),
-                    ("web_logos/silly_putty/big_mama/file3", 30),
-                    ("print_logos/lead/big_daddy/file2", 20),
-                    ("print_logos/silly_putty/big_mama/file4", 42),
+                    ("web_logo/lead/big_daddy/file1", 10),
+                    ("web_logo/silly_putty/big_mama/file3", 30),
+                    ("print_logo/lead/big_daddy/file2", 20),
+                    ("print_logo/silly_putty/big_mama/file4", 42),
                     ("advertisement/silly_putty/big_mama/file5", 55),
                 ]
                 self.validate_response(rsp, expected)
@@ -279,28 +287,28 @@ class TestBenefitValidation(TestCase):
         self.validate(True, self.text_type, upload=None, text="Some text")
 
     def test_text_has_upload(self):
-        self.validate(False, self.text_type, upload="filename", text="")
+        self.validate(True, self.text_type, upload="filename", text="")
 
     def test_text_has_both(self):
-        self.validate(False, self.text_type, upload="filename", text="Text")
+        self.validate(True, self.text_type, upload="filename", text="Text")
 
     def test_file_has_text(self):
-        self.validate(False, self.file_type, upload=None, text="Some text")
+        self.validate(True, self.file_type, upload=None, text="Some text")
 
     def test_file_has_upload(self):
         self.validate(True, self.file_type, upload="filename", text="")
 
     def test_file_has_both(self):
-        self.validate(False, self.file_type, upload="filename", text="Text")
+        self.validate(True, self.file_type, upload="filename", text="Text")
 
     def test_weblogo_has_text(self):
-        self.validate(False, self.weblogo_type, upload=None, text="Some text")
+        self.validate(True, self.weblogo_type, upload=None, text="Some text")
 
     def test_weblogo_has_upload(self):
         self.validate(True, self.weblogo_type, upload="filename", text="")
 
     def test_weblogo_has_both(self):
-        self.validate(False, self.weblogo_type, upload="filename", text="Text")
+        self.validate(True, self.weblogo_type, upload="filename", text="Text")
 
     def test_simple_has_neither(self):
         self.validate(True, self.simple_type, upload=None, text="")
@@ -309,7 +317,7 @@ class TestBenefitValidation(TestCase):
         self.validate(True, self.simple_type, upload=None, text="Some text")
 
     def test_simple_has_upload(self):
-        self.validate(False, self.simple_type, upload="filename", text="")
+        self.validate(True, self.simple_type, upload="filename", text="")
 
     def test_simple_has_both(self):
-        self.validate(False, self.simple_type, upload="filename", text="Text")
+        self.validate(True, self.simple_type, upload="filename", text="Text")
