@@ -101,6 +101,15 @@
                         <i class="fa fa-plus"></i> Apply to be a sponsor
                     </a>
                 {% endif %}
+                {% if user.is_staff %}
+                <hr>
+                <a href="{% url 'sponsor_add' %}" class="btn btn-default">
+                    <i class="fa fa-plus"></i> Add a sponsor
+                </a><br>
+                <a href="{% url 'sponsor_zip_logos' %}" class="btn btn-default">
+                    <i class="fa fa-download"></i> Download sponsor logos
+                </a><br>
+                {% endif %}
             </div>
         </div>
 
