@@ -764,6 +764,20 @@ ul.dropdown-menu {
   text-decoration: none;
 }
 
+img.full-width {
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+img.left {
+  float: left;
+  margin: 1em;
+}
+img.right {
+  float: right;
+  margin: 1em;
+}
+
 @media (max-width: 1500px) {
   #sec1x-con .sec1-col, #nst-con .vcs { margin-left: 150px; }
 }
