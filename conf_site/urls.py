@@ -14,6 +14,7 @@ import symposion.views
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
+from wagtail.wagtailimages.views.serve import ServeView as WagtailImageView
 
 from cms.views import csrf_failure, LoginEmailView
 from conf_site.reviews.views import (
@@ -37,6 +38,11 @@ urlpatterns += [
     url(r"^cms/", include(wagtailadmin_urls)),
     url(r"^dashboard/", symposion.views.dashboard, name="dashboard"),
     url(r"^documents/", include(wagtaildocs_urls)),
+    url(
+        r"^images/([^/]*)/(\d*)/([^/]*)/[^/]*$",
+        WagtailImageView.as_view(action="redirect"),
+        name="wagtailimages_serve",
+    ),
     url(r"^speaker/export/$",
         staff_member_required(ExportAcceptedSpeakerEmailView.as_view()),
         name="speaker_email_export"),
