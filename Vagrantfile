@@ -30,6 +30,5 @@ Vagrant.configure(2) do |config|
       ansible.inventory_path = "ansible/hosts"
       ansible.limit = "development"
       ansible.playbook = "ansible/development.yml"
-      ansible.raw_arguments = ["--ask-vault-pass"]
   end
 end
