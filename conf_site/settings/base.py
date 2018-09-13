@@ -178,6 +178,7 @@ INSTALLED_APPS = [
     "conf_site.proposals",
     "conf_site.reviews",
     "conf_site.speakers",
+    "conf_site.sponsorship",
 ]
 
 # Note that this logging configuration DOES NOT SEND ERROR REPORTS
