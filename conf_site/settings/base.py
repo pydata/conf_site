@@ -101,6 +101,7 @@ TEMPLATES = [
                 "django_settings_export.settings_export",
                 "symposion.reviews.context_processors.reviews",
                 "wagtailmenus.context_processors.wagtailmenus",
+                "wagtail.contrib.settings.context_processors.settings",
                 "conf_site.cms.context_processors.homepage_context",
             ]
         },
@@ -169,6 +170,7 @@ INSTALLED_APPS = [
     "wagtail.wagtailadmin",
     "wagtail.wagtailcore",
     "wagtail.contrib.modeladmin",
+    "wagtail.contrib.settings",
     "wagtailmenus",
 
     "conf_site",
@@ -176,6 +178,7 @@ INSTALLED_APPS = [
     "conf_site.proposals",
     "conf_site.reviews",
     "conf_site.speakers",
+    "conf_site.sponsorship",
 ]
 
 # Note that this logging configuration DOES NOT SEND ERROR REPORTS
