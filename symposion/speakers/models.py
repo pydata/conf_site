@@ -80,10 +80,7 @@ class Speaker(models.Model):
         return super(Speaker, self).save(*args, **kwargs)
 
     def __str__(self):
-        if self.user:
-            return self.name
-        else:
-            return "?"
+        return self.name
 
     def get_absolute_url(self):
         return reverse("speaker_edit")
