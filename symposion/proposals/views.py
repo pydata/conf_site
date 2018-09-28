@@ -328,7 +328,10 @@ def proposal_leave(request, pk):
     except ObjectDoesNotExist:
         return HttpResponseForbidden()
     if request.method == "POST":
-        proposal.additional_speakers.remove(speaker)
+        # The AdditionalSpeaker object requires a Speaker and a ProposalBase,
+        # so the only way to "remove" it from the proposal is through
+        # deletion.
+        speaker.delete()
         # @@@ fire off email to submitter and other speakers
         messages.success(
             request, "You are no longer speaking on %s" % proposal.title
