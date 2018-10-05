@@ -13,9 +13,6 @@ from symposion.conference.models import Section
 from symposion.speakers.models import Speaker
 
 
-MAX_SLOT_NAME_LENGTH = 100
-
-
 @python_2_unicode_compatible
 class Schedule(models.Model):
 
@@ -85,8 +82,6 @@ class SlotKind(models.Model):
 
 @python_2_unicode_compatible
 class Slot(models.Model):
-
-    name = models.CharField(max_length=MAX_SLOT_NAME_LENGTH, editable=False)
     day = models.ForeignKey(Day, verbose_name=_("Day"))
     kind = models.ForeignKey(SlotKind, verbose_name=_("Kind"))
     start = models.TimeField(verbose_name=_("Start"))
@@ -94,7 +89,7 @@ class Slot(models.Model):
     content_override = models.TextField(
         blank=True, verbose_name=_("Content override")
     )
-    content_override_html = models.TextField(blank=True)
+    content_override_html = models.TextField(blank=True, editable=False)
 
     def assign(self, content):
         """
@@ -156,22 +151,17 @@ class Slot(models.Model):
         return Room.objects.filter(pk__in=self.slotroom_set.values("room"))
 
     def save(self, *args, **kwargs):
-        roomlist = " ".join(map(lambda r: r.__unicode__(), self.rooms))
-        self.name = "%s %s (%s - %s) %s" % (
-            self.day,
-            self.kind,
-            self.start,
-            self.end,
-            roomlist,
-        )
-        # Make sure name is under maximum length.
-        if len(self.name) > MAX_SLOT_NAME_LENGTH:
-            self.name = self.name[:MAX_SLOT_NAME_LENGTH]
         self.content_override_html = parse(self.content_override)
         super(Slot, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return "{!s} {!s} ({!s} - {!s}) {!s}".format(
+            self.day,
+            self.kind,
+            self.start,
+            self.end,
+            " ".join(map(lambda r: r.__unicode__(), self.rooms)),
+        )
 
     class Meta:
         ordering = ["day", "start", "end"]
