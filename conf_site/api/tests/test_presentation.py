@@ -39,7 +39,6 @@ class ConferenceSiteAPISponsorTestCase(ConferenceSiteAPITestCase):
         )
         cls.presentation = Presentation.objects.create(
             slot=Slot.objects.create(
-                name='test slot',
                 day=Day.objects.create(
                     schedule=cls.schedule,
                     date=timezone.now().date(),
