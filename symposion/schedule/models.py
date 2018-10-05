@@ -89,7 +89,7 @@ class Slot(models.Model):
     content_override = models.TextField(
         blank=True, verbose_name=_("Content override")
     )
-    content_override_html = models.TextField(blank=True)
+    content_override_html = models.TextField(blank=True, editable=False)
 
     def assign(self, content):
         """
