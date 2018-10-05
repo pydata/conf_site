@@ -30,6 +30,11 @@ jobs:
             - ~/venv
           key: v1-python-dependencies-{{ checksum "requirements/development.txt" }}-{{ checksum "requirements/base.txt" }}
       - run:
+          name: check for missing migrations
+          command: |
+            . ~/venv/bin/activate
+            ./manage.py makemigrations --check
+      - run:
           name: configure static files
           command: |
             . ~/venv/bin/activate
