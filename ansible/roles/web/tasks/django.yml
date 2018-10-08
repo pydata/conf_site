@@ -11,21 +11,22 @@
     - restart gunicorn
 
 - name: install python packages and associated libraries
-  apt: pkg={{ item }} state=present
+  apt:
+    name:
+      - python-dev
+      - python-pip
+      - python-virtualenv
+      - libffi-dev
+      - libjpeg-dev
+      - libssl-dev
+      - libtiff-dev
+      - libxml2
+      - libxml2-dev
+      - libxslt-dev
+      - libxslt1-dev
+      - zlib1g-dev
+    state: present
   become: true
-  with_items:
-    - python-dev
-    - python-pip
-    - python-virtualenv
-    - libffi-dev
-    - libjpeg-dev
-    - libssl-dev
-    - libtiff-dev
-    - libxml2
-    - libxml2-dev
-    - libxslt-dev
-    - libxslt1-dev
-    - zlib1g-dev
   notify: restart gunicorn
 
 - name: change ownership of everything to this user

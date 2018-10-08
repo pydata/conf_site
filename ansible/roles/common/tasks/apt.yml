@@ -7,16 +7,17 @@
   become: true
 
 - name: install common packages
-  apt: pkg={{ item }} state=present
+  apt:
+    name:
+      - git
+      - logrotate
+      - ntp
+      - python-pycurl
+      - supervisor
+      - unattended-upgrades
+      - vim
+    state: present
   become: true
-  with_items:
-    - git
-    - logrotate
-    - ntp
-    - python-pycurl
-    - supervisor
-    - unattended-upgrades
-    - vim
 
 - name: copy apt configuration file (20auto-upgrades)
   template: src=20auto-upgrades

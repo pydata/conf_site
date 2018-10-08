@@ -1,10 +1,11 @@
 - name: install PostgreSQL packages
-  apt: pkg={{ item }} state=present
+  apt:
+    name:
+      - libpq-dev
+      - postgresql
+      - python-psycopg2
+    state: present
   become: true
-  with_items:
-    - libpq-dev
-    - postgresql
-    - python-psycopg2
 
 - name: create a PostgreSQL database for this project
   become: true
