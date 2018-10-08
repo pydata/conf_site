@@ -18,7 +18,7 @@ gunicorn==19.9.0
 markdown==2.6.11
 Pillow==5.2.0
 pinax-eventlog==2.0.3
-pip==18.0
+pip==18.1
 psycopg2==2.7.5
 pytz==2018.5
 raven==6.9.0
