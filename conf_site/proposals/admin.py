@@ -25,6 +25,7 @@ class ProposalAdmin(admin.ModelAdmin):
         'audience_level',
         'cancelled',
     )
+    list_display_links = ("title",)
     list_filter = (
         'kind',
         'audience_level',
