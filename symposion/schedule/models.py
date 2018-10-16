@@ -200,9 +200,9 @@ class Presentation(models.Model):
     )
     title = models.CharField(max_length=100, verbose_name=_("Title"))
     description = models.TextField(verbose_name=_("Description"))
-    description_html = models.TextField(blank=True)
+    description_html = models.TextField(blank=True, editable=False)
     abstract = models.TextField(verbose_name=_("Abstract"))
-    abstract_html = models.TextField(blank=True)
+    abstract_html = models.TextField(blank=True, editable=False)
     speaker = models.ForeignKey(
         Speaker, related_name="presentations", verbose_name=_("Speaker")
     )
