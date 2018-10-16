@@ -47,6 +47,7 @@ class PresentationAdmin(admin.ModelAdmin):
     model = Presentation
     list_display = ("title", "speaker", "section", "slot")
     list_filter = ("section", "cancelled", "slot")
+    search_fields = ("title", "speaker__name")
 
 
 admin.site.register(Day)

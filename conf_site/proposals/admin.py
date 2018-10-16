@@ -32,4 +32,5 @@ class ProposalAdmin(admin.ModelAdmin):
         'cancelled',
         'recording_release',
     )
+    search_fields = ("title", "speaker__name")
     date_hierarchy = 'submitted'
