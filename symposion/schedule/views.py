@@ -38,6 +38,9 @@ def schedule_conference(request):
     else:
         schedules = Schedule.objects.filter(published=True, hidden=False)
 
+    # Sort schedules by their first day.
+    schedules = sorted(schedules, key=lambda s: s.first_date())
+
     sections = []
     for schedule in schedules:
         days_qs = Day.objects.filter(schedule=schedule)

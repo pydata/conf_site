@@ -25,6 +25,12 @@ class Schedule(models.Model):
     def __str__(self):
         return "%s Schedule" % self.section
 
+    def first_date(self):
+        if self.day_set.count():
+            return self.day_set.first().date
+        else:
+            return None
+
     class Meta:
         ordering = ["section"]
         verbose_name = _("Schedule")
