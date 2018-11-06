@@ -135,7 +135,7 @@ def speaker_edit(request, pk=None):
 
 def speaker_profile(request, pk):
     speaker = get_object_or_404(Speaker, pk=pk)
-    presentations = speaker.all_presentations
+    presentations = list(speaker.presentations.exclude(slot=None))
     if not presentations and not request.user.is_staff:
         raise Http404()
 
