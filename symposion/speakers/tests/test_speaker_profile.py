@@ -96,3 +96,15 @@ class SpeakerProfilePresentationsTestCase(TestCase):
         )
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertNotContains(response, SECOND_PRESENTATION_TITLE)
+
+    def test_second_speaker_profile_page(self):
+        """Verify that a second speaker's profile page is public."""
+        second_speaker = Speaker.objects.create(name="Nancy Pelosi")
+        self.first_presentation.additional_speakers.add(second_speaker)
+
+        response = self.client.get(
+            reverse("speaker_profile", args=[second_speaker.pk])
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, FIRST_PRESENTATION_TITLE)
+        self.assertNotContains(response, SECOND_PRESENTATION_TITLE)
