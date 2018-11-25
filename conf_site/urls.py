@@ -20,7 +20,7 @@ from cms.views import csrf_failure, LoginEmailView
 from conf_site.reviews.views import (
     ReviewKeywordDetailView,
     ReviewKeywordListView)
-from speakers.views import ExportAcceptedSpeakerEmailView
+from speakers.views import SpeakerListView, ExportAcceptedSpeakerEmailView
 
 
 WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
@@ -46,6 +46,7 @@ urlpatterns += [
     url(r"^speaker/export/$",
         staff_member_required(ExportAcceptedSpeakerEmailView.as_view()),
         name="speaker_email_export"),
+    url(r"^speaker/list/$", SpeakerListView.as_view(), name="speaker_list"),
     url(r"^speaker/", include("symposion.speakers.urls")),
     url(r"^proposals/", include("symposion.proposals.urls")),
     url(r"^sponsors/", include("symposion.sponsorship.urls")),
