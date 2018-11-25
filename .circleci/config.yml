@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: circleci/python:2.7.13-jessie
         environment:
+          CC_TEST_REPORTER_ID: cf5093a40c8088ad26a5aca3e968037f90076dcbc825e5d10187dc3c81166e1a
           DJANGO_SETTINGS_MODULE: "conf_site.settings.testing"
           PGHOST: 127.0.0.1
           PYTHONWARNINGS: all
@@ -59,11 +60,18 @@ jobs:
             ansible-lint ansible/staging.yml
             ansible-lint ansible/production.yml
       - run:
+          name: download CodeClimate test reporter utility
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
           name: run automated tests
           command: |
+            ./cc-test-reporter before-build
             . ~/venv/bin/activate
             coverage run --source='.' manage.py test --noinput
             coverage xml
+            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
       - store_artifacts:
           path: test-reports
           destination: test-reports
