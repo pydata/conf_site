@@ -4,10 +4,25 @@ from wsgiref.util import FileWrapper
 
 import unicodecsv
 
+from django.db.models import Q
 from django.http import HttpResponse
-from django.views.generic import View
+from django.views.generic import ListView, View
 
 from symposion.speakers.models import Speaker
+
+
+class SpeakerListView(ListView):
+    """Show all speakers with presentations."""
+
+    context_object_name = "speakers"
+    queryset = (
+        Speaker.objects.filter(
+            Q(presentations__gt=0) | Q(copresentations__gt=0)
+        )
+        .order_by()
+        .distinct()
+    )
+    template_name = "speakers/speaker_list.html"
 
 
 class ExportAcceptedSpeakerEmailView(View):
