@@ -106,7 +106,7 @@ class TestSponsorZipDownload(TestCase):
             response=rsp, expected_url=login_url_with_next,
         )
         rsp = self.client.get(reverse("dashboard"))
-        self.assertNotIn(self.url, rsp.content)
+        self.assertNotContains(rsp, self.url)
 
     def test_no_files(self):
         # If there are no sponsor files, we still work
@@ -114,7 +114,7 @@ class TestSponsorZipDownload(TestCase):
         rsp = self.client.get(self.url)
         self.validate_response(rsp, [])
         rsp = self.client.get(reverse("dashboard"))
-        self.assertIn(self.url, rsp.content)
+        self.assertContains(rsp, self.url)
 
     def test_different_benefit_types(self):
         # And we ignore any non-existent files
