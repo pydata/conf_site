@@ -78,7 +78,7 @@ class TestSponsorZipDownload(TestCase):
         # Create a temp file with the given name and size under self.temp_dir
         path = os.path.join(self.temp_dir, name)
         with open(path, "wb") as f:
-            f.write(size * "x")
+            f.write(size * b"x")
 
     def test_must_be_logged_in(self):
         # Must be logged in to use the view
