@@ -1,4 +1,4 @@
-from cStringIO import StringIO
+from io import BytesIO
 import os
 import shutil
 import tempfile
@@ -63,7 +63,7 @@ class TestSponsorZipDownload(TestCase):
             'attachment; filename="sponsorlogos.zip"',
             rsp["Content-Disposition"],
         )
-        zipfile = ZipFile(StringIO(rsp.content), "r")
+        zipfile = ZipFile(BytesIO(rsp.content), "r")
         # Check out the zip - testzip() returns None if no errors found
         self.assertIsNone(zipfile.testzip())
         # Compare contents to what is expected
