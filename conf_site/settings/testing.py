@@ -1,4 +1,4 @@
-from base import *    # noqa: F401,F403
+from conf_site.settings.base import *    # noqa: F401,F403
 
 DEBUG = False
 
