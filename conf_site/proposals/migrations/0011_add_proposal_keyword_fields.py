@@ -55,11 +55,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='official_keywords',
-            field=taggit.managers.TaggableManager(blank=True, help_text=b'', through='proposals.TaggedProposal', to='proposals.ProposalKeyword', verbose_name=b'Official Keywords'),
+            field=taggit.managers.TaggableManager(blank=True, help_text='', through='proposals.TaggedProposal', to='proposals.ProposalKeyword', verbose_name='Official Keywords'),
         ),
         migrations.AddField(
             model_name='proposal',
             name='user_keywords',
-            field=taggit.managers.TaggableManager(blank=True, help_text=b'Please add keywords as a comma-separated list.', through='proposals.UserTaggedProposal', to='proposals.ProposalKeyword', verbose_name=b'Additional Keywords'),
+            field=taggit.managers.TaggableManager(blank=True, help_text='Please add keywords as a comma-separated list.', through='proposals.UserTaggedProposal', to='proposals.ProposalKeyword', verbose_name='Additional Keywords'),
         ),
     ]

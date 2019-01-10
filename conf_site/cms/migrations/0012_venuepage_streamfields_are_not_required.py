@@ -17,11 +17,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='venuepage',
             name='hotel_info_section',
-            field=wagtail.wagtailcore.fields.StreamField([(b'raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), (b'rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True, help_text=b"Information about the conference's hotel(s)."),
+            field=wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True, help_text="Information about the conference's hotel(s)."),
         ),
         migrations.AlterField(
             model_name='venuepage',
             name='venue_info_section',
-            field=wagtail.wagtailcore.fields.StreamField([(b'raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), (b'rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True, help_text=b"Information about the conference's venue."),
+            field=wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True, help_text="Information about the conference's venue."),
         ),
     ]

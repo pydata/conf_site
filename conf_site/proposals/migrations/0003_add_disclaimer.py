@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='proposal',
             name='under_represented_population',
-            field=models.CharField(choices=[(b'', b'----'), (b'Y', b'Yes'), (b'N', b'No'), (b'O', b'I would prefer not to answer')], default=b'', max_length=1, verbose_name=b"Do you feel that you or your talk represent a population under-represented in the Python and/or Data community? In no way will this data be used as part of your proposal. This will only be used to gather diversity statistics in order to further NumFOCUS' mission."),
+            field=models.CharField(choices=[('', '----'), ('Y', 'Yes'), ('N', 'No'), ('O', 'I would prefer not to answer')], default='', max_length=1, verbose_name="Do you feel that you or your talk represent a population under-represented in the Python and/or Data community? In no way will this data be used as part of your proposal. This will only be used to gather diversity statistics in order to further NumFOCUS' mission."),
         ),
     ]

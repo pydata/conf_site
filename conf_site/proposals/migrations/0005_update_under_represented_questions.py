@@ -16,21 +16,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='under_represented_other',
-            field=models.CharField(blank=True, default=b'', max_length=200, verbose_name=b''),
+            field=models.CharField(blank=True, default='', max_length=200, verbose_name=''),
         ),
         migrations.AlterField(
             model_name='proposal',
             name='first_time_at_pydata',
-            field=models.CharField(blank=True, choices=[(b'', b'----'), (b'Y', b'Yes'), (b'N', b'No'), (b'O', b'Prefer not to say')], default=b'', max_length=1, verbose_name=b'Is this your first time speaking at a PyData event?'),
+            field=models.CharField(blank=True, choices=[('', '----'), ('Y', 'Yes'), ('N', 'No'), ('O', 'Prefer not to say')], default='', max_length=1, verbose_name='Is this your first time speaking at a PyData event?'),
         ),
         migrations.AlterField(
             model_name='proposal',
             name='under_represented_details',
-            field=multiselectfield.db.fields.MultiSelectField(blank=True, choices=[(b'G', b'Gender identity'), (b'E', b'Ethnicity, nationality, skin color, race'), (b'S', b'Sexual orientation'), (b'C', b'Socioeconomic status'), (b'R', b'Religion'), (b'A', b'Age'), (b'D', b'Ability'), (b'O', b'Do not wish to provide'), (b'X', b'Other (please specify)')], max_length=17, verbose_name=b'Along which dimension(s) you self-identify as underrepresented? Check all that apply:'),
+            field=multiselectfield.db.fields.MultiSelectField(blank=True, choices=[('G', 'Gender identity'), ('E', 'Ethnicity, nationality, skin color, race'), ('S', 'Sexual orientation'), ('C', 'Socioeconomic status'), ('R', 'Religion'), ('A', 'Age'), ('D', 'Ability'), ('O', 'Do not wish to provide'), ('X', 'Other (please specify)')], max_length=17, verbose_name='Along which dimension(s) you self-identify as underrepresented? Check all that apply:'),
         ),
         migrations.AlterField(
             model_name='proposal',
             name='under_represented_population',
-            field=models.CharField(choices=[(b'', b'----'), (b'Y', b'Yes'), (b'N', b'No'), (b'O', b'Prefer not to say')], default=b'', max_length=1, verbose_name=b'Do you self-identify as an underrepresented minority in either the PyData/NumFOCUS community or in your professional field?'),
+            field=models.CharField(choices=[('', '----'), ('Y', 'Yes'), ('N', 'No'), ('O', 'Prefer not to say')], default='', max_length=1, verbose_name='Do you self-identify as an underrepresented minority in either the PyData/NumFOCUS community or in your professional field?'),
         ),
     ]

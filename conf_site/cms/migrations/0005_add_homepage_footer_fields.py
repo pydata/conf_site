@@ -15,11 +15,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='footer_email',
-            field=models.EmailField(blank=True, default=b'admin@pydata.org', max_length=254),
+            field=models.EmailField(blank=True, default='admin@pydata.org', max_length=254),
         ),
         migrations.AddField(
             model_name='homepage',
             name='footer_twitter',
-            field=models.CharField(blank=True, default=b'PyData', max_length=15),
+            field=models.CharField(blank=True, default='PyData', max_length=15),
         ),
     ]

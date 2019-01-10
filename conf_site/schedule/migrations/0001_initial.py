@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             name='ScheduleSettings',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legend', wagtail.wagtailcore.fields.StreamField([(b'raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), (b'rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True, help_text=b'Text to appear on the schedule page.')),
+                ('legend', wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True, help_text='Text to appear on the schedule page.')),
                 ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.Site')),
             ],
             options={

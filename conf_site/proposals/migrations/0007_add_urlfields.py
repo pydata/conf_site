@@ -15,11 +15,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='code_url',
-            field=models.URLField(default=b'', help_text=b"Location of this proposal's code repository.", max_length=2083, verbose_name=b'Repository'),
+            field=models.URLField(default='', help_text="Location of this proposal's code repository.", max_length=2083, verbose_name='Repository'),
         ),
         migrations.AddField(
             model_name='proposal',
             name='slides_url',
-            field=models.URLField(default=b'', help_text=b'Location of slides for this proposal.', max_length=2083, verbose_name=b'Slides'),
+            field=models.URLField(default='', help_text='Location of slides for this proposal.', max_length=2083, verbose_name='Slides'),
         ),
     ]
