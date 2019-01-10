@@ -18,7 +18,7 @@ class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
         if hasattr(value, "tag_id"):
             return value.tag_id
         elif (hasattr(value, "__iter__")
-                and not isinstance(value, unicode)
+                and not isinstance(value, str)
                 and not hasattr(value, "_meta")):
             return [self.prepare_value(v) for v in value]
         else:
