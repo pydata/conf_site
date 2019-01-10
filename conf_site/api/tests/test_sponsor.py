@@ -1,5 +1,3 @@
-import json
-
 from django.core.urlresolvers import reverse
 
 from rest_framework import status
@@ -32,6 +30,19 @@ class ConferenceSiteAPISponsorTestCase(ConferenceSiteAPITestCase):
         )
         cls.sponsor.save()
 
+        # Create sponsor dict to avoid duplication.
+        cls.sponsor_dict = {
+            "name": cls.sponsor.name,
+            "external_url": cls.sponsor.external_url,
+            "contact_name": cls.sponsor.contact_name,
+            "contact_email": cls.sponsor.contact_email,
+            "level": {"name": cls.sponsor.level.name,
+                      "cost": cls.sponsor.level.cost},
+            "absolute_url": (
+                "http://testserver" + cls.sponsor.get_absolute_url()),
+            "annotation": cls.sponsor.annotation,
+        }
+
     def test_sponsor_list_api_anonymous_user(self):
         """Verify that anonymous users cannot access list of sponsors."""
         response = self.client.get(reverse('sponsor-list'))
@@ -42,20 +53,7 @@ class ConferenceSiteAPISponsorTestCase(ConferenceSiteAPITestCase):
         self.client.login(username="admin@pydata.org", password="admin")
         response = self.client.get(reverse("sponsor-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn(
-            {
-                'name': self.sponsor.name,
-                'external_url': self.sponsor.external_url,
-                'contact_name': self.sponsor.contact_name,
-                'contact_email': self.sponsor.contact_email,
-                'level': {'name': self.sponsor.level.name,
-                          'cost': self.sponsor.level.cost},
-                'absolute_url': (
-                    'http://testserver' + self.sponsor.get_absolute_url()),
-                'annotation': self.sponsor.annotation,
-            },
-            json.loads(response.content)
-        )
+        self.assertIn(self.sponsor_dict, response.json())
 
     def test_sponsor_detail_api_anonymous_user(self):
         """Verify that anonymous users cannot access sponsor details."""
@@ -71,17 +69,4 @@ class ConferenceSiteAPISponsorTestCase(ConferenceSiteAPITestCase):
             reverse('sponsor-detail', args=[self.sponsor.pk])
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(
-            {
-                'name': self.sponsor.name,
-                'external_url': self.sponsor.external_url,
-                'contact_name': self.sponsor.contact_name,
-                'contact_email': self.sponsor.contact_email,
-                'level': {'name': self.sponsor.level.name,
-                          'cost': self.sponsor.level.cost},
-                'absolute_url': (
-                    'http://testserver' + self.sponsor.get_absolute_url()),
-                'annotation': self.sponsor.annotation,
-            },
-            json.loads(response.content)
-        )
+        self.assertEqual(self.sponsor_dict, response.json())
