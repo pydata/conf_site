@@ -224,7 +224,7 @@ def schedule_json(request):
         else:
             slot_data.update(
                 {
-                    "name": slot.content_override.raw
+                    "name": slot.content_override
                     if slot.content_override
                     else "Slot"
                 }

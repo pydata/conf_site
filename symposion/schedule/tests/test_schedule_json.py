@@ -23,3 +23,16 @@ class ScheduleJSONViewTestCase(TestCase):
 
         response = self.client.get(reverse("schedule_json"))
         self.assertEqual(len(response.json()["schedule"]), PRESENTATION_COUNT)
+
+    def test_slot_override(self):
+        """Verify that slot.content_override displays in JSON."""
+        OVERRIDDEN_CONTENT = "**FOOBAR**"
+
+        slot = SlotFactory()
+        slot.content_override = OVERRIDDEN_CONTENT
+        slot.save()
+
+        response = self.client.get(reverse("schedule_json"))
+        self.assertContains(
+            response=response, text=OVERRIDDEN_CONTENT, status_code=200
+        )
