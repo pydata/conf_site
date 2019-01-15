@@ -4,7 +4,7 @@ import json
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.template import loader, Context
+from django.template import loader
 
 from django.contrib import messages
 from django.contrib.sites.models import Site
@@ -95,7 +95,7 @@ def schedule_list_csv(request, slug=None):
 
     response.write(
         loader.get_template("symposion/schedule/schedule_list.csv").render(
-            Context({"presentations": presentations})
+            {"presentations": presentations}
         )
     )
     return response
