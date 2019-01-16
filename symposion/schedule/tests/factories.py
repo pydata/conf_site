@@ -7,6 +7,7 @@ from factory import fuzzy
 
 from symposion.schedule.models import Schedule, Day, Slot, SlotKind
 from symposion.conference.models import Section, Conference
+from symposion.proposals.models import ProposalKind
 
 
 class ConferenceFactory(factory.DjangoModelFactory):
@@ -29,6 +30,15 @@ class SectionFactory(factory.DjangoModelFactory):
 
     class Meta:
         model = Section
+
+
+class ProposalKindFactory(factory.DjangoModelFactory):
+    section = factory.SubFactory(SectionFactory)
+    name = fuzzy.FuzzyText()
+    slug = fuzzy.FuzzyText()
+
+    class Meta:
+        model = ProposalKind
 
 
 class ScheduleFactory(factory.DjangoModelFactory):

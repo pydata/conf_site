@@ -207,8 +207,8 @@ def schedule_json(request):
                     "contact": [s.email for s in slot.content.speakers()]
                     if request.user.is_staff
                     else ["redacted"],
-                    "abstract": slot.content.abstract.raw,
-                    "description": slot.content.description.raw,
+                    "abstract": slot.content.abstract,
+                    "description": slot.content.description,
                     "conf_url": "%s://%s%s"
                     % (
                         protocol,

@@ -1,7 +1,13 @@
+from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from symposion.schedule.tests.factories import SlotFactory
+from symposion.proposals.models import ProposalBase
+from symposion.schedule.models import Presentation
+from symposion.schedule.tests.factories import (
+    SectionFactory, ProposalKindFactory, SlotFactory
+)
+from symposion.speakers.models import Speaker
 
 
 class ScheduleJSONViewTestCase(TestCase):
@@ -36,3 +42,45 @@ class ScheduleJSONViewTestCase(TestCase):
         self.assertContains(
             response=response, text=OVERRIDDEN_CONTENT, status_code=200
         )
+
+    def test_presentation_data(self):
+        """Verify that a presentation's content appears."""
+        TALK_TITLE = "Presentation Content Verification Testing for Snakes"
+        DESCRIPTION_CONTENT = "It was a bright cold day in April..."
+        ABSTRACT_CONTENT = "...the color of television tuned to a dead channel"
+
+        user_model = get_user_model()
+        user = user_model.objects.create(
+            username="test",
+            email="example@example.com",
+            first_name="Test",
+            last_name="User",
+        )
+        speaker = Speaker.objects.create(user=user, name="Speaker")
+        section = SectionFactory()
+        proposal_kind = ProposalKindFactory()
+        # We don't use factories so that all title/description/abstract
+        # information is synchronized between the ProposalBase and the
+        # Presentation.
+        proposal_base = ProposalBase.objects.create(
+            title=TALK_TITLE,
+            description=DESCRIPTION_CONTENT,
+            abstract=ABSTRACT_CONTENT,
+            speaker=speaker,
+            kind=proposal_kind,
+        )
+        presentation = Presentation.objects.create(
+            title=TALK_TITLE,
+            description=DESCRIPTION_CONTENT,
+            abstract=ABSTRACT_CONTENT,
+            speaker=speaker,
+            proposal_base=proposal_base,
+            section=section,
+        )
+        slot = SlotFactory()
+        slot.assign(presentation)
+
+        response = self.client.get(reverse("schedule_json"))
+        self.assertContains(response=response, text=TALK_TITLE)
+        self.assertContains(response=response, text=DESCRIPTION_CONTENT)
+        self.assertContains(response=response, text=ABSTRACT_CONTENT)
