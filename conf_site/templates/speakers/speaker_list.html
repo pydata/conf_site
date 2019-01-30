@@ -10,7 +10,8 @@
     <li>
       <a href="{% url 'speaker_profile' speaker.pk %}">{{ speaker.name }}</a> -
       {% for presentation in speaker.all_presentations %}
-        <a href="{% url 'schedule_presentation_detail' presentation.pk %}">{{ presentation.title }}</a>
+        <a href="{% url 'schedule_presentation_detail' presentation.pk %}">
+          {{ presentation.title }}</a>{% if not forloop.last %}, {% endif %}
       {% endfor %}
     </li>
   {% endfor %}</ul>
