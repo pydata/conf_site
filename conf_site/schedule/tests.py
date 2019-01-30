@@ -5,6 +5,7 @@ from wagtail.wagtailcore.models import Site
 from wagtail.wagtailcore.rich_text import RichText
 
 from conf_site.schedule.models import ScheduleSettings
+from conf_site.schedule.views import ExportPresentationSpeakerView
 
 
 class ScheduleSettingsTestCase(TestCase):
@@ -29,3 +30,9 @@ class ScheduleSettingsTestCase(TestCase):
         response = self.client.get(reverse("schedule_conference"))
         self.assertContains(response, new_legend)
         self.assertNotContains(response, "<p>View past PyData event schedules")
+
+
+class ExportPresentationSpeakerViewTestCase(TestCase):
+    def test_status_code(self):
+        response = ExportPresentationSpeakerView().get()
+        self.assertEqual(response.status_code, 200)
