@@ -16,10 +16,11 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailimages.views.serve import ServeView as WagtailImageView
 
-from cms.views import csrf_failure, LoginEmailView
+from conf_site.core.views import csrf_failure, LoginEmailView
 from conf_site.reviews.views import (
     ReviewKeywordDetailView,
     ReviewKeywordListView)
+from conf_site.schedule.views import ExportPresentationSpeakerView
 from speakers.views import SpeakerListView, ExportAcceptedSpeakerEmailView
 
 
@@ -58,6 +59,9 @@ urlpatterns += [
         ReviewKeywordDetailView.as_view(),
         name="review_keyword_detail"),
     url(r"^reviews/", include("symposion.reviews.urls")),
+    url(r"^schedule/presentation/export/$",
+        staff_member_required(ExportPresentationSpeakerView.as_view()),
+        name="presentation_speaker_export"),
     url(r"^schedule/", include("symposion.schedule.urls")),
     url(r"^403-csrf/", csrf_failure, name="403-csrf"),
     url(r"^413/", TemplateView.as_view(template_name="413.html")),
