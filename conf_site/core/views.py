@@ -1,4 +1,12 @@
+import os
+from tempfile import mkstemp
+from wsgiref.util import FileWrapper
+
+import unicodecsv
+
+from django.http import HttpResponse
 from django.template.response import TemplateResponse
+from django.views.generic import View
 
 from account.forms import LoginEmailForm
 from account.views import LoginView
@@ -21,3 +29,36 @@ def csrf_failure(request, reason=""):
 class LoginEmailView(LoginView):
     """Custom login view that uses django-user-account's email form."""
     form_class = LoginEmailForm
+
+
+class CsvView(View):
+    """A abstract view that returns a CSV file as a response."""
+    http_method_names = ["get"]
+
+    # Create generic names for required filenames.
+    # This should be overwritten by inherited views.
+    csv_filename = "export.csv"
+
+    def __init__(self, **kwargs):
+        super(CsvView, self).__init__(**kwargs)
+
+        self.temp_filename = mkstemp()[1]
+        self.temp_file = open(self.temp_filename, "w")
+
+        # Initialize CSV file.
+        self.csv_writer = unicodecsv.writer(self.temp_file, encoding="utf-8")
+
+    def get(self, *args, **kwargs):
+        # Make sure that everything has been saved.
+        self.temp_file.flush()
+        os.fsync(self.temp_file.fileno())
+        self.temp_file.close()
+        # Push CSV to user.
+        wrapper = FileWrapper(open(self.temp_filename))
+        response = HttpResponse(wrapper, content_type="text/csv")
+        response["Content-Disposition"] = (
+            "attachment; filename=%s" % self.csv_filename)
+        # Sending a Content-Length header gives the user better information
+        # about the progress of their download.
+        response["Content-Length"] = os.path.getsize(self.temp_filename)
+        return response
