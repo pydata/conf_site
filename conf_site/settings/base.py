@@ -175,6 +175,7 @@ INSTALLED_APPS = [
 
     "conf_site",
     "conf_site.cms",
+    "conf_site.core",
     "conf_site.proposals",
     "conf_site.reviews",
     "conf_site.schedule",
@@ -268,7 +269,7 @@ CONSTANCE_CONFIG = {
         "Show slides & code repository fields on proposal submission form.",
         bool),
 }
-CSRF_FAILURE_VIEW = "conf_site.cms.views.csrf_failure"
+CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"
 PROPOSAL_FORMS = {
     "talk": "conf_site.proposals.forms.ProposalForm",
     "tutorial": "conf_site.proposals.forms.ProposalForm",

@@ -16,7 +16,7 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailimages.views.serve import ServeView as WagtailImageView
 
-from cms.views import csrf_failure, LoginEmailView
+from conf_site.core.views import csrf_failure, LoginEmailView
 from conf_site.reviews.views import (
     ReviewKeywordDetailView,
     ReviewKeywordListView)
