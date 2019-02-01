@@ -21,7 +21,10 @@ from conf_site.reviews.views import (
     ReviewKeywordDetailView,
     ReviewKeywordListView)
 from conf_site.schedule.views import ExportPresentationSpeakerView
-from speakers.views import SpeakerListView, ExportAcceptedSpeakerEmailView
+from conf_site.speakers.views import (
+    SpeakerListView, ExportAcceptedSpeakerEmailView
+)
+from conf_site.sponsorship.views import ExportSponsorsView
 
 
 WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
@@ -50,6 +53,11 @@ urlpatterns += [
     url(r"^speaker/list/$", SpeakerListView.as_view(), name="speaker_list"),
     url(r"^speaker/", include("symposion.speakers.urls")),
     url(r"^proposals/", include("symposion.proposals.urls")),
+    url(
+        r"^sponsors/export/$",
+        staff_member_required(ExportSponsorsView.as_view()),
+        name="sponsor_export",
+    ),
     url(r"^sponsors/", include("symposion.sponsorship.urls")),
     url(r"^teams/", include("symposion.teams.urls")),
     url(r"^reviews/keyword/$",
