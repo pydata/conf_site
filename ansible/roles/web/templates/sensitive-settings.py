@@ -58,8 +58,4 @@ SENTRY_PUBLIC_DSN = False
 
 GOOGLE_ANALYTICS_PROPERTY_ID = "{{ google_analytics_id }}"
 
-SETTINGS_EXPORT = [
-    "GOOGLE_ANALYTICS_PROPERTY_ID",
-    "SENTRY_PUBLIC_DSN",
-]
 WAGTAIL_SITE_NAME = "{{ conference_name }}"

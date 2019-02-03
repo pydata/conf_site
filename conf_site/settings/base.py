@@ -98,10 +98,10 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "account.context_processors.account",
                 "constance.context_processors.config",
-                "django_settings_export.settings_export",
                 "symposion.reviews.context_processors.reviews",
                 "wagtailmenus.context_processors.wagtailmenus",
                 "wagtail.contrib.settings.context_processors.settings",
+                "conf_site.core.context_processors.core_context",
                 "conf_site.cms.context_processors.homepage_context",
             ]
         },
