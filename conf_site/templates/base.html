@@ -46,7 +46,7 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', '{{ settings.GOOGLE_ANALYTICS_PROPERTY_ID }}', 'auto');
+    ga('create', '{{ google_analytics_id }}', 'auto');
     ga('require', 'eventTracker');
     ga('require', 'outboundFormTracker');
     ga('require', 'outboundLinkTracker');
@@ -207,12 +207,12 @@
 <script src="{% static 'js/retina.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/jquery.stellar.js' %}"></script>
-{% if settings.SENTRY_PUBLIC_DSN %}
+{% if sentry_public_dsn %}
 <script src="https://cdn.ravenjs.com/3.26.4/raven.min.js"
         integrity="sha384-7zaZhdtWTKq5xNtp4WyvUJvEQ+aETU+FlQnpLIbepx2bQAee8znJJjmlydqQjbn/"
         crossorigin="anonymous"></script>
 <script>
-    Raven.config("{{ settings.SENTRY_PUBLIC_DSN }}", {
+    Raven.config("{{ sentry_public_dsn }}", {
         whitelistUrls: ["pydata.org"]
     }).install()
 </script>
