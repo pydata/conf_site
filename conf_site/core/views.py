@@ -1,8 +1,7 @@
+import csv
 import os
 from tempfile import mkstemp
 from wsgiref.util import FileWrapper
-
-import unicodecsv
 
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
@@ -43,10 +42,12 @@ class CsvView(View):
         super(CsvView, self).__init__(**kwargs)
 
         self.temp_filename = mkstemp()[1]
-        self.temp_file = open(self.temp_filename, "w")
+        self.temp_file = open(
+            file=self.temp_filename, mode="w", encoding="utf-8"
+        )
 
         # Initialize CSV file.
-        self.csv_writer = unicodecsv.writer(self.temp_file, encoding="utf-8")
+        self.csv_writer = csv.writer(self.temp_file)
 
     def get(self, *args, **kwargs):
         # Make sure that everything has been saved.
