@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='image_credit',
-            field=wagtail.wagtailcore.fields.RichTextField(blank=True, default=b''),
+            field=wagtail.wagtailcore.fields.RichTextField(blank=True, default=''),
         ),
         migrations.AddField(
             model_name='venuepage',
             name='image_credit',
-            field=wagtail.wagtailcore.fields.RichTextField(blank=True, default=b''),
+            field=wagtail.wagtailcore.fields.RichTextField(blank=True, default=''),
         ),
     ]

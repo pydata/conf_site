@@ -30,6 +30,6 @@ def create_slot(section_slug, date, kind, start, end, rooms):
         slot_room.slot = slot
         slot_room.room = room
         slot_room.save(force_insert=True)
-    print "created {} [start={}; end={}]".format(
+    print("created {} [start={}; end={}]".format(
         slot.kind.label, slot.start, slot.end
-    )
+    ))

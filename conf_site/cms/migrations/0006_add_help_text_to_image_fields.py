@@ -16,16 +16,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='homepage',
             name='background_image',
-            field=models.ForeignKey(blank=True, help_text=b'Maximum file size is 10 MB', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image'),
+            field=models.ForeignKey(blank=True, help_text='Maximum file size is 10 MB', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image'),
         ),
         migrations.AlterField(
             model_name='homepage',
             name='logo_image',
-            field=models.ForeignKey(blank=True, help_text=b'Maximum file size is 10 MB', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image'),
+            field=models.ForeignKey(blank=True, help_text='Maximum file size is 10 MB', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image'),
         ),
         migrations.AlterField(
             model_name='venuepage',
             name='background_image',
-            field=models.ForeignKey(blank=True, help_text=b'Maximum file size is 10 MB', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image'),
+            field=models.ForeignKey(blank=True, help_text='Maximum file size is 10 MB', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image'),
         ),
     ]

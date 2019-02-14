@@ -15,16 +15,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='affiliation',
-            field=models.CharField(blank=True, default=b'', max_length=200),
+            field=models.CharField(blank=True, default='', max_length=200),
         ),
         migrations.AddField(
             model_name='proposal',
             name='first_time_at_pydata',
-            field=models.CharField(blank=True, choices=[(b'', b'----'), (b'Y', b'Yes'), (b'N', b'No'), (b'O', b'I would prefer not to answer')], default=b'', max_length=1, verbose_name=b'Is this your first time speaking at a PyData event?'),
+            field=models.CharField(blank=True, choices=[('', '----'), ('Y', 'Yes'), ('N', 'No'), ('O', 'I would prefer not to answer')], default='', max_length=1, verbose_name='Is this your first time speaking at a PyData event?'),
         ),
         migrations.AddField(
             model_name='proposal',
             name='phone_number',
-            field=models.CharField(blank=True, default=b'', max_length=100, verbose_name=b'Phone number - to be used for last-minute schedule changes'),
+            field=models.CharField(blank=True, default='', max_length=100, verbose_name='Phone number - to be used for last-minute schedule changes'),
         ),
     ]

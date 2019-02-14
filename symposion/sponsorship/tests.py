@@ -1,4 +1,4 @@
-from cStringIO import StringIO
+from io import BytesIO
 import os
 import shutil
 import tempfile
@@ -63,7 +63,7 @@ class TestSponsorZipDownload(TestCase):
             'attachment; filename="sponsorlogos.zip"',
             rsp["Content-Disposition"],
         )
-        zipfile = ZipFile(StringIO(rsp.content), "r")
+        zipfile = ZipFile(BytesIO(rsp.content), "r")
         # Check out the zip - testzip() returns None if no errors found
         self.assertIsNone(zipfile.testzip())
         # Compare contents to what is expected
@@ -78,7 +78,7 @@ class TestSponsorZipDownload(TestCase):
         # Create a temp file with the given name and size under self.temp_dir
         path = os.path.join(self.temp_dir, name)
         with open(path, "wb") as f:
-            f.write(size * "x")
+            f.write(size * b"x")
 
     def test_must_be_logged_in(self):
         # Must be logged in to use the view
@@ -106,7 +106,7 @@ class TestSponsorZipDownload(TestCase):
             response=rsp, expected_url=login_url_with_next,
         )
         rsp = self.client.get(reverse("dashboard"))
-        self.assertNotIn(self.url, rsp.content)
+        self.assertNotContains(rsp, self.url)
 
     def test_no_files(self):
         # If there are no sponsor files, we still work
@@ -114,7 +114,7 @@ class TestSponsorZipDownload(TestCase):
         rsp = self.client.get(self.url)
         self.validate_response(rsp, [])
         rsp = self.client.get(reverse("dashboard"))
-        self.assertIn(self.url, rsp.content)
+        self.assertContains(rsp, self.url)
 
     def test_different_benefit_types(self):
         # And we ignore any non-existent files

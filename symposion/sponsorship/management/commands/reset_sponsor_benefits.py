@@ -19,7 +19,9 @@ class Command(BaseCommand):
                         sponsor=sponsor, benefit=benefit_level.benefit)
 
                     if created:
-                        print "created", sponsor_benefit, "for", sponsor
+                        self.stdout.write(
+                            "created", sponsor_benefit, "for", sponsor
+                        )
 
                     # and set to default limits for this level.
                     sponsor_benefit.max_words = benefit_level.max_words

@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='proposal',
             name='under_represented_population',
-            field=models.CharField(choices=[(b'', b'----'), (b'Y', b'Yes'), (b'N', b'No'), (b'O', b'Prefer not to say')], default=b'', help_text=b'The answer to this question will not be made available to the review committee. Data collected from this survey will be used by NumFOCUS staff to inform decisions about practices and procedures at future conferences, in an effort to create a welcoming and inclusive environment for all.', max_length=1, verbose_name=b'Do you self-identify as an underrepresented minority in either the PyData/NumFOCUS community or in your professional field?'),
+            field=models.CharField(choices=[('', '----'), ('Y', 'Yes'), ('N', 'No'), ('O', 'Prefer not to say')], default='', help_text='The answer to this question will not be made available to the review committee. Data collected from this survey will be used by NumFOCUS staff to inform decisions about practices and procedures at future conferences, in an effort to create a welcoming and inclusive environment for all.', max_length=1, verbose_name='Do you self-identify as an underrepresented minority in either the PyData/NumFOCUS community or in your professional field?'),
         ),
     ]

@@ -22,8 +22,8 @@ class Migration(migrations.Migration):
             name='HomePage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('conference_info_section', wagtail.wagtailcore.fields.StreamField([(b'raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), (b'rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
-                ('pydata_info_section', wagtail.wagtailcore.fields.StreamField([(b'raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), (b'rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
+                ('conference_info_section', wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
+                ('pydata_info_section', wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
                 ('ticketing_url', models.URLField(blank=True)),
                 ('mailchimp_url', models.URLField(blank=True)),
                 ('background_image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
             name='HTMLPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('content', wagtail.wagtailcore.fields.StreamField([(b'raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), (b'rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
+                ('content', wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
             ],
             options={
                 'abstract': False,
@@ -49,9 +49,9 @@ class Migration(migrations.Migration):
             name='VenuePage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('venue_info_section', wagtail.wagtailcore.fields.StreamField([(b'raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), (b'rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
+                ('venue_info_section', wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
                 ('google_maps_url', models.URLField(blank=True)),
-                ('hotel_info_section', wagtail.wagtailcore.fields.StreamField([(b'raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), (b'rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
+                ('hotel_info_section', wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())])),
                 ('background_image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
             ],
             options={

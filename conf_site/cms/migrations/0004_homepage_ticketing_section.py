@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='ticketing_section',
-            field=wagtail.wagtailcore.fields.RichTextField(default=b'<h2>Tickets</h2>'),
+            field=wagtail.wagtailcore.fields.RichTextField(default='<h2>Tickets</h2>'),
         ),
     ]

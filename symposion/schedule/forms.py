@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import csv
+from io import TextIOWrapper
 import time
 
 from datetime import datetime
@@ -124,7 +125,8 @@ class ScheduleSectionForm(forms.Form):
 
     def build_schedule(self):
         created_items = []
-        reader = csv.DictReader(self.cleaned_data.get("filename"))
+        csv_file = TextIOWrapper(self.cleaned_data.get("filename"))
+        reader = csv.DictReader(csv_file)
         data = [
             dict((k.strip(), v.strip()) for k, v in x.items()) for x in reader
         ]

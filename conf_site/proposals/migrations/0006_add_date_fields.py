@@ -15,11 +15,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='date_created',
-            field=models.DateTimeField(auto_now_add=True, null=True, verbose_name=b'Created'),
+            field=models.DateTimeField(auto_now_add=True, null=True, verbose_name='Created'),
         ),
         migrations.AddField(
             model_name='proposal',
             name='date_last_modified',
-            field=models.DateTimeField(auto_now=True, null=True, verbose_name=b'Last Modified'),
+            field=models.DateTimeField(auto_now=True, null=True, verbose_name='Last Modified'),
         ),
     ]

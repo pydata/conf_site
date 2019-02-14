@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='under_represented_details',
-            field=multiselectfield.db.fields.MultiSelectField(blank=True, choices=[(b'E', b'Ethnicity'), (b'A', b'Age'), (b'G', b'Gender'), (b'S', b'Sexual Orientation'), (b'D', b'Disability'), (b'O', b'Opt-out')], max_length=11, verbose_name=b'Check all that apply:'),
+            field=multiselectfield.db.fields.MultiSelectField(blank=True, choices=[('E', 'Ethnicity'), ('A', 'Age'), ('G', 'Gender'), ('S', 'Sexual Orientation'), ('D', 'Disability'), ('O', 'Opt-out')], max_length=11, verbose_name='Check all that apply:'),
         ),
         migrations.AddField(
             model_name='proposal',
             name='under_represented_population',
-            field=models.CharField(choices=[(b'', b'----'), (b'Y', b'Yes'), (b'N', b'No'), (b'O', b'I would prefer not to answer')], default=b'', max_length=1, verbose_name=b'Do you feel that you or your talk represent a population under-represented in the Python and/or Data community?'),
+            field=models.CharField(choices=[('', '----'), ('Y', 'Yes'), ('N', 'No'), ('O', 'I would prefer not to answer')], default='', max_length=1, verbose_name='Do you feel that you or your talk represent a population under-represented in the Python and/or Data community?'),
         ),
     ]

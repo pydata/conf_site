@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='news_keynote_section',
-            field=wagtail.wagtailcore.fields.StreamField([(b'raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), (b'rich_text', wagtail.wagtailcore.blocks.RichTextBlock())]),
+            field=wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())]),
         ),
     ]

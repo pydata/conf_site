@@ -30,6 +30,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='editor_keywords',
-            field=taggit.managers.TaggableManager(blank=True, help_text=b'', through='proposals.EditorTaggedProposal', to='proposals.ProposalKeyword', verbose_name=b'Editor Keywords'),
+            field=taggit.managers.TaggableManager(blank=True, help_text='', through='proposals.EditorTaggedProposal', to='proposals.ProposalKeyword', verbose_name='Editor Keywords'),
         ),
     ]

@@ -1,17 +1,36 @@
-[development]
-local ansible_ssh_host=localhost ansible_ssh_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/default/virtualbox/private_key
+development:
+  hosts:
+    local:
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_ssh_host: localhost
+      ansible_ssh_port: 2222
+      ansible_ssh_private_key_file: .vagrant/machines/default/virtualbox/private_key
+      ansible_user: vagrant
 
-[staging]
-test2018 ansible_ssh_host=162.242.144.92
+staging:
+  hosts:
+    test2018:
+      ansible_ssh_host: 162.242.144.92
 
-[production]
-amsterdam2018 ansible_ssh_host=104.130.4.138
-berlin2018 ansible_ssh_host=104.130.4.110
-cordoba2018 ansible_ssh_host=104.130.141.30
-delhi2018 ansible_ssh_host=119.9.91.18
-dc2018 ansible_ssh_host=104.239.175.76
-la2018 ansible_ssh_host=104.239.141.129
-london2018 ansible_ssh_host=104.130.26.133
-miami2019 ansible_ssh_host=172.99.69.127
-nyc2018 ansible_ssh_host=104.130.13.148
-warsaw2018 ansible_ssh_host=172.99.69.57
+production:
+  hosts:
+    amsterdam2018:
+      ansible_ssh_host: 104.130.4.138
+    berlin2018:
+      ansible_ssh_host: 104.130.4.110
+    cordoba2018:
+      ansible_ssh_host: 104.130.141.30
+    delhi2018:
+      ansible_ssh_host: 119.9.91.18
+    dc2018:
+      ansible_ssh_host: 104.239.175.76
+    la2018:
+      ansible_ssh_host: 104.239.141.129
+    london2018:
+      ansible_ssh_host: 104.130.26.133
+    miami2019:
+      ansible_ssh_host: 172.99.69.127
+    nyc2018:
+      ansible_ssh_host: 104.130.13.148
+    warsaw2018:
+      ansible_ssh_host: 172.99.69.57

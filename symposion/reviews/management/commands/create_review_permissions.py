@@ -24,4 +24,4 @@ class Command(BaseCommand):
                         "content_type": ct,
                     },
                 )
-                print perm
+                self.stdout.write(perm.__str__())

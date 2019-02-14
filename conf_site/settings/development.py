@@ -1,6 +1,6 @@
 # Top settings file for development
-from .base import *     # noqa: F403
-from .secrets import *  # noqa: F403
+from conf_site.settings.base import *     # noqa: F403
+from conf_site.settings.secrets import *  # noqa: F403
 
 COMPRESS_ENABLED = False
 DEBUG = True
