@@ -120,9 +120,14 @@
 
 # https://serverfault.com/a/616976/48777
 - name: create list of fixture templates
-  local_action: "shell ls roles/web/templates/fixtures/* | sed 's~.*/~~g'"
+  shell: |
+    set -eo pipefail
+    ls roles/web/templates/fixtures/* | sed 's~.*/~~g'
+  args:
+    executable: /bin/bash
+  delegate_to: localhost
   register: fixture_templates
-  when: fixtures_applied.stat.exists == False
+  when: not fixtures_applied.stat.exists
   tags:
     - fixtures
 
@@ -131,7 +136,7 @@
     dest: "{{ project_root }}/fixtures/{{ item }}"
     src: "templates/fixtures/{{ item }}"
   with_items: "{{ fixture_templates.stdout.splitlines() }}"
-  when: fixtures_applied.stat.exists == False
+  when: not fixtures_applied.stat.exists
   tags:
     - fixtures
 
@@ -143,7 +148,7 @@
     settings: "conf_site.settings.{{ environment_type }}"
     virtualenv: "{{ virtualenv_root }}/current"
   with_items: "{{ fixture_templates.stdout.splitlines() }}"
-  when: fixtures_applied.stat.exists == False
+  when: not fixtures_applied.stat.exists
   notify: mark fixtures as applied
   tags:
     - fixtures

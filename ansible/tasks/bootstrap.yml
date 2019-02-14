@@ -8,17 +8,17 @@
   raw: test -e /usr/bin/python2 || (apt install -y python-minimal)
   become: true
   register: output
-  changed_when: output.stdout != ""
+  changed_when: output.stdout
 
 - name: install aptitude if needed
   raw: test -e /usr/bin/aptitude || (apt install -y aptitude)
   become: true
   register: output
-  changed_when: output.stdout != ""
+  changed_when: output.stdout
 
 - name: ensure that we can login to deployment user account
   copy:
     dest: /home/{{ deployment_user }}/.ssh/authorized_keys
     force: yes
-    src: ../files/authorized_keys
+    src: authorized_keys
   become: true

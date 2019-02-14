@@ -1,6 +1,6 @@
 -r base.txt
-ansible==2.7.4
-ansible-lint==3.4.23
+ansible==2.7.7
+ansible-lint==4.1.0
 beautifulsoup4==4.6.0
 coverage==4.5.2
 django-debug-toolbar==1.10.1
