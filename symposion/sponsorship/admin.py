@@ -139,6 +139,7 @@ class BenefitAdmin(admin.ModelAdmin):
 class SponsorLevelAdmin(admin.ModelAdmin):
 
     inlines = [BenefitLevelInline]
+    list_display = ["conference", "name", "cost", "order"]
 
 
 class SponsorBenefitAdmin(admin.ModelAdmin):
