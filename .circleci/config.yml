@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: circleci/python:3.5.5-stretch
         environment:
+          ANSIBLE_ASK_VAULT_PASS: False
           CC_TEST_REPORTER_ID: cf5093a40c8088ad26a5aca3e968037f90076dcbc825e5d10187dc3c81166e1a
           DJANGO_SETTINGS_MODULE: "conf_site.settings.testing"
           PGHOST: 127.0.0.1
@@ -57,8 +58,14 @@ jobs:
             . ~/venv/bin/activate
             ansible-lint ansible/tasks/bootstrap.yml
             ansible-lint ansible/development.yml
+            ansible-lint ansible/testing.yml
             ansible-lint ansible/staging.yml
             ansible-lint ansible/production.yml
+      - run:
+          name: run Ansible tasks used for testing
+          command: |
+            . ~/venv/bin/activate
+            ansible-playbook -i ansible/hosts -l testing --connection=local --tags testing ansible/testing.yml
       - run:
           name: download CodeClimate test reporter utility
           command: |
