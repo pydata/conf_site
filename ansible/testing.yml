@@ -1,0 +1,8 @@
+- name: run tasks to test Ansible tasks
+  hosts: testing
+  roles:
+    - db
+    - web
+  vars_files:
+    - group_vars/testing
+    - secrets.yml.example

@@ -117,6 +117,7 @@
   register: fixtures_applied
   tags:
     - fixtures
+    - testing
 
 # https://serverfault.com/a/616976/48777
 - name: create list of fixture templates
@@ -130,6 +131,7 @@
   when: not fixtures_applied.stat.exists
   tags:
     - fixtures
+    - testing
 
 - name: create fixtures from templates
   template:
@@ -139,6 +141,16 @@
   when: not fixtures_applied.stat.exists
   tags:
     - fixtures
+    - testing
+
+- name: validate fixtures
+  shell: |
+    python3 -m json.tool < {{ project_root }}/fixtures/{{ item }} > /dev/null
+  with_items: "{{ fixture_templates.stdout.splitlines() }}"
+  when: not fixtures_applied.stat.exists
+  tags:
+    - fixtures
+    - testing
 
 - name: load fixtures
   django_manage:
