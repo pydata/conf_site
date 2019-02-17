@@ -1,14 +1,14 @@
 from django.db import models
 
-from wagtail.wagtailadmin.edit_handlers import (
+from wagtail.admin.edit_handlers import (
     FieldPanel,
     MultiFieldPanel,
     StreamFieldPanel,
 )
-from wagtail.wagtailcore.blocks import RawHTMLBlock, RichTextBlock, StreamBlock
-from wagtail.wagtailcore.fields import RichTextField, StreamField
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.core.blocks import RawHTMLBlock, RichTextBlock, StreamBlock
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class HTMLBlock(StreamBlock):

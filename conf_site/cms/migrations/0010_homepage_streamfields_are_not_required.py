@@ -3,8 +3,8 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-import wagtail.wagtailcore.blocks
-import wagtail.wagtailcore.fields
+import wagtail.core.blocks
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -17,21 +17,21 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='homepage',
             name='conference_info_section',
-            field=wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True),
+            field=wagtail.core.fields.StreamField([('raw_html', wagtail.core.blocks.RawHTMLBlock()), ('rich_text', wagtail.core.blocks.RichTextBlock())], blank=True),
         ),
         migrations.AlterField(
             model_name='homepage',
             name='footer1_section',
-            field=wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True, help_text="Displays on left side of the site's footer section. Will display mini code of conduct by default."),
+            field=wagtail.core.fields.StreamField([('raw_html', wagtail.core.blocks.RawHTMLBlock()), ('rich_text', wagtail.core.blocks.RichTextBlock())], blank=True, help_text="Displays on left side of the site's footer section. Will display mini code of conduct by default."),
         ),
         migrations.AlterField(
             model_name='homepage',
             name='news_keynote_section',
-            field=wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True),
+            field=wagtail.core.fields.StreamField([('raw_html', wagtail.core.blocks.RawHTMLBlock()), ('rich_text', wagtail.core.blocks.RichTextBlock())], blank=True),
         ),
         migrations.AlterField(
             model_name='homepage',
             name='pydata_info_section',
-            field=wagtail.wagtailcore.fields.StreamField([('raw_html', wagtail.wagtailcore.blocks.RawHTMLBlock()), ('rich_text', wagtail.wagtailcore.blocks.RichTextBlock())], blank=True),
+            field=wagtail.core.fields.StreamField([('raw_html', wagtail.core.blocks.RawHTMLBlock()), ('rich_text', wagtail.core.blocks.RichTextBlock())], blank=True),
         ),
     ]
