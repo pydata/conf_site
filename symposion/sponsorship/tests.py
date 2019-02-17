@@ -6,9 +6,9 @@ from zipfile import ZipFile
 
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.utils import override_settings
+from django.urls import reverse
 
 from symposion.conference.models import Conference
 from symposion.sponsorship.models import (
