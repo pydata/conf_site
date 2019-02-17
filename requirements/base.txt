@@ -1,4 +1,4 @@
-Django==1.11.18
+Django==2.0.13
 django-analytical==2.4.0
 django-bootstrap-form==3.4
 django-constance[redis]==2.3.1
