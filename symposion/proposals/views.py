@@ -42,7 +42,7 @@ def get_form(name):
 
 
 def proposal_submit(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         messages.info(
             request,
             _(
@@ -81,7 +81,7 @@ def proposal_submit_kind(request, kind_slug):
 
     kind = get_object_or_404(ProposalKind, slug=kind_slug)
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return redirect("account_login")
     else:
         try:
