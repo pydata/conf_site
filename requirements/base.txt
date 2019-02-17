@@ -25,5 +25,5 @@ redis==2.10.6
 sendgrid-django==4.2.0
 wagtail==2.0.2
 wagtail-condensedinlinepanel==0.4.2
-wagtailmenus==2.6.0
+wagtailmenus==2.12
 virtualenv==16.0.0
