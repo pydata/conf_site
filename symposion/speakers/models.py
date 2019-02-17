@@ -20,6 +20,7 @@ class Speaker(models.Model):
         User,
         blank=True,
         null=True,
+        on_delete=models.CASCADE,
         related_name="speaker_profile",
         verbose_name=_("User"),
     )

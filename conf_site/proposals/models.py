@@ -18,19 +18,25 @@ class ProposalKeyword(TagBase):
 class EditorTaggedProposal(GenericTaggedItemBase):
     tag = models.ForeignKey(
         ProposalKeyword,
-        related_name="%(app_label)s_%(class)s_items")
+        on_delete=models.CASCADE,
+        related_name="%(app_label)s_%(class)s_items",
+    )
 
 
 class TaggedProposal(GenericTaggedItemBase):
     tag = models.ForeignKey(
         ProposalKeyword,
-        related_name="%(app_label)s_%(class)s_items")
+        on_delete=models.CASCADE,
+        related_name="%(app_label)s_%(class)s_items",
+    )
 
 
 class UserTaggedProposal(GenericTaggedItemBase):
     tag = models.ForeignKey(
         ProposalKeyword,
-        related_name="%(app_label)s_%(class)s_items")
+        on_delete=models.CASCADE,
+        related_name="%(app_label)s_%(class)s_items",
+    )
 
 
 @python_2_unicode_compatible

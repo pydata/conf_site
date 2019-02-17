@@ -32,7 +32,9 @@ class ProposalSection(models.Model):
       * closed is NULL or False
     """
 
-    section = models.OneToOneField(Section, verbose_name=_("Section"))
+    section = models.OneToOneField(
+        Section, on_delete=models.CASCADE, verbose_name=_("Section")
+    )
 
     start = models.DateTimeField(
         null=True, blank=True, verbose_name=_("Start")
@@ -72,7 +74,10 @@ class ProposalKind(models.Model):
     """
 
     section = models.ForeignKey(
-        Section, related_name="proposal_kinds", verbose_name=_("Section")
+        Section,
+        on_delete=models.CASCADE,
+        related_name="proposal_kinds",
+        verbose_name=_("Section"),
     )
 
     name = models.CharField(_("Name"), max_length=100)
@@ -87,7 +92,9 @@ class ProposalBase(models.Model):
 
     objects = InheritanceManager()
 
-    kind = models.ForeignKey(ProposalKind, verbose_name=_("Kind"))
+    kind = models.ForeignKey(
+        ProposalKind, on_delete=models.CASCADE, verbose_name=_("Kind")
+    )
 
     title = models.CharField(max_length=100, verbose_name=_("Title"))
     description = models.TextField(
@@ -125,7 +132,10 @@ class ProposalBase(models.Model):
         default=now, editable=False, verbose_name=_("Submitted")
     )
     speaker = models.ForeignKey(
-        Speaker, related_name="proposals", verbose_name=_("Speaker")
+        Speaker,
+        on_delete=models.CASCADE,
+        related_name="proposals",
+        verbose_name=_("Speaker"),
     )
 
     # @@@ this validation used to exist as a validators keyword on
@@ -212,9 +222,11 @@ class AdditionalSpeaker(models.Model):
         (SPEAKING_STATUS_DECLINED, _("Declined")),
     ]
 
-    speaker = models.ForeignKey(Speaker, verbose_name=_("Speaker"))
+    speaker = models.ForeignKey(
+        Speaker, on_delete=models.CASCADE, verbose_name=_("Speaker")
+    )
     proposalbase = models.ForeignKey(
-        ProposalBase, verbose_name=_("Proposalbase")
+        ProposalBase, on_delete=models.CASCADE, verbose_name=_("Proposalbase")
     )
     status = models.IntegerField(
         choices=SPEAKING_STATUS,
@@ -246,11 +258,13 @@ class SupportingDocument(models.Model):
 
     proposal = models.ForeignKey(
         ProposalBase,
+        on_delete=models.CASCADE,
         related_name="supporting_documents",
         verbose_name=_("Proposal"),
     )
 
-    uploaded_by = models.ForeignKey(User, verbose_name=_("Uploaded by"))
+    uploaded_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name=_("Uploaded by"))
 
     created_at = models.DateTimeField(
         default=now, verbose_name=_("Created at")

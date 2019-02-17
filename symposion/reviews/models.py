@@ -66,8 +66,12 @@ class ReviewAssignment(models.Model):
         (AUTO_ASSIGNED_LATER, _("auto-assigned, later")),
     ]
 
-    proposal = models.ForeignKey(ProposalBase, verbose_name=_("Proposal"))
-    user = models.ForeignKey(User, verbose_name=_("User"))
+    proposal = models.ForeignKey(
+        ProposalBase, on_delete=models.CASCADE, verbose_name=_("Proposal")
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name=_("User")
+    )
 
     origin = models.IntegerField(
         choices=ORIGIN_CHOICES, verbose_name=_("Origin")
@@ -117,9 +121,14 @@ class ReviewAssignment(models.Model):
 
 class ProposalMessage(models.Model):
     proposal = models.ForeignKey(
-        ProposalBase, related_name="messages", verbose_name=_("Proposal")
+        ProposalBase,
+        on_delete=models.CASCADE,
+        related_name="messages",
+        verbose_name=_("Proposal"),
     )
-    user = models.ForeignKey(User, verbose_name=_("User"))
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name=_("User")
+    )
 
     message = models.TextField(verbose_name=_("Message"))
     message_html = models.TextField(blank=True)
@@ -141,9 +150,14 @@ class Review(models.Model):
     VOTES = VOTES
 
     proposal = models.ForeignKey(
-        ProposalBase, related_name="reviews", verbose_name=_("Proposal")
+        ProposalBase,
+        on_delete=models.CASCADE,
+        related_name="reviews",
+        verbose_name=_("Proposal")
     )
-    user = models.ForeignKey(User, verbose_name=_("User"))
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name=_("User")
+    )
 
     # No way to encode "-0" vs. "+0" into an IntegerField, and I don't feel
     # like some complicated encoding system.
@@ -238,9 +252,14 @@ class LatestVote(models.Model):
     VOTES = VOTES
 
     proposal = models.ForeignKey(
-        ProposalBase, related_name="votes", verbose_name=_("Proposal")
+        ProposalBase,
+        on_delete=models.CASCADE,
+        related_name="votes",
+        verbose_name=_("Proposal")
     )
-    user = models.ForeignKey(User, verbose_name=_("User"))
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name=_("User")
+    )
 
     # No way to encode "-0" vs. "+0" into an IntegerField, and I don't feel
     # like some complicated encoding system.
@@ -267,7 +286,10 @@ class LatestVote(models.Model):
 
 class ProposalResult(models.Model):
     proposal = models.OneToOneField(
-        ProposalBase, related_name="result", verbose_name=_("Proposal")
+        ProposalBase,
+        on_delete=models.CASCADE,
+        related_name="result",
+        verbose_name=_("Proposal"),
     )
     score = models.DecimalField(
         max_digits=5,
@@ -381,9 +403,14 @@ class ProposalResult(models.Model):
 
 class Comment(models.Model):
     proposal = models.ForeignKey(
-        ProposalBase, related_name="comments", verbose_name=_("Proposal")
+        ProposalBase,
+        on_delete=models.CASCADE,
+        related_name="comments",
+        verbose_name=_("Proposal"),
     )
-    commenter = models.ForeignKey(User, verbose_name=_("Commenter"))
+    commenter = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name=_("Commenter")
+    )
     text = models.TextField(verbose_name=_("Text"))
     text_html = models.TextField(blank=True)
 
@@ -421,7 +448,10 @@ class NotificationTemplate(models.Model):
 class ResultNotification(models.Model):
 
     proposal = models.ForeignKey(
-        ProposalBase, related_name="notifications", verbose_name=_("Proposal")
+        ProposalBase,
+        on_delete=models.CASCADE,
+        related_name="notifications",
+        verbose_name=_("Proposal"),
     )
     template = models.ForeignKey(
         NotificationTemplate,

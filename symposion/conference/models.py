@@ -53,7 +53,9 @@ class Section(models.Model):
     scheduling process.
     """
 
-    conference = models.ForeignKey(Conference, verbose_name=_("Conference"))
+    conference = models.ForeignKey(
+        Conference, on_delete=models.CASCADE, verbose_name=_("Conference")
+    )
 
     name = models.CharField(_("Name"), max_length=100)
     slug = models.SlugField(verbose_name=_("Slug"))
