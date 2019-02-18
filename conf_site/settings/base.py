@@ -247,11 +247,9 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
 AUTHENTICATION_BACKENDS = [
-    # Permissions Backends
-    "symposion.teams.backends.TeamPermissionsBackend",
-
-    # Auth backends
+    "django.contrib.auth.backends.ModelBackend",
     "account.auth_backends.EmailAuthenticationBackend",
+    "symposion.teams.backends.TeamPermissionsBackend",
 ]
 
 CACHES = {
