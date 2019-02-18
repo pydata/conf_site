@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
@@ -47,9 +48,8 @@ class Team(models.Model):
         default=timezone.now, editable=False, verbose_name=_("Created")
     )
 
-    @models.permalink
     def get_absolute_url(self):
-        return ("team_detail", [self.slug])
+        return reverse("team_detail", args=[self.slug])
 
     def __str__(self):
         return self.name
@@ -90,10 +90,16 @@ MEMBERSHIP_STATE_CHOICES = [
 class Membership(models.Model):
 
     user = models.ForeignKey(
-        User, related_name="memberships", verbose_name=_("User")
+        User,
+        on_delete=models.CASCADE,
+        related_name="memberships",
+        verbose_name=_("User"),
     )
     team = models.ForeignKey(
-        Team, related_name="memberships", verbose_name=_("Team")
+        Team,
+        on_delete=models.CASCADE,
+        related_name="memberships",
+        verbose_name=_("Team"),
     )
     state = models.CharField(
         max_length=20,

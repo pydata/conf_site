@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 import json
 
-from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
+from django.urls import reverse
 
 from django.contrib import messages
 from django.contrib.sites.models import Site

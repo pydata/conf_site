@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from wagtail.wagtailcore.models import Site
-from wagtail.wagtailcore.rich_text import RichText
+from wagtail.core.models import Site
+from wagtail.core.rich_text import RichText
 
 from conf_site.schedule.models import ScheduleSettings
 from conf_site.schedule.views import ExportPresentationSpeakerView

@@ -80,7 +80,7 @@ def speaker_create_staff(request, pk):
 def speaker_create_token(request, token):
     speaker = get_object_or_404(Speaker, invite_token=token)
     request.session["pending-token"] = token
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         # check for speaker profile
         try:
             existing_speaker = request.user.speaker_profile
@@ -101,7 +101,7 @@ def speaker_create_token(request, token):
             )
             return redirect("dashboard")
     else:
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             return redirect("account_login")
     return redirect("speaker_create")
 

@@ -12,7 +12,7 @@ class TeamPermissionsBackend(object):
         Returns a set of permission strings that this user has through his/her
         team memberships.
         """
-        if user_obj.is_anonymous() or obj is not None:
+        if user_obj.is_anonymous or obj is not None:
             return set()
         if not hasattr(user_obj, "_team_perm_cache"):
             memberships = Team.objects.filter(

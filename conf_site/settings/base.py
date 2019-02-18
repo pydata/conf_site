@@ -108,17 +108,16 @@ TEMPLATES = [
     },
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.auth.middleware.SessionAuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "reversion.middleware.RevisionMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "wagtail.wagtailcore.middleware.SiteMiddleware",
-    "wagtail.wagtailredirects.middleware.RedirectMiddleware",
+    "wagtail.core.middleware.SiteMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 ROOT_URLCONF = "conf_site.urls"
@@ -158,17 +157,17 @@ INSTALLED_APPS = [
     "symposion.sponsorship",
     "symposion.teams",
     "taggit",
-    "wagtail.wagtailforms",
-    "wagtail.wagtailredirects",
-    "wagtail.wagtailembeds",
-    "wagtail.wagtailsites",
-    "wagtail.wagtailusers",
-    "wagtail.wagtailsnippets",
-    "wagtail.wagtaildocs",
-    "wagtail.wagtailimages",
-    "wagtail.wagtailsearch",
-    "wagtail.wagtailadmin",
-    "wagtail.wagtailcore",
+    "wagtail.contrib.forms",
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail.core",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.settings",
     "wagtailmenus",
@@ -248,11 +247,9 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
 AUTHENTICATION_BACKENDS = [
-    # Permissions Backends
-    "symposion.teams.backends.TeamPermissionsBackend",
-
-    # Auth backends
+    "django.contrib.auth.backends.ModelBackend",
     "account.auth_backends.EmailAuthenticationBackend",
+    "symposion.teams.backends.TeamPermissionsBackend",
 ]
 
 CACHES = {

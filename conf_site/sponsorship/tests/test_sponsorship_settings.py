@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from symposion.conference.models import Conference
 
-from wagtail.wagtailcore.models import Site
+from wagtail.core.models import Site
 
 from conf_site.accounts.tests import AccountsTestCase
 from conf_site.sponsorship.models import SponsorshipSettings

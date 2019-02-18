@@ -16,7 +16,9 @@ from symposion.speakers.models import Speaker
 @python_2_unicode_compatible
 class Schedule(models.Model):
 
-    section = models.OneToOneField(Section, verbose_name=_("Section"))
+    section = models.OneToOneField(
+        Section, on_delete=models.CASCADE, verbose_name=_("Section")
+    )
     published = models.BooleanField(default=True, verbose_name=_("Published"))
     hidden = models.BooleanField(
         _("Hide schedule from overall conference view"), default=False
@@ -40,7 +42,9 @@ class Schedule(models.Model):
 @python_2_unicode_compatible
 class Day(models.Model):
 
-    schedule = models.ForeignKey(Schedule, verbose_name=_("Schedule"))
+    schedule = models.ForeignKey(
+        Schedule, on_delete=models.CASCADE, verbose_name=_("Schedule")
+    )
     date = models.DateField(verbose_name=_("Date"))
 
     def __str__(self):
@@ -56,7 +60,9 @@ class Day(models.Model):
 @python_2_unicode_compatible
 class Room(models.Model):
 
-    schedule = models.ForeignKey(Schedule, verbose_name=_("Schedule"))
+    schedule = models.ForeignKey(
+        Schedule, on_delete=models.CASCADE, verbose_name=_("Schedule")
+    )
     name = models.CharField(max_length=65, verbose_name=_("Name"))
     order = models.PositiveIntegerField(verbose_name=_("Order"))
 
@@ -75,7 +81,9 @@ class SlotKind(models.Model):
     break, lunch, or X-minute talk.
     """
 
-    schedule = models.ForeignKey(Schedule, verbose_name=_("schedule"))
+    schedule = models.ForeignKey(
+        Schedule, on_delete=models.CASCADE, verbose_name=_("schedule")
+    )
     label = models.CharField(max_length=50, verbose_name=_("Label"))
 
     def __str__(self):
@@ -88,8 +96,12 @@ class SlotKind(models.Model):
 
 @python_2_unicode_compatible
 class Slot(models.Model):
-    day = models.ForeignKey(Day, verbose_name=_("Day"))
-    kind = models.ForeignKey(SlotKind, verbose_name=_("Kind"))
+    day = models.ForeignKey(
+        Day, on_delete=models.CASCADE, verbose_name=_("Day")
+    )
+    kind = models.ForeignKey(
+        SlotKind, on_delete=models.CASCADE, verbose_name=_("Kind")
+    )
     start = models.TimeField(verbose_name=_("Start"))
     end = models.TimeField(verbose_name=_("End"))
     content_override = models.TextField(
@@ -181,8 +193,12 @@ class SlotRoom(models.Model):
     Links a slot with a room.
     """
 
-    slot = models.ForeignKey(Slot, verbose_name=_("Slot"))
-    room = models.ForeignKey(Room, verbose_name=_("Room"))
+    slot = models.ForeignKey(
+        Slot, on_delete=models.CASCADE, verbose_name=_("Slot")
+    )
+    room = models.ForeignKey(
+        Room, on_delete=models.CASCADE, verbose_name=_("Room")
+    )
 
     def __str__(self):
         return "%s %s" % (self.room, self.slot)
@@ -201,6 +217,7 @@ class Presentation(models.Model):
         Slot,
         null=True,
         blank=True,
+        on_delete=models.CASCADE,
         related_name="content_ptr",
         verbose_name=_("Slot"),
     )
@@ -210,7 +227,10 @@ class Presentation(models.Model):
     abstract = models.TextField(verbose_name=_("Abstract"))
     abstract_html = models.TextField(blank=True, editable=False)
     speaker = models.ForeignKey(
-        Speaker, related_name="presentations", verbose_name=_("Speaker")
+        Speaker,
+        on_delete=models.CASCADE,
+        related_name="presentations",
+        verbose_name=_("Speaker"),
     )
     additional_speakers = models.ManyToManyField(
         Speaker,
@@ -221,11 +241,15 @@ class Presentation(models.Model):
     cancelled = models.BooleanField(default=False, verbose_name=_("Cancelled"))
     proposal_base = models.OneToOneField(
         ProposalBase,
+        on_delete=models.CASCADE,
         related_name="presentation",
         verbose_name=_("Proposal base"),
     )
     section = models.ForeignKey(
-        Section, related_name="presentations", verbose_name=_("Section")
+        Section,
+        on_delete=models.CASCADE,
+        related_name="presentations",
+        verbose_name=_("Section"),
     )
 
     def save(self, *args, **kwargs):

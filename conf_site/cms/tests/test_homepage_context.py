@@ -1,8 +1,8 @@
-from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.urls import reverse
 
 from symposion.conference.models import Conference
-from wagtail.wagtailcore.models import Site
+from wagtail.core.models import Site
 
 from conf_site.cms.models import HTMLPage, HomePage
 

@@ -5,10 +5,10 @@ import sys
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.views import static
 
 from django.contrib import messages
@@ -42,7 +42,7 @@ def get_form(name):
 
 
 def proposal_submit(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         messages.info(
             request,
             _(
@@ -81,7 +81,7 @@ def proposal_submit_kind(request, kind_slug):
 
     kind = get_object_or_404(ProposalKind, slug=kind_slug)
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return redirect("account_login")
     else:
         try:

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model, hashers
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from conf_site.accounts.tests import AccountsTestCase
 

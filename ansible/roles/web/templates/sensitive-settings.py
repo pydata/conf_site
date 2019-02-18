@@ -1,7 +1,7 @@
 # Passwords, API keys, and other sensitive information.
 
 DATABASES_DEFAULT = {
-    "ENGINE": "django.db.backends.postgresql_psycopg2",
+    "ENGINE": "django.db.backends.postgresql",
     "NAME": "{{ django_database }}",
     "USER": "{{ database_user }}",
     "PASSWORD": "{{ database_password }}",

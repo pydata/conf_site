@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_init, post_save
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
@@ -51,7 +51,9 @@ BENEFITS = [
 @python_2_unicode_compatible
 class SponsorLevel(models.Model):
 
-    conference = models.ForeignKey(Conference, verbose_name=_("Conference"))
+    conference = models.ForeignKey(
+        Conference, on_delete=models.CASCADE, verbose_name=_("Conference")
+    )
     name = models.CharField(_("Name"), max_length=100)
     order = models.IntegerField(_("Order"), default=0)
     cost = models.PositiveIntegerField(_("Cost"))
@@ -76,6 +78,7 @@ class Sponsor(models.Model):
 
     applicant = models.ForeignKey(
         User,
+        on_delete=models.CASCADE,
         related_name="sponsorships",
         verbose_name=_("Applicant"),
         null=True,
@@ -87,7 +90,9 @@ class Sponsor(models.Model):
     annotation = models.TextField(_("Annotation"), blank=True)
     contact_name = models.CharField(_("Contact Name"), max_length=100)
     contact_email = models.EmailField(_("Contact Email"))
-    level = models.ForeignKey(SponsorLevel, verbose_name=_("level"))
+    level = models.ForeignKey(
+        SponsorLevel, on_delete=models.CASCADE, verbose_name=_("level")
+    )
     added = models.DateTimeField(_("added"), default=timezone.now)
     active = models.BooleanField(_("active"), default=False)
 
@@ -98,6 +103,7 @@ class Sponsor(models.Model):
         null=True,
         blank=True,
         editable=False,
+        on_delete=models.CASCADE,
         verbose_name=_("Sponsor logo"),
     )
 
@@ -292,10 +298,16 @@ class Benefit(models.Model):
 class BenefitLevel(models.Model):
 
     benefit = models.ForeignKey(
-        Benefit, related_name="benefit_levels", verbose_name=_("Benefit")
+        Benefit,
+        on_delete=models.CASCADE,
+        related_name="benefit_levels",
+        verbose_name=_("Benefit"),
     )
     level = models.ForeignKey(
-        SponsorLevel, related_name="benefit_levels", verbose_name=_("Level")
+        SponsorLevel,
+        on_delete=models.CASCADE,
+        related_name="benefit_levels",
+        verbose_name=_("Level"),
     )
 
     # default limits for this benefit at given level
@@ -319,10 +331,16 @@ class BenefitLevel(models.Model):
 class SponsorBenefit(models.Model):
 
     sponsor = models.ForeignKey(
-        Sponsor, related_name="sponsor_benefits", verbose_name=_("Sponsor")
+        Sponsor,
+        on_delete=models.CASCADE,
+        related_name="sponsor_benefits",
+        verbose_name=_("Sponsor"),
     )
     benefit = models.ForeignKey(
-        Benefit, related_name="sponsor_benefits", verbose_name=_("Benefit")
+        Benefit,
+        on_delete=models.CASCADE,
+        related_name="sponsor_benefits",
+        verbose_name=_("Benefit"),
     )
     active = models.BooleanField(default=True, verbose_name=_("Active"))
 

@@ -1,5 +1,5 @@
-from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 from rest_framework import status
 from symposion.speakers.models import Speaker
