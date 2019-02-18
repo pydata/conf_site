@@ -10,3 +10,8 @@ development:
 testing:
   hosts:
     localhost
+
+production:
+  hosts:
+    amsterdam2019:
+      ansible_ssh_host: 104.130.169.130
