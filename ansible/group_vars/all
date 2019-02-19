@@ -1,5 +1,6 @@
 admin_email: admin@pydata.org
 amy_username: amy
+ansible_python_interpreter: /usr/bin/python3
 database_host: localhost
 git_version: master
 gunicorn_port: 10501
