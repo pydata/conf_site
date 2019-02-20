@@ -1,6 +1,4 @@
 from __future__ import unicode_literals
-import hashlib
-import random
 import sys
 
 from django.conf import settings
@@ -14,6 +12,7 @@ from django.views import static
 from django.contrib import messages
 from django.contrib.auth.models import User
 
+from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
 
 from account.decorators import login_required
@@ -138,8 +137,7 @@ def proposal_speaker_manage(request, pk):
                         Q(user=None, invite_email=email_address)
                     )
                 except Speaker.DoesNotExist:
-                    salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
-                    token = hashlib.sha1(salt + email_address).hexdigest()
+                    token = get_random_string(5)
                     pending = Speaker.objects.create(
                         invite_email=email_address, invite_token=token
                     )

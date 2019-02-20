@@ -42,3 +42,16 @@ class ProposalSpeakerManageViewTestCase(ProposalTestCase):
             reverse("proposal_speaker_manage", args=[self.proposal.pk])
         )
         self.assertEqual(response.status_code, 404)
+
+    def test_inviting_speaker(self):
+        """Verify that inviting a speaker works."""
+        response = self.client.post(
+            path=reverse("proposal_speaker_manage", args=[self.proposal.pk]),
+            data={"email": "valid@example.com"},
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            reverse("proposal_speaker_manage", args=[self.proposal.pk]),
+        )
+        self.assertContains(response, "Speaker invited to proposal.")
