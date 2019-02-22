@@ -14,3 +14,5 @@ production:
   hosts:
     amsterdam2019:
       ansible_ssh_host: 104.130.169.130
+    london2019:
+      ansible_ssh_host: 104.239.230.101
