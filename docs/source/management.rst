@@ -59,26 +59,3 @@ The main menu is managed from the "Settings" menu of the Wagtail admin. Only
 top-level menu items need to be added. *All pages that need to appear in the
 menu must have the "Show in menus" settings enabled* (found on the
 "Promote" tab when editing a page).
-
-Reviewing
----------
-
-Teams
-~~~~~
-
-The reviewing section's permission structure relies on Symposion's "teams"
-application.
-
-Teams have three different types of membership status:
-
-  - "open": Users can join freely.
-  - "by application": Users can apply to join. Team managers receive
-    email notification of applications and can approve applicants.
-  - "by invitation": Users must be invited by a team manager in order
-    to be able to join the team.
-
-Each conference site should have a "Reviewers" team with the following
-permissions for each conference section:
-
-  - members need the `reviews || Can review ...` permission.
-  - managers need the `reviews || Can manage ...` permission.
