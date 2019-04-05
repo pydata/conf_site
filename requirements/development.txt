@@ -1,5 +1,5 @@
 -r base.txt
-ansible==2.7.7
+ansible==2.7.10
 ansible-lint==4.1.0
 beautifulsoup4==4.6.0
 coverage==4.5.2
