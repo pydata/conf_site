@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 import factory
 
-from symposion.schedule.tests.factories import (
-    ProposalKindFactory,
-    SectionFactory,
-)
+from symposion.schedule.tests.factories import ProposalKindFactory
 from symposion.speakers.models import Speaker
 
 from conf_site.accounts.tests.factories import UserFactory
