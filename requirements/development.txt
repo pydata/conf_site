@@ -3,7 +3,7 @@ ansible==2.7.10
 ansible-lint==4.1.0
 beautifulsoup4==4.6.0
 coverage==4.5.2
-django-debug-toolbar==1.10.1
+django-debug-toolbar==1.11
 factory_boy==2.11.1
 flake8==3.5.0
 ipython==5.8.0
