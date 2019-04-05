@@ -17,7 +17,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import ServeView as WagtailImageView
 
 from conf_site.core.views import csrf_failure, LoginEmailView
-from conf_site.reviews.views import (
+from conf_site.reviews.views.keywords import (
     ReviewKeywordDetailView,
     ReviewKeywordListView)
 from conf_site.schedule.views import ExportPresentationSpeakerView
