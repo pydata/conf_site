@@ -7,5 +7,5 @@ django-debug-toolbar==1.11
 factory_boy==2.11.1
 flake8==3.5.0
 ipython==7.4.0
-rstcheck==3.3
-sphinx==1.7.6
+rstcheck==3.3.1
+sphinx==2.0.0
