@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="container">
-  <h2>All Proposals</h2>
+  <h2>{% block page-title %}All Proposals{% endblock %}</h2>
   <table class="table table-bordered table-hover">
     <thead>
       {% if not config.BLIND_REVIEWERS %}<th>{% trans "Speaker" %}</th>{% endif %}
