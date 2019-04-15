@@ -53,6 +53,9 @@ class ProposalVote(models.Model):
 
 
 class ProposalFeedback(models.Model):
+    proposal = models.ForeignKey(
+        Proposal, on_delete=models.CASCADE, related_name="review_feedback"
+    )
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="review_feedback"
     )
