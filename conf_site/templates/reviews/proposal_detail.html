@@ -56,6 +56,7 @@
     <div class="tab-pane" id="proposal-feedback">
       {% for feedback in proposal.review_feedback.all %}<hr><p>
         <b>{{ feedback.author.username }}</b>: {{ feedback.comment_html|safe }}
+      {% endfor %}
         <form method="POST" action="{% url 'review_proposal_vote' proposal.id %}" class="review-form">
           <legend>Write Feedback:</legend>
           {% csrf_token %}
