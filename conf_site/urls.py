@@ -19,6 +19,7 @@ from wagtail.images.views.serve import ServeView as WagtailImageView
 from conf_site.core.views import csrf_failure, LoginEmailView
 from conf_site.reviews.views import (
     ProposalDetailView,
+    ProposalFeedbackPostView,
     ProposalListView,
     ProposalVotePostView,
 )
@@ -75,6 +76,11 @@ urlpatterns += [
         r"^reviews/proposal/(?P<pk>\d+)/$",
         ProposalDetailView.as_view(),
         name="review_proposal_detail",
+    ),
+    url(
+        r"reviews/proposal/(?P<pk>\d+)/feedback/$",
+        ProposalFeedbackPostView.as_view(),
+        name="review_proposal_feedback",
     ),
     url(
         r"^reviews/proposal/(?P<pk>\d+)/vote/$",

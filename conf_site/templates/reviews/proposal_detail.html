@@ -23,7 +23,7 @@
       <li>
         <a href="#proposal-feedback" data-toggle="tab">
           {% trans "Speaker Feedback" %}
-          <span class="badge">{{ proposal.messages.count }}</span>
+          <span class="badge">{{ proposal.review_feedback.count }}</span>
         </a>
       </li>
     </ul>
@@ -56,7 +56,8 @@
     <div class="tab-pane" id="proposal-feedback">
       {% for feedback in proposal.review_feedback.all %}<hr><p>
         <b>{{ feedback.author.username }}</b>: {{ feedback.comment_html|safe }}
-        <form method="POST" action="{% url 'review_proposal_vote' proposal.id %}" class="review-form">
+      {% endfor %}
+        <form method="POST" action="{% url 'review_proposal_feedback' proposal.id %}" class="review-form">
           <legend>Write Feedback:</legend>
           {% csrf_token %}
           <input type="hidden" name="proposal_id" value="{{ proposal.id }}">

@@ -1,9 +1,9 @@
 {% load account_tags %}
 <p>
-    <b>{% user_display message.user %}</b> has added a message on <b>{{ proposal.title }}</b>.
+    A message has been added on <b>{{ proposal.title }}</b>.
 </p>
 <blockquote>
-    {{ message.message|safe }}
+    {{ message.comment_html|safe }}
 </blockquote>
 <p>
     {% if reviewer %}{% url "review_detail" proposal.pk as detail_url %}{% else %}{% url "proposal_detail" proposal.pk as detail_url %}{% endif %}

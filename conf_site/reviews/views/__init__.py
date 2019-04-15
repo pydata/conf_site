@@ -5,9 +5,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, View
 
+from symposion.utils.mail import send_email
+
 from conf_site.proposals.models import Proposal
-from conf_site.reviews.forms import ProposalVoteForm, ProposalFeedbackForm
-from conf_site.reviews.models import ProposalVote
+from conf_site.reviews.forms import ProposalFeedbackForm, ProposalVoteForm
+from conf_site.reviews.models import ProposalFeedback, ProposalVote
 
 
 class ReviewingView(UserPassesTestMixin, View):
@@ -73,6 +75,56 @@ class ProposalVotePostView(ReviewingView):
         vote.comment = self.request.POST["comment"]
         vote.save()
 
+        return HttpResponseRedirect(
+            reverse("review_proposal_detail", args=[proposal.id])
+        )
+
+
+class ProposalFeedbackPostView(ReviewingView):
+    http_method_names = ["post"]
+
+    def post(self, *args, **kwargs):
+        """AJAX update an individual ProposalVote object."""
+        proposal = Proposal.objects.get(pk=kwargs["pk"])
+        feedback = ProposalFeedback.objects.create(
+            proposal=proposal,
+            author=self.request.user,
+            comment=self.request.POST["comment"],
+        )
+        # Send email to proposal speakers.
+        speaker_email_addressses = []
+        for speaker in proposal.speakers():
+            # Only send messages to speakers with email addresses
+            # who are not the author of this message.
+            if (
+                speaker.email
+                and speaker.user
+                and speaker.user != self.request.user
+            ):
+                speaker_email_addressses.append(speaker.email)
+        send_email(
+            speaker_email_addressses,
+            "proposal_new_message",
+            context={
+                "proposal": proposal,
+                "message": feedback,
+                "reviewer": False,
+            },
+        )
+        # Send email to reviewers.
+        reviewer_email_addresses = []
+        for feedback in proposal.review_feedback.all():
+            if feedback.author.email and feedback.author != self.request.user:
+                reviewer_email_addresses.append(feedback.author.email)
+        send_email(
+            reviewer_email_addresses,
+            "proposal_new_message",
+            context={
+                "proposal": proposal,
+                "message": feedback,
+                "reviewer": True,
+            },
+        )
         return HttpResponseRedirect(
             reverse("review_proposal_detail", args=[proposal.id])
         )
