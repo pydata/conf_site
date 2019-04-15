@@ -9,7 +9,7 @@ from conf_site.proposals.models import Proposal, ProposalKeyword
 class ReviewKeywordListView(ListView):
     """A view to display keywords associated with proposals for reviewers."""
     context_object_name = "keywords"
-    template_name = "symposion/reviews/proposalkeyword_list.html"
+    template_name = "reviews/proposalkeyword_list.html"
 
     def get_queryset(self, **kwargs):
         return ProposalKeyword.objects.all().order_by("name")
@@ -17,8 +17,8 @@ class ReviewKeywordListView(ListView):
 
 class ReviewKeywordDetailView(ListView):
     """A view that displays proposals associated with a specific keyword."""
-    context_object_name = "proposals"
-    template_name = "symposion/reviews/keyword_detail.html"
+    context_object_name = "proposal_list"
+    template_name = "reviews/keyword_detail.html"
 
     def get(self, request, *args, **kwargs):
         # Save keyword from slug.

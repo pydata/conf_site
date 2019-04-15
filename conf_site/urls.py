@@ -17,6 +17,11 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import ServeView as WagtailImageView
 
 from conf_site.core.views import csrf_failure, LoginEmailView
+from conf_site.reviews.views import (
+    ProposalDetailView,
+    ProposalListView,
+    ProposalVotePostView,
+)
 from conf_site.reviews.views.keywords import (
     ReviewKeywordDetailView,
     ReviewKeywordListView)
@@ -66,7 +71,22 @@ urlpatterns += [
     url(r"^reviews/keyword/(?P<keyword_slug>[\w-]+)/$",
         ReviewKeywordDetailView.as_view(),
         name="review_keyword_detail"),
+    url(
+        r"^reviews/proposal/(?P<pk>\d+)/$",
+        ProposalDetailView.as_view(),
+        name="review_proposal_detail",
+    ),
+    url(
+        r"^reviews/proposal/(?P<pk>\d+)/vote/$",
+        ProposalVotePostView.as_view(),
+        name="review_proposal_vote",
+    ),
     url(r"^reviews/", include("symposion.reviews.urls")),
+    url(
+        r"^reviews/$",
+        ProposalListView.as_view(),
+        name="review_proposal_list",
+    ),
     url(r"^schedule/presentation/export/$",
         staff_member_required(ExportPresentationSpeakerView.as_view()),
         name="presentation_speaker_export"),

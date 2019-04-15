@@ -260,11 +260,25 @@ CACHES = {
 }
 CONFERENCE_ID = 1
 CONSTANCE_CONFIG = {
+    "BLIND_AUTHORS": (
+        True,
+        "Hide identities of reviewers from authors.",
+        bool,
+    ),
+    "BLIND_REVIEWERS": (
+        False,
+        "Hide identities of authors from reviewers.",
+        bool,
+    ),
     "PROPOSAL_KEYWORDS": (False, "Support proposal keywords.", bool),
     "PROPOSAL_URL_FIELDS": (
         False,
         "Show slides & code repository fields on proposal submission form.",
         bool),
+}
+CONSTANCE_CONFIG_FIELDSETS = {
+    "Proposal Options": ("PROPOSAL_KEYWORDS", "PROPOSAL_URL_FIELDS"),
+    "Reviewing Options": ("BLIND_AUTHORS", "BLIND_REVIEWERS"),
 }
 CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"
 PROPOSAL_FORMS = {

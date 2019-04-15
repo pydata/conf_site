@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} - Reviewing{% endblock %}
+
+
+{% block body %}
+<div class="container">
+  <h2>{% block page-title %}All Proposals{% endblock %}</h2>
+  <table class="table table-bordered table-hover">
+    <thead>
+      {% if not config.BLIND_REVIEWERS %}<th>{% trans "Speaker" %}</th>{% endif %}
+      <th>{% trans "Title" %}</th>
+      <th>{% trans "Category" %}</th>
+      <th><i class="fa fa-comment" title="{% trans 'Messages' %}"></i></th>
+      <th>{% trans "+1" %}</th>
+      <th>{% trans "+0" %}</th>
+      <th>{% trans "-0" %}</th>
+      <th>{% trans "-1" %}</th>
+      <th><a href="#" class="tip" title="{% trans 'Your Rating' %}"><i class="fa fa-user"></i></a></th>
+      <th>{% trans "Status" %}</th>
+    </thead>
+    <tbody>
+      {% for proposal in proposal_list %}<tr>
+        {% if not config.BLIND_REVIEWERS %}<td>{{ proposal.speaker.name }}</td>{% endif %}
+        <td>
+          <a href="{% url 'review_proposal_detail' proposal.pk %}">
+            {{ proposal.title }}
+          </a>
+        </td>
+        <td>{{ proposal.kind.name }}</td>
+        <td>{{ proposal.messages.count }}</td>
+        <td>{{ proposal.plus_one }}</td>
+        <td>{{ proposal.plus_zero }}</td>
+        <td>{{ proposal.minus_zero }}</td>
+        <td>{{ proposal.minus_one }}</td>
+        <td>{{ proposal.user_vote|default:"&nbsp;" }}</td>
+        <td>{{ proposal.result.status }}</td>
+      </tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

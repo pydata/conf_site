@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load bootstrap i18n %}
+
+{% block title %} - Reviewing - {{ proposal.title }}{% endblock %}
+
+
+{% block body %}
+<div class="container">
+  <h2>{{ proposal.title }}</h2>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#proposal-detail" data-toggle="tab">
+          {% trans "Proposal Details" %}
+        </a>
+      </li>
+      {% if actor == "reviewer" %}<li>
+        <a href="#proposal-reviews" data-toggle="tab">
+          {% trans "Reviews" %}
+          <span class="badge">{{ proposal.review_votes.count }}</span>
+        </a>
+      </li>{% endif %}
+      <li>
+        <a href="#proposal-feedback" data-toggle="tab">
+          {% trans "Speaker Feedback" %}
+          <span class="badge">{{ proposal.messages.count }}</span>
+        </a>
+      </li>
+    </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="proposal-detail">
+      {% include "symposion/proposals/_proposal_fields.html" %}
+    </div>
+    {# Only show reviews if user is a reviewer. #}
+    {% if actor == "reviewer" %}<div class="tab-pane" id="proposal-reviews">
+      <h3>Votes</h3>
+      {% for review_vote in proposal.review_votes.all %}<hr><p>
+        <h4>{{ review_vote.voter.username }} ({{ review_vote.get_score_display }})</h4>
+        {{ review_vote.comment_html|safe }}
+      </p>{% endfor %}
+      <form method="POST" action="{% url 'review_proposal_vote' proposal.id %}" class="review-form">
+        <legend>{% trans "Submit Review" %}</legend>
+        <p>
+          Enter your vote and any comment to go along with it.
+          You can revise your vote or comment multiple times
+          (your previously recorded vote will be replaced).
+        </p>
+        {% csrf_token %}
+        <input type="hidden" name="proposal_id" value="{{ proposal.id }}">
+        {{ vote_form|bootstrap }}
+        <div class="form-action">
+          <input type="submit" class="btn btn-primary" name="vote_submit" value="Submit Review" />
+        </div>
+      </form>
+    </div>{% endif %}
+    <div class="tab-pane" id="proposal-feedback">
+      {% for feedback in proposal.review_feedback.all %}<hr><p>
+        <b>{{ feedback.author.username }}</b>: {{ feedback.comment_html|safe }}
+        <form method="POST" action="{% url 'review_proposal_vote' proposal.id %}" class="review-form">
+          <legend>Write Feedback:</legend>
+          {% csrf_token %}
+          <input type="hidden" name="proposal_id" value="{{ proposal.id }}">
+          {{ feedback_form|bootstrap }}
+          <div class="form-action">
+            <input type="submit" class="btn btn-primary" name="feedback_submit" value="Submit Feedback" />
+          </div>
+        </form>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
