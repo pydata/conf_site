@@ -13,6 +13,11 @@
       <strong>BLIND_REVIEWERS</strong> setting.
     </p>
   {% endif %}
+  <p>
+    Currently showing <strong>{{ proposal_list|length }}</strong> proposals
+    (<strong>{{ num_talks }}</strong> talks,
+    <strong>{{ num_tutorials }}</strong> tutorials).
+  </p>
   <table class="table table-bordered table-hover" id="table-proposals">
     <thead>
       {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}

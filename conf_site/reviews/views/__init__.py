@@ -38,6 +38,17 @@ class ProposalListView(ListView, ReviewingView):
         """Show all proposals, except those that have been cancelled."""
         return Proposal.objects.order_by("title").exclude(cancelled=True)
 
+    def get_context_data(self, **kwargs):
+        # Add number of talks and tutorials to context data.
+        context = super(ProposalListView, self).get_context_data(**kwargs)
+        context["num_talks"] = (
+            self.get_queryset().filter(kind__slug="talk").count()
+        )
+        context["num_tutorials"] = (
+            self.get_queryset().filter(kind__slug="tutorial").count()
+        )
+        return context
+
 
 class ProposalDetailView(DetailView, ReviewingView):
     context_object_name = "proposal"
