@@ -7,6 +7,14 @@
 {% block body %}
 <div class="container">
   <h2>{{ proposal.title }}</h2>
+
+  {% if config.BLIND_REVIEWERS and request.user.is_superuser %}
+    <p class="bg-info">
+      Your superuser status is ignoring the enabled
+      <strong>BLIND_REVIEWERS</strong> setting.
+    </p>
+  {% endif %}
+
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active">

@@ -7,9 +7,17 @@
 {% block body %}
 <div class="container">
   <h2>{% block page-title %}All Proposals{% endblock %}</h2>
+  {% if config.BLIND_REVIEWERS and request.user.is_superuser %}
+    <p class="bg-info">
+      Your superuser status is ignoring the enabled
+      <strong>BLIND_REVIEWERS</strong> setting.
+    </p>
+  {% endif %}
   <table class="table table-bordered table-hover">
     <thead>
-      {% if not config.BLIND_REVIEWERS %}<th>{% trans "Speaker" %}</th>{% endif %}
+      {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
+        <th>{% trans "Speaker" %}</th>
+      {% endif %}
       <th>{% trans "Title" %}</th>
       <th>{% trans "Category" %}</th>
       <th><i class="fa fa-comment" title="{% trans 'Messages' %}"></i></th>
@@ -22,7 +30,9 @@
     </thead>
     <tbody>
       {% for proposal in proposal_list %}<tr>
-        {% if not config.BLIND_REVIEWERS %}<td>{{ proposal.speaker.name }}</td>{% endif %}
+        {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
+          <td>{{ proposal.speaker.name }}</td>
+        {% endif %}
         <td>
           <a href="{% url 'review_proposal_detail' proposal.pk %}">
             {{ proposal.title }}

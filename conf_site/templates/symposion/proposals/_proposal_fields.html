@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <dl class="dl-horizontal">
-    {% if not config.BLIND_REVIEWERS %}
+    {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
     <dt>{% trans "Submitted by" %}</dt>
     <dd>{{ proposal.speaker.name }}</dd>
     <dt>Affiliation</dt>
@@ -30,13 +30,15 @@
     <dt>{% trans "Audience Level" %}</dt>
     <dd>{{ proposal.get_audience_level_display }}&nbsp;</dd>
 
-    {% if not config.BLIND_REVIEWERS and proposal.additional_speakers.all %}
-        <dt>{% trans "Additional Speakers" %}</dt>
-        <dd>
-            {% for speaker in proposal.additional_speakers.all %}
-                <li><strong>{{ speaker.name }}</strong></li>
-            {% endfor %}
-        </dd>
+    {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
+        {% if proposal.additional_speakers.all %}
+            <dt>{% trans "Additional Speakers" %}</dt>
+            <dd>
+                {% for speaker in proposal.additional_speakers.all %}
+                    <li><strong>{{ speaker.name }}</strong></li>
+                {% endfor %}
+            </dd>
+        {% endif %}
     {% endif %}
 
     <dt>{% trans "Description" %}</dt>
@@ -59,7 +61,7 @@
         {% endif %}
     {% endif %}
 
-    {% if not config.BLIND_REVIEWERS %}
+    {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
     <dt>{% trans "Speaker Bio" %}</dt>
     <dd>{{ proposal.speaker.biography_html|safe }}&nbsp;</dd>
     {% endif %}

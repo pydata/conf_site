@@ -102,3 +102,16 @@ class ReviewingTestCase(object):
             )
             for proposal in proposals:
                 self.assertContains(response, proposal.speaker.name)
+
+    def test_blind_reviewers_as_superuser(self):
+        """Verify that superusers ignore the BLIND_REVIEWERS setting."""
+        self._become_superuser(self.user)
+        proposals = self._create_proposals()
+
+        with override_config(BLIND_REVIEWERS=True):
+            response = self.client.get(
+                reverse(self.reverse_view_name, args=self.reverse_view_args)
+            )
+            self.assertContains(response, "Your superuser status")
+            for proposal in proposals:
+                self.assertContains(response, proposal.speaker.name)
