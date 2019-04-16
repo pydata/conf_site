@@ -50,7 +50,13 @@
         <td>{{ proposal.minus_zero }}</td>
         <td>{{ proposal.minus_one }}</td>
         <td>{{ proposal.user_vote|default:"&nbsp;" }}</td>
-        <td>{{ proposal.result.status }}</td>
+        <td>
+          {% if proposal.review_result %}
+            {{ proposal.review_result.status }}
+          {% else %}
+            Undecided
+          {% endif %}
+        </td>
       </tr>{% endfor %}
     </tbody>
   </table>
