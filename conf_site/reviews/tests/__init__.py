@@ -7,6 +7,7 @@ from django.urls import reverse
 from constance.test import override_config
 
 from conf_site.proposals.tests.factories import ProposalFactory
+from conf_site.reviews.tests.factories import ProposalFeedbackFactory
 
 
 class ReviewingTestCase(object):
@@ -25,6 +26,20 @@ class ReviewingTestCase(object):
         self.user.groups.add(self.reviewers_group)
         self.user.save()
 
+    def _become_superuser(self, user):
+        """Make the passed user a superuser."""
+        user.is_superuser = True
+        user.save()
+
+    def _create_proposals(self):
+        """Create proposals if needed to test a view."""
+        try:
+            # If we already have a proposal, this is a DetailView
+            # and we shouldn't create more.
+            return [self.proposal]
+        except AttributeError:
+            return ProposalFactory.create_batch(size=randint(2, 5))
+
     def setUp(self):
         super(ReviewingTestCase, self).setUp()
 
@@ -39,6 +54,15 @@ class ReviewingTestCase(object):
             reverse(self.reverse_view_name, args=self.reverse_view_args)
         )
         self.assertEqual(response.status_code, 403)
+
+    def test_superuser_access(self):
+        """Verify that superusers can access the view."""
+        self._become_superuser(self.user)
+        self.assertFalse(self.reviewers_group in self.user.groups.all())
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertEqual(response.status_code, 200)
 
     def test_user_not_in_reviewers_group(self):
         """Verify that a non-reviewer cannot access the view."""
@@ -60,12 +84,14 @@ class ReviewingTestCase(object):
     def test_blind_reviewing_types_as_reviewer(self):
         """Verify whether BLIND_REVIEWERS setting works properly."""
         self._add_to_reviewers_group()
-        try:
-            # If we already have a proposal, this is a DetailView
-            # and we shouldn't create more.
-            proposals = [self.proposal]
-        except AttributeError:
-            proposals = ProposalFactory.create_batch(size=randint(2, 5))
+        proposals = self._create_proposals()
+        for proposal in proposals:
+            # Create feedback from a random user.
+            ProposalFeedbackFactory(proposal=proposal)
+            # Create feedback from the proposal's speaker.
+            ProposalFeedbackFactory(
+                proposal=proposal, author=proposal.speaker.user
+            )
 
         with override_config(BLIND_REVIEWERS=True):
             response = self.client.get(
@@ -82,5 +108,20 @@ class ReviewingTestCase(object):
             response = self.client.get(
                 reverse(self.reverse_view_name, args=self.reverse_view_args)
             )
+            for proposal in proposals:
+                self.assertContains(response, proposal.speaker.name)
+
+    def test_blind_reviewers_as_superuser(self):
+        """Verify that superusers ignore the BLIND_REVIEWERS setting."""
+        self._become_superuser(self.user)
+        proposals = self._create_proposals()
+        for proposal in proposals:
+            ProposalFeedbackFactory(proposal=proposal)
+
+        with override_config(BLIND_REVIEWERS=True):
+            response = self.client.get(
+                reverse(self.reverse_view_name, args=self.reverse_view_args)
+            )
+            self.assertContains(response, "Your superuser status")
             for proposal in proposals:
                 self.assertContains(response, proposal.speaker.name)

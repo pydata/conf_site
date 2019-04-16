@@ -1,15 +1,28 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 
 {% block title %} - Reviewing{% endblock %}
-
 
 {% block body %}
 <div class="container">
   <h2>{% block page-title %}All Proposals{% endblock %}</h2>
-  <table class="table table-bordered table-hover">
+  {% if config.BLIND_REVIEWERS and request.user.is_superuser %}
+    <p class="bg-info">
+      Your superuser status is ignoring the enabled
+      <strong>BLIND_REVIEWERS</strong> setting.
+    </p>
+  {% endif %}
+  <p>
+    Currently showing <strong>{{ proposal_list|length }}</strong> proposals
+    (<strong>{{ num_talks }}</strong> talks,
+    <strong>{{ num_tutorials }}</strong> tutorials).
+  </p>
+  <table class="table table-bordered table-hover" id="table-proposals">
     <thead>
-      {% if not config.BLIND_REVIEWERS %}<th>{% trans "Speaker" %}</th>{% endif %}
+      {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
+        <th>{% trans "Speaker" %}</th>
+      {% endif %}
       <th>{% trans "Title" %}</th>
       <th>{% trans "Category" %}</th>
       <th><i class="fa fa-comment" title="{% trans 'Messages' %}"></i></th>
@@ -22,14 +35,16 @@
     </thead>
     <tbody>
       {% for proposal in proposal_list %}<tr>
-        {% if not config.BLIND_REVIEWERS %}<td>{{ proposal.speaker.name }}</td>{% endif %}
+        {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
+          <td>{{ proposal.speaker.name }}</td>
+        {% endif %}
         <td>
           <a href="{% url 'review_proposal_detail' proposal.pk %}">
             {{ proposal.title }}
           </a>
         </td>
         <td>{{ proposal.kind.name }}</td>
-        <td>{{ proposal.messages.count }}</td>
+        <td>{{ proposal.review_feedback.count }}</td>
         <td>{{ proposal.plus_one }}</td>
         <td>{{ proposal.plus_zero }}</td>
         <td>{{ proposal.minus_zero }}</td>
@@ -40,4 +55,19 @@
     </tbody>
   </table>
 </div>
+{% endblock %}
+
+{% block extra_script %}
+<script src="{% static 'js/jquery.tablesorter.js' %}"></script>
+<script src="{% static 'js/jquery.tablesorter.widgets.js' %}"></script>
+<script>
+  $(function() {
+    $("#table-proposals").tablesorter({
+      cssIcon: "fa",
+      cssIconAsc: "fa-sort-asc",
+      cssIconDesc: "fa-sort-desc",
+      headerTemplate: "{content} {icon}",
+    });
+  });
+</script>
 {% endblock %}

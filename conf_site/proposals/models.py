@@ -6,6 +6,8 @@ from symposion.proposals.models import ProposalBase
 from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
 
+from conf_site.reviews.models import ProposalVote
+
 
 class ProposalKeyword(TagBase):
     official = models.BooleanField(default=False)
@@ -187,3 +189,27 @@ class Proposal(ProposalBase):
             self.presentation.save()
 
         return super(Proposal, self).save(*args, **kwargs)
+
+    def plus_one(self):
+        """Enumerate number of +1 reviews."""
+        return ProposalVote.objects.filter(
+            proposal=self, score=ProposalVote.PLUS_ONE
+        ).count()
+
+    def plus_zero(self):
+        """Enumerate number of +0 reviews."""
+        return ProposalVote.objects.filter(
+            proposal=self, score=ProposalVote.PLUS_ZERO
+        ).count()
+
+    def minus_zero(self):
+        """Enumerate number of -0 reviews."""
+        return ProposalVote.objects.filter(
+            proposal=self, score=ProposalVote.MINUS_ZERO
+        ).count()
+
+    def minus_one(self):
+        """Enumerate number of -1 reviews."""
+        return ProposalVote.objects.filter(
+            proposal=self, score=ProposalVote.MINUS_ONE
+        ).count()

@@ -4,8 +4,6 @@ from django.db import models
 
 from symposion.markdown_parser import parse
 
-from conf_site.proposals.models import Proposal
-
 
 class ProposalVote(models.Model):
     """
@@ -28,15 +26,33 @@ class ProposalVote(models.Model):
     # symposion.reviews.models.score_expression().
     # This allows us to use integers directly which makes
     # calculating scores easier.
+    PLUS_ONE = 3
+    PLUS_ZERO = 1
+    MINUS_ZERO = -1
+    MINUS_ONE = -3
     SCORES = [
-        (3, "+1 — Good proposal and I will argue for it to be accepted."),
-        (1, "+0 — OK proposal, but I will not argue for it to be accepted."),
-        (-1, "−0 — Weak proposal, but I will not argue against acceptance."),
-        (-3, "−1 — Serious issues and I will argue to reject this proposal."),
+        (
+            PLUS_ONE,
+            "+1 — Good proposal and I will argue for it to be accepted.",
+        ),
+        (
+            PLUS_ZERO,
+            "+0 — OK proposal, but I will not argue for it to be accepted.",
+        ),
+        (
+            MINUS_ZERO,
+            "−0 — Weak proposal, but I will not argue against acceptance.",
+        ),
+        (
+            MINUS_ONE,
+            "−1 — Serious issues and I will argue to reject this proposal.",
+        ),
     ]
 
     proposal = models.ForeignKey(
-        Proposal, on_delete=models.CASCADE, related_name="review_votes"
+        "proposals.Proposal",
+        on_delete=models.CASCADE,
+        related_name="review_votes",
     )
     voter = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="review_votes"
@@ -54,7 +70,9 @@ class ProposalVote(models.Model):
 
 class ProposalFeedback(models.Model):
     proposal = models.ForeignKey(
-        Proposal, on_delete=models.CASCADE, related_name="review_feedback"
+        "proposals.Proposal",
+        on_delete=models.CASCADE,
+        related_name="review_feedback",
     )
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="review_feedback"
@@ -85,7 +103,9 @@ class ProposalResult(models.Model):
     ]
 
     proposal = models.OneToOneField(
-        Proposal, on_delete=models.CASCADE, related_name="review_result"
+        "proposals.Proposal",
+        on_delete=models.CASCADE,
+        related_name="review_result",
     )
     status = models.CharField(
         choices=RESULT_STATUSES, default="U", max_length=1

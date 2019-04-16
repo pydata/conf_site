@@ -16,11 +16,18 @@ class ReviewingView(UserPassesTestMixin, View):
     raise_exception = True
 
     def test_func(self):
-        """Check if user is in reviewers group."""
+        """Check if user can access reviewing section."""
+        # Raise an exception if the Reviewers group does not
+        # exist, because this is a critical problem.
         try:
             reviewers_group = Group.objects.get(name="Reviewers")
         except Group.DoesNotExist:
             raise Exception("Reviewers user group does not exist.")
+
+        # Superusers always get access.
+        if self.request.user.is_superuser:
+            return True
+        # Users in the Reviewers group also get access.
         return reviewers_group in self.request.user.groups.all()
 
 
@@ -30,6 +37,17 @@ class ProposalListView(ListView, ReviewingView):
     def get_queryset(self, **kwargs):
         """Show all proposals, except those that have been cancelled."""
         return Proposal.objects.order_by("title").exclude(cancelled=True)
+
+    def get_context_data(self, **kwargs):
+        # Add number of talks and tutorials to context data.
+        context = super(ProposalListView, self).get_context_data(**kwargs)
+        context["num_talks"] = (
+            self.get_queryset().filter(kind__slug="talk").count()
+        )
+        context["num_tutorials"] = (
+            self.get_queryset().filter(kind__slug="tutorial").count()
+        )
+        return context
 
 
 class ProposalDetailView(DetailView, ReviewingView):
