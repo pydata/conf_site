@@ -16,11 +16,18 @@ class ReviewingView(UserPassesTestMixin, View):
     raise_exception = True
 
     def test_func(self):
-        """Check if user is in reviewers group."""
+        """Check if user can access reviewing section."""
+        # Raise an exception if the Reviewers group does not
+        # exist, because this is a critical problem.
         try:
             reviewers_group = Group.objects.get(name="Reviewers")
         except Group.DoesNotExist:
             raise Exception("Reviewers user group does not exist.")
+
+        # Superusers always get access.
+        if self.request.user.is_superuser:
+            return True
+        # Users in the Reviewers group also get access.
         return reviewers_group in self.request.user.groups.all()
 
 

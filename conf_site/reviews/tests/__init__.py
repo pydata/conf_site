@@ -40,6 +40,16 @@ class ReviewingTestCase(object):
         )
         self.assertEqual(response.status_code, 403)
 
+    def test_superuser_access(self):
+        """Verify that superusers can access the view."""
+        self.user.is_superuser = True
+        self.user.save()
+        self.assertFalse(self.reviewers_group in self.user.groups.all())
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertEqual(response.status_code, 200)
+
     def test_user_not_in_reviewers_group(self):
         """Verify that a non-reviewer cannot access the view."""
         self.assertFalse(self.reviewers_group in self.user.groups.all())
