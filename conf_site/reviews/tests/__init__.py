@@ -7,6 +7,7 @@ from django.urls import reverse
 from constance.test import override_config
 
 from conf_site.proposals.tests.factories import ProposalFactory
+from conf_site.reviews.tests.factories import ProposalFeedbackFactory
 
 
 class ReviewingTestCase(object):
@@ -84,6 +85,13 @@ class ReviewingTestCase(object):
         """Verify whether BLIND_REVIEWERS setting works properly."""
         self._add_to_reviewers_group()
         proposals = self._create_proposals()
+        for proposal in proposals:
+            # Create feedback from a random user.
+            ProposalFeedbackFactory(proposal=proposal)
+            # Create feedback from the proposal's speaker.
+            ProposalFeedbackFactory(
+                proposal=proposal, author=proposal.speaker.user
+            )
 
         with override_config(BLIND_REVIEWERS=True):
             response = self.client.get(
@@ -107,6 +115,8 @@ class ReviewingTestCase(object):
         """Verify that superusers ignore the BLIND_REVIEWERS setting."""
         self._become_superuser(self.user)
         proposals = self._create_proposals()
+        for proposal in proposals:
+            ProposalFeedbackFactory(proposal=proposal)
 
         with override_config(BLIND_REVIEWERS=True):
             response = self.client.get(

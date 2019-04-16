@@ -7,6 +7,7 @@ from conf_site.accounts.tests import AccountsTestCase
 from conf_site.reviews.tests import ReviewingTestCase
 
 from conf_site.proposals.tests.factories import ProposalFactory, SpeakerFactory
+from conf_site.reviews.tests.factories import ProposalFeedbackFactory
 
 
 class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
@@ -28,6 +29,12 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
     def test_blind_reviewing_types_as_author(self):
         """Verify whether BLIND_AUTHORS setting works properly."""
         self._i_am_the_author_now()
+
+        # Create a feedback comment, otherwise this test will pass
+        # when it should fail.
+        ProposalFeedbackFactory(
+            proposal=self.proposal, author=self.reviewer.user
+        )
 
         with override_config(BLIND_AUTHORS=True):
             response = self.client.get(

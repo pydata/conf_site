@@ -63,7 +63,14 @@
     </div>{% endif %}
     <div class="tab-pane" id="proposal-feedback">
       {% for feedback in proposal.review_feedback.all %}<hr><p>
-        <b>{{ feedback.author.username }}</b>: {{ feedback.comment_html|safe }}
+        {% if not request.user.is_superuser and config.BLIND_AUTHORS and actor == "speaker" and feedback.author != request.user %}
+          <b>Anonymous</b>
+        {% elif not request.user.is_superuser and config.BLIND_REVIEWERS and actor == "reviewer" and feedback.author != request.user %}
+          <b>Anonymous</b>
+        {% else %}
+          <b>{{ feedback.author.username }}</b>:
+        {% endif %}
+        {{ feedback.comment_html|safe }}
       {% endfor %}
         <form method="POST" action="{% url 'review_proposal_feedback' proposal.id %}" class="review-form">
           <legend>Write Feedback:</legend>
