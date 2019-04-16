@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 
 {% block title %} - Reviewing{% endblock %}
-
 
 {% block body %}
 <div class="container">
@@ -13,7 +13,7 @@
       <strong>BLIND_REVIEWERS</strong> setting.
     </p>
   {% endif %}
-  <table class="table table-bordered table-hover">
+  <table class="table table-bordered table-hover" id="table-proposals">
     <thead>
       {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
         <th>{% trans "Speaker" %}</th>
@@ -50,4 +50,19 @@
     </tbody>
   </table>
 </div>
+{% endblock %}
+
+{% block extra_script %}
+<script src="{% static 'js/jquery.tablesorter.js' %}"></script>
+<script src="{% static 'js/jquery.tablesorter.widgets.js' %}"></script>
+<script>
+  $(function() {
+    $("#table-proposals").tablesorter({
+      cssIcon: "fa",
+      cssIconAsc: "fa-sort-asc",
+      cssIconDesc: "fa-sort-desc",
+      headerTemplate: "{content} {icon}",
+    });
+  });
+</script>
 {% endblock %}
