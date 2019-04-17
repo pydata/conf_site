@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n review_tags %}
 {% load static from staticfiles %}
 
 {% block title %} - Reviewing{% endblock %}
@@ -49,7 +49,7 @@
         <td>{{ proposal.plus_zero }}</td>
         <td>{{ proposal.minus_zero }}</td>
         <td>{{ proposal.minus_one }}</td>
-        <td>{{ proposal.user_vote|default:"&nbsp;" }}</td>
+        <td>{% user_score proposal request.user %}</td>
         <td>
           {% if proposal.review_result %}
             {{ proposal.review_result.status }}
