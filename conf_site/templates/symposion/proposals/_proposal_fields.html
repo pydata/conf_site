@@ -47,8 +47,10 @@
     <dt>{% trans "Abstract" %}</dt>
     <dd>{{ proposal.abstract_html|safe }}&nbsp;</dd>
 
+    {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
     <dt>{% trans "Notes" %}</dt>
     <dd>{{ proposal.additional_notes_html|safe }}&nbsp;</dd>
+    {% endif %}
 
     {% if config.PROPOSAL_URL_FIELDS %}
         {% if proposal.slides_url %}

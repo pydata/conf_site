@@ -44,6 +44,22 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
             self.assertNotContains(response, self.reviewer.user.username)
             self.assertNotContains(response, self.reviewer.email)
 
+    def test_blind_reviewing_means_no_notes_section(self):
+        """
+        Verify that the Notes section does not appear if BLIND_REVIEWERS is on.
+        """
+        self._add_to_reviewers_group()
+        # Set this proposal's notes field to something memorable.
+        self.proposal.additional_notes = "xyzzy"
+        self.proposal.save()
+
+        with override_config(BLIND_REVIEWERS=True):
+            response = self.client.get(
+                reverse(self.reverse_view_name, args=self.reverse_view_args)
+            )
+            self.assertNotContains(response, "Notes")
+            self.assertNotContains(response, self.proposal.additional_notes)
+
     def test_author_cannot_view_votes_tab(self):
         """Verify that proposal authors cannot view their proposal's votes."""
         self._i_am_the_author_now()
