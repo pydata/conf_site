@@ -1,4 +1,5 @@
 Django==2.1.9
+django-allauth==0.39.1
 django-analytical==2.4.0
 django-bootstrap-form==3.4
 django-constance[redis]==2.3.1

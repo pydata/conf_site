@@ -5,7 +5,6 @@ from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic.base import TemplateView
 
-from account.views import SignupView
 try:
     import debug_toolbar
 except ImportError:
@@ -16,7 +15,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import ServeView as WagtailImageView
 
-from conf_site.core.views import csrf_failure, LoginEmailView
+from conf_site.core.views import csrf_failure
 from conf_site.schedule.views import ExportPresentationSpeakerView
 from conf_site.speakers.views import (
     SpeakerListView, ExportAcceptedSpeakerEmailView
@@ -32,9 +31,7 @@ else:
     urlpatterns = []
 urlpatterns += [
     url(r"^admin/", admin.site.urls),
-    url(r"^account/signup/$", SignupView.as_view(), name="account_signup"),
-    url(r"^account/login/$", LoginEmailView.as_view(), name="account_login"),
-    url(r"^account/", include("account.urls")),
+    url(r"^accounts/", include("allauth.urls")),
     url(r"^api/", include("conf_site.api.urls")),
     url(r"^cms/", include(wagtailadmin_urls)),
     url(r"^dashboard/", symposion.views.dashboard, name="dashboard"),

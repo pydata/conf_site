@@ -17,14 +17,12 @@
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
             <button type="submit" class="btn btn-primary">{% trans "Log in" %}</button>
-            <a href="{% url "account_password_reset" %}" class="btn btn-link">{% trans "Forgot your password?" %}</a>
+            <a href="{% url 'account_reset_password' %}" class="btn btn-link">{% trans "Forgot your password?" %}</a>
         </form>
-        {% if ACCOUNT_OPEN_SIGNUP %}
-            <p class="login-signup">
-                    {% trans "Don't have an account?" %}
-                    <strong><a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a></strong>
-            </p>
-        {% endif %}
+        <p class="login-signup">
+            {% trans "Don't have an account?" %}
+            <strong><a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a></strong>
+        </p>
     </div>
 </div>
 {% endblock %}

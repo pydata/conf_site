@@ -1,5 +1,5 @@
 {% spaceless %}
-{% load account_tags google_analytics i18n menu_tags wagtailuserbar %}
+{% load google_analytics i18n menu_tags wagtailuserbar %}
 {% load static %}
 {% endspaceless %}<!DOCTYPE html>
 <html lang="en">
@@ -189,9 +189,7 @@
                 {% else %}
                 <ul>
                     <li><a href="{% url 'account_login' %}">{% trans "Login" %}</a></li>
-                    {% if ACCOUNT_OPEN_SIGNUP %}
                     <li><a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a></li>
-                    {% endif %}
                 </ul>
                 {% endif %}
             </div>

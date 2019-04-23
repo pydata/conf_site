@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 import sys
 
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseForbidden
@@ -15,8 +16,7 @@ from django.contrib.auth.models import User
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
 
-from account.decorators import login_required
-from account.models import EmailAddress
+from allauth.account.models import EmailAddress
 
 from symposion.proposals.models import (
     ProposalBase,
