@@ -178,7 +178,7 @@ class Slot(models.Model):
             self.kind,
             self.start,
             self.end,
-            " ".join(map(lambda r: r.__unicode__(), self.rooms)),
+            " ".join(map(lambda r: r.__str__(), self.rooms)),
         )
 
     class Meta:
