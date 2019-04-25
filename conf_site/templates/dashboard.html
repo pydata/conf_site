@@ -139,7 +139,7 @@
         </div>
     </div>
 
-    {% if review_sections %}
+    {% if request.user|is_reviewer %}
         <div class="dashboard-panel">
             <div class="dashboard-panel-header">
                 <h3>
