@@ -1,4 +1,5 @@
 from django import template
+from django.contrib.auth.models import Group
 
 from conf_site.reviews.models import ProposalVote
 
@@ -17,3 +18,13 @@ def user_score(proposal, user):
         return score_display_string[0:2].strip()
     except ProposalVote.DoesNotExist:
         return ""
+
+
+@register.filter(name="is_reviewer")
+def is_reviewer(user):
+    """Determine whether selected user is in the Reviewers user group."""
+    try:
+        reviewers_group = Group.objects.get(name="Reviewers")
+    except Group.DoesNotExist:
+        return False
+    return True if reviewers_group in user.groups.all() else False
