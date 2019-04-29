@@ -24,6 +24,8 @@ class ProposalAdmin(admin.ModelAdmin):
         'kind',
         'audience_level',
         'cancelled',
+        "date_created",
+        "date_last_modified",
     )
     list_display_links = ("title",)
     list_filter = (
@@ -33,4 +35,4 @@ class ProposalAdmin(admin.ModelAdmin):
         'recording_release',
     )
     search_fields = ("title", "speaker__name")
-    date_hierarchy = 'submitted'
+    date_hierarchy = "date_created"
