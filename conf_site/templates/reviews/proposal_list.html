@@ -23,6 +23,7 @@
       {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
         <th>{% trans "Speaker" %}</th>
       {% endif %}
+      <th>{% trans "Number" %}</th>
       <th>{% trans "Title" %}</th>
       <th>{% trans "Category" %}</th>
       <th><i class="fa fa-comment" title="{% trans 'Messages' %}"></i></th>
@@ -35,6 +36,7 @@
     </thead>
     <tbody>
       {% for proposal in proposal_list %}<tr>
+        <td>{{ proposal.number }}</td>
         {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
           <td>{{ proposal.speaker.name }}</td>
         {% endif %}
