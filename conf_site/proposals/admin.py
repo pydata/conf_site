@@ -19,7 +19,6 @@ class ProposalAdmin(admin.ModelAdmin):
     list_display = (
         'number',
         'title',
-        'speaker_email',
         'speaker',
         'kind',
         'audience_level',
