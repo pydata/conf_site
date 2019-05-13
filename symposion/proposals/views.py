@@ -218,10 +218,10 @@ def proposal_edit(request, pk):
         form = form_class(request.POST, instance=proposal)
         if form.is_valid():
             form.save()
-            if hasattr(proposal, "reviews"):
+            if hasattr(proposal, "review_votes"):
                 users = User.objects.filter(
-                    Q(review__proposal=proposal)
-                    | Q(proposalmessage__proposal=proposal)
+                    Q(review_votes__proposal=proposal)
+                    | Q(review_feedback__proposal=proposal)
                 )
                 users = users.exclude(id=request.user.id).distinct()
                 for user in users:
