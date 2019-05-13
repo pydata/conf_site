@@ -1,8 +1,8 @@
-{% load account_tags %}
 <p>
-    <b>{% user_display user %}</b> has made changes to <b>{{ proposal.title }}</b> which you have previously reviewed or commented on.
+A speaker has made changes to "<b>{{ proposal.title }}</b>"
+which you have previously reviewed or commented on.
 </p>
 <p>
-    {% url "review_detail" proposal.pk as detail_url %}
-    View the latest version of the proposal online at <a href="https://{{ current_site }}{{ detail_url }}">https://{{ current_site }}{{ detail_url }}</a>
+View the latest version of the proposal online at
+<a href="https://{{ current_site }}{% url 'review_proposal_detail' proposal.pk %}">https://{{ current_site }}{% url 'review_proposal_detail' proposal.pk %}</a>
 </p>
