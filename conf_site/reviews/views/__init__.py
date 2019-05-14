@@ -31,10 +31,13 @@ class ReviewingView(UserPassesTestMixin, View):
         # If allow_speakers is enabled, speakers get access.
         if self.allow_speakers:
             # Test whether user is one of the proposal's speakers.
-            proposal = Proposal.objects.get(pk=self.kwargs["pk"])
-            for speaker in proposal.speakers():
-                if self.request.user == speaker.user:
-                    return True
+            try:
+                proposal = Proposal.objects.get(pk=self.kwargs["pk"])
+                for speaker in proposal.speakers():
+                    if self.request.user == speaker.user:
+                        return True
+            except Proposal.DoesNotExist:
+                pass
         # Users in the Reviewers group also get access.
         return reviewers_group in self.request.user.groups.all()
 
