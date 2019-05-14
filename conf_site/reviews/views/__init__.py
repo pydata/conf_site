@@ -13,6 +13,7 @@ from conf_site.reviews.models import ProposalFeedback, ProposalVote
 
 
 class ReviewingView(UserPassesTestMixin, View):
+    allow_speakers = False
     raise_exception = True
 
     def test_func(self):
@@ -27,6 +28,13 @@ class ReviewingView(UserPassesTestMixin, View):
         # Superusers always get access.
         if self.request.user.is_superuser:
             return True
+        # If allow_speakers is enabled, speakers get access.
+        if self.allow_speakers:
+            # Test whether user is one of the proposal's speakers.
+            proposal = Proposal.objects.get(pk=self.kwargs["pk"])
+            for speaker in proposal.speakers():
+                if self.request.user == speaker.user:
+                    return True
         # Users in the Reviewers group also get access.
         return reviewers_group in self.request.user.groups.all()
 
@@ -51,19 +59,10 @@ class ProposalListView(ListView, ReviewingView):
 
 
 class ProposalDetailView(DetailView, ReviewingView):
+    allow_speakers = True
     context_object_name = "proposal"
     model = Proposal
     template_name = "reviews/proposal_detail.html"
-
-    def test_func(self):
-        if super(ProposalDetailView, self).test_func():
-            return True
-        else:
-            # Test whether user is one of the proposal's speakers.
-            for speaker in self.get_object().speakers():
-                if self.request.user == speaker.user:
-                    return True
-        return False
 
     def get_context_data(self, **kwargs):
         """Add context as to whether this is a reviewer or speaker."""
@@ -99,6 +98,7 @@ class ProposalVotePostView(ReviewingView):
 
 
 class ProposalFeedbackPostView(ReviewingView):
+    allow_speakers = True
     http_method_names = ["post"]
 
     def post(self, *args, **kwargs):

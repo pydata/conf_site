@@ -15,6 +15,21 @@
     </p>
   {% endif %}
 
+  <div class="pull-right">
+    {% if not proposal.cancelled %}
+      {% if request.user == proposal.speaker.user %}
+        <a href="{% url "proposal_edit" proposal.pk %}" class="btn btn-default">
+          {% trans "Edit this proposal" %}
+        </a>
+        <a href="{% url "proposal_cancel" proposal.pk %}" class="btn btn-default">
+          {% trans "Cancel this proposal" %}
+        </a>
+      {% endif %}
+    {% else %}
+      {% trans 'Cancelled' }
+    {% endif %}
+  </div>
+
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active">
@@ -61,28 +76,7 @@
         </div>
       </form>
     </div>{% endif %}
-    <div class="tab-pane" id="proposal-feedback">
-      {% for feedback in proposal.review_feedback.all %}<hr><p>
-        {% if not request.user.is_superuser and config.BLIND_AUTHORS and actor == "speaker" and feedback.author != request.user %}
-          <b>Anonymous</b>
-        {% elif not request.user.is_superuser and config.BLIND_REVIEWERS and actor == "reviewer" and feedback.author != request.user %}
-          <b>Anonymous</b>
-        {% else %}
-          <b>{{ feedback.author.username }}</b>:
-        {% endif %}
-        {{ feedback.comment_html|safe }}
-      {% endfor %}
-        <form method="POST" action="{% url 'review_proposal_feedback' proposal.id %}" class="review-form">
-          <legend>Write Feedback:</legend>
-          {% csrf_token %}
-          <input type="hidden" name="proposal_id" value="{{ proposal.id }}">
-          {{ feedback_form|bootstrap }}
-          <div class="form-action">
-            <input type="submit" class="btn btn-primary" name="feedback_submit" value="Submit Feedback" />
-          </div>
-        </form>
-      </p>
-    </div>
+    {% include "reviews/_proposal_feedback_tab.html" %}
   </div>
 </div>
 {% endblock %}

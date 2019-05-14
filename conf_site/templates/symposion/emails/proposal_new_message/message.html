@@ -1,11 +1,7 @@
-{% load account_tags %}
+<p>Feedback has been added on the proposal "<b>{{ proposal.title }}</b>".</p>
+
+<blockquote>    {{ message.comment_html|safe }}</blockquote>
 <p>
-    A message has been added on <b>{{ proposal.title }}</b>.
-</p>
-<blockquote>
-    {{ message.comment_html|safe }}
-</blockquote>
-<p>
-    {% if reviewer %}{% url "review_detail" proposal.pk as detail_url %}{% else %}{% url "proposal_detail" proposal.pk as detail_url %}{% endif %}
-    Respond online at <a href="https://{{ current_site }}{{ detail_url }}#proposal-feedback">https://{{ current_site }}{{ detail_url }}#proposal-feedback</a>
+Respond online at
+<a href="https://{{ current_site }}{% url 'review_proposal_detail' proposal.pk %}#proposal-feedback">https://{{ current_site }}{% url 'review_proposal_detail' proposal.pk %}#proposal-feedback</a>
 </p>
