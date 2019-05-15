@@ -1,12 +1,21 @@
 from django.contrib import admin
 
 
-from conf_site.reviews.models import ProposalFeedback, ProposalVote
+from conf_site.reviews.models import (
+    ProposalFeedback,
+    ProposalResult,
+    ProposalVote,
+)
 
 
 @admin.register(ProposalFeedback)
 class ProposalFeedbackAdmin(admin.ModelAdmin):
     list_display = ("proposal", "author", "comment", "date_created")
+
+
+@admin.register(ProposalResult)
+class ProposalResultAdmin(admin.ModelAdmin):
+    list_display = ("proposal", "status")
 
 
 @admin.register(ProposalVote)
