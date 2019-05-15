@@ -60,7 +60,9 @@
 <header>
     {% if messages %}
     <div id="stp1" class="text-center">
-        {% for message in messages %}<h3>{{ message }}</h3>{% endfor %}
+        {% for message in messages %}
+            {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+        {% endfor %}
     </div>
     {% endif %}
     {% if cfp_open %}

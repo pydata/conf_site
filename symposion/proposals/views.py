@@ -51,6 +51,7 @@ def proposal_submit(request):
                 "<a href='{0}'>log in</a> and create a speaker profile "
                 "via the dashboard.".format(settings.LOGIN_URL)
             ),
+            "safe",
         )
         return redirect("account_login")
     else:
@@ -65,6 +66,7 @@ def proposal_submit(request):
                     "<a href='{0}'>create a speaker "
                     "profile</a>.".format(url)
                 ),
+                "safe",
             )
             return redirect("dashboard")
 
