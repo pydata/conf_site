@@ -2,11 +2,11 @@
 {% load i18n review_tags %}
 {% load static from staticfiles %}
 
-{% block title %} - Reviewing{% endblock %}
+{% block title %} - Reviewing {{ proposal_category }} Proposals{% endblock %}
 
 {% block body %}
 <div class="container">
-  <h2>{% block page-title %}All Proposals{% endblock %}</h2>
+  <h2>{% block page-title %}{{ proposal_category }} Proposals{% endblock %}</h2>
   {% if config.BLIND_REVIEWERS and request.user.is_superuser %}
     <p class="bg-info">
       Your superuser status is ignoring the enabled

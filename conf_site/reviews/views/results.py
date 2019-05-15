@@ -7,6 +7,7 @@ from django.views.generic import View
 
 from conf_site.proposals.models import Proposal
 from conf_site.reviews.models import ProposalResult
+from conf_site.reviews.views import ProposalListView
 
 
 class SuperuserOnlyView(UserPassesTestMixin, View):
@@ -36,3 +37,25 @@ class ProposalChangeResultPostView(SuperuserOnlyView):
         return HttpResponseRedirect(
             reverse("review_proposal_detail", args=[proposal.id])
         )
+
+
+class ProposalResultListView(SuperuserOnlyView, ProposalListView):
+
+    def get(self, request, *args, **kwargs):
+        self.status = kwargs["status"]
+        return super(ProposalResultListView, self).get(
+            request, *args, **kwargs
+        )
+
+    def get_queryset(self):
+        return Proposal.objects.order_by("pk").filter(
+            review_result__status=self.status
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super(ProposalResultListView, self).get_context_data(
+            **kwargs
+        )
+        temp_result = ProposalResult(status=self.status)
+        context["proposal_category"] = temp_result.get_status_display()
+        return context

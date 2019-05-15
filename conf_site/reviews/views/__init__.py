@@ -58,6 +58,8 @@ class ProposalListView(ListView, ReviewingView):
         context["num_tutorials"] = (
             self.get_queryset().filter(kind__slug="tutorial").count()
         )
+
+        context["proposal_category"] = "All"
         return context
 
 

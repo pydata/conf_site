@@ -139,7 +139,7 @@
         </div>
     </div>
 
-    {% if request.user|is_reviewer %}
+    {% if request.user|is_reviewer or request.user.is_superuser %}
         <div class="dashboard-panel">
             <div class="dashboard-panel-header">
                 <h3>
@@ -153,6 +153,12 @@
                     <li><a href="{% url 'review_proposal_list' %}">All Proposals</a></li>
                     {% if config.PROPOSAL_KEYWORDS %}
                     <li><a href="{% url 'review_keyword_list' %}">By Keyword</a></li>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                    <li><a href="{% url 'review_proposal_result_list' 'A' %}">Accepted Proposals</a></li>
+                    <li><a href="{% url 'review_proposal_result_list' 'R' %}">Rejected Proposals</a></li>
+                    <li><a href="{% url 'review_proposal_result_list' 'S' %}">Standby Proposals</a></li>
+                    <li><a href="{% url 'review_proposal_result_list' 'U' %}">Undecided Proposals</a></li>
                     {% endif %}
                 </ul>
             </div>
