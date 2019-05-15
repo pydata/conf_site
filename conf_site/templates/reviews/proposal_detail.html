@@ -24,7 +24,18 @@
         <a href="{% url "proposal_cancel" proposal.pk %}" class="btn btn-default">
           {% trans "Cancel this proposal" %}
         </a>
-      {% endif %}
+      {% elif request.user.is_superuser %}<div class="div-proposal-result-buttons">
+        <strong>Status:
+        {% if proposal.review_result %}
+          {{ proposal.review_result.get_status_display }}
+        {% else %}
+          Undecided
+        {% endif %}</strong><br>
+        <a class="btn btn-default" href="{% url 'review_proposal_change_result' proposal.pk 'A' %}"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Approve</a>
+        <a class="btn btn-default" href="{% url 'review_proposal_change_result' proposal.pk 'U' %}">🤷 Mark Undecided</a>
+        <a class="btn btn-default" href="{% url 'review_proposal_change_result' proposal.pk 'R' %}"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Reject</a>
+        <a class="btn btn-default" href="{% url 'review_proposal_change_result' proposal.pk 'S' %}"><i class="fa fa-pause" aria-hidden="true"></i> Standby</a>
+      </div>{% endif %}
     {% else %}
       {% trans 'Cancelled' }
     {% endif %}

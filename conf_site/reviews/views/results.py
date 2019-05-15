@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+# Views relating to accepting/rejecting a reviewed proposal.
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic import View
+
+from conf_site.proposals.models import Proposal
+from conf_site.reviews.models import ProposalResult
+
+
+class SuperuserOnlyView(UserPassesTestMixin, View):
+    """A view which only allows access to superusers."""
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        elif not self.request.user.is_anonymous:
+            # Non-anonymous, non-superuser users should see an error page.
+            self.raise_exception = True
+        return False
+
+
+class ProposalChangeResultPostView(SuperuserOnlyView):
+    """A view to allow superusers to change a proposal's voting result."""
+
+    http_method_names = ["get"]
+
+    def get(self, *args, **kwargs):
+        """Update an individual ProposalResult object."""
+        proposal = Proposal.objects.get(pk=kwargs["pk"])
+        result = ProposalResult.objects.get_or_create(proposal=proposal)[0]
+        result.status = kwargs["status"]
+        result.save()
+
+        return HttpResponseRedirect(
+            reverse("review_proposal_detail", args=[proposal.id])
+        )

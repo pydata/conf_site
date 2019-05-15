@@ -26,6 +26,7 @@ from conf_site.reviews.views import (
 from conf_site.reviews.views.keywords import (
     ReviewKeywordDetailView,
     ReviewKeywordListView)
+from conf_site.reviews.views.results import ProposalChangeResultPostView
 from conf_site.schedule.views import ExportPresentationSpeakerView
 from conf_site.speakers.views import (
     SpeakerListView, ExportAcceptedSpeakerEmailView
@@ -81,6 +82,11 @@ urlpatterns += [
         r"reviews/proposal/(?P<pk>\d+)/feedback/$",
         ProposalFeedbackPostView.as_view(),
         name="review_proposal_feedback",
+    ),
+    url(
+        r"reviews/proposal/(?P<pk>\d+)/result/(?P<status>[\w])/$",
+        ProposalChangeResultPostView.as_view(),
+        name="review_proposal_change_result",
     ),
     url(
         r"^reviews/proposal/(?P<pk>\d+)/vote/$",
