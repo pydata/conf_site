@@ -54,7 +54,7 @@
         <td>{% user_score proposal request.user %}</td>
         <td>
           {% if proposal.review_result %}
-            {{ proposal.review_result.status }}
+            {{ proposal.review_result.get_status_display }}
           {% else %}
             Undecided
           {% endif %}
