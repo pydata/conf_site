@@ -95,11 +95,16 @@ class ProposalResult(models.Model):
     symposion.reviews.models.ResultNotification.
     """
 
+    RESULT_ACCEPTED = "A"
+    RESULT_REJECTED = "R"
+    RESULT_STANDBY = "S"
+    RESULT_UNDECIDED = "U"
+
     RESULT_STATUSES = [
-        ("U", "Undecided"),
-        ("A", "Accepted"),
-        ("R", "Rejected"),
-        ("S", "Standby"),
+        (RESULT_UNDECIDED, "Undecided"),
+        (RESULT_ACCEPTED, "Accepted"),
+        (RESULT_REJECTED, "Rejected"),
+        (RESULT_STANDBY, "Standby"),
     ]
 
     proposal = models.OneToOneField(
@@ -108,5 +113,5 @@ class ProposalResult(models.Model):
         related_name="review_result",
     )
     status = models.CharField(
-        choices=RESULT_STATUSES, default="U", max_length=1
+        choices=RESULT_STATUSES, default=RESULT_UNDECIDED, max_length=1
     )
