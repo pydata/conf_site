@@ -6,12 +6,12 @@ from symposion.proposals.models import ProposalKind
 from symposion.schedule.tests.factories import SectionFactory
 
 from conf_site.accounts.tests import AccountsTestCase
+from conf_site.proposals.tests.factories import ProposalFactory
+from conf_site.reviews.models import ProposalResult
 from conf_site.reviews.tests import ReviewingTestCase
 
-from conf_site.proposals.tests.factories import ProposalFactory
 
-
-class ProposalListViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
+class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
     reverse_view_name = "review_proposal_list"
 
     def test_no_cancelled_proposals(self):
@@ -69,3 +69,36 @@ class ProposalListViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
         self.assertContains(
             response, "<strong>{}</strong> tutorials".format(num_tutorials)
         )
+
+    def test_changing_proposal_status(self):
+        self._become_superuser(self.user)
+        # Create multiple proposals.
+        num_proposals = randint(3, 6)
+        proposals = ProposalFactory.create_batch(size=num_proposals)
+        for result_status in ProposalResult.RESULT_STATUSES:
+            # Use post data to change the first three proposals' statuses.
+            post_data = {
+                "proposal_pks": [1, 2, 3],
+                "mark_status": result_status[0],
+            }
+            response = self.client.post(reverse("review_multiedit"), post_data)
+            # Verify that we are redirected to the correct page
+            # (a list of proposals with the same changed status).
+            self.assertRedirects(
+                response,
+                reverse(
+                    "review_proposal_result_list", args=[result_status[0]]
+                ),
+            )
+            # Verify that status has changed and all other proposals
+            # have remained the same.
+            for proposal in proposals:
+                if proposal.pk in post_data["proposal_pks"]:
+                    self.assertEqual(
+                        proposal.review_result.status, result_status["0"]
+                    )
+                else:
+                    self.assertEqual(
+                        proposal.review_result.status,
+                        ProposalResult.RESULT_UNDECIDED,
+                    )

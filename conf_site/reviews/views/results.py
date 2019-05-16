@@ -67,3 +67,29 @@ class ProposalResultListView(SuperuserOnlyView, ProposalListView):
         temp_result = ProposalResult(status=self.status)
         context["proposal_category"] = temp_result.get_status_display()
         return context
+
+
+class ProposalMultieditPostView(SuperuserOnlyView):
+    """A view to let superusers modify multiple proposals' results."""
+
+    http_method_names = ["post"]
+
+    def post(self, *args, **kwargs):
+        proposal_pks = self.request.POST.getlist("proposal_pk")
+        proposals = Proposal.objects.filter(pk__in=proposal_pks)
+        new_status = self.request.POST.get("mark_status")
+        if new_status:
+            # <queryset>.update() will not work here because
+            # the status field lives in the related model
+            # ProposalResult.
+            for proposal in proposals:
+                try:
+                    proposal.review_result.status = new_status
+                    proposal.review_result.save()
+                except AttributeError:
+                    proposal.review_result = ProposalResult.objects.create(
+                        proposal=proposal, status=new_status
+                    )
+        return HttpResponseRedirect(
+            reverse("review_proposal_result_list", args=[new_status])
+        )

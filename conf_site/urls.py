@@ -27,7 +27,9 @@ from conf_site.reviews.views.keywords import (
     ReviewKeywordDetailView,
     ReviewKeywordListView)
 from conf_site.reviews.views.results import (
-    ProposalChangeResultPostView, ProposalResultListView
+    ProposalChangeResultPostView,
+    ProposalResultListView,
+    ProposalMultieditPostView,
 )
 from conf_site.schedule.views import ExportPresentationSpeakerView
 from conf_site.speakers.views import (
@@ -69,6 +71,11 @@ urlpatterns += [
     ),
     url(r"^sponsors/", include("symposion.sponsorship.urls")),
     url(r"^teams/", include("symposion.teams.urls")),
+    url(
+        r"reviews/edit/$",
+        ProposalMultieditPostView.as_view(),
+        name="review_multiedit",
+    ),
     url(r"^reviews/keyword/$",
         ReviewKeywordListView.as_view(),
         name="review_keyword_list"),

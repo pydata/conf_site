@@ -19,8 +19,16 @@
     (<strong>{{ num_talks }}</strong> talks,
     <strong>{{ num_tutorials }}</strong> tutorials).
   </p>
+  {% if request.user.is_superuser %}
+  <form method="post" action="{% url 'review_multiedit' %}">
+    {% csrf_token %}
+    {% include 'reviews/_proposal_multiedit_buttons.html' %}
+  {% endif %}
   <table class="table table-bordered table-hover" id="table-proposals">
     <thead>
+      {% if request.user.is_superuser %}
+        <th></th>
+      {% endif %}
       <th>{% trans "Number" %}</th>
       {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
         <th>{% trans "Speaker" %}</th>
@@ -37,6 +45,9 @@
     </thead>
     <tbody>
       {% for proposal in proposal_list %}<tr>
+        {% if request.user.is_superuser %}
+          <td><input type="checkbox" name="proposal_pk" value="{{ proposal.pk }}"></td>
+        {% endif %}
         <td>{{ proposal.number }}</td>
         {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
           <td>{{ proposal.speaker.name }}</td>
@@ -63,6 +74,10 @@
       </tr>{% endfor %}
     </tbody>
   </table>
+  {% if request.user.is_superuser %}
+  {% include 'reviews/_proposal_multiedit_buttons.html' %}
+  </form>
+  {% endif %}
 </div>
 {% endblock %}
 
