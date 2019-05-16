@@ -6,6 +6,7 @@
 
 {% block body %}
 <div class="container">
+  {% include "reviews/_proposal_mini_navigation.html" %}
   <h2>{% block page-title %}{{ proposal_category }} Proposals{% endblock %}</h2>
   {% if config.BLIND_REVIEWERS and request.user.is_superuser %}
     <p class="bg-info">
