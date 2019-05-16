@@ -31,10 +31,10 @@
         {% else %}
           Undecided
         {% endif %}</strong><br>
-        <a class="btn btn-default" href="{% url 'review_proposal_change_result' proposal.pk 'A' %}"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Approve</a>
+        <a class="btn btn-success" href="{% url 'review_proposal_change_result' proposal.pk 'A' %}"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Approve</a>
         <a class="btn btn-default" href="{% url 'review_proposal_change_result' proposal.pk 'U' %}">🤷 Mark Undecided</a>
-        <a class="btn btn-default" href="{% url 'review_proposal_change_result' proposal.pk 'R' %}"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Reject</a>
-        <a class="btn btn-default" href="{% url 'review_proposal_change_result' proposal.pk 'S' %}"><i class="fa fa-pause" aria-hidden="true"></i> Standby</a>
+        <a class="btn btn-danger" href="{% url 'review_proposal_change_result' proposal.pk 'R' %}"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Reject</a>
+        <a class="btn btn-warning" href="{% url 'review_proposal_change_result' proposal.pk 'S' %}"><i class="fa fa-pause" aria-hidden="true"></i> Standby</a>
       </div>{% endif %}
     {% else %}
       {% trans 'Cancelled' }
