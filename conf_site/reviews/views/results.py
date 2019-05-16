@@ -40,9 +40,17 @@ class ProposalChangeResultPostView(SuperuserOnlyView):
 
 
 class ProposalResultListView(SuperuserOnlyView, ProposalListView):
-
     def get(self, request, *args, **kwargs):
         self.status = kwargs["status"]
+        if self.status == ProposalResult.RESULT_UNDECIDED:
+            # Create ProposalResults for proposals that do not have them.
+            proposals_without_result = Proposal.objects.filter(
+                review_result=None
+            )
+            for proposal in proposals_without_result:
+                ProposalResult.objects.create(
+                    proposal=proposal, status=ProposalResult.RESULT_UNDECIDED
+                )
         return super(ProposalResultListView, self).get(
             request, *args, **kwargs
         )
