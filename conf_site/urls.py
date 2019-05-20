@@ -17,20 +17,6 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import ServeView as WagtailImageView
 
 from conf_site.core.views import csrf_failure, LoginEmailView
-from conf_site.reviews.views import (
-    ProposalDetailView,
-    ProposalFeedbackPostView,
-    ProposalListView,
-    ProposalVotePostView,
-)
-from conf_site.reviews.views.keywords import (
-    ReviewKeywordDetailView,
-    ReviewKeywordListView)
-from conf_site.reviews.views.results import (
-    ProposalChangeResultPostView,
-    ProposalResultListView,
-    ProposalMultieditPostView,
-)
 from conf_site.schedule.views import ExportPresentationSpeakerView
 from conf_site.speakers.views import (
     SpeakerListView, ExportAcceptedSpeakerEmailView
@@ -71,48 +57,7 @@ urlpatterns += [
     ),
     url(r"^sponsors/", include("symposion.sponsorship.urls")),
     url(r"^teams/", include("symposion.teams.urls")),
-    url(
-        r"reviews/edit/$",
-        ProposalMultieditPostView.as_view(),
-        name="review_multiedit",
-    ),
-    url(r"^reviews/keyword/$",
-        ReviewKeywordListView.as_view(),
-        name="review_keyword_list"),
-    url(r"^reviews/keyword/(?P<keyword_slug>[\w-]+)/$",
-        ReviewKeywordDetailView.as_view(),
-        name="review_keyword_detail"),
-    url(
-        r"^reviews/proposal/(?P<pk>\d+)/$",
-        ProposalDetailView.as_view(),
-        name="review_proposal_detail",
-    ),
-    url(
-        r"reviews/proposal/(?P<pk>\d+)/feedback/$",
-        ProposalFeedbackPostView.as_view(),
-        name="review_proposal_feedback",
-    ),
-    url(
-        r"reviews/proposal/(?P<pk>\d+)/result/(?P<status>[\w])/$",
-        ProposalChangeResultPostView.as_view(),
-        name="review_proposal_change_result",
-    ),
-    url(
-        r"^reviews/proposal/(?P<pk>\d+)/vote/$",
-        ProposalVotePostView.as_view(),
-        name="review_proposal_vote",
-    ),
-    url(
-        r"reviews/result/(?P<status>[\w])/$",
-        ProposalResultListView.as_view(),
-        name="review_proposal_result_list",
-    ),
-    url(r"^reviews/", include("symposion.reviews.urls")),
-    url(
-        r"^reviews/$",
-        ProposalListView.as_view(),
-        name="review_proposal_list",
-    ),
+    url(r"^reviews/", include("conf_site.reviews.urls")),
     url(r"^schedule/presentation/export/$",
         staff_member_required(ExportPresentationSpeakerView.as_view()),
         name="presentation_speaker_export"),
