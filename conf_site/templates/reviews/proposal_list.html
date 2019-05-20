@@ -20,7 +20,7 @@
     <strong>{{ num_tutorials }}</strong> tutorials).
   </p>
   {% if request.user.is_superuser %}
-  <form method="post" action="{% url 'review_multiedit' %}">
+  <form method="post" action="{% url 'review_multiedit' %}" id="form-multiedit">
     {% csrf_token %}
     {% include 'reviews/_proposal_multiedit_buttons.html' %}
   {% endif %}
@@ -76,13 +76,15 @@
   </table>
   {% if request.user.is_superuser %}
   {% include 'reviews/_proposal_multiedit_buttons.html' %}
-  <h3>Send Email Message</h3>
-  <p><em>This will send an email message to all selected proposals.</em></p>
-  {{ notification_form|bootstrap }}
-  <div class="btn-group" role="group" style="margin-bottom: 1rem">
-    <button type="submit" class="btn btn-standard" name="send_notification" value="EHLO">
-      <i class="fa fa-envelope" aria-hidden="true"></i> Send Email Message
-    </button>
+  <div id="send-email-section">
+    <h3>Send Email Message</h3>
+    <p><em>This will send an email message to all selected proposals.</em></p>
+    {{ notification_form|bootstrap }}
+    <div class="btn-group" role="group" style="margin-bottom: 1rem">
+      <button type="submit" class="btn btn-standard" name="send_notification" value="EHLO">
+        <i class="fa fa-envelope" aria-hidden="true"></i> Send Email Message
+      </button>
+    </div>
   </div>
   </form>
   {% endif %}
@@ -100,6 +102,11 @@
       cssIconDesc: "fa-sort-desc",
       headerTemplate: "{content} {icon}",
     });
+    // Remove notification form if we are trying to edit the proposal's
+    // status; its elements are not needed.
+    jQuery("button[name='mark_status']").click(function(){
+      jQuery("div#send-email-section").remove()
+    })
   });
 </script>
 {% endblock %}
