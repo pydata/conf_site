@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 from django import forms
 
-from conf_site.reviews.models import ProposalFeedback, ProposalVote
+from conf_site.reviews.models import (
+    ProposalFeedback,
+    ProposalNotification,
+    ProposalVote,
+)
 
 
 class ProposalVoteForm(forms.ModelForm):
@@ -21,3 +25,9 @@ class ProposalFeedbackForm(forms.ModelForm):
     class Meta:
         model = ProposalFeedback
         fields = ["comment"]
+
+
+class ProposalNotificationForm(forms.ModelForm):
+    class Meta:
+        model = ProposalNotification
+        fields = ["from_address", "subject", "body"]

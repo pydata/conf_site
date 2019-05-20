@@ -8,7 +8,11 @@ from django.views.generic import DetailView, ListView, View
 from symposion.utils.mail import send_email
 
 from conf_site.proposals.models import Proposal
-from conf_site.reviews.forms import ProposalFeedbackForm, ProposalVoteForm
+from conf_site.reviews.forms import (
+    ProposalFeedbackForm,
+    ProposalNotificationForm,
+    ProposalVoteForm,
+)
 from conf_site.reviews.models import ProposalFeedback, ProposalVote
 
 
@@ -58,7 +62,8 @@ class ProposalListView(ListView, ReviewingView):
         context["num_tutorials"] = (
             self.get_queryset().filter(kind__slug="tutorial").count()
         )
-
+        if self.request.user.is_superuser:
+            context["notification_form"] = ProposalNotificationForm()
         context["proposal_category"] = "All"
         return context
 

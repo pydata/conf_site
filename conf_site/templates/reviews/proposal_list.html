@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n review_tags %}
+{% load bootstrap i18n review_tags %}
 {% load static from staticfiles %}
 
 {% block title %} - Reviewing {{ proposal_category }} Proposals{% endblock %}
@@ -76,6 +76,14 @@
   </table>
   {% if request.user.is_superuser %}
   {% include 'reviews/_proposal_multiedit_buttons.html' %}
+  <h3>Send Email Message</h3>
+  <p><em>This will send an email message to all selected proposals.</em></p>
+  {{ notification_form|bootstrap }}
+  <div class="btn-group" role="group" style="margin-bottom: 1rem">
+    <button type="submit" class="btn btn-standard" name="send_notification" value="EHLO">
+      <i class="fa fa-envelope" aria-hidden="true"></i> Send Email Message
+    </button>
+  </div>
   </form>
   {% endif %}
 </div>

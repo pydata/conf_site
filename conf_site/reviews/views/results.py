@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views.generic import View
 
 from conf_site.proposals.models import Proposal
-from conf_site.reviews.models import ProposalResult
+from conf_site.reviews.models import ProposalNotification, ProposalResult
 from conf_site.reviews.views import ProposalListView
 
 
@@ -90,6 +90,17 @@ class ProposalMultieditPostView(SuperuserOnlyView):
                     proposal.review_result = ProposalResult.objects.create(
                         proposal=proposal, status=new_status
                     )
-        return HttpResponseRedirect(
-            reverse("review_proposal_result_list", args=[new_status])
-        )
+            return HttpResponseRedirect(
+                reverse("review_proposal_result_list", args=[new_status])
+            )
+        elif self.request.POST.get("send_notification"):
+            # Save ProposalNotification to database, as a type
+            # of rudimentary logging.
+            notification = ProposalNotification.objects.create(
+                from_address=self.request.POST.get("from_address"),
+                subject=self.request.POST.get("subject"),
+                body=self.request.POST.get("body"),
+            )
+            notification.proposals.set(proposals)
+            notification.send_email()
+            return HttpResponseRedirect(reverse("review_proposal_list"))
