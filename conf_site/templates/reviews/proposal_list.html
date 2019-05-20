@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-{% load i18n review_tags %}
+{% load bootstrap i18n review_tags %}
 {% load static from staticfiles %}
 
-{% block title %} - Reviewing{% endblock %}
+{% block title %} - Reviewing {{ proposal_category }} Proposals{% endblock %}
 
 {% block body %}
 <div class="container">
-  <h2>{% block page-title %}All Proposals{% endblock %}</h2>
+  {% include "reviews/_proposal_mini_navigation.html" %}
+  <h2>{% block page-title %}{{ proposal_category }} Proposals{% endblock %}</h2>
   {% if config.BLIND_REVIEWERS and request.user.is_superuser %}
     <p class="bg-info">
       Your superuser status is ignoring the enabled
@@ -18,12 +19,20 @@
     (<strong>{{ num_talks }}</strong> talks,
     <strong>{{ num_tutorials }}</strong> tutorials).
   </p>
+  {% if request.user.is_superuser %}
+  <form method="post" action="{% url 'review_multiedit' %}">
+    {% csrf_token %}
+    {% include 'reviews/_proposal_multiedit_buttons.html' %}
+  {% endif %}
   <table class="table table-bordered table-hover" id="table-proposals">
     <thead>
+      {% if request.user.is_superuser %}
+        <th></th>
+      {% endif %}
+      <th>{% trans "Number" %}</th>
       {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
         <th>{% trans "Speaker" %}</th>
       {% endif %}
-      <th>{% trans "Number" %}</th>
       <th>{% trans "Title" %}</th>
       <th>{% trans "Category" %}</th>
       <th><i class="fa fa-comment" title="{% trans 'Messages' %}"></i></th>
@@ -36,6 +45,9 @@
     </thead>
     <tbody>
       {% for proposal in proposal_list %}<tr>
+        {% if request.user.is_superuser %}
+          <td><input type="checkbox" name="proposal_pk" value="{{ proposal.pk }}"></td>
+        {% endif %}
         <td>{{ proposal.number }}</td>
         {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
           <td>{{ proposal.speaker.name }}</td>
@@ -54,7 +66,7 @@
         <td>{% user_score proposal request.user %}</td>
         <td>
           {% if proposal.review_result %}
-            {{ proposal.review_result.status }}
+            {{ proposal.review_result.get_status_display }}
           {% else %}
             Undecided
           {% endif %}
@@ -62,6 +74,18 @@
       </tr>{% endfor %}
     </tbody>
   </table>
+  {% if request.user.is_superuser %}
+  {% include 'reviews/_proposal_multiedit_buttons.html' %}
+  <h3>Send Email Message</h3>
+  <p><em>This will send an email message to all selected proposals.</em></p>
+  {{ notification_form|bootstrap }}
+  <div class="btn-group" role="group" style="margin-bottom: 1rem">
+    <button type="submit" class="btn btn-standard" name="send_notification" value="EHLO">
+      <i class="fa fa-envelope" aria-hidden="true"></i> Send Email Message
+    </button>
+  </div>
+  </form>
+  {% endif %}
 </div>
 {% endblock %}
 

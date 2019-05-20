@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core.mail import send_mass_mail
 from django.db import models
+from django.template import Context, Template
 
 from symposion.markdown_parser import parse
 
@@ -95,11 +98,16 @@ class ProposalResult(models.Model):
     symposion.reviews.models.ResultNotification.
     """
 
+    RESULT_ACCEPTED = "A"
+    RESULT_REJECTED = "R"
+    RESULT_STANDBY = "S"
+    RESULT_UNDECIDED = "U"
+
     RESULT_STATUSES = [
-        ("U", "Undecided"),
-        ("A", "Accepted"),
-        ("R", "Rejected"),
-        ("S", "Standby"),
+        (RESULT_UNDECIDED, "Undecided"),
+        (RESULT_ACCEPTED, "Accepted"),
+        (RESULT_REJECTED, "Rejected"),
+        (RESULT_STANDBY, "Standby"),
     ]
 
     proposal = models.OneToOneField(
@@ -108,5 +116,56 @@ class ProposalResult(models.Model):
         related_name="review_result",
     )
     status = models.CharField(
-        choices=RESULT_STATUSES, default="U", max_length=1
+        choices=RESULT_STATUSES, default=RESULT_UNDECIDED, max_length=1
     )
+
+
+class ProposalNotification(models.Model):
+    """Model to track notifications sent to proposal speakers."""
+
+    from_address = models.EmailField()
+    subject = models.CharField(max_length=254)
+    body = models.TextField()
+    proposals = models.ManyToManyField(
+        "proposals.Proposal",
+        blank=True,
+        related_name="review_notifications",
+    )
+    date_sent = models.DateTimeField(
+        verbose_name="Date this notification was created and sent",
+        auto_now_add=True,
+    )
+
+    def __str__(self):
+        return "{}".format(self.subject)
+
+    def send_email(self):
+        email_messages = []
+        # Create a message for each email address.
+        # This is necessary because we are not using BCC.
+        for proposal in self.proposals.all():
+            # In order to support the "variable substitution"
+            # supported by the previous reviews system, the
+            # message needs to be templated anew for each
+            # proposal.
+            message_body = Template(self.body).render(
+                Context({"proposal": proposal.notification_email_context()})
+            )
+            for speaker in proposal.speakers():
+                if speaker.email:
+                    datamessage_tuple = (
+                        self.subject,
+                        message_body,
+                        self.from_address,
+                        [speaker.email],
+                    )
+                    email_messages.append(datamessage_tuple)
+                else:
+                    messages.warning(
+                        "Speaker {} on proposal {} "
+                        "does not have an email address "
+                        "and has not been notified.".format(
+                            speaker.name, proposal.title
+                        )
+                    )
+        send_mass_mail(email_messages)

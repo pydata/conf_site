@@ -75,3 +75,29 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
             reverse(self.reverse_view_name, args=self.reverse_view_args)
         )
         self.assertContains(response, "proposal-reviews")
+
+    def test_author_cannot_view_result_buttons(self):
+        """Verify that proposal authors cannot view result buttons section."""
+        self._i_am_the_author_now()
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertNotContains(response, "div-proposal-result-buttons")
+
+    def test_reviewer_cannot_view_result_buttons(self):
+        """
+        Verify that proposal reviewers cannot view result buttons section.
+        """
+        self._add_to_reviewers_group()
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertNotContains(response, "div-proposal-result-buttons")
+
+    def test_superuser_can_view_result_buttons(self):
+        """Verify that superusers can view result buttons section."""
+        self._become_superuser(self.user)
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertContains(response, "div-proposal-result-buttons")

@@ -8,7 +8,11 @@ from django.views.generic import DetailView, ListView, View
 from symposion.utils.mail import send_email
 
 from conf_site.proposals.models import Proposal
-from conf_site.reviews.forms import ProposalFeedbackForm, ProposalVoteForm
+from conf_site.reviews.forms import (
+    ProposalFeedbackForm,
+    ProposalNotificationForm,
+    ProposalVoteForm,
+)
 from conf_site.reviews.models import ProposalFeedback, ProposalVote
 
 
@@ -47,7 +51,11 @@ class ProposalListView(ListView, ReviewingView):
 
     def get_queryset(self, **kwargs):
         """Show all proposals, except those that have been cancelled."""
-        return Proposal.objects.order_by("pk").exclude(cancelled=True)
+        return (
+            Proposal.objects.order_by("pk")
+            .exclude(cancelled=True)
+            .select_related("kind", "speaker", "review_result")
+        )
 
     def get_context_data(self, **kwargs):
         # Add number of talks and tutorials to context data.
@@ -58,6 +66,9 @@ class ProposalListView(ListView, ReviewingView):
         context["num_tutorials"] = (
             self.get_queryset().filter(kind__slug="tutorial").count()
         )
+        if self.request.user.is_superuser:
+            context["notification_form"] = ProposalNotificationForm()
+        context["proposal_category"] = "All"
         return context
 
 
