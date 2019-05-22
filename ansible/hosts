@@ -13,6 +13,7 @@ testing:
 production:
   hosts:
     amsterdam2019:
-      ansible_ssh_host: 104.130.169.130
+    cambridge2019:
+    cordoba2019:
+    delhi2019:
     london2019:
-      ansible_ssh_host: 104.239.230.101
