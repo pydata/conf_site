@@ -16,22 +16,25 @@ from conf_site.reviews.forms import (
 from conf_site.reviews.models import ProposalFeedback, ProposalVote
 
 
+def _is_reviewer_or_superuser(user):
+    """Check if user is in Reviewers group or is superuser."""
+    if user.is_superuser:
+        return True
+    # Raise an exception if the Reviewers group does not
+    # exist, because this is a critical problem.
+    try:
+        reviewers_group = Group.objects.get(name="Reviewers")
+    except Group.DoesNotExist:
+        raise Exception("Reviewers user group does not exist.")
+    return reviewers_group in user.groups.all()
+
+
 class ReviewingView(UserPassesTestMixin, View):
     allow_speakers = False
     raise_exception = True
 
     def test_func(self):
         """Check if user can access reviewing section."""
-        # Raise an exception if the Reviewers group does not
-        # exist, because this is a critical problem.
-        try:
-            reviewers_group = Group.objects.get(name="Reviewers")
-        except Group.DoesNotExist:
-            raise Exception("Reviewers user group does not exist.")
-
-        # Superusers always get access.
-        if self.request.user.is_superuser:
-            return True
         # If allow_speakers is enabled, speakers get access.
         if self.allow_speakers:
             # Test whether user is one of the proposal's speakers.
@@ -42,8 +45,8 @@ class ReviewingView(UserPassesTestMixin, View):
                         return True
             except Proposal.DoesNotExist:
                 pass
-        # Users in the Reviewers group also get access.
-        return reviewers_group in self.request.user.groups.all()
+
+        return _is_reviewer_or_superuser(self.request.user)
 
 
 class ProposalListView(ListView, ReviewingView):
@@ -81,11 +84,11 @@ class ProposalDetailView(DetailView, ReviewingView):
     def get_context_data(self, **kwargs):
         """Add context as to whether this is a reviewer or speaker."""
         context = super(ProposalDetailView, self).get_context_data(**kwargs)
+        if _is_reviewer_or_superuser(self.request.user):
+            context["actor"] = "reviewer"
         for speaker in self.get_object().speakers():
             if self.request.user == speaker.user:
                 context["actor"] = "speaker"
-            else:
-                context["actor"] = "reviewer"
         context["vote_form"] = ProposalVoteForm
         context["feedback_form"] = ProposalFeedbackForm
         return context
