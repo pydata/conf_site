@@ -9,22 +9,22 @@
   </div>
   <div class="btn-group" role="group">
     {% if proposal_category != "Accepted" %}
-    <button type="submit" class="btn btn-success" name="mark_status" value="A">
+    <button type="submit" class="btn btn-success btn-status" name="mark_status" value="A">
       <i class="fa fa-thumbs-up" aria-hidden="true"></i> Mark Selected Accepted
     </button>
     {% endif %}
     {% if proposal_category != "Rejected" %}
-    <button type="submit" class="btn btn-danger" name="mark_status" value="R">
+    <button type="submit" class="btn btn-danger btn-status" name="mark_status" value="R">
       <i class="fa fa-thumbs-down" aria-hidden="true"></i> Mark Selected Rejected
     </button>
     {% endif %}
     {% if proposal_category != "Standby" %}
-    <button type="submit" class="btn btn-warning" name="mark_status" value="S">
+    <button type="submit" class="btn btn-warning btn-status" name="mark_status" value="S">
       <i class="fa fa-pause" aria-hidden="true"></i> Mark Selected Standby
     </button>
     {% endif %}
     {% if proposal_category != "Undecided" %}
-    <button type="submit" class="btn btn-default" name="mark_status" value="U">
+    <button type="submit" class="btn btn-default btn-status" name="mark_status" value="U">
         🤷 Mark Selected Undecided
     </button>
     {% endif %}

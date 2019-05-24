@@ -110,7 +110,7 @@
     });
     // Remove notification form if we are trying to edit the proposal's
     // status; its elements are not needed.
-    jQuery("button[name='mark_status']").click(function(){
+    jQuery("button.btn-status").click(function(){
       jQuery("div#send-email-section").remove()
     })
   });
