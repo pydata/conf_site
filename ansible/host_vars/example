@@ -1,3 +1,4 @@
+ansible_ssh_host: 127.0.0.1
 conference_identifier: metropolis2000
 conference_name: "PyData Metropolis 2000"
 database_user: "{{ conference_identifier }}"
