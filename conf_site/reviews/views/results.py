@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 # Views relating to accepting/rejecting a reviewed proposal.
+from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponseRedirect
+from django.template.defaultfilters import pluralize
 from django.urls import reverse
 from django.views.generic import View
 
 from conf_site.proposals.models import Proposal
 from conf_site.reviews.models import ProposalNotification, ProposalResult
 from conf_site.reviews.views import ProposalListView
+from symposion.schedule.models import Presentation
 
 
 class SuperuserOnlyView(UserPassesTestMixin, View):
@@ -104,3 +107,44 @@ class ProposalMultieditPostView(SuperuserOnlyView):
             notification.proposals.set(proposals)
             notification.send_email()
             return HttpResponseRedirect(reverse("review_proposal_list"))
+        elif self.request.POST.get("create_presentations"):
+            num_presentations_created = 0
+            for proposal in proposals:
+                # We don't need to add all of the proposal's metadata
+                # to the presentation. Title, description, etc.
+                # will be added when we save the proposal.
+                # See https://github.com/pydata/conf_site/pull/176.
+                presentation, created = Presentation.objects.get_or_create(
+                    proposal_base=proposal.proposalbase_ptr,
+                    section=proposal.section,
+                    speaker=proposal.speaker,
+                )
+                # If the presentation already existed, we do not need
+                # to attach it to the proposal.
+                if created:
+                    proposal.presentation = presentation
+                    proposal.save()
+                    num_presentations_created += 1
+            # Create a message if any new presentations were created.
+            if num_presentations_created:
+                messages.success(
+                    self.request,
+                    "{} presentation{} created.".format(
+                        num_presentations_created,
+                        pluralize(num_presentations_created),
+                    ),
+                )
+            else:
+                messages.warning(
+                    self.request,
+                    "All selected proposals already had presentations.",
+                )
+            # Since the "create presentations" action can only
+            # be initated from the "Accepted Proposals"
+            # category listing, we return the user there.
+            return HttpResponseRedirect(
+                reverse(
+                    "review_proposal_result_list",
+                    args=[ProposalResult.RESULT_ACCEPTED],
+                )
+            )

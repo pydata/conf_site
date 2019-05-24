@@ -12,6 +12,10 @@
     <button type="submit" class="btn btn-success btn-status" name="mark_status" value="A">
       <i class="fa fa-thumbs-up" aria-hidden="true"></i> Mark Selected Accepted
     </button>
+    {% else %}
+    <button type="submit" class="btn btn-success btn-status" name="create_presentations" value="expecto presentation">
+        <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Create Presentations
+      </button>
     {% endif %}
     {% if proposal_category != "Rejected" %}
     <button type="submit" class="btn btn-danger btn-status" name="mark_status" value="R">

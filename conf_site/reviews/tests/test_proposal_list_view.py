@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from random import randint
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 
 from symposion.proposals.models import ProposalKind
 from symposion.schedule.tests.factories import SectionFactory
 
 from conf_site.accounts.tests import AccountsTestCase
+from conf_site.proposals.models import Proposal
 from conf_site.proposals.tests.factories import ProposalFactory
 from conf_site.reviews.models import ProposalResult
 from conf_site.reviews.tests import ReviewingTestCase
@@ -102,3 +105,52 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
                         proposal.review_result.status,
                         ProposalResult.RESULT_UNDECIDED,
                     )
+
+    def test_creating_presentations(self):
+        self._become_superuser(self.user)
+        proposals = ProposalFactory.create_batch(size=3)
+        # Create a single presentation and validate the response.
+        post_data = {
+            "proposal_pk": [proposals[0].pk],
+            "create_presentations": "show me a presentation",
+        }
+        response = self.client.post(
+            reverse("review_multiedit"), post_data, follow=True
+        )
+        self.assertRedirects(
+            response,
+            reverse(
+                "review_proposal_result_list",
+                args=[ProposalResult.RESULT_ACCEPTED],
+            ),
+        )
+        self.assertContains(response, "1 presentation created")
+
+        # Verify that POSTing the same data does not create an
+        # additional presentation.
+        response = self.client.post(
+            reverse("review_multiedit"), post_data, follow=True
+        )
+        self.assertContains(
+            response, "All selected proposals already had presentations"
+        )
+
+        # Verify that the other two proposals do not have presentations.
+        for proposal in Proposal.objects.all():
+            if proposal.pk == post_data["proposal_pk"][0]:
+                # Verify that the first proposal has a presentation
+                # and that their metadata is the same.
+                self.assertEqual(proposal.title, proposal.presentation.title)
+            else:
+                with self.assertRaises(ObjectDoesNotExist):
+                    proposal.presentation
+
+        # Verify that creating multiple presentations works.
+        post_data["proposal_pk"] = [proposals[1].pk, proposals[2].pk]
+        response = self.client.post(
+            reverse("review_multiedit"), post_data, follow=True
+        )
+        self.assertContains(response, "2 presentations created")
+        # All proposals should now have presentations.
+        for proposal in Proposal.objects.all():
+            self.assertEqual(proposal.title, proposal.presentation.title)
