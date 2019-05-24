@@ -76,12 +76,11 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
     def test_changing_proposal_status(self):
         self._become_superuser(self.user)
         # Create multiple proposals.
-        num_proposals = randint(3, 6)
-        proposals = ProposalFactory.create_batch(size=num_proposals)
+        proposals = ProposalFactory.create_batch(size=randint(3, 6))
         for result_status in ProposalResult.RESULT_STATUSES:
-            # Use post data to change the first three proposals' statuses.
+            # Use post data to change the first two proposals' statuses.
             post_data = {
-                "proposal_pks": [1, 2, 3],
+                "proposal_pk": [proposals[0].pk, proposals[1].pk],
                 "mark_status": result_status[0],
             }
             response = self.client.post(reverse("review_multiedit"), post_data)
@@ -93,12 +92,12 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
                     "review_proposal_result_list", args=[result_status[0]]
                 ),
             )
-            # Verify that status has changed and all other proposals
-            # have remained the same.
-            for proposal in proposals:
-                if proposal.pk in post_data["proposal_pks"]:
+            # Verify that the first two proposals' status has changed
+            #  and all other proposals have remained the same.
+            for proposal in Proposal.objects.all():
+                if proposal.pk in post_data["proposal_pk"]:
                     self.assertEqual(
-                        proposal.review_result.status, result_status["0"]
+                        proposal.review_result.status, result_status[0]
                     )
                 else:
                     self.assertEqual(

@@ -89,7 +89,7 @@ class ProposalMultieditPostView(SuperuserOnlyView):
                 try:
                     proposal.review_result.status = new_status
                     proposal.review_result.save()
-                except AttributeError:
+                except ProposalResult.DoesNotExist:
                     proposal.review_result = ProposalResult.objects.create(
                         proposal=proposal, status=new_status
                     )
