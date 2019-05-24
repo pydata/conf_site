@@ -102,6 +102,12 @@
       cssIconDesc: "fa-sort-desc",
       headerTemplate: "{content} {icon}",
     });
+    jQuery("button[name='select_all'").click(function(){
+      jQuery("input[name='proposal_pk']").prop("checked", true);
+    });
+    jQuery("button[name='select_none'").click(function(){
+      jQuery("input[name='proposal_pk']").prop("checked", false);
+    });
     // Remove notification form if we are trying to edit the proposal's
     // status; its elements are not needed.
     jQuery("button[name='mark_status']").click(function(){
