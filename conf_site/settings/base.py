@@ -98,7 +98,6 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "account.context_processors.account",
                 "constance.context_processors.config",
-                "symposion.reviews.context_processors.reviews",
                 "wagtailmenus.context_processors.wagtailmenus",
                 "wagtail.contrib.settings.context_processors.settings",
                 "conf_site.core.context_processors.core_context",
@@ -151,11 +150,9 @@ INSTALLED_APPS = [
     "symposion",
     "symposion.conference",
     "symposion.proposals",
-    "symposion.reviews",
     "symposion.schedule",
     "symposion.speakers",
     "symposion.sponsorship",
-    "symposion.teams",
     "taggit",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -249,7 +246,6 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "account.auth_backends.EmailAuthenticationBackend",
-    "symposion.teams.backends.TeamPermissionsBackend",
 ]
 
 CACHES = {
