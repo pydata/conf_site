@@ -59,9 +59,11 @@
 {% wagtailuserbar "bottom-left" %}
 <header>
     {% if messages %}
-    <div id="stp1" class="text-center">
+    <div class="text-center">
         {% for message in messages %}
-            {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+            <div class="bg-{{ message.level_tag }}">
+                {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+            </div>
         {% endfor %}
     </div>
     {% endif %}
