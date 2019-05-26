@@ -153,7 +153,6 @@ INSTALLED_APPS = [
     "symposion.schedule",
     "symposion.speakers",
     "symposion.sponsorship",
-    "symposion.teams",
     "taggit",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -247,7 +246,6 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "account.auth_backends.EmailAuthenticationBackend",
-    "symposion.teams.backends.TeamPermissionsBackend",
 ]
 
 CACHES = {

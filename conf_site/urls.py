@@ -56,7 +56,6 @@ urlpatterns += [
         name="sponsor_export",
     ),
     url(r"^sponsors/", include("symposion.sponsorship.urls")),
-    url(r"^teams/", include("symposion.teams.urls")),
     url(r"^reviews/", include("conf_site.reviews.urls")),
     url(r"^schedule/presentation/export/$",
         staff_member_required(ExportPresentationSpeakerView.as_view()),
