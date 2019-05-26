@@ -8,6 +8,7 @@ from conf_site.reviews.tests import ReviewingTestCase
 
 from conf_site.proposals.tests.factories import ProposalFactory, SpeakerFactory
 from conf_site.reviews.tests.factories import ProposalFeedbackFactory
+from symposion.proposals.models import AdditionalSpeaker
 
 
 class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
@@ -18,17 +19,28 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
         self.proposal = ProposalFactory()
         self.reverse_view_args = [self.proposal.pk]
 
-    def _i_am_the_author_now(self):
-        """Make this testcase's user the author of the proposal."""
+    def _i_am_the_speaker_now(self):
+        """Make this testcase's user the primary speaker of the proposal."""
         # Create a reviewer (as a speaker profile).
         self.reviewer = SpeakerFactory()
         # Attach current user as the primary speaker on this proposal.
         self.proposal.speaker.user = self.user
         self.proposal.speaker.save()
 
+    def _i_am_also_a_speaker_now(self):
+        """Make this testcase's user an additional speaker on the proposal."""
+        self.reviewer = SpeakerFactory()
+        self.reviewer.user = self.user
+        self.reviewer.save()
+        AdditionalSpeaker.objects.create(
+            proposalbase=self.proposal.proposalbase_ptr,
+            speaker=self.reviewer,
+            status=AdditionalSpeaker.SPEAKING_STATUS_ACCEPTED,
+        )
+
     def test_blind_reviewing_types_as_author(self):
         """Verify whether BLIND_AUTHORS setting works properly."""
-        self._i_am_the_author_now()
+        self._i_am_the_speaker_now()
 
         # Create a feedback comment, otherwise this test will pass
         # when it should fail.
@@ -60,9 +72,19 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
             self.assertNotContains(response, "Notes")
             self.assertNotContains(response, self.proposal.additional_notes)
 
-    def test_author_cannot_view_votes_tab(self):
-        """Verify that proposal authors cannot view their proposal's votes."""
-        self._i_am_the_author_now()
+    def test_primary_speaker_cannot_view_votes_tab(self):
+        """Verify that proposal speakers cannot view their proposal's votes."""
+        self._i_am_the_speaker_now()
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertNotContains(response, "proposal-reviews")
+
+    def test_additional_speakers_cannot_view_votes_tab(self):
+        """
+        Verify that additional speakers cannot view their proposal's votes.
+        """
+        self._i_am_also_a_speaker_now()
         response = self.client.get(
             reverse(self.reverse_view_name, args=self.reverse_view_args)
         )
@@ -76,9 +98,17 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
         )
         self.assertContains(response, "proposal-reviews")
 
-    def test_author_cannot_view_result_buttons(self):
-        """Verify that proposal authors cannot view result buttons section."""
-        self._i_am_the_author_now()
+    def test_primary_speaker_cannot_view_result_buttons(self):
+        """Verify that proposal speakers cannot view result buttons section."""
+        self._i_am_the_speaker_now()
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertNotContains(response, "div-proposal-result-buttons")
+
+    def test_additional_speakers_cannot_view_result_buttons(self):
+        """Verify that additional speakers cannot view result buttons."""
+        self._i_am_also_a_speaker_now()
         response = self.client.get(
             reverse(self.reverse_view_name, args=self.reverse_view_args)
         )
