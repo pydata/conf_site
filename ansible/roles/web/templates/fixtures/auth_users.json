@@ -88,5 +88,23 @@
         "groups": [],
         "user_permissions": []
     }
+},
+{
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+        "password": "!monkGqcvbpVuxbIecttRNiHO3JBp3uZd4cNZ5LOd",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "walker",
+        "first_name": "Walker",
+        "last_name": "Chabbott",
+        "email": "walker@numfocus.org",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-01-01T00:00:00Z",
+        "groups": [],
+        "user_permissions": []
+    }
 }
 ]
