@@ -13,8 +13,8 @@ class ProposalKeyword(TagBase):
     official = models.BooleanField(default=False)
 
     class Meta:
-            verbose_name = "Keyword"
-            verbose_name_plural = "Keywords"
+        verbose_name = "Keyword"
+        verbose_name_plural = "Keywords"
 
 
 class EditorTaggedProposal(GenericTaggedItemBase):
@@ -184,7 +184,7 @@ class Proposal(ProposalBase):
             self.presentation.abstract = self.abstract
             self.presentation.speaker = self.speaker
             for speaker in self.additional_speakers.all():
-                    self.presentation.additional_speakers.add(speaker)
+                self.presentation.additional_speakers.add(speaker)
             self.presentation.section = self.section
             self.presentation.save()
 
