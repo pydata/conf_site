@@ -4,7 +4,7 @@ from conf_site.accounts.tests import AccountsTestCase
 
 
 INCORRECT_LOGIN_ERROR_MESSAGE = (
-    "The email address and/or password you specified are not correct.")
+    "The e-mail address and/or password you specified are not correct.")
 FIELD_REQUIRED_ERROR_MESSAGE = "This field is required."
 
 
@@ -18,7 +18,7 @@ class UserLoginTestCase(AccountsTestCase):
     def test_login_with_wrong_email_address(self):
         """Verify that using an invalid email address fails."""
         login_data = {
-            "email": "example2@example.com",
+            "login": "example2@example.com",
             "password": self.password,
         }
         response = self.client.post(reverse("account_login"), login_data)
@@ -32,7 +32,7 @@ class UserLoginTestCase(AccountsTestCase):
     def test_login_with_no_password(self):
         """Verify that using no password fails."""
         login_data = {
-            "email": self.user.email,
+            "login": self.user.email,
             "password": "",
         }
         response = self.client.post(reverse("account_login"), login_data)
@@ -46,7 +46,7 @@ class UserLoginTestCase(AccountsTestCase):
     def test_login_with_wrong_password(self):
         """Verify that using the wrong password fails."""
         login_data = {
-            "email": self.user.email,
+            "login": self.user.email,
             "password": "42",
         }
         response = self.client.post(reverse("account_login"), login_data)
@@ -60,7 +60,7 @@ class UserLoginTestCase(AccountsTestCase):
     def test_successful_login(self):
         """Verify that a correct email/password combination succeeds."""
         login_data = {
-            "email": self.user.email,
+            "login": self.user.email,
             "password": self.password,
         }
         response = self.client.post(reverse("account_login"), login_data)

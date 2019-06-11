@@ -1,4 +1,5 @@
-from django.conf import settings
+from factory import fuzzy
+
 from django.contrib.auth import get_user_model, hashers
 from django.urls import reverse
 
@@ -11,12 +12,9 @@ FIELD_REQUIRED_ERROR_MESSAGE = "This field is required."
 
 
 class PasswordChangeTestCase(AccountsTestCase):
-    def test_anonymous_password_change_view(self):
-        """Verify that anon users redirect to password reset view."""
-        response = self.client.get(reverse("account_change_password"))
-        self.assertRedirects(
-            response=response, expected_url=reverse("account_reset_password")
-        )
+    def setUp(self):
+        super(PasswordChangeTestCase, self).setUp()
+        self.new_password = fuzzy.FuzzyText(length=16)
 
     def test_password_change_view(self):
         """Verify that password change view displays when logged in."""
@@ -33,9 +31,9 @@ class PasswordChangeTestCase(AccountsTestCase):
         """Verify change failure when not entering current password."""
         self.client.force_login(self.user)
         password_data = {
-            "password_current": "",
-            "password_new": "qwerty",
-            "password_new_confirm": "qwerty",
+            "oldpassword": "",
+            "password1": self.new_password,
+            "password2": self.new_password,
         }
         response = self.client.post(
             reverse("account_change_password"), password_data
@@ -51,9 +49,9 @@ class PasswordChangeTestCase(AccountsTestCase):
         """Verify change failure when entering invalid current password."""
         self.client.force_login(self.user)
         password_data = {
-            "password_current": "this is not my current password",
-            "password_new": "this is my new password",
-            "password_new_confirm": "this is my new password",
+            "oldpassword": "this is not my current password",
+            "password1": self.new_password,
+            "password2": self.new_password,
         }
         response = self.client.post(
             reverse("account_change_password"), password_data
@@ -69,9 +67,9 @@ class PasswordChangeTestCase(AccountsTestCase):
         """Verify change failure when not confirming your password."""
         self.client.force_login(self.user)
         password_data = {
-            "password_current": self.password,
-            "password_new": "this is a new password",
-            "password_new_confirm": "",
+            "oldpassword": self.password,
+            "password1": self.new_password,
+            "password2": "",
         }
         response = self.client.post(
             reverse("account_change_password"), password_data
@@ -87,9 +85,9 @@ class PasswordChangeTestCase(AccountsTestCase):
         """Verify change failure when entering two different passwords."""
         self.client.force_login(self.user)
         password_data = {
-            "password_current": self.password,
-            "password_new": "this is a new password",
-            "password_new_confirm": "this is a different new password",
+            "oldpassword": self.password,
+            "password1": self.new_password,
+            "password2": "this is a different new password",
         }
         response = self.client.post(
             reverse("account_change_password"), password_data
@@ -103,25 +101,20 @@ class PasswordChangeTestCase(AccountsTestCase):
 
     def test_successful_password_change(self):
         """Verify change success when entering password properly."""
-        new_password = "this is my new password"
-
         self.client.force_login(self.user)
         password_data = {
-            "password_current": self.password,
-            "password_new": new_password,
-            "password_new_confirm": new_password,
+            "oldpassword": self.password,
+            "password1": self.new_password,
+            "password2": self.new_password,
         }
         response = self.client.post(
             reverse("account_change_password"), password_data
         )
         # User should be redirected if there are no form errors.
         self.assertRedirects(
-            response=response,
-            expected_url=reverse(
-                settings.ACCOUNT_PASSWORD_CHANGE_REDIRECT_URL
-            ),
+            response=response, expected_url=reverse("account_change_password")
         )
         # Verify that user's new password was set correctly.
         # Re-retrieve user so that we can access new password.
         user = get_user_model().objects.get(email=self.user.email)
-        assert hashers.check_password(new_password, user.password)
+        assert hashers.check_password(self.new_password, user.password)
