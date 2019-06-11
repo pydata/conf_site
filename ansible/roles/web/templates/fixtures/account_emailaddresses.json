@@ -1,14 +1,5 @@
 [
 {
-    "model": "account.account",
-    "pk": 2,
-    "fields": {
-        "user": 2,
-        "timezone": "",
-        "language": "en-us"
-    }
-},
-{
     "model": "account.emailaddress",
     "pk": 2,
     "fields": {
@@ -16,15 +7,6 @@
         "email": "martey+pydata.org@mobolic.com",
         "verified": false,
         "primary": true
-    }
-},
-{
-    "model": "account.account",
-    "pk": 3,
-    "fields": {
-        "user": 3,
-        "timezone": "",
-        "language": "en-us"
     }
 },
 {
@@ -38,15 +20,6 @@
     }
 },
 {
-    "model": "account.account",
-    "pk": 4,
-    "fields": {
-        "user": 4,
-        "timezone": "",
-        "language": "en-us"
-    }
-},
-{
     "model": "account.emailaddress",
     "pk": 4,
     "fields": {
@@ -54,15 +27,6 @@
         "email": "jim@numfocus.org",
         "verified": false,
         "primary": true
-    }
-},
-{
-    "model": "account.account",
-    "pk": 5,
-    "fields": {
-        "user": 5,
-        "timezone": "",
-        "language": "en-us"
     }
 },
 {
@@ -76,12 +40,13 @@
     }
 },
 {
-    "model": "account.account",
+    "model": "account.emailaddress",
     "pk": 6,
     "fields": {
         "user": 6,
-        "timezone": "",
-        "language": "en-us"
+        "email": "andy@numfocus.org",
+        "verified": false,
+        "primary": true
     }
 },
 {
@@ -89,7 +54,7 @@
     "pk": 6,
     "fields": {
         "user": 6,
-        "email": "andy@numfocus.org",
+        "email": "walker@numfocus.org",
         "verified": false,
         "primary": true
     }
