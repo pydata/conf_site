@@ -7,9 +7,6 @@ from django.http import HttpResponse
 from django.template.response import TemplateResponse
 from django.views.generic import View
 
-from account.forms import LoginEmailForm
-from account.views import LoginView
-
 
 def csrf_failure(request, reason=""):
     """
@@ -23,11 +20,6 @@ def csrf_failure(request, reason=""):
     response = TemplateResponse(
         request=request, template="403_csrf.html", status=403)
     return response
-
-
-class LoginEmailView(LoginView):
-    """Custom login view that uses django-user-account's email form."""
-    form_class = LoginEmailForm
 
 
 class CsvView(View):

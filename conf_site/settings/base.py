@@ -96,7 +96,6 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.template.context_processors.request",
                 "django.contrib.messages.context_processors.messages",
-                "account.context_processors.account",
                 "constance.context_processors.config",
                 "wagtailmenus.context_processors.wagtailmenus",
                 "wagtail.contrib.settings.context_processors.settings",
@@ -136,7 +135,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
 
-    "account",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "analytical",
     "bootstrapform",
     "constance",
@@ -233,19 +234,20 @@ ADMINS = (
 )
 MANAGERS = [("PyData Admin", "admin@pydata.org"), ]
 
-LOGIN_URL = '/account/login/'
-ACCOUNT_USER_DISPLAY = lambda user: user.email      # noqa: E731
-ACCOUNT_OPEN_SIGNUP = True
-ACCOUNT_EMAIL_UNIQUE = True
-ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
-ACCOUNT_LOGIN_REDIRECT_URL = "dashboard"
-ACCOUNT_SIGNUP_REDIRECT_URL = "dashboard"
-ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
+ACCOUNT_PRESERVE_USERNAME_CASING = False
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_DISPLAY = lambda user: user.email      # noqa: E731
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    "account.auth_backends.EmailAuthenticationBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 CACHES = {
@@ -277,6 +279,7 @@ CONSTANCE_CONFIG_FIELDSETS = {
     "Reviewing Options": ("BLIND_AUTHORS", "BLIND_REVIEWERS"),
 }
 CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"
+LOGIN_REDIRECT_URL = "dashboard"
 PROPOSAL_FORMS = {
     "talk": "conf_site.proposals.forms.ProposalForm",
     "tutorial": "conf_site.proposals.forms.ProposalForm",

@@ -10,11 +10,10 @@ from zipfile import ZipFile, ZipInfo
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import ugettext_lazy as _
-
-from account.decorators import login_required
 
 from symposion.sponsorship.forms import (
     SponsorApplicationForm,
