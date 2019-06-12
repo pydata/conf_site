@@ -1,5 +1,3 @@
-from factory import fuzzy
-
 from django.contrib.auth import get_user_model, hashers
 from django.urls import reverse
 
@@ -12,10 +10,6 @@ FIELD_REQUIRED_ERROR_MESSAGE = "This field is required."
 
 
 class PasswordChangeTestCase(AccountsTestCase):
-    def setUp(self):
-        super(PasswordChangeTestCase, self).setUp()
-        self.new_password = fuzzy.FuzzyText(length=16)
-
     def test_password_change_view(self):
         """Verify that password change view displays when logged in."""
         # The force_login method is quicker and this isn't where
