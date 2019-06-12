@@ -10,6 +10,12 @@ FIELD_REQUIRED_ERROR_MESSAGE = "This field is required."
 
 
 class PasswordChangeTestCase(AccountsTestCase):
+    def _force_login_and_change_password(self, password_data):
+        self.client.force_login(self.user)
+        return self.client.post(
+            reverse("account_change_password"), password_data
+        )
+
     def test_password_change_view(self):
         """Verify that password change view displays when logged in."""
         # The force_login method is quicker and this isn't where
@@ -23,15 +29,11 @@ class PasswordChangeTestCase(AccountsTestCase):
 
     def test_no_password_change_without_current_password(self):
         """Verify change failure when not entering current password."""
-        self.client.force_login(self.user)
-        password_data = {
+        response = self._force_login_and_change_password({
             "oldpassword": "",
             "password1": self.new_password,
             "password2": self.new_password,
-        }
-        response = self.client.post(
-            reverse("account_change_password"), password_data
-        )
+        })
         self.assertTemplateUsed(response, "account/password_change.html")
         self.assertContains(
             response=response,
@@ -41,15 +43,11 @@ class PasswordChangeTestCase(AccountsTestCase):
 
     def test_no_password_change_with_invalid_current_password(self):
         """Verify change failure when entering invalid current password."""
-        self.client.force_login(self.user)
-        password_data = {
+        response = self._force_login_and_change_password({
             "oldpassword": "this is not my current password",
             "password1": self.new_password,
             "password2": self.new_password,
-        }
-        response = self.client.post(
-            reverse("account_change_password"), password_data
-        )
+        })
         self.assertTemplateUsed(response, "account/password_change.html")
         self.assertContains(
             response=response,
@@ -59,15 +57,11 @@ class PasswordChangeTestCase(AccountsTestCase):
 
     def test_no_password_change_confirmation(self):
         """Verify change failure when not confirming your password."""
-        self.client.force_login(self.user)
-        password_data = {
+        response = self._force_login_and_change_password({
             "oldpassword": self.password,
             "password1": self.new_password,
             "password2": "",
-        }
-        response = self.client.post(
-            reverse("account_change_password"), password_data
-        )
+        })
         self.assertTemplateUsed(response, "account/password_change.html")
         self.assertContains(
             response=response,
@@ -77,15 +71,11 @@ class PasswordChangeTestCase(AccountsTestCase):
 
     def test_invalid_password_change_confirmation(self):
         """Verify change failure when entering two different passwords."""
-        self.client.force_login(self.user)
-        password_data = {
+        response = self._force_login_and_change_password({
             "oldpassword": self.password,
             "password1": self.new_password,
             "password2": "this is a different new password",
-        }
-        response = self.client.post(
-            reverse("account_change_password"), password_data
-        )
+        })
         self.assertTemplateUsed(response, "account/password_change.html")
         self.assertContains(
             response=response,
@@ -95,15 +85,11 @@ class PasswordChangeTestCase(AccountsTestCase):
 
     def test_successful_password_change(self):
         """Verify change success when entering password properly."""
-        self.client.force_login(self.user)
-        password_data = {
+        response = self._force_login_and_change_password({
             "oldpassword": self.password,
             "password1": self.new_password,
             "password2": self.new_password,
-        }
-        response = self.client.post(
-            reverse("account_change_password"), password_data
-        )
+        })
         # User should be redirected if there are no form errors.
         self.assertRedirects(
             response=response, expected_url=reverse("account_change_password")
