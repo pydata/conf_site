@@ -22,7 +22,7 @@ pytz==2019.1
 raven==6.9.0
 redis==2.10.6
 sendgrid-django==4.2.0
-wagtail==2.4
+wagtail==2.5.1
 wagtail-condensedinlinepanel==0.5.2
-wagtailmenus==2.13
+wagtailmenus==2.13.1
 virtualenv==16.6.0
