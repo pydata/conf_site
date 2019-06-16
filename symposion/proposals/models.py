@@ -115,7 +115,7 @@ class ProposalBase(models.Model):
             "target='_blank'>Markdown</a>."
         ),
     )
-    abstract_html = models.TextField(blank=True)
+    abstract_html = models.TextField(blank=True, editable=False)
     additional_notes = models.TextField(
         _("Additional Notes"),
         blank=True,
@@ -127,7 +127,7 @@ class ProposalBase(models.Model):
             "target='_blank'>Markdown</a>."
         ),
     )
-    additional_notes_html = models.TextField(blank=True)
+    additional_notes_html = models.TextField(blank=True, editable=False)
     submitted = models.DateTimeField(
         default=now, editable=False, verbose_name=_("Submitted")
     )
