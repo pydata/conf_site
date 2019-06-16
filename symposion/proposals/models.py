@@ -111,7 +111,7 @@ class ProposalBase(models.Model):
         help_text=_(
             "Detailed outline. Will be made public "
             "if your proposal is accepted. Edit using "
-            "<a href='http://daringfireball.net/projects/markdown/basics' "
+            "<a href='https://daringfireball.net/projects/markdown/basics' "
             "target='_blank'>Markdown</a>."
         ),
     )
@@ -123,7 +123,7 @@ class ProposalBase(models.Model):
             "Anything else you'd like the program committee to know "
             "when making their selection: your past experience, etc. "
             "This is not made public. Edit using "
-            "<a href='http://daringfireball.net/projects/markdown/basics' "
+            "<a href='https://daringfireball.net/projects/markdown/basics' "
             "target='_blank'>Markdown</a>."
         ),
     )

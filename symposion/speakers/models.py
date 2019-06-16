@@ -35,9 +35,8 @@ class Speaker(models.Model):
         blank=True,
         help_text=_(
             "A little bit about you.  Edit using "
-            "<a href='http://warpedvisions.org/projects/"
-            "markdown-cheat-sheet/' target='_blank'>"
-            "Markdown</a>."
+            "<a href='https://daringfireball.net/projects/markdown/basics' "
+            "target='_blank'>Markdown</a>."
         ),
         verbose_name=_("Biography"),
     )
