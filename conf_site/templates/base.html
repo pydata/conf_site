@@ -215,8 +215,8 @@
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/jquery.stellar.js' %}"></script>
 {% if sentry_public_dsn %}
-<script src="https://cdn.ravenjs.com/3.26.4/raven.min.js"
-        integrity="sha384-7zaZhdtWTKq5xNtp4WyvUJvEQ+aETU+FlQnpLIbepx2bQAee8znJJjmlydqQjbn/"
+<script src="https://cdn.ravenjs.com/3.27.0/raven.min.js"
+        integrity="sha384-gnq8j+n3z7Vfgsl2ZmIRZtumzS05EKAhNoPa4vDhcq3rg1Pz6Tdg3LyYxcxTzzV8"
         crossorigin="anonymous"></script>
 <script>
     Raven.config("{{ sentry_public_dsn }}", {
