@@ -69,7 +69,7 @@
     "model": "cms.htmlpage",
     "pk": 3,
     "fields": {
-        "content": "[]"
+        "content": "[{\"type\": \"raw_html\", \"id\": \"1378b2bb-ee99-4571-bac8-aef7e0fb848a\", \"value\": \"<!-- -->\"}]"
     }
 },
 {
