@@ -1,4 +1,4 @@
-Django==2.2.2
+Django==2.2.3
 django-allauth==0.39.1
 django-analytical==2.4.0
 django-bootstrap-form==3.4
