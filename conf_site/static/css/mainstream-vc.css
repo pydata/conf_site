@@ -778,6 +778,29 @@ img.right {
   margin: 1em;
 }
 
+.nfproject {
+	border: 1px solid #d2d2d2;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 16px;
+  float: left;
+}
+
+.nfproject h2 { font-size: 16px; }
+
+.nfproject:hover {
+  -webkit-box-shadow: 0px 5px 13px 0px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow: 0px 5px 13px 0px rgba(50, 50, 50, 0.25);
+  box-shadow: 0px 5px 13px 0px rgba(50, 50, 50, 0.25);
+}
+
+.nfproject:hover h2 {
+	color: #007d8a;
+}
+
 @media (max-width: 1500px) {
   #sec1x-con .sec1-col, #nst-con .vcs { margin-left: 150px; }
 }
