@@ -223,9 +223,11 @@
         crossorigin="anonymous"></script>
 <script>
     window.Sentry || document.write("<script src='{% static 'js/sentry-5.4.1.min.js' %}'><\/script>");
-    Sentry.init({
-        dsn: "{{ sentry_public_dsn }}",
-        whitelistUrls: ["pydata.org"],
+    jQuery(function($) {
+        Sentry.init({
+            dsn: "{{ sentry_public_dsn }}",
+            whitelistUrls: ["pydata.org"],
+        });
     });
 </script>
 {% endif %}
