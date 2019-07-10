@@ -215,13 +215,14 @@
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/jquery.stellar.js' %}"></script>
 {% if sentry_public_dsn %}
-<script src="https://cdn.ravenjs.com/3.27.0/raven.min.js"
-        integrity="sha384-gnq8j+n3z7Vfgsl2ZmIRZtumzS05EKAhNoPa4vDhcq3rg1Pz6Tdg3LyYxcxTzzV8"
+<script src="https://browser.sentry-cdn.com/5.4.1/bundle.min.js"
+        integrity="sha384-f9Sl1IltUxuRD3pUpaYzpkKcAS6hJGAYDtdI3tHGhJNACP/BalDvWhj0W/zLgGJk"
         crossorigin="anonymous"></script>
 <script>
-    Raven.config("{{ sentry_public_dsn }}", {
-        whitelistUrls: ["pydata.org"]
-    }).install()
+    Sentry.init({
+        dsn: "{{ sentry_public_dsn }}",
+        whitelistUrls: ["pydata.org"],
+    });
 </script>
 {% endif %}
 <!--
