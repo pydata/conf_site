@@ -222,6 +222,7 @@
         integrity="sha384-f9Sl1IltUxuRD3pUpaYzpkKcAS6hJGAYDtdI3tHGhJNACP/BalDvWhj0W/zLgGJk"
         crossorigin="anonymous"></script>
 <script>
+    window.Sentry || document.write("<script src='{% static 'js/sentry-5.4.1.min.js' %}'><\/script>");
     Sentry.init({
         dsn: "{{ sentry_public_dsn }}",
         whitelistUrls: ["pydata.org"],
