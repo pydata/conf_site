@@ -210,18 +210,23 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
         integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
         crossorigin="anonymous"></script>
+<script>
+    window.jQuery || document.write("<script src='{% static 'js/jquery-1.12.4.min.js' %}'><\/script>");
+</script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="{% static 'js/retina.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/jquery.stellar.js' %}"></script>
 {% if sentry_public_dsn %}
-<script src="https://cdn.ravenjs.com/3.27.0/raven.min.js"
-        integrity="sha384-gnq8j+n3z7Vfgsl2ZmIRZtumzS05EKAhNoPa4vDhcq3rg1Pz6Tdg3LyYxcxTzzV8"
+<script src="https://browser.sentry-cdn.com/5.4.1/bundle.min.js"
+        integrity="sha384-f9Sl1IltUxuRD3pUpaYzpkKcAS6hJGAYDtdI3tHGhJNACP/BalDvWhj0W/zLgGJk"
         crossorigin="anonymous"></script>
 <script>
-    Raven.config("{{ sentry_public_dsn }}", {
-        whitelistUrls: ["pydata.org"]
-    }).install()
+    window.Sentry || document.write("<script src='{% static 'js/sentry-5.4.1.min.js' %}'><\/script>");
+    Sentry.init({
+        dsn: "{{ sentry_public_dsn }}",
+        whitelistUrls: ["pydata.org"],
+    });
 </script>
 {% endif %}
 <!--
