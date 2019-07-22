@@ -111,13 +111,16 @@ class ProposalMultieditPostView(SuperuserOnlyView):
             num_presentations_created = 0
             for proposal in proposals:
                 # We don't need to add all of the proposal's metadata
-                # to the presentation. Title, description, etc.
-                # will be added when we save the proposal.
+                # to the presentation. Most fields will automatically be
+                # added when we save the proposal.
                 # See https://github.com/pydata/conf_site/pull/176.
+                # Note that the title needs to be added here so that
+                # a presentation's slugs are created properly.
                 presentation, created = Presentation.objects.get_or_create(
                     proposal_base=proposal.proposalbase_ptr,
                     section=proposal.section,
                     speaker=proposal.speaker,
+                    title=proposal.title,
                 )
                 # If the presentation already existed, we do not need
                 # to attach it to the proposal.
