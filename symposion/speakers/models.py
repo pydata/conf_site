@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
 
+from autoslug.fields import AutoSlugField
 from symposion.markdown_parser import parse
 
 
@@ -30,6 +31,18 @@ class Speaker(models.Model):
         help_text=_(
             "As you would like it to appear in the" " conference program."
         ),
+    )
+    slug = AutoSlugField(
+        default="",
+        editable=True,
+        help_text=(
+            "Slug that appears in speaker URLs. Automatically "
+            "generated from the speaker's name. This field should "
+            "not be edited after the schedule has been published."
+        ),
+        max_length=100,
+        populate_from="name",
+        unique=True,
     )
     biography = models.TextField(
         blank=True,

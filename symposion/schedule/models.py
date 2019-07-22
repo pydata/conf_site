@@ -7,6 +7,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
+from autoslug.fields import AutoSlugField
 from symposion.markdown_parser import parse
 from symposion.proposals.models import ProposalBase
 from symposion.conference.models import Section
@@ -222,6 +223,17 @@ class Presentation(models.Model):
         verbose_name=_("Slot"),
     )
     title = models.CharField(max_length=100, verbose_name=_("Title"))
+    slug = AutoSlugField(
+        default="",
+        editable=True,
+        help_text=(
+            "Slug that appears in presentation URLs. Automatically "
+            "generated from the presentation's title. This field should "
+            "not be edited after the schedule has been published."
+        ),
+        max_length=100,
+        populate_from="title",
+        unique=True)
     description = models.TextField(verbose_name=_("Description"))
     description_html = models.TextField(blank=True, editable=False)
     abstract = models.TextField(verbose_name=_("Abstract"))
