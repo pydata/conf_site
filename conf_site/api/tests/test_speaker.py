@@ -20,8 +20,9 @@ class TestSpeaker(ConferenceSiteAPITestCase):
             "username": cls.speaker.user.username,
             "name": cls.speaker.name,
             "email": cls.speaker.user.email,
-            "absolute_url": "http://testserver"
-            + reverse("speaker_profile", args=[cls.speaker.pk]),
+            "absolute_url": "http://testserver" + reverse(
+                "speaker_profile", args=[cls.speaker.pk, cls.speaker.slug]
+            ),
         }
 
     def test_speaker_list_api_anonymous_user(self):

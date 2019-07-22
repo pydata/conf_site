@@ -32,7 +32,7 @@
 
             <h2>Presentations</h2>
             {% for presentation in presentations %}
-                <h3><a href="{% url "schedule_presentation_detail" presentation.pk %}">{{ presentation.title }}</a></h3>
+                <h3><a href="{% url "schedule_presentation_detail" presentation.pk presentation.slug %}">{{ presentation.title }}</a></h3>
                 {% if presentation.slot %}
                     <p>
                         {{ presentation.slot.day.date|date:"l" }}

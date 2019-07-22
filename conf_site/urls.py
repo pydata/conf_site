@@ -3,6 +3,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
+from django.urls import path
 from django.views.generic.base import TemplateView
 
 try:
@@ -16,9 +17,16 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import ServeView as WagtailImageView
 
 from conf_site.core.views import csrf_failure
-from conf_site.schedule.views import ExportPresentationSpeakerView
+from conf_site.schedule.views import (
+    ExportPresentationSpeakerView,
+    PresentationDetailView,
+    PresentationRedirectView,
+)
 from conf_site.speakers.views import (
-    SpeakerListView, ExportAcceptedSpeakerEmailView
+    ExportAcceptedSpeakerEmailView,
+    SpeakerDetailView,
+    SpeakerListView,
+    SpeakerRedirectView,
 )
 from conf_site.sponsorship.views import ExportSponsorsView
 
@@ -45,6 +53,16 @@ urlpatterns += [
         staff_member_required(ExportAcceptedSpeakerEmailView.as_view()),
         name="speaker_email_export"),
     url(r"^speaker/list/$", SpeakerListView.as_view(), name="speaker_list"),
+    path(
+        "speaker/profile/<int:pk>/",
+        SpeakerRedirectView.as_view(),
+        name="speaker_profile_redirect",
+    ),
+    path(
+        "speaker/profile/<int:pk>/<slug:slug>/",
+        SpeakerDetailView.as_view(),
+        name="speaker_profile",
+    ),
     url(r"^speaker/", include("symposion.speakers.urls")),
     url(r"^proposals/", include("symposion.proposals.urls")),
     url(
@@ -54,6 +72,16 @@ urlpatterns += [
     ),
     url(r"^sponsors/", include("symposion.sponsorship.urls")),
     url(r"^reviews/", include("conf_site.reviews.urls")),
+    path(
+        "schedule/presentation/<int:pk>/",
+        PresentationRedirectView.as_view(),
+        name="schedule_presentation_redirect",
+    ),
+    path(
+        "schedule/presentation/<int:pk>/<slug:slug>/",
+        PresentationDetailView.as_view(),
+        name="schedule_presentation_detail",
+    ),
     url(r"^schedule/presentation/export/$",
         staff_member_required(ExportPresentationSpeakerView.as_view()),
         name="presentation_speaker_export"),

@@ -158,20 +158,6 @@ def schedule_slot_edit(request, slug, slot_pk):
         return render(request, "symposion/schedule/_slot_edit.html", ctx)
 
 
-def schedule_presentation_detail(request, pk):
-
-    presentation = get_object_or_404(Presentation, pk=pk)
-    if presentation.slot:
-        schedule = presentation.slot.day.schedule
-        if not schedule.published and not request.user.is_staff:
-            raise Http404()
-    else:
-        schedule = None
-
-    ctx = {"presentation": presentation, "schedule": schedule}
-    return render(request, "symposion/schedule/presentation_detail.html", ctx)
-
-
 def schedule_json(request):
     slots = Slot.objects.filter(
         day__schedule__published=True, day__schedule__hidden=False
@@ -214,7 +200,7 @@ def schedule_json(request):
                         Site.objects.get_current().domain,
                         reverse(
                             "schedule_presentation_detail",
-                            args=[slot.content.pk],
+                            args=[slot.content.pk, slot.content.slug],
                         ),
                     ),
                     "cancelled": slot.content.cancelled,

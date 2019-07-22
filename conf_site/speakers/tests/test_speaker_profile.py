@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
+from faker import Faker
 from symposion.conference.models import Conference, Section
 from symposion.proposals.models import ProposalBase, ProposalKind
 from symposion.schedule.models import (
@@ -18,11 +19,16 @@ FIRST_PRESENTATION_TITLE = "Time Traveling with pandas"
 SECOND_PRESENTATION_TITLE = "Last night, numpy saved my life"
 
 
-class SpeakerProfilePresentationsTestCase(TestCase):
-    """Tests relating to a speaker's presentations on their profile page."""
+class SpeakerProfileTestCase(TestCase):
+    """Tests relating to a speaker's profile page."""
+    faker = Faker()
 
     def setUp(self):
         self.speaker = Speaker.objects.create(name="Paul Ryan")
+        self.speaker_profile_url = reverse(
+            "speaker_profile",
+            kwargs={"pk": self.speaker.pk, "slug": self.speaker.slug},
+        )
         # Create base conference infrastructure.
         conference = Conference(title="Conference")
         conference.save()
@@ -82,7 +88,9 @@ class SpeakerProfilePresentationsTestCase(TestCase):
     def test_display_presentation(self):
         """Verify that presentations display on speaker profiles."""
         response = self.client.get(
-            reverse("speaker_profile", args=[self.speaker.pk])
+            reverse(
+                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
+            )
         )
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertContains(response, SECOND_PRESENTATION_TITLE)
@@ -92,7 +100,9 @@ class SpeakerProfilePresentationsTestCase(TestCase):
         self.second_presentation.save()
 
         response = self.client.get(
-            reverse("speaker_profile", args=[self.speaker.pk])
+            reverse(
+                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
+            )
         )
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertNotContains(response, SECOND_PRESENTATION_TITLE)
@@ -103,8 +113,30 @@ class SpeakerProfilePresentationsTestCase(TestCase):
         self.first_presentation.additional_speakers.add(second_speaker)
 
         response = self.client.get(
-            reverse("speaker_profile", args=[second_speaker.pk])
+            reverse(
+                "speaker_profile",
+                args=[second_speaker.pk, second_speaker.slug],
+            )
         )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertNotContains(response, SECOND_PRESENTATION_TITLE)
+
+    def test_url_with_only_pk(self):
+        response = self.client.get(
+            reverse("speaker_profile_redirect", kwargs={"pk": self.speaker.pk})
+        )
+        self.assertRedirects(response, self.speaker_profile_url, 301)
+
+    def test_url_with_pk_and_incorrect_slug(self):
+        fuzzy_slug = self.faker.slug()
+        response = self.client.get(
+            reverse(
+                "speaker_profile",
+                kwargs={
+                    "pk": self.speaker.pk,
+                    "slug": fuzzy_slug,
+                },
+            )
+        )
+        self.assertRedirects(response, self.speaker_profile_url, 301)

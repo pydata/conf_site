@@ -15,7 +15,9 @@
                     <td class="slot slot-{{ slot.content.proposal.kind.slug }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
                       {% if slot.content %}
                           <span class="title">
-                              <a href="{% url "schedule_presentation_detail" slot.content.pk %}">{{ slot.content.title }}</a>
+                                <a href="{% url "schedule_presentation_detail" slot.content.pk slot.content.slug %}">
+                                    {{ slot.content.title }}
+                                </a>
                           </span>
                           <span class="speaker">
                               {{ slot.content.speakers|join:", " }}
