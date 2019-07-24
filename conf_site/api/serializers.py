@@ -14,7 +14,7 @@ class SpeakerSerializer(serializers.ModelSerializer):
     def get_absolute_url(self, obj):
         return reverse_lazy(
             'speaker_profile',
-            kwargs={'pk': obj.pk},
+            kwargs={"pk": obj.pk, "slug": obj.slug},
             request=self.context['request'],
         )
 
@@ -53,7 +53,7 @@ class PresentationSerializer(serializers.ModelSerializer):
     def get_absolute_url(self, obj):
         return reverse_lazy(
             'schedule_presentation_detail',
-            args=[obj.pk],
+            args=[obj.pk, obj.slug],
             request=self.context['request'],
         )
 
