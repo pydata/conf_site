@@ -15,7 +15,6 @@ django-user-accounts==2.0.3
 easy-thumbnails==2.6.0
 gunicorn==19.9.0
 markdown==2.6.11
-Pillow==5.2.0
 pinax-eventlog==2.0.3
 pip==19.2.1
 psycopg2==2.8.3
