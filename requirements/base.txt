@@ -11,7 +11,6 @@ djangorestframework==3.10.2
 django-reversion==2.0.13
 django-taggit==0.23.0
 django-timezone-field==3.0
-django-user-accounts==2.0.3
 easy-thumbnails==2.6.0
 gunicorn==19.9.0
 markdown==2.6.11
