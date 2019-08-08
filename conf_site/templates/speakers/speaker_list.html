@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 
 {% block title %} - Speakers{% endblock %}
@@ -6,14 +7,35 @@
 {% block body %}
 <div class="container sec1-inner-page">
   <h1>Speakers</h1>
-  <ul>{% for speaker in speakers %}
-    <li>
-      <a href="{% url 'speaker_profile' speaker.pk speaker.slug %}">{{ speaker.name }}</a> -
-      {% for presentation in speaker.all_presentations %}
-        <a href="{% url 'schedule_presentation_detail' presentation.pk presentation.slug %}">
-          {{ presentation.title }}</a>{% if not forloop.last %}, {% endif %}
-      {% endfor %}
-    </li>
-  {% endfor %}</ul>
+  <table class="table table-bordered table-hover" id="table-speakers">
+    <thead>
+      <th>Name</th>
+      <th>Presentation(s)</th>
+    </thead>
+    <tbody>
+      {% for speaker in speakers %}<tr>
+        <td><a href="{% url 'speaker_profile' speaker.pk speaker.slug %}">{{ speaker.name }}</a></td>
+        <td>{% for presentation in speaker.all_presentations %}
+          <a href="{% url 'schedule_presentation_detail' presentation.pk presentation.slug %}">
+            {{ presentation.title }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}</td>
+      </tr>{% endfor %}
+    </tbody>
+  </table>
 </div>
+{% endblock %}
+
+{% block extra_script %}
+<script src="{% static 'js/jquery.tablesorter.js' %}"></script>
+<script src="{% static 'js/jquery.tablesorter.widgets.js' %}"></script>
+<script>
+  $(function() {
+    $("#table-speakers").tablesorter({
+      cssIcon: "fa",
+      cssIconAsc: "fa-sort-asc",
+      cssIconDesc: "fa-sort-desc",
+      headerTemplate: "{content} {icon}",
+    });
+  });
+</script>
 {% endblock %}
