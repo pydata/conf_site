@@ -21,6 +21,12 @@ class AccountsTestCase(TestCase):
         self.user.set_password(self.password)
         self.user.save()
 
+    def _become_staff(self):
+        """Make this testcase's user a staff user."""
+        self.user.is_staff = True
+        self.user.is_superuser = False
+        self.user.save()
+
     def _become_superuser(self):
         """Make this testcase's user a superuser."""
         self.user.is_superuser = True
