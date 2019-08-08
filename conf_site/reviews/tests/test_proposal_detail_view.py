@@ -126,7 +126,7 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
 
     def test_superuser_can_view_result_buttons(self):
         """Verify that superusers can view result buttons section."""
-        self._become_superuser(self.user)
+        self._become_superuser()
         response = self.client.get(
             reverse(self.reverse_view_name, args=self.reverse_view_args)
         )

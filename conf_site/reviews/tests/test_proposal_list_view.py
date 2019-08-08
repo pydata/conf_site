@@ -74,7 +74,7 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
         )
 
     def test_changing_proposal_status(self):
-        self._become_superuser(self.user)
+        self._become_superuser()
         # Create multiple proposals.
         proposals = ProposalFactory.create_batch(size=randint(3, 6))
         for result_status in ProposalResult.RESULT_STATUSES:
@@ -106,7 +106,7 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
                     )
 
     def test_creating_presentations(self):
-        self._become_superuser(self.user)
+        self._become_superuser()
         proposals = ProposalFactory.create_batch(size=3)
         # Create a single presentation and validate the response.
         post_data = {

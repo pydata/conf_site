@@ -20,3 +20,8 @@ class AccountsTestCase(TestCase):
         )[0]
         self.user.set_password(self.password)
         self.user.save()
+
+    def _become_superuser(self):
+        """Make this testcase's user a superuser."""
+        self.user.is_superuser = True
+        self.user.save()
