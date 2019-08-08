@@ -10,9 +10,9 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <div class="col-md-2 speaker-social">
+        <div class="col-md-3 speaker-social">
             {% if speaker.photo %}
-                <img src="{% thumbnail speaker.photo '128x128' %}" alt="{{ speaker.name }}" />
+                <img src="{% thumbnail speaker.photo '256x256' %}" alt="Photo of {{ speaker.name }}" />
             {% else %}
                 &nbsp;
             {% endif %}
@@ -23,7 +23,7 @@
             </a></div>
             {% endif %}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-9">
             {% if speaker.user == request.user or request.user.is_staff %}
                 <a class="btn btn-default pull-right" href="{% url "speaker_edit" speaker.pk %}">Edit</a>
             {% endif %}
