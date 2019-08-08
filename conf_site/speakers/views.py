@@ -1,7 +1,9 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.db.models import Q
 from django.http import Http404
 from django.views.generic import ListView
 
+from symposion.schedule.models import Schedule
 from symposion.speakers.models import Speaker
 
 from conf_site.core.views import CsvView, SlugDetailView, SlugRedirectView
@@ -45,7 +47,7 @@ class SpeakerRedirectView(SlugRedirectView):
     redirect_view_name = "speaker_profile"
 
 
-class SpeakerListView(ListView):
+class SpeakerListView(UserPassesTestMixin, ListView):
     """Show all speakers with presentations."""
 
     context_object_name = "speakers"
@@ -58,9 +60,22 @@ class SpeakerListView(ListView):
     )
     template_name = "speakers/speaker_list.html"
 
+    def test_func(self):
+        """Verify whether this user can access the speaker list."""
+        # Superusers and staff users always have access.
+        if self.request.user.is_superuser or self.request.user.is_staff:
+            return True
+        # Check to see if there is a published schedule.
+        for schedule in Schedule.objects.all():
+            if schedule.published:
+                return True
+
+        return False
+
 
 class ExportAcceptedSpeakerEmailView(CsvView):
     """Export email addresses of speakers with accepted presentations."""
+
     csv_filename = "accepted-speaker-emails.csv"
 
     def get(self, *args, **kwargs):
