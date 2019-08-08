@@ -26,11 +26,6 @@ class ReviewingTestCase(object):
         self.user.groups.add(self.reviewers_group)
         self.user.save()
 
-    def _become_superuser(self, user):
-        """Make the passed user a superuser."""
-        user.is_superuser = True
-        user.save()
-
     def _create_proposals(self):
         """Create proposals if needed to test a view."""
         try:
@@ -57,7 +52,7 @@ class ReviewingTestCase(object):
 
     def test_superuser_access(self):
         """Verify that superusers can access the view."""
-        self._become_superuser(self.user)
+        self._become_superuser()
         self.assertFalse(self.reviewers_group in self.user.groups.all())
         response = self.client.get(
             reverse(self.reverse_view_name, args=self.reverse_view_args)
@@ -113,7 +108,7 @@ class ReviewingTestCase(object):
 
     def test_blind_reviewers_as_superuser(self):
         """Verify that superusers ignore the BLIND_REVIEWERS setting."""
-        self._become_superuser(self.user)
+        self._become_superuser()
         proposals = self._create_proposals()
         for proposal in proposals:
             ProposalFeedbackFactory(proposal=proposal)

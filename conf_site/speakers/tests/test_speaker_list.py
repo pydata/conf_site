@@ -1,7 +1,7 @@
-from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
+from conf_site.accounts.tests import AccountsTestCase
 from symposion.conference.models import Conference, Section
 from symposion.proposals.models import ProposalBase, ProposalKind
 from symposion.schedule.models import (
@@ -14,10 +14,12 @@ from symposion.schedule.models import (
 from symposion.speakers.models import Speaker
 
 
-class AcceptedSpeakerListViewTestCase(TestCase):
+class SpeakerListViewTestCase(AccountsTestCase):
     """Verify that a presentation's primary & secondary speakers are shown."""
 
     def setUp(self):
+        super(SpeakerListViewTestCase, self).setUp()
+
         conference = Conference.objects.create(title="Conference")
         self.section = Section.objects.create(
             conference=conference, name="Section", slug="section"
@@ -32,6 +34,43 @@ class AcceptedSpeakerListViewTestCase(TestCase):
         self.proposal_kind = ProposalKind.objects.create(
             section=self.section, name="Kind", slug="kind"
         )
+
+    def _unpublish_schedule(self):
+        """Utility method to unpublish associated schedule."""
+        schedule = self.section.schedule
+        schedule.published = False
+        schedule.save()
+
+    def test_speaker_list_unviewable_when_schedule_is_unpublished(self):
+        """Verify that if schedule is unpublished, page does not appear."""
+        self._unpublish_schedule()
+        response = self.client.get(reverse("speaker_list"))
+        # Regular users should get redirected to the login page,
+        # because SpeakerListView.raise_exception is False.
+        login_url_redirecting_to_speaker_list = "{}?next={}".format(
+            reverse("account_login"), reverse("speaker_list")
+        )
+        self.assertEqual(response.url, login_url_redirecting_to_speaker_list)
+
+    def test_staff_access_to_speaker_list_with_unpublished_schedule(self):
+        """
+        Verify that staff can access list when schedule is unpublished.
+        """
+        self._unpublish_schedule()
+        self._become_staff()
+        self.client.login(username=self.user.email, password=self.password)
+        response = self.client.get(reverse("speaker_list"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_superuser_access_to_speaker_list_with_unpublished_schedule(self):
+        """
+        Verify that superusers can access list when schedule is unpublished.
+        """
+        self._unpublish_schedule()
+        self._become_superuser()
+        self.client.login(username=self.user.email, password=self.password)
+        response = self.client.get(reverse("speaker_list"))
+        self.assertEqual(response.status_code, 200)
 
     def test_unaccepted_speakers(self):
         """Verify that speakers without presentations do not appear."""
