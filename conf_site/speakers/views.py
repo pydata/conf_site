@@ -53,7 +53,7 @@ class SpeakerListView(ListView):
         Speaker.objects.filter(
             Q(presentations__gt=0) | Q(copresentations__gt=0)
         )
-        .order_by()
+        .order_by("name")
         .distinct()
     )
     template_name = "speakers/speaker_list.html"
