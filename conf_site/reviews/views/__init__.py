@@ -135,6 +135,7 @@ class ProposalFeedbackPostView(ReviewingView):
                 speaker.email
                 and speaker.user
                 and speaker.user != self.request.user
+                and speaker.email not in speaker_email_addressses
             ):
                 speaker_email_addressses.append(speaker.email)
         send_email(
@@ -149,7 +150,11 @@ class ProposalFeedbackPostView(ReviewingView):
         # Send email to reviewers.
         reviewer_email_addresses = []
         for feedback in proposal.review_feedback.all():
-            if feedback.author.email and feedback.author != self.request.user:
+            if (
+                feedback.author.email
+                and feedback.author != self.request.user
+                and feedback.author.email not in reviewer_email_addresses
+            ):
                 reviewer_email_addresses.append(feedback.author.email)
         send_email(
             reviewer_email_addresses,
