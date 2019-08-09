@@ -6,9 +6,8 @@ from constance.test import override_config
 from conf_site.accounts.tests import AccountsTestCase
 from conf_site.reviews.tests import ReviewingTestCase
 
-from conf_site.proposals.tests.factories import ProposalFactory, SpeakerFactory
+from conf_site.proposals.tests.factories import ProposalFactory
 from conf_site.reviews.tests.factories import ProposalFeedbackFactory
-from symposion.proposals.models import AdditionalSpeaker
 
 
 class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
@@ -18,25 +17,6 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
         super(ProposalDetailViewAccessTestCase, self).setUp()
         self.proposal = ProposalFactory()
         self.reverse_view_args = [self.proposal.pk]
-
-    def _i_am_the_speaker_now(self):
-        """Make this testcase's user the primary speaker of the proposal."""
-        # Create a reviewer (as a speaker profile).
-        self.reviewer = SpeakerFactory()
-        # Attach current user as the primary speaker on this proposal.
-        self.proposal.speaker.user = self.user
-        self.proposal.speaker.save()
-
-    def _i_am_also_a_speaker_now(self):
-        """Make this testcase's user an additional speaker on the proposal."""
-        self.reviewer = SpeakerFactory()
-        self.reviewer.user = self.user
-        self.reviewer.save()
-        AdditionalSpeaker.objects.create(
-            proposalbase=self.proposal.proposalbase_ptr,
-            speaker=self.reviewer,
-            status=AdditionalSpeaker.SPEAKING_STATUS_ACCEPTED,
-        )
 
     def test_blind_reviewing_types_as_author(self):
         """Verify whether BLIND_AUTHORS setting works properly."""

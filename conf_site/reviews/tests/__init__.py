@@ -6,8 +6,9 @@ from django.urls import reverse
 
 from constance.test import override_config
 
-from conf_site.proposals.tests.factories import ProposalFactory
+from conf_site.proposals.tests.factories import ProposalFactory, SpeakerFactory
 from conf_site.reviews.tests.factories import ProposalFeedbackFactory
+from symposion.proposals.models import AdditionalSpeaker
 
 
 class ReviewingTestCase(object):
@@ -34,6 +35,25 @@ class ReviewingTestCase(object):
             return [self.proposal]
         except AttributeError:
             return ProposalFactory.create_batch(size=randint(2, 5))
+
+    def _i_am_the_speaker_now(self):
+        """Make this testcase's user the primary speaker of the proposal."""
+        # Create a reviewer (as a speaker profile).
+        self.reviewer = SpeakerFactory()
+        # Attach current user as the primary speaker on this proposal.
+        self.proposal.speaker.user = self.user
+        self.proposal.speaker.save()
+
+    def _i_am_also_a_speaker_now(self):
+        """Make this testcase's user an additional speaker on the proposal."""
+        self.reviewer = SpeakerFactory()
+        self.reviewer.user = self.user
+        self.reviewer.save()
+        AdditionalSpeaker.objects.create(
+            proposalbase=self.proposal.proposalbase_ptr,
+            speaker=self.reviewer,
+            status=AdditionalSpeaker.SPEAKING_STATUS_ACCEPTED,
+        )
 
     def setUp(self):
         super(ReviewingTestCase, self).setUp()
