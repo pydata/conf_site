@@ -11,7 +11,21 @@
 {% block body %}
 <div class="container">
     <div class="dashboard-panel">
-        <div class="dashboard-panel-header">
+        <div class="dashboard-panel-account">
+            <h3><i class="fa fa-user"></i> {% trans "Account" %}</h3>
+            <div class="header-actions">
+                <a href="{% url 'account_change_password' %}" class="btn btn-default">
+                    <i class="fa fa-lock"></i> {% trans "Change Password" %}
+                </a>
+                <a href="{% url 'account_email' %}" class="btn btn-default">
+                    <i class="fa fa-envelope"></i> {% trans "Manage E-mail Addresses" %}
+                </a>
+                <a href="{% url 'account_logout' %}" class="btn btn-default">
+                    <i class="fa fa-sign-out"></i> {% trans "Logout" %}
+                </a>
+            </div>
+        </div>
+        <div class="dashboard-panel-speaking">
             <h3>
                 <i class="fa fa-bullhorn"></i>
                 {% trans "Speaking" %}
