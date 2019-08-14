@@ -7,15 +7,23 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <div class="col-md-5">
-            <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}">
-                <legend>{% trans "Confirm Email" %}</legend>
-                <fieldset>
-                    {% csrf_token %}
-                    <p>{% blocktrans with email=confirmation.email_address.email %}Confirm email address <b>{{ email }}</b>?{% endblocktrans %}</p>
-                    <button type="submit" class="btn btn-primary">{% trans "Confirm" %}</button>
-                </fieldset>
-            </form>
+        <div>
+            <h1>{% trans "Confirm Email" %}</h1>
+            {% if confirmation %}
+                <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}">
+                    <fieldset>
+                        {% csrf_token %}
+                        <p>{% blocktrans with email=confirmation.email_address.email %}Confirm email address <b>{{ email }}</b>?{% endblocktrans %}</p>
+                        <button type="submit" class="btn btn-primary">{% trans "Confirm" %}</button>
+                    </fieldset>
+                </form>
+            {% else %}
+                {% url 'account_email' as email_url %}
+                <p>{% blocktrans %}
+                    This e-mail confirmation link expired or is invalid.
+                    Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.
+                {% endblocktrans %}</p>
+            {% endif %}
         </div>
     </div>
 </div>
