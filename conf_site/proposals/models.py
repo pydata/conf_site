@@ -146,6 +146,19 @@ class Proposal(ProposalBase):
                   "audio and/or video of your presentation. If you do not "
                   "agree to this, please uncheck this box."
     )
+    travel_stipend = models.BooleanField(
+        default=False,
+        help_text="To advance our goal of supporting diverse voices and "
+        "enhancing the open source scientific computing community "
+        "through inclusion, we have limited funds available for "
+        "speaker stipends. If you would not otherwise be able "
+        "to attend, please check this box for consideration "
+        "for this funding in an amount not to exceed $500. "
+        "Note that this has no bearing on your application, "
+        "and your response will not be visible to the "
+        "Proposal Selection Committee.",
+        verbose_name="I would like to be considered for a stipend",
+    )
 
     editor_keywords = TaggableManager(
         "Editor Keywords",
