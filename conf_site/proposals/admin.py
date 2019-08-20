@@ -44,11 +44,16 @@ class ProposalAdmin(admin.ModelAdmin):
         "date_last_modified",
     )
     list_display_links = ("title",)
-    list_filter = (
-        'kind',
-        'audience_level',
-        'cancelled',
-        'recording_release',
-    )
     search_fields = ("title", "speaker__name")
     date_hierarchy = "date_created"
+
+    def get_list_filter(self, request):
+        list_filter = (
+            "kind",
+            "audience_level",
+            "cancelled",
+            "recording_release",
+        )
+        if request.user.is_superuser:
+            list_filter += ("travel_stipend",)
+        return list_filter
