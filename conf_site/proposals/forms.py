@@ -2,6 +2,7 @@ from django import forms
 
 from constance import config
 
+from conf_site.core.widgets import TitledCheckboxInput
 from .models import Proposal, ProposalKeyword
 
 
@@ -44,6 +45,7 @@ class ProposalForm(forms.ModelForm):
             "under_represented_population",
             "under_represented_details",
             "under_represented_other",
+            "travel_stipend",
             "additional_notes",
             "recording_release",
             "phone_number",
@@ -54,6 +56,7 @@ class ProposalForm(forms.ModelForm):
         ]
         widgets = {
             "under_represented_details": forms.CheckboxSelectMultiple(),
+            "travel_stipend": TitledCheckboxInput(title="Travel Stipend"),
         }
 
     def __init__(self, *args, **kwargs):

@@ -4,19 +4,38 @@
     {% if field|is_checkbox %}
         <div class="{{ classes.single_value }}">
             <div class="checkbox">
-                {% if field.auto_id %}
-                    <label {% if field.field.required and form.required_css_class %}class="{{ form.required_css_class }}"{% endif %}>
-                        {{ field }} <span>{{ field.label }}</span>
-                    </label>
-                {% endif %}
-                {% for error in field.errors %}
-                    <span class="help-block {{ form.error_css_class }}">{{ error }}</span>
-                {% endfor %}
+                {% if field.field.widget.title %}
+                    <div style="margin-bottom: 5px;"><span style="font-weight: bold;">
+                        {{ field.field.widget.title }}
+                    </span></div>
+                    {% if field.help_text %}
+                        <p class="help-block">
+                            {{ field.help_text|safe }}
+                        </p>
+                    {% endif %}
+                    {% if field.auto_id %}
+                        <label {% if field.field.required and form.required_css_class %}class="{{ form.required_css_class }}"{% endif %}>
+                            {{ field }} <span>{{ field.label }}</span>
+                        </label>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <span class="help-block {{ form.error_css_class }}">{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {% if field.auto_id %}
+                        <label {% if field.field.required and form.required_css_class %}class="{{ form.required_css_class }}"{% endif %}>
+                            {{ field }} <span>{{ field.label }}</span>
+                        </label>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <span class="help-block {{ form.error_css_class }}">{{ error }}</span>
+                    {% endfor %}
 
-                {% if field.help_text %}
-                    <p class="help-block">
-                        {{ field.help_text|safe }}
-                    </p>
+                    {% if field.help_text %}
+                        <p class="help-block">
+                            {{ field.help_text|safe }}
+                        </p>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
