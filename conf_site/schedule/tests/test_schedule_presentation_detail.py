@@ -5,6 +5,7 @@ from django.urls import reverse
 from faker import Faker
 
 from conf_site.schedule.tests import PresentationTestCase
+from conf_site.speakers.tests.factories import SpeakerFactory
 
 
 class SchedulePresentationDetailViewTestCase(PresentationTestCase):
@@ -68,3 +69,15 @@ class SchedulePresentationDetailViewTestCase(PresentationTestCase):
             )
         )
         self.assertRedirects(response, self.presentation_url, 301)
+
+    def test_omitting_nameless_speakers(self):
+        nameless_speaker = SpeakerFactory()
+        nameless_speaker.name = ""
+        nameless_speaker.save()
+        self.presentation.additional_speakers.add(nameless_speaker)
+        response = self.client.get(self.presentation_url)
+        nameless_speaker_url = reverse(
+            "speaker_profile",
+            args=[nameless_speaker.pk, nameless_speaker.slug],
+        )
+        self.assertNotContains(response, nameless_speaker_url)
