@@ -2,18 +2,9 @@
 import factory
 
 from symposion.schedule.tests.factories import ProposalKindFactory
-from symposion.speakers.models import Speaker
 
-from conf_site.accounts.tests.factories import UserFactory
 from conf_site.proposals.models import Proposal
-
-
-class SpeakerFactory(factory.django.DjangoModelFactory):
-    user = factory.SubFactory(UserFactory)
-    name = factory.Faker("name")
-
-    class Meta:
-        model = Speaker
+from conf_site.speakers.tests.factories import SpeakerFactory
 
 
 class ProposalFactory(factory.django.DjangoModelFactory):

@@ -6,8 +6,9 @@ from django.urls import reverse
 
 from constance.test import override_config
 
-from conf_site.proposals.tests.factories import ProposalFactory, SpeakerFactory
+from conf_site.proposals.tests.factories import ProposalFactory
 from conf_site.reviews.tests.factories import ProposalFeedbackFactory
+from conf_site.speakers.tests.factories import SpeakerFactory
 from symposion.proposals.models import AdditionalSpeaker
 
 
