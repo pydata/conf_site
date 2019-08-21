@@ -146,7 +146,7 @@ class Proposal(ProposalBase):
                   "audio and/or video of your presentation. If you do not "
                   "agree to this, please uncheck this box."
     )
-    travel_stipend = models.BooleanField(
+    stipend = models.BooleanField(
         default=False,
         help_text="To advance our goal of supporting diverse voices and "
         "enhancing the open source scientific computing community "

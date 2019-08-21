@@ -52,15 +52,15 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
             self.assertNotContains(response, "Notes")
             self.assertNotContains(response, self.proposal.additional_notes)
 
-    def test_that_travel_stipend_status_does_not_appear(self):
-        """Verify that the proposal's travel stipend status does not appear."""
+    def test_that_stipend_status_does_not_appear(self):
+        """Verify that the proposal's stipend status does not appear."""
         self._add_to_reviewers_group()
-        self.proposal.travel_stipend = True
+        self.proposal.stipend = True
         self.proposal.save()
         response = self.client.get(
             reverse(self.reverse_view_name, args=self.reverse_view_args)
         )
-        self.assertNotContains(response, "Travel Stipend")
+        self.assertNotContains(response, "stipend")
 
     def test_primary_speaker_cannot_view_votes_tab(self):
         """Verify that proposal speakers cannot view their proposal's votes."""

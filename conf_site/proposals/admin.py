@@ -55,5 +55,5 @@ class ProposalAdmin(admin.ModelAdmin):
             "recording_release",
         )
         if request.user.is_superuser:
-            list_filter += ("travel_stipend",)
+            list_filter += ("stipend",)
         return list_filter
