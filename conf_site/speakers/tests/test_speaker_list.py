@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.utils import timezone
 
 from conf_site.accounts.tests import AccountsTestCase
+from conf_site.schedule.tests.factories import PresentationFactory
+from conf_site.speakers.tests.factories import SpeakerFactory
 from symposion.conference.models import Conference, Section
 from symposion.proposals.models import ProposalBase, ProposalKind
 from symposion.schedule.models import (
@@ -156,3 +158,20 @@ class SpeakerListViewTestCase(AccountsTestCase):
         response = self.client.get(reverse("speaker_list"))
         self.assertContains(response=response, text=speaker1.name, count=1)
         self.assertContains(response=response, text=speaker2.name, count=1)
+
+    def test_omitting_nameless_speakers(self):
+        """Verify that speakers without a name do not appear."""
+        presentation = PresentationFactory()
+        speaker2 = SpeakerFactory()
+        # Ensure that this speaker doesn't have a name.
+        speaker2.name = ""
+        speaker2.save()
+        presentation.additional_speakers.add(speaker2)
+        response = self.client.get(reverse("speaker_list"))
+        # Since speaker2 is nameless, we check for a link to their
+        # speaker page in the response instead of their
+        # non-existent name.
+        speaker2_url = reverse(
+            "speaker_profile", args=[speaker2.pk, speaker2.slug]
+        )
+        self.assertNotContains(response, speaker2_url)

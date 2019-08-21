@@ -4,7 +4,8 @@ import factory
 from symposion.schedule.models import Presentation
 from symposion.schedule.tests.factories import SectionFactory, SlotFactory
 
-from conf_site.proposals.tests.factories import ProposalFactory, SpeakerFactory
+from conf_site.proposals.tests.factories import ProposalFactory
+from conf_site.speakers.tests.factories import SpeakerFactory
 
 
 class PresentationFactory(factory.django.DjangoModelFactory):
