@@ -43,7 +43,7 @@ class CsvView(View):
         )
 
         # Initialize CSV file.
-        self.csv_writer = csv.writer(self.temp_file)
+        self.csv_writer = csv.writer(self.temp_file, dialect=csv.unix_dialect)
 
     def get(self, *args, **kwargs):
         # Make sure that everything has been saved.
