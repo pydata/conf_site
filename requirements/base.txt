@@ -1,4 +1,4 @@
-Django==2.2.4
+Django==2.2.5
 django-allauth==0.39.1
 django-analytical==2.5.0
 django-autoslug==1.9.6
