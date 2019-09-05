@@ -218,11 +218,11 @@
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/jquery.stellar.js' %}"></script>
 {% if sentry_public_dsn %}
-<script src="https://browser.sentry-cdn.com/5.4.1/bundle.min.js"
-        integrity="sha384-f9Sl1IltUxuRD3pUpaYzpkKcAS6hJGAYDtdI3tHGhJNACP/BalDvWhj0W/zLgGJk"
+<script src="https://browser.sentry-cdn.com/5.6.3/bundle.min.js"
+        integrity="sha384-/Cqa/8kaWn7emdqIBLk3AkFMAHBk0LObErtMhO+hr52CntkaurEnihPmqYj3uJho"
         crossorigin="anonymous"></script>
 <script>
-    window.Sentry || document.write("<script src='{% static 'js/sentry-5.4.1.min.js' %}'><\/script>");
+    window.Sentry || document.write("<script src='{% static 'js/sentry-5.6.3.min.js' %}'><\/script>");
     jQuery(function($) {
         Sentry.init({
             dsn: "{{ sentry_public_dsn }}",
