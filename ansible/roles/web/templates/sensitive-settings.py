@@ -1,4 +1,7 @@
 # Passwords, API keys, and other sensitive information.
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 
 DATABASES_DEFAULT = {
     "ENGINE": "django.db.backends.postgresql",
@@ -41,19 +44,18 @@ LOGIN_URL = "{{ website_url }}/accounts/login/"
 MEDIA_URL = "{{ website_url }}/media/"
 STATIC_URL = "{{ website_url }}/static/"
 
-{% if environment_type != "development" and sentry_secret_key != "" %}
-RAVEN_CONFIG = {
-    "dsn": ("https://{{ sentry_public_key }}:{{ sentry_secret_key }}@sentry.io"
-            "/{{ sentry_project_id }}"),
-    "environment": "{{ environment_type }}",
-    "name": "{{ conference_identifier }}",
-    "processors": ("raven.processors.SanitizePasswordsProcessor", ),
-    "release": "{{ git_status.stdout }}",
-    "site": "{{ conference_name }}",
-}
-SENTRY_PUBLIC_DSN = "https://{{ sentry_public_key }}@sentry.io/{{ sentry_project_id }}"
-{% else %}
-SENTRY_PUBLIC_DSN = False
+SENTRY_PUBLIC_DSN = (
+    "https://{{ sentry_public_key }}@sentry.io/{{ sentry_project_id }}"
+)
+
+{% if environment_type != "development" %}
+sentry_sdk.init(
+    dsn=SENTRY_PUBLIC_DSN,
+    environment="{{ environment_type }}",
+    integrations=[DjangoIntegration()],
+    release="{{ git_status.stdout }}",
+    server_name="{{ conference_identifier }}",
+)
 {% endif %}
 
 GOOGLE_ANALYTICS_PROPERTY_ID = "{{ google_analytics_id }}"
