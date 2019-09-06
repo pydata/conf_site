@@ -1,6 +1,7 @@
 admin_email: admin@pydata.org
 amy_username: amy
 ansible_python_interpreter: /usr/bin/python3
+application_owner: mobolic
 database_host: localhost
 git_version: master
 gunicorn_port: 10501

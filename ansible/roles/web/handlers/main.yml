@@ -25,3 +25,5 @@
     state: touch
   tags:
     - fixtures
+
+- include: sentry.yml

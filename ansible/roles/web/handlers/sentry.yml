@@ -1,0 +1,21 @@
+- name: create new Sentry release
+  uri:
+    body: "{'projects': ['{{ sentry_project_name }}'], 'version': '{{ git_status.stdout }}'}"
+    body_format: "json"
+    headers:
+      Authorization: "Bearer {{ sentry_api_token }}"
+      Content-Type: "application/json"
+    method: POST
+    status_code: 201, 208
+    url: "https://sentry.io/api/0/organizations/{{ application_owner }}/releases/"
+
+- name: send Sentry notification of deployment
+  uri:
+    body: "{'environment': '{{ environment_type }}'}"
+    body_format: "json"
+    headers:
+      Authorization: "Bearer {{ sentry_api_token }}"
+      Content-Type: "application/json"
+    method: POST
+    status_code: 201
+    url: "https://sentry.io/api/0/organizations/{{ application_owner }}/releases/{{ git_status.stdout }}/deploys/"

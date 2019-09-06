@@ -9,6 +9,8 @@
   notify:
     - restart nginx
     - restart gunicorn
+    - create new Sentry release
+    - send Sentry notification of deployment
 
 - name: install python packages and associated libraries
   apt:
