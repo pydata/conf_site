@@ -145,7 +145,6 @@ INSTALLED_APPS = [
     "easy_thumbnails",
     "modelcluster",
     "pinax.eventlog",
-    "raven.contrib.django.raven_compat",
     "rest_framework",
     "reversion",
     "symposion",
@@ -181,7 +180,7 @@ INSTALLED_APPS = [
 ]
 
 # Note that this logging configuration DOES NOT SEND ERROR REPORTS
-# BY EMAIL IF SENTRY IS NOT CONFIGURED. If this functionality is
+# BY EMAIL. If this functionality is
 # needed, simply delete this section to restore the default
 # LOGGING setting
 # (see https://docs.djangoproject.com/en/1.11/ref/settings/#logging).
@@ -190,7 +189,7 @@ LOGGING = {
     "disable_existing_loggers": True,
     "root": {
         "level": "WARNING",
-        "handlers": ["sentry"],
+        "handlers": ["console"],
     },
     "formatters": {
         "verbose": {
@@ -199,11 +198,6 @@ LOGGING = {
         },
     },
     "handlers": {
-        "sentry": {
-            "level": "ERROR",
-            "class": (
-                "raven.contrib.django.raven_compat.handlers.SentryHandler"),
-        },
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
@@ -211,18 +205,8 @@ LOGGING = {
         }
     },
     "loggers": {
-        "django.db.backends": {
+        "django": {
             "level": "ERROR",
-            "handlers": ["console"],
-            "propagate": False,
-        },
-        "raven": {
-            "level": "DEBUG",
-            "handlers": ["console"],
-            "propagate": False,
-        },
-        "sentry.errors": {
-            "level": "DEBUG",
             "handlers": ["console"],
             "propagate": False,
         },
