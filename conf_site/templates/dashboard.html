@@ -190,6 +190,9 @@
         <div class="dashboard-panel-content">
             <ul>
                 <li><a href="{% url 'schedule_json' %}">Conference Schedule (JSON)</a></li>
+                {% for schedule in schedules %}
+                <li><a href="{% url 'schedule_list_csv' schedule.section.slug %}">{{ schedule.section.name }} Presentations (CSV)</a></li>
+                {% endfor %}
                 <li><a href="{% url 'presentation_speaker_export' %}">Speakers & Presentations (CSV)</a></li>
                 <li><a href="{% url 'speaker_email_export' %}">Accepted Speaker Email Addresses (CSV)</a></li>
                 <li><a href="{% url 'proposal_submitter_export' %}">Proposal Submitters (CSV)</a></li>
