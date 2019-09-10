@@ -12,13 +12,11 @@ testing:
 
 production:
   hosts:
-    amsterdam2019:
     cambridge2019:
     cordoba2019:
     delhi2019:
     eindhoven2019:
     la2019:
-    london2019:
     nyc2019:
     sv2019:
     warsaw2019:
