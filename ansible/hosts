@@ -12,6 +12,7 @@ testing:
 
 production:
   hosts:
+    austin2019:
     cambridge2019:
     cordoba2019:
     delhi2019:
