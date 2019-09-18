@@ -18,8 +18,6 @@ def markdown(value):
     return mark_safe(
         markdown_library.markdown(
             force_text(value),
-            extensions,
-            safe_mode=True,
-            enable_attributes=False
+            extensions=extensions,
         )
     )
