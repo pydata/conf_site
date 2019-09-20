@@ -6,7 +6,7 @@ import markdown
 def parse(text):
 
     # First run through the Markdown parser
-    text = markdown.markdown(text, extensions=["extra"], safe_mode=False)
+    text = markdown.markdown(text, extensions=["extra"])
 
     # Sanitize using html5lib
     # bits = []
