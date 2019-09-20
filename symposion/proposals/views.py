@@ -108,7 +108,7 @@ def proposal_submit_kind(request, kind_slug):
             messages.success(request, _("Proposal submitted."))
             if "add-speakers" in request.POST:
                 return redirect("proposal_speaker_manage", proposal.pk)
-            return redirect("dashboard")
+            return redirect("proposal_detail", proposal.pk)
     else:
         form = form_class()
 
