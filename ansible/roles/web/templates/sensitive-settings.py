@@ -1,6 +1,7 @@
 # Passwords, API keys, and other sensitive information.
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.redis import RedisIntegration
 
 
 DATABASES_DEFAULT = {
@@ -52,7 +53,7 @@ SENTRY_PUBLIC_DSN = (
 sentry_sdk.init(
     dsn=SENTRY_PUBLIC_DSN,
     environment="{{ environment_type }}",
-    integrations=[DjangoIntegration()],
+    integrations=[DjangoIntegration(), RedisIntegration()],
     release="{{ git_status.stdout }}",
     server_name="{{ conference_identifier }}",
 )
