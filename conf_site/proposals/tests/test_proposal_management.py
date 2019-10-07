@@ -11,6 +11,9 @@ from symposion.speakers.models import Speaker
 class ProposalSpeakerManageViewTestCase(ProposalTestCase):
     """Automated test cases for symposion's proposal_speaker_manage view."""
 
+    INVITE_SELF_MESSAGE = "You can&#39;t invite yourself to this proposal"
+    INVITE_SUCCESS_MESSAGE = "Speaker invited to proposal."
+
     def setUp(self):
         super(ProposalSpeakerManageViewTestCase, self).setUp()
 
@@ -62,7 +65,7 @@ class ProposalSpeakerManageViewTestCase(ProposalTestCase):
             reverse("proposal_speaker_manage", args=[self.proposal.pk]),
         )
         # Page should contain a message notification of the invitation.
-        self.assertContains(response, "Speaker invited to proposal.")
+        self.assertContains(response, self.INVITE_SUCCESS_MESSAGE)
         # Page should contain the invited speaker's email address,
         # since they won't have a name.
         self.assertContains(response, invite_email)
@@ -74,7 +77,5 @@ class ProposalSpeakerManageViewTestCase(ProposalTestCase):
             data={"email": self.user.email},
         )
         # Page should contain a message notification of the invitation.
-        self.assertContains(
-            response, "You can&#39;t invite yourself to this proposal"
-        )
-        self.assertNotContains(response, "Speaker invited to proposal.")
+        self.assertContains(response, self.INVITE_SELF_MESSAGE)
+        self.assertNotContains(response, self.INVITE_SUCCESS_MESSAGE)
