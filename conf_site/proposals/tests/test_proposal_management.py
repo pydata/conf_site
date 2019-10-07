@@ -61,4 +61,8 @@ class ProposalSpeakerManageViewTestCase(ProposalTestCase):
             response,
             reverse("proposal_speaker_manage", args=[self.proposal.pk]),
         )
+        # Page should contain a message notification of the invitation.
         self.assertContains(response, "Speaker invited to proposal.")
+        # Page should contain the invited speaker's email address,
+        # since they won't have a name.
+        self.assertContains(response, invite_email)

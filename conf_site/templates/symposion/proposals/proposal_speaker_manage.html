@@ -16,9 +16,22 @@
 
     <h2>{% trans 'Current Speakers' %}</h2>
 
-    {% for speaker in speakers %}
-        <p><b>{{ speaker.name }}</b></p>
-    {% endfor %}
+    <ul class="list-group">{% for speaker in speakers %}{% spaceless %}
+        <li class="list-group-item">
+            {% if speaker.name %}
+                {{ speaker.name }}
+            {% else %}
+                {{ speaker.email }}
+            {% endif %}
+            {% if not speaker.user %}
+                <span class="label label-default">Invited</span>
+            {% elif speaker.user == request.user %}
+                <span class="label label-primary">You</span>
+            {% else %}
+            <span class="label label-success">Confirmed</span>
+            {% endif %}
+        </li>
+    {% endspaceless %}{% endfor %}</ul>
 
     <h2>{% trans 'Add another speaker' %}</h2>
 
