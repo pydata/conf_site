@@ -188,8 +188,9 @@ class ProposalBase(models.Model):
 
     def speakers(self):
         yield self.speaker
-        speakers = self.additional_speakers.exclude(
-            additionalspeaker__status=AdditionalSpeaker.SPEAKING_STATUS_DECLINED        # noqa: E501
+        accepted_status = AdditionalSpeaker.SPEAKING_STATUS_ACCEPTED
+        speakers = self.additional_speakers.filter(
+            additionalspeaker__status=accepted_status
         )
         for speaker in speakers:
             yield speaker

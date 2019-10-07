@@ -24,14 +24,31 @@
                 {{ speaker.email }}
             {% endif %}
             {% if not speaker.user %}
-                <span class="label label-default">Invited</span>
+                <span class="label label-warning">{% trans 'No User Account' %}</span>
             {% elif speaker.user == request.user %}
-                <span class="label label-primary">You</span>
-            {% else %}
-            <span class="label label-success">Confirmed</span>
+                <span class="label label-primary">{% trans 'You' %}</span>
+            {% elif speaker in proposal.speakers %}
+                <span class="label label-success">{% trans 'Associated' %}</span>
             {% endif %}
         </li>
     {% endspaceless %}{% endfor %}</ul>
+
+    {% if invited_speakers %}<h2>{% trans 'Invited Speakers' %}</h2>
+
+    <ul class="list-group">{% for invited_speaker in invited_speakers %}{% spaceless %}
+        <li class="list-group-item">
+            {% if invited_speaker.speaker.name %}
+                {{ invited_speaker.speaker.name }}
+            {% else %}
+                {{ invited_speaker.speaker.email }}
+            {% endif %}
+            {% if invited_speaker.status == invited_speaker.SPEAKING_STATUS_PENDING %}
+                <span class="label label-warning">{% trans 'Pending' %}</span>
+            {% else %}
+                <span class="label label-danger">{% trans 'Declined' %}</span>
+            {% endif %}
+        </li>
+    {% endspaceless %}{% endfor %}</ul>{% endif %}
 
     <h2>{% trans 'Add another speaker' %}</h2>
 

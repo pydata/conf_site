@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from autoslug.fields import AutoSlugField
 from symposion.markdown_parser import parse
-from symposion.proposals.models import ProposalBase
+from symposion.proposals.models import ProposalBase, AdditionalSpeaker
 from symposion.conference.models import Section
 from symposion.speakers.models import Speaker
 
@@ -281,7 +281,11 @@ class Presentation(models.Model):
 
     def speakers(self):
         yield self.speaker
-        for speaker in self.additional_speakers.all():
+        accepted_status = AdditionalSpeaker.SPEAKING_STATUS_ACCEPTED
+        speakers = self.additional_speakers.filter(
+            additionalspeaker__status=accepted_status
+        )
+        for speaker in speakers:
             yield speaker
 
     def __str__(self):

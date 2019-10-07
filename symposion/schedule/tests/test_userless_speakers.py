@@ -62,6 +62,7 @@ class UserlessSpeakersTestCase(TestCase):
     def test_presentation_userless_speakers(self):
         """Test that presentation speaker counts include all speakers."""
         # A Presentation's speakers() method is a generator of all
-        # associated speakers. If it is properly returning all speakers
-        # (regardless of user status), the result should be two.
-        self.assertEqual(len(list(self.presentation.speakers())), 2)
+        # associated speakers who have accepted their association.
+        # If it is properly returning all accepted speakers,
+        # the result should be one (not two).
+        self.assertEqual(len(list(self.presentation.speakers())), 1)

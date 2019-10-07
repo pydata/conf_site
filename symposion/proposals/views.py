@@ -190,9 +190,16 @@ def proposal_speaker_manage(request, pk):
             return redirect("proposal_speaker_manage", proposal.pk)
     else:
         add_speaker_form = AddSpeakerForm(proposal=proposal)
+
+    # Get invited speakers for this proposal.
+    invited_speakers = AdditionalSpeaker.objects.filter(
+        proposalbase=proposal.proposalbase_ptr).exclude(
+            status=AdditionalSpeaker.SPEAKING_STATUS_ACCEPTED
+    )
     ctx = {
         "proposal": proposal,
         "speakers": proposal.speakers(),
+        "invited_speakers": invited_speakers,
         "add_speaker_form": add_speaker_form,
     }
     return render(
