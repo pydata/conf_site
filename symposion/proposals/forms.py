@@ -23,6 +23,14 @@ class AddSpeakerForm(forms.Form):
 
     def clean_email(self):
         value = self.cleaned_data["email"]
+
+        # Verify whether this email address is the user's own
+        # email address.
+        if self.proposal.speaker.user.email == value:
+            raise forms.ValidationError(
+                _("You can't invite yourself to this proposal")
+            )
+
         exists = self.proposal.additional_speakers.filter(
             Q(user=None, invite_email=value) | Q(user__email=value)
         ).exists()
