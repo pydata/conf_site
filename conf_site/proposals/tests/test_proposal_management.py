@@ -11,6 +11,9 @@ from symposion.speakers.models import Speaker
 class ProposalSpeakerManageViewTestCase(ProposalTestCase):
     """Automated test cases for symposion's proposal_speaker_manage view."""
 
+    INVITE_DUPLICATE_MESSAGE = (
+        "This email address has already been invited to your talk proposal"
+    )
     INVITE_SELF_MESSAGE = "You can&#39;t invite yourself to this proposal"
     INVITE_SUCCESS_MESSAGE = "Speaker invited to proposal."
 
@@ -53,7 +56,7 @@ class ProposalSpeakerManageViewTestCase(ProposalTestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_inviting_speaker(self):
-        """Verify that inviting a speaker works."""
+        """Verify that inviting a speaker works, but only the first time."""
         invite_email = self.faker.email()
         response = self.client.post(
             path=reverse("proposal_speaker_manage", args=[self.proposal.pk]),
@@ -69,6 +72,15 @@ class ProposalSpeakerManageViewTestCase(ProposalTestCase):
         # Page should contain the invited speaker's email address,
         # since they won't have a name.
         self.assertContains(response, invite_email)
+
+        # Speakers can't be invited to the same proposal twice.
+        response = self.client.post(
+            path=reverse("proposal_speaker_manage", args=[self.proposal.pk]),
+            data={"email": invite_email},
+            follow=True,
+        )
+        self.assertContains(response, self.INVITE_DUPLICATE_MESSAGE)
+        self.assertNotContains(response, self.INVITE_SUCCESS_MESSAGE)
 
     def test_inviting_self(self):
         """Verify that you can't invite yourself to a proposal."""
