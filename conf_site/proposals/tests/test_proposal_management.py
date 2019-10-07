@@ -66,3 +66,15 @@ class ProposalSpeakerManageViewTestCase(ProposalTestCase):
         # Page should contain the invited speaker's email address,
         # since they won't have a name.
         self.assertContains(response, invite_email)
+
+    def test_inviting_self(self):
+        """Verify that you can't invite yourself to a proposal."""
+        response = self.client.post(
+            path=reverse("proposal_speaker_manage", args=[self.proposal.pk]),
+            data={"email": self.user.email},
+        )
+        # Page should contain a message notification of the invitation.
+        self.assertContains(
+            response, "You can&#39;t invite yourself to this proposal"
+        )
+        self.assertNotContains(response, "Speaker invited to proposal.")
