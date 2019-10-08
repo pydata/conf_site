@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('symposion_proposals', '0003_standardize_markdown_links'),
-        ('proposals', '0001_initial'),
+        ('proposals', '0003_rename_stipend_field'),
     ]
 
     operations = [
