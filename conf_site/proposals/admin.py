@@ -1,6 +1,22 @@
 from django.contrib import admin
 
-from .models import Proposal, ProposalKeyword
+from conf_site.proposals.models import Proposal, ProposalKeyword
+
+
+class ProposalAdditionalSpeakerThrough(Proposal.additional_speakers.through):
+    """https://stackoverflow.com/a/4929036/113527"""
+    class Meta:
+        proxy = True
+        verbose_name = "Additional Speaker"
+
+    def __str__(self):
+        return ""
+
+
+class AdditionalSpeakerInline(admin.TabularInline):
+    extra = 0
+    model = ProposalAdditionalSpeakerThrough
+    verbose_name = "additional speaker"
 
 
 @admin.register(ProposalKeyword)
@@ -16,6 +32,7 @@ class ProposalAdmin(admin.ModelAdmin):
         "under_represented_details",
         "under_represented_other",
     )
+    inlines = [AdditionalSpeakerInline]
     list_display = (
         'number',
         'title',
