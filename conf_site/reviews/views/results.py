@@ -105,7 +105,13 @@ class ProposalMultieditPostView(SuperuserOnlyView):
                 body=self.request.POST.get("body"),
             )
             notification.proposals.set(proposals)
-            notification.send_email()
+            unemailed_speakers = notification.send_email()
+            for speaker in unemailed_speakers:
+                messages.warning(
+                    self.request,
+                    "Speaker {} does not have an email address "
+                    "and has not been notified.".format(speaker.name)
+                )
             return HttpResponseRedirect(reverse("review_proposal_list"))
         elif self.request.POST.get("create_presentations"):
             num_presentations_created = 0

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.mail import send_mass_mail
 from django.db import models
@@ -140,7 +139,9 @@ class ProposalNotification(models.Model):
         return "{}".format(self.subject)
 
     def send_email(self):
+        """Returns a list of speakers without email addresses."""
         email_messages = []
+        unemailed = []
         # Create a message for each email address.
         # This is necessary because we are not using BCC.
         for proposal in self.proposals.all():
@@ -161,11 +162,6 @@ class ProposalNotification(models.Model):
                     )
                     email_messages.append(datamessage_tuple)
                 else:
-                    messages.warning(
-                        "Speaker {} on proposal {} "
-                        "does not have an email address "
-                        "and has not been notified.".format(
-                            speaker.name, proposal.title
-                        )
-                    )
+                    unemailed.append(speaker)
         send_mass_mail(email_messages)
+        return unemailed
