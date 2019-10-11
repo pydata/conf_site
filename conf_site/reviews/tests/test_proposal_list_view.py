@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from random import randint
 
+from django.core import mail
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 
-from symposion.proposals.models import ProposalKind
+from faker import Faker
+
+from symposion.proposals.models import AdditionalSpeaker, ProposalKind
 from symposion.schedule.tests.factories import SectionFactory
 
 from conf_site.accounts.tests import AccountsTestCase
@@ -12,10 +15,15 @@ from conf_site.proposals.models import Proposal
 from conf_site.proposals.tests.factories import ProposalFactory
 from conf_site.reviews.models import ProposalResult
 from conf_site.reviews.tests import ReviewingTestCase
+from conf_site.speakers.tests.factories import SpeakerFactory
 
 
 class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
     reverse_view_name = "review_proposal_list"
+
+    def setUp(self):
+        super(ProposalListViewTestCase, self).setUp()
+        self.faker = Faker()
 
     def test_no_cancelled_proposals(self):
         """Verify that cancelled proposals do not appear in proposal list."""
@@ -153,3 +161,55 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
         # All proposals should now have presentations.
         for proposal in Proposal.objects.all():
             self.assertEqual(proposal.title, proposal.presentation.title)
+
+    def test_sending_notifications(self):
+        self._become_superuser()
+        notified_proposal = ProposalFactory()
+        # Create additional proposals.
+        ProposalFactory.create_batch(size=2)
+
+        from_address = self.faker.email()
+        subject = self.faker.sentence()
+        body = self.faker.paragraph()
+
+        post_data = {
+            "body": body,
+            "from_address": from_address,
+            "proposal_pk": notified_proposal.pk,
+            "send_notification": True,
+            "subject": subject,
+        }
+        response = self.client.post(
+            reverse("review_multiedit"), post_data, follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(mail.outbox), 1)
+
+    def test_warning_about_unnotified_speakers(self):
+        self._become_superuser()
+        proposal = ProposalFactory()
+        emailless_speaker = SpeakerFactory(user=None)
+        # Add an additional **confirmed** speaker that
+        # does not have an email address.
+        proposal.additional_speakers.add(emailless_speaker)
+        additional_speaker = AdditionalSpeaker.objects.get(
+            speaker=emailless_speaker, proposalbase=proposal
+        )
+        additional_speaker.status = AdditionalSpeaker.SPEAKING_STATUS_ACCEPTED
+        additional_speaker.save()
+
+        post_data = {
+            "body": self.faker.paragraph(),
+            "from_address": self.faker.email(),
+            "proposal_pk": proposal.pk,
+            "send_notification": True,
+            "subject": self.faker.sentence(),
+        }
+        response = self.client.post(
+            reverse("review_multiedit"), post_data, follow=True
+        )
+        speaker_warning = (
+            "Speaker {} does not have an email address "
+            "and has not been notified.".format(emailless_speaker.name)
+        )
+        self.assertContains(response, speaker_warning)
