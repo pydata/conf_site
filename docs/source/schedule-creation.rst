@@ -39,13 +39,10 @@ Creating New Presentations
 To create a new `Presentation` that will not be deleted automatically:
 
   - Create a new `User` for each speaker in the presentation.
-  - Create a new `Speaker` attached to the aforementioned `Users`.
+  - Create a new `Speaker` attached to the aforementioned `User`.
   - Create a new `Proposal`.
-  - Create a new `Proposal Result` object attached to the
-    aforementioned `Proposal`. Ensure that its status is "accepted".
-
-Saving the `Proposal Result` will automatically create a `Presentation`
-linked to the existing proposal.
+  - Use the reviewing pages to change the Proposal's status to "accepted"
+    and create a Presentation for it.
 
 Adding Presentations to a Schedule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
