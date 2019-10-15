@@ -14,9 +14,6 @@ object.
     will appear to be the public while it is being created.
   - Make sure that the dates in this object correspond with the dates of the
     schedule.
-  - For readability, the names of `slot kinds` should not correspond to room
-    names. If a presentation does not appear in a slot on the schedule, the
-    name of the slot kind will appear by default.
 
 .. _London 2016 schedule: https://pydata.org/london2016/schedule/
 
@@ -42,13 +39,10 @@ Creating New Presentations
 To create a new `Presentation` that will not be deleted automatically:
 
   - Create a new `User` for each speaker in the presentation.
-  - Create a new `Speaker` attached to the aforementioned `Users`.
+  - Create a new `Speaker` attached to the aforementioned `User`.
   - Create a new `Proposal`.
-  - Create a new `Proposal Result` object attached to the
-    aforementioned `Proposal`. Ensure that its status is "accepted".
-
-Saving the `Proposal Result` will automatically create a `Presentation`
-linked to the existing proposal.
+  - Use the reviewing pages to change the Proposal's status to "accepted"
+    and create a Presentation for it.
 
 Adding Presentations to a Schedule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
