@@ -21,7 +21,8 @@ class UserLoginTestCase(AccountsTestCase):
             "login": "example2@example.com",
             "password": self.password,
         }
-        response = self.client.post(reverse("account_login"), login_data)
+        with self.settings(ACCOUNT_LOGIN_ATTEMPTS_LIMIT=None):
+            response = self.client.post(reverse("account_login"), login_data)
         self.assertTemplateUsed(response, "account/login.html")
         self.assertContains(
             response=response,
@@ -35,7 +36,8 @@ class UserLoginTestCase(AccountsTestCase):
             "login": self.user.email,
             "password": "",
         }
-        response = self.client.post(reverse("account_login"), login_data)
+        with self.settings(ACCOUNT_LOGIN_ATTEMPTS_LIMIT=None):
+            response = self.client.post(reverse("account_login"), login_data)
         self.assertTemplateUsed(response, "account/login.html")
         self.assertContains(
             response=response,
@@ -49,7 +51,8 @@ class UserLoginTestCase(AccountsTestCase):
             "login": self.user.email,
             "password": "42",
         }
-        response = self.client.post(reverse("account_login"), login_data)
+        with self.settings(ACCOUNT_LOGIN_ATTEMPTS_LIMIT=None):
+            response = self.client.post(reverse("account_login"), login_data)
         self.assertTemplateUsed(response, "account/login.html")
         self.assertContains(
             response=response,
