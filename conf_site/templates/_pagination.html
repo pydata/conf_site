@@ -1,0 +1,23 @@
+{% if is_paginated %}
+<nav aria-label="{{ pagination_aria_label }}">
+  <ul class="pagination">
+    {% if page_obj.has_previous %}<li>
+      <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>{% endif %}
+    {% for page in page_obj.paginator.page_range %}
+      {% if page == page_obj.number %}
+        <li class="active"><span>{{ forloop.counter }}</span></li>
+      {% else %}
+        <li><a href="?page={{ page }}">{{ forloop.counter }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}<li>
+      <a href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>{% endif %}
+  </ul>
+</nav>
+{% endif %}

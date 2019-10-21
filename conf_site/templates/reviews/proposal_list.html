@@ -24,6 +24,7 @@
     {% csrf_token %}
     {% include 'reviews/_proposal_multiedit_buttons.html' %}
   {% endif %}
+  {% include "_pagination.html" %}
   <table class="table table-bordered table-hover" id="table-proposals">
     <thead>
       {% if request.user.is_superuser %}
@@ -74,6 +75,7 @@
       </tr>{% endfor %}
     </tbody>
   </table>
+  {% include "_pagination.html" %}
   {% if request.user.is_superuser %}
   {% include 'reviews/_proposal_multiedit_buttons.html' %}
   <div id="send-email-section">
