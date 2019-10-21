@@ -233,7 +233,9 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
-
+CACHE_TIMEOUT_SHORT = 60                            # One minute.
+CACHE_TIMEOUT_MEDIUM = CACHE_TIMEOUT_SHORT * 60     # One hour.
+CACHE_TIMEOUT_LONG = CACHE_TIMEOUT_MEDIUM * 24      # One day.
 CACHES = {
     "default": {
         "BACKEND": "redis_cache.RedisCache",

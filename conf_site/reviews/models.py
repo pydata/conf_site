@@ -2,6 +2,7 @@
 from django.contrib.auth.models import User
 from django.core.mail import send_mass_mail
 from django.db import models
+from django.db.models.signals import post_save
 from django.template import Context, Template
 
 from symposion.markdown_parser import parse
@@ -68,6 +69,14 @@ class ProposalVote(models.Model):
     def save(self, *args, **kwargs):
         self.comment_html = parse(self.comment)
         return super(ProposalVote, self).save(*args, **kwargs)
+
+
+def refresh_vote_counts(sender, instance, created, **kwargs):
+    # Update this ProposalVote's proposal's cached proposal votes.
+    instance.proposal._refresh_vote_counts()
+
+
+post_save.connect(refresh_vote_counts, sender=ProposalVote)
 
 
 class ProposalFeedback(models.Model):
