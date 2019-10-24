@@ -192,6 +192,9 @@ class Proposal(ProposalBase):
 
         return super(Proposal, self).save(*args, **kwargs)
 
+    def _feedback_count_cache_key(self):
+        return "proposal_{}_feedback_count".format(self.pk)
+
     def _get_cached_vote_count(self, cache_key, vote_score):
         """Helper method to retrieve cached vote counts."""
         cached_vote_count = cache.get(cache_key, False)
@@ -204,6 +207,13 @@ class Proposal(ProposalBase):
         # vote counts when ProposalVotes are created or modified.
         cache.set(cache_key, vote_count, settings.CACHE_TIMEOUT_LONG)
         return vote_count
+
+    def _refresh_feedback_count(self):
+        """Helper method to manually refresh a proposal's feedback count."""
+        cache_key = self._feedback_count_cache_key()
+        feedback_count = self.review_feedback.count()
+        cache.set(cache_key, feedback_count, settings.CACHE_TIMEOUT_LONG)
+        return feedback_count
 
     def _refresh_vote_counts(self):
         """Helper method to manually refresh a proposal's vote counts."""
@@ -218,6 +228,14 @@ class Proposal(ProposalBase):
                 proposal=self, score=vote_score
             ).count()
             cache.set(cache_key, vote_count, settings.CACHE_TIMEOUT_LONG)
+
+    def feedback_count(self):
+        """Helper method to retrieve feedback count."""
+        cache_key = self._feedback_count_cache_key()
+        feedback_count = cache.get(cache_key, False)
+        if feedback_count is not False:
+            return feedback_count
+        return self._refresh_feedback_count()
 
     def plus_one(self):
         """Enumerate number of +1 reviews."""

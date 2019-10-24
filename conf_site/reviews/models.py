@@ -116,6 +116,13 @@ class ProposalFeedback(models.Model):
         return super(ProposalFeedback, self).save(*args, **kwargs)
 
 
+def refresh_proposal_feedback_count(sender, instance, created, **kwargs):
+    instance.proposal._refresh_feedback_count()
+
+
+post_save.connect(refresh_proposal_feedback_count, sender=ProposalFeedback)
+
+
 class ProposalResult(models.Model):
     """
     Model to track whether a proposal's acceptance and notification status.
