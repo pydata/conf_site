@@ -36,7 +36,7 @@
                 <li><a href="#proposal-documents" data-toggle="tab">{% trans "Supporting Documents" %}</a></li>
             {% endif %}
             {% if feedback_form %}
-                <li><a href="#proposal-feedback" data-toggle="tab">{% trans "Reviewer Feedback" %} <span class="badge">{{ proposal.review_feedback.count }}</span></a></li>
+                <li><a href="#proposal-feedback" data-toggle="tab">{% trans "Reviewer Feedback" %} <span class="badge">{{ proposal.feedback_count }}</span></a></li>
             {% endif %}
         </ul>
         <div class="tab-content">

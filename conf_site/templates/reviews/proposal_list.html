@@ -15,15 +15,16 @@
     </p>
   {% endif %}
   <p>
-    Currently showing <strong>{{ proposal_list|length }}</strong> proposals
-    (<strong>{{ num_talks }}</strong> talks,
-    <strong>{{ num_tutorials }}</strong> tutorials).
+    <strong>{{ num_proposals }}</strong> proposal{{ num_proposals|pluralize }}
+    (<strong>{{ num_talks }}</strong> talk{{ num_talks|pluralize }},
+    <strong>{{ num_tutorials }}</strong> tutorial{{ num_tutorials|pluralize }})
   </p>
   {% if request.user.is_superuser %}
   <form method="post" action="{% url 'review_multiedit' %}" id="form-multiedit">
     {% csrf_token %}
     {% include 'reviews/_proposal_multiedit_buttons.html' %}
   {% endif %}
+  {% include "_pagination.html" %}
   <table class="table table-bordered table-hover" id="table-proposals">
     <thead>
       {% if request.user.is_superuser %}
@@ -58,7 +59,7 @@
           </a>
         </td>
         <td>{{ proposal.kind.name }}</td>
-        <td>{{ proposal.review_feedback.count }}</td>
+        <td>{{ proposal.feedback_count }}</td>
         <td>{{ proposal.plus_one }}</td>
         <td>{{ proposal.plus_zero }}</td>
         <td>{{ proposal.minus_zero }}</td>
@@ -74,6 +75,7 @@
       </tr>{% endfor %}
     </tbody>
   </table>
+  {% include "_pagination.html" %}
   {% if request.user.is_superuser %}
   {% include 'reviews/_proposal_multiedit_buttons.html' %}
   <div id="send-email-section">

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.core.mail import send_mass_mail
 from django.db import models
+from django.db.models.signals import post_save
 from django.template import Context, Template
 
 from symposion.markdown_parser import parse
@@ -69,6 +72,30 @@ class ProposalVote(models.Model):
         self.comment_html = parse(self.comment)
         return super(ProposalVote, self).save(*args, **kwargs)
 
+    def get_numeric_score_display(self):
+        """Returns numeric value at beginning of score display string."""
+        return self.get_score_display()[0:2].strip()
+
+
+def proposalvote_score_cache_key(proposal, voter):
+    """
+    Return the cache key for a ProposalVote's score
+    based on the proposal and voting user.
+    """
+    return "proposalvote_{}_{}_score".format(proposal.pk, voter.pk)
+
+
+def refresh_vote_counts(sender, instance, created, **kwargs):
+    # Update this ProposalVote's proposal's cached proposal votes.
+    instance.proposal._refresh_vote_counts()
+    # Update this voter's cached score for this proposal.
+    cache_key = proposalvote_score_cache_key(instance.proposal, instance.voter)
+    numeric_score = instance.get_numeric_score_display()
+    cache.set(cache_key, numeric_score, settings.CACHE_TIMEOUT_LONG)
+
+
+post_save.connect(refresh_vote_counts, sender=ProposalVote)
+
 
 class ProposalFeedback(models.Model):
     proposal = models.ForeignKey(
@@ -87,6 +114,13 @@ class ProposalFeedback(models.Model):
     def save(self, *args, **kwargs):
         self.comment_html = parse(self.comment)
         return super(ProposalFeedback, self).save(*args, **kwargs)
+
+
+def refresh_proposal_feedback_count(sender, instance, created, **kwargs):
+    instance.proposal._refresh_feedback_count()
+
+
+post_save.connect(refresh_proposal_feedback_count, sender=ProposalFeedback)
 
 
 class ProposalResult(models.Model):

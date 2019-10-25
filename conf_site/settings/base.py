@@ -233,7 +233,9 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
-
+CACHE_TIMEOUT_SHORT = 60                            # One minute.
+CACHE_TIMEOUT_MEDIUM = CACHE_TIMEOUT_SHORT * 60     # One hour.
+CACHE_TIMEOUT_LONG = CACHE_TIMEOUT_MEDIUM * 24      # One day.
 CACHES = {
     "default": {
         "BACKEND": "redis_cache.RedisCache",
@@ -256,10 +258,20 @@ CONSTANCE_CONFIG = {
     "PROPOSAL_URL_FIELDS": (
         False,
         "Show slides & code repository fields on proposal submission form.",
-        bool),
+        bool,
+    ),
+    "PROPOSALS_PER_PAGE": (
+        50,
+        "Number of proposals shown per page in the reviewing section",
+        int,
+    ),
 }
 CONSTANCE_CONFIG_FIELDSETS = {
-    "Proposal Options": ("PROPOSAL_KEYWORDS", "PROPOSAL_URL_FIELDS"),
+    "Proposal Options": (
+        "PROPOSAL_KEYWORDS",
+        "PROPOSAL_URL_FIELDS",
+        "PROPOSALS_PER_PAGE",
+    ),
     "Reviewing Options": ("BLIND_AUTHORS", "BLIND_REVIEWERS"),
 }
 CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"

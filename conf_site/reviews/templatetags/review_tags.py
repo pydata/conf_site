@@ -1,7 +1,9 @@
 from django import template
+from django.conf import settings
 from django.contrib.auth.models import Group
+from django.core.cache import cache
 
-from conf_site.reviews.models import ProposalVote
+from conf_site.reviews.models import ProposalVote, proposalvote_score_cache_key
 
 
 register = template.Library()
@@ -10,14 +12,19 @@ register = template.Library()
 @register.simple_tag
 def user_score(proposal, user):
     """For the selected proposal, display the current user's review score."""
+    # Try to retrieve score from cache.
+    score_cache_key = proposalvote_score_cache_key(proposal, user)
+    cached_score = cache.get(score_cache_key)
+    if cached_score:
+        return cached_score
     try:
-        score_display_string = ProposalVote.objects.get(
+        uncached_score = ProposalVote.objects.get(
             proposal=proposal, voter=user
-        ).get_score_display()
-        # We only need the first two characters, without any spaces.
-        return score_display_string[0:2].strip()
+        ).get_numeric_score_display()
     except ProposalVote.DoesNotExist:
-        return ""
+        uncached_score = " "
+    cache.set(score_cache_key, uncached_score, settings.CACHE_TIMEOUT_LONG)
+    return uncached_score
 
 
 @register.filter(name="is_reviewer")

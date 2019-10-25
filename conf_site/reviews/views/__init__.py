@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, View
 
-from symposion.utils.mail import send_email
+from constance import config
 
 from conf_site.proposals.models import Proposal
 from conf_site.reviews.forms import (
@@ -14,6 +14,7 @@ from conf_site.reviews.forms import (
     ProposalVoteForm,
 )
 from conf_site.reviews.models import ProposalFeedback, ProposalVote
+from symposion.utils.mail import send_email
 
 
 def _is_reviewer_or_superuser(user):
@@ -60,9 +61,13 @@ class ProposalListView(ListView, ReviewingView):
             .select_related("kind", "speaker", "review_result")
         )
 
+    def get_paginate_by(self, queryset):
+        return config.PROPOSALS_PER_PAGE
+
     def get_context_data(self, **kwargs):
         # Add number of talks and tutorials to context data.
         context = super(ProposalListView, self).get_context_data(**kwargs)
+        context["num_proposals"] = self.get_queryset().count()
         context["num_talks"] = (
             self.get_queryset().filter(kind__slug="talk").count()
         )
@@ -72,6 +77,10 @@ class ProposalListView(ListView, ReviewingView):
         if self.request.user.is_superuser:
             context["notification_form"] = ProposalNotificationForm()
         context["proposal_category"] = "All"
+
+        # Add ARIA label for pagination.
+        context["pagination_aria_label"] = "Proposal lists pages"
+
         return context
 
 

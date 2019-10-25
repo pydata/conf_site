@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.cache import cache
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
@@ -190,26 +192,71 @@ class Proposal(ProposalBase):
 
         return super(Proposal, self).save(*args, **kwargs)
 
+    def _feedback_count_cache_key(self):
+        return "proposal_{}_feedback_count".format(self.pk)
+
+    def _get_cached_vote_count(self, cache_key, vote_score):
+        """Helper method to retrieve cached vote counts."""
+        cached_vote_count = cache.get(cache_key, False)
+        if cached_vote_count is not False:
+            return cached_vote_count
+        vote_count = ProposalVote.objects.filter(
+            proposal=self, score=vote_score
+        ).count()
+        # We can use a longer timeout because we update invididual
+        # vote counts when ProposalVotes are created or modified.
+        cache.set(cache_key, vote_count, settings.CACHE_TIMEOUT_LONG)
+        return vote_count
+
+    def _refresh_feedback_count(self):
+        """Helper method to manually refresh a proposal's feedback count."""
+        cache_key = self._feedback_count_cache_key()
+        feedback_count = self.review_feedback.count()
+        cache.set(cache_key, feedback_count, settings.CACHE_TIMEOUT_LONG)
+        return feedback_count
+
+    def _refresh_vote_counts(self):
+        """Helper method to manually refresh a proposal's vote counts."""
+        vote_count_dict = {
+            "proposal_{}_plus_one".format(self.pk): ProposalVote.PLUS_ONE,
+            "proposal_{}_plus_zero".format(self.pk): ProposalVote.PLUS_ZERO,
+            "proposal_{}_minus_zero".format(self.pk): ProposalVote.MINUS_ZERO,
+            "proposal_{}_minus_one".format(self.pk): ProposalVote.MINUS_ONE,
+        }
+        for cache_key, vote_score in vote_count_dict.items():
+            vote_count = ProposalVote.objects.filter(
+                proposal=self, score=vote_score
+            ).count()
+            cache.set(cache_key, vote_count, settings.CACHE_TIMEOUT_LONG)
+
+    def feedback_count(self):
+        """Helper method to retrieve feedback count."""
+        cache_key = self._feedback_count_cache_key()
+        feedback_count = cache.get(cache_key, False)
+        if feedback_count is not False:
+            return feedback_count
+        return self._refresh_feedback_count()
+
     def plus_one(self):
         """Enumerate number of +1 reviews."""
-        return ProposalVote.objects.filter(
-            proposal=self, score=ProposalVote.PLUS_ONE
-        ).count()
+        return self._get_cached_vote_count(
+            "proposal_{}_plus_one".format(self.pk), ProposalVote.PLUS_ONE
+        )
 
     def plus_zero(self):
         """Enumerate number of +0 reviews."""
-        return ProposalVote.objects.filter(
-            proposal=self, score=ProposalVote.PLUS_ZERO
-        ).count()
+        return self._get_cached_vote_count(
+            "proposal_{}_plus_zero".format(self.pk), ProposalVote.PLUS_ZERO
+        )
 
     def minus_zero(self):
         """Enumerate number of -0 reviews."""
-        return ProposalVote.objects.filter(
-            proposal=self, score=ProposalVote.MINUS_ZERO
-        ).count()
+        return self._get_cached_vote_count(
+            "proposal_{}_minus_zero".format(self.pk), ProposalVote.MINUS_ZERO,
+        )
 
     def minus_one(self):
         """Enumerate number of -1 reviews."""
-        return ProposalVote.objects.filter(
-            proposal=self, score=ProposalVote.MINUS_ONE
-        ).count()
+        return self._get_cached_vote_count(
+            "proposal_{}_minus_one".format(self.pk), ProposalVote.MINUS_ONE
+        )
