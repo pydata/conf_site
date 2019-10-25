@@ -215,5 +215,25 @@
     },
     "model": "symposion_sponsorship.benefitlevel",
     "pk": 19
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 2,
+        "max_words": null,
+        "level": 7
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 20
+},
+{
+    "fields": {
+        "other_limits": "",
+        "benefit": 4,
+        "max_words": null,
+        "level": 7
+    },
+    "model": "symposion_sponsorship.benefitlevel",
+    "pk": 21
 }
 ]
