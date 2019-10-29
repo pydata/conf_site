@@ -4,7 +4,7 @@ ansible-lint==4.1.0
 beautifulsoup4==4.6.0
 coverage==4.5.4
 factory_boy==2.12.0
-flake8==3.7.8
-ipython==7.7.0
+flake8==3.7.9
+ipython==7.9.0
 rstcheck==3.3.1
 sphinx==2.1.2
