@@ -277,6 +277,7 @@ CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"
 LOGIN_REDIRECT_URL = "dashboard"
 PROPOSAL_FORMS = {
     "discussion": "conf_site.proposals.forms.ProposalForm",
+    "plenary": "conf_site.proposals.forms.ProposalForm",
     "poster": "conf_site.proposals.forms.ProposalForm",
     "talk": "conf_site.proposals.forms.ProposalForm",
     "tutorial": "conf_site.proposals.forms.ProposalForm",
