@@ -20,7 +20,7 @@ jobs:
       # Download and cache dependencies.
       - restore_cache:
           keys:
-          - v1-python-dependencies-{{ checksum "requirements/development.txt" }}-{{ checksum "requirements/base.txt" }}
+          - v1-python-dependencies-{{ checksum "requirements/development.txt" }}-{{ checksum "requirements/production.txt" }}
       - run:
           name: install dependencies
           command: |
@@ -31,7 +31,7 @@ jobs:
       - save_cache:
           paths:
             - ~/venv
-          key: v1-python-dependencies-{{ checksum "requirements/development.txt" }}-{{ checksum "requirements/base.txt" }}
+          key: v1-python-dependencies-{{ checksum "requirements/development.txt" }}-{{ checksum "requirements/production.txt" }}
       - run:
           name: check for missing migrations
           command: |
