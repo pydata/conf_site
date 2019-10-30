@@ -1,6 +1,5 @@
-======================
-Reviewing in conf_site
-======================
+Reviewing Proposals
+===================
 
 Permissions and Access Control
 ------------------------------
