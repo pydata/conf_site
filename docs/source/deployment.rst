@@ -9,7 +9,7 @@ server (VPS) running `Debian 9 (Stretch)`_. PyData uses Rackspace, but other
 VPS providers like DigitalOcean_, Linode_, or `Amazon Lightsail`_ should also
 be acceptable.
 
-The user account on the server  should have passwordless sudo access.
+The user account on the server should have passwordless sudo access.
 
 .. _Debian 9 (Stretch): https://wiki.debian.org/DebianStretch
 .. _DigitalOcean: https://www.digitalocean.com/
