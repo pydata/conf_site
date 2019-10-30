@@ -28,7 +28,8 @@ The Host Variables file
 
 Once a virtual server is set up, information related to the conference
 should be added into an Ansible host variables file. This file should be
-placed in the `ansible/host_vars` directory.
+placed in the `ansible/host_vars` directory. The `conf_site` repository
+contains `an example file`_ that might be helpful.
 
 .. note::
    Many of these host variables are overridden in local development by
@@ -36,6 +37,7 @@ placed in the `ansible/host_vars` directory.
 
 Suggested variables in this file include:
 
+- **ansible_ssh_host**: The IP address of the virtual server.
 - **conference_identifier**: An alphanumeric string identifying the conference.
 - **conference_name**: The title of the conference.
 - **database_user**: The name of the PostgreSQL database user that will be
@@ -64,20 +66,23 @@ Suggested variables in this file include:
    file templates in the `ansible/roles/web/templates/` directory so that
    the conference site will load properly.
 
+.. _an example file: https://github.com/pydata/conf_site/blob/master/ansible/host_vars/example
 .. _Google Analytics tracking ID: https://support.google.com/analytics/answer/1032385
-.. _Django date/time templating format: https://docs.djangoproject.com/en/1.9/ref/templates/builtins/#date
+.. _Django date/time templating format: https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#date
 .. _tz database format: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 .. _reverse proxy: https://en.wikipedia.org/wiki/Reverse_proxy
 
 Updating the Host Inventory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To ensure that code is deployed to the aforementioned VPS, its IP address
-needs to be added to the Ansible hosts file (located at `ansible/hosts`).
+To ensure that code is deployed to the aforementioned VPS, its name
+needs to be added to the Ansible hosts file (located at `ansible/hosts`_).
 
 For PyData sites, a listing with the conference identifier should be added
 to the `production` group. For other sites, the entire `production` group
 should be replaced with your own server(s).
+
+.. _ansible/hosts: https://github.com/pydata/conf_site/blob/master/ansible/hosts
 
 The Secrets File
 ~~~~~~~~~~~~~~~~
@@ -123,8 +128,8 @@ Deployment occurs by running the `ansible-playbook` command::
 Customization
 -------------
 
-There are a number of steps to get a new conference site ready. Some of these
-steps are only necessary for PyData conference sites, and are marked as such.
+There are a number of steps to get a new conference site ready. Most of these
+steps are not necessary to be run manually for PyData conference sites.
 
 - **Create additional Django administrator accounts if necessary.** The
   easiest way to do this is to login with the master admin account
@@ -139,28 +144,21 @@ steps are only necessary for PyData conference sites, and are marked as such.
 - **Delete or unpublish the "Welcome to Wagtail" page**.
 - **Load fixtures to help set up sites.** While the data in these fixtures
   are specific to PyData sites, it is a good idea for other users to edit
-  and run them as well to `avoid possible issues`_. Currently, you need to
-  manually login to the server, navigate to the application directory,
-  activate the current virtualenv, and run the Django management command
-  to load fixtures::
+  and run them as well to `avoid possible issues`_. If not using Ansible,
+  you need to manually login to the server, navigate to the application
+  directory, activate the current virtualenv, and run the Django
+  management command to load fixtures::
 
     ssh <conference site IP address>
     cd /srv/pydata
     source ~/.virtualenvs/current/bin/activate
     DJANGO_SETTINGS_MODULE="conf_site.settings.production" ./manage.py loaddata fixtures/*
 
-  At some point in the future, these fixtures might be converted to
-  database migrations, making this step unnecessary.
-- For PyData sites, you need to **manually fix the Continuum sponsor** in
-  the Django admin (in the `admin` subfolder of the conference site's URL) by
-  adding `a logo image <https://pydata.org/images/sponsors/continuum.png>`_
-  and description).
 - **Add a banner image** (required), appropriate text sections (recommended),
   Mailchimp list ID (optional, but necessary to have the mailing list
   subscription section show up), and ticketing website URL (optional,
   but enables ticketing links in the main menu and footer) to the homepage.
-- **Manually create any additional pages**. PyData sites need "About",
-  "Code of Conduct", "Conference Mission", "CFP", and "Venue" pages.
+- **Manually create any additional pages**.
 - **Add a main menu** in the "Settings" menu of the Wagtail admin. Only
   top-level menu items need to be added. *All pages that need to appear in the
   menu must have the "Show in menus" settings enabled* (found on the
@@ -170,10 +168,6 @@ steps are only necessary for PyData conference sites, and are marked as such.
 - **Open the Symposion proposal sections** if the call for proposals is
   already open. Change "Closed" to "No" in
   `admin/symposion_proposals/proposalsection/`.
-- **Create a reviewers team** `so that proposal review works properly
-  <https://groups.google.com/d/msg/pinax-symposion/5dWWuPuqEjc/jZNcu4spzHMJ>`_.
-  Note that deployment automatically runs the `create_review_permissions`
-  management command.
 
 .. _adding users: http://docs.wagtail.io/en/v1.9/editor_manual/administrator_tasks/managing_users.html
 .. _avoid possible issues: https://github.com/pinax/symposion/pull/13
