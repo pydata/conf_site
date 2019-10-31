@@ -22,6 +22,6 @@ redis==3.3.11
 sendgrid-django==4.2.0
 sentry-sdk==0.13.1
 wagtail==2.6.3
-wagtail-condensedinlinepanel==0.5.2
+-e git+https://github.com/acerix/wagtail-condensedinlinepanel@b66c99132e0#egg=wagtail-condensedinlinepanel
 wagtailmenus==2.13.1
 virtualenv==16.7.7
