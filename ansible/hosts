@@ -14,8 +14,6 @@ production:
   hosts:
     austin2019:
     cambridge2019:
-    cordoba2019:
-    delhi2019:
     eindhoven2019:
     la2019:
     nyc2019:
