@@ -731,7 +731,6 @@ margin-bottom:45px;}
 table.calendar{
   background-color:#fff;
   color: #595f73;
-  table-layout:fixed;
   font-family: 'Open Sans';
   font-size: 14px;
   font-weight: normal;
