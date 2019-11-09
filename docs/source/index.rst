@@ -16,6 +16,7 @@ Contents:
    management
    reviewing
    schedule-creation
+   email
 
 
 

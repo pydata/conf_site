@@ -28,15 +28,16 @@ with the same name.
 Presentations
 -------------
 
-`Presentation` objects are automatically created when a `Proposal` is
-accepted. Updating a presentation's proposal will automatically update the
-presentation's information. Presentations that are attached to unaccepted
-proposals will be deleted automatically by symposion.
+`Presentation` objects can be manually created after a `Proposal` is
+accepted (see :ref:`reviewing-creating-presentations`).
+
+Updating a presentation's information will automatically update its proposal
+(and vice versa).
 
 Creating New Presentations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To create a new `Presentation` that will not be deleted automatically:
+To manually create a new `Presentation`:
 
   - Create a new `User` for each speaker in the presentation.
   - Create a new `Speaker` attached to the aforementioned `User`.

@@ -1,6 +1,5 @@
-======================
-Reviewing in conf_site
-======================
+Reviewing Proposals
+===================
 
 Permissions and Access Control
 ------------------------------
@@ -31,11 +30,38 @@ by editing them on the Constance Config page in the Django admin.
 Messaging
 ---------
 
-Commenting
-----------
+Reviewers can send messages to proposal submitters in order to clarify
+details of their proposals. Anonymity is dependant on the type of reviewing
+system.
 
 Voting
 ------
 
+There are four different voting options:
+
+  - +1 — **Good proposal and I will argue for it to be accepted**.
+  - +0 — **OK proposal, but I will not argue for it to be accepted**.
+  - −0 — **Weak proposal, but I will not argue against acceptance**.
+  - −1 — **Serious issues and I will argue to reject this proposal**.
+
+Commenting
+~~~~~~~~~~
+
+Reviewers can add comments when voting to provide additional information
+or details to other reviewers.
+
+
+.. _reviewing-creating-presentations:
+
+Creating Presentations
+----------------------
+
+Presentations can be created by clicking the "Create Presentations"
+button on the list of accepted proposals. A proposal must be accepted
+before a presentation can be created for it.
+
 Notification Process
 --------------------
+
+Email messages can be sent to selected proposal submitters by using the
+"Send Email Message" section below the list of proposals.
