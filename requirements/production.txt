@@ -7,7 +7,7 @@ django-constance[redis]==2.4.0
 django-model-utils==3.2.0
 django-multiselectfield==0.1.9
 django-redis-cache==2.1.0
-djangorestframework==3.10.2
+djangorestframework==3.10.3
 django-reversion==3.0.4
 django-taggit==1.1.0
 django-timezone-field==3.1
