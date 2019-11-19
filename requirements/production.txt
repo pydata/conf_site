@@ -21,7 +21,7 @@ pytz==2019.3
 redis==3.3.11
 sendgrid-django==4.2.0
 sentry-sdk==0.13.2
-wagtail==2.6.3
+wagtail==2.7
 -e git+https://github.com/wagtail/wagtail-condensedinlinepanel@36bdb8dd7a6ea504#egg=wagtail-condensedinlinepanel
 wagtailmenus==2.13.1
 virtualenv==16.7.7
