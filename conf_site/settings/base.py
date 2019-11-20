@@ -141,7 +141,6 @@ INSTALLED_APPS = [
     "analytical",
     "bootstrapform",
     "constance",
-    "condensedinlinepanel",
     "easy_thumbnails",
     "modelcluster",
     "pinax.eventlog",
@@ -286,3 +285,4 @@ STATICFILES_STORAGE = (
 SYMPOSION_PAGE_REGEX = r"(([\w-]{1,})(/[\w-]{1,})*)/"
 TAGGIT_CASE_INSENSITIVE = True
 WAGTAIL_ENABLE_UPDATE_CHECK = False
+WAGTAIL_MODERATION_ENABLED = False

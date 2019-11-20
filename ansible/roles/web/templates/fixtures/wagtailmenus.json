@@ -4,8 +4,7 @@
     "pk": 1,
     "fields": {
         "site": 1,
-        "max_levels": 2,
-        "use_specific": 1
+        "max_levels": 2
     }
 },
 {
