@@ -283,7 +283,8 @@ class Presentation(models.Model):
         yield self.speaker
         accepted_status = AdditionalSpeaker.SPEAKING_STATUS_ACCEPTED
         speakers = self.additional_speakers.filter(
-            additionalspeaker__status=accepted_status
+            additionalspeaker__status=accepted_status,
+            additionalspeaker__proposalbase=self.proposal_base,
         )
         for speaker in speakers:
             yield speaker
