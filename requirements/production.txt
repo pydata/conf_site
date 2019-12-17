@@ -21,6 +21,6 @@ pytz==2019.3
 redis==3.3.11
 sendgrid-django==4.2.0
 sentry-sdk==0.13.2
-wagtail==2.7
+wagtail==2.6.3
 wagtailmenus==3.0
 virtualenv==16.7.7
