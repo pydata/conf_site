@@ -13,11 +13,5 @@ testing:
 production:
   hosts:
     amsterdam2020:
-    austin2019:
-    cambridge2019:
-    eindhoven2019:
-    la2019:
     london2020:
-    nyc2019:
     test2019:
-    warsaw2019:
