@@ -13,5 +13,6 @@ testing:
 production:
   hosts:
     amsterdam2020:
+    la2020:
     london2020:
     test2019:
