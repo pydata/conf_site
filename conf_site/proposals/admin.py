@@ -27,11 +27,6 @@ class KeywordAdmin(admin.ModelAdmin):
 
 @admin.register(Proposal)
 class ProposalAdmin(admin.ModelAdmin):
-    exclude = (
-        "under_represented_population",
-        "under_represented_details",
-        "under_represented_other",
-    )
     inlines = [AdditionalSpeakerInline]
     list_display = (
         'number',
