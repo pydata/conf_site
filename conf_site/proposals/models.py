@@ -3,7 +3,6 @@ from django.core.cache import cache
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-from multiselectfield import MultiSelectField
 from symposion.proposals.models import ProposalBase
 from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
@@ -53,15 +52,6 @@ class Proposal(ProposalBase):
     YES_NO_OTHER_NO = "N"
     # https://en.wikipedia.org/wiki/Bartleby,_the_Scrivener
     YES_NO_OTHER_BARTLEBY = "O"
-    UNDER_REPRESENTED_ETHNICITY = "E"
-    UNDER_REPRESENTED_AGE = "A"
-    UNDER_REPRESENTED_GENDER = "G"
-    UNDER_REPRESENTED_SEXUAL_ORIENTATION = "S"
-    UNDER_REPRESENTED_DISABILITY = "D"
-    UNDER_REPRESENTED_SOCIOECONOMIC = "C"
-    UNDER_REPRESENTED_RELIGION = "R"
-    UNDER_REPRESENTED_OPT_OUT = "O"
-    UNDER_REPRESENTED_OTHER = "X"
 
     AUDIENCE_LEVELS = [
         (AUDIENCE_LEVEL_NOVICE, "Novice"),
@@ -73,18 +63,6 @@ class Proposal(ProposalBase):
         (YES_NO_OTHER_YES, "Yes"),
         (YES_NO_OTHER_NO, "No"),
         (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
-    )
-    UNDER_REPRESENTED_DETAILED_ANSWERS = (
-        (UNDER_REPRESENTED_GENDER, "Gender identity"),
-        (UNDER_REPRESENTED_ETHNICITY, "Ethnicity, nationality, "
-                                      "skin color, race"),
-        (UNDER_REPRESENTED_SEXUAL_ORIENTATION, "Sexual orientation"),
-        (UNDER_REPRESENTED_SOCIOECONOMIC, "Socioeconomic status"),
-        (UNDER_REPRESENTED_RELIGION, "Religion"),
-        (UNDER_REPRESENTED_AGE, "Age"),
-        (UNDER_REPRESENTED_DISABILITY, "Ability"),
-        (UNDER_REPRESENTED_OPT_OUT, "Do not wish to provide"),
-        (UNDER_REPRESENTED_OTHER, "Other (please specify)"),
     )
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
@@ -110,29 +88,6 @@ class Proposal(ProposalBase):
         default="",
         max_length=1)
     affiliation = models.CharField(max_length=200)
-    under_represented_population = models.CharField(
-        "Do you self-identify as an underrepresented minority in "
-        "either the PyData/NumFOCUS community or in your "
-        "professional field?",
-        choices=YES_NO_OTHER_ANSWERS,
-        default="",
-        help_text="The answer to this question will not be made available "
-                  "to the review committee. Data collected from this survey "
-                  "will be used by NumFOCUS staff to inform decisions about "
-                  "practices and procedures at future conferences, in an "
-                  "effort to create a welcoming and inclusive environment "
-                  "for all.",
-        max_length=1)
-    under_represented_details = MultiSelectField(
-        "Along which dimension(s) you self-identify as underrepresented? "
-        "Check all that apply:",
-        blank=True,
-        choices=UNDER_REPRESENTED_DETAILED_ANSWERS,
-        max_choices=len(UNDER_REPRESENTED_DETAILED_ANSWERS))
-    # Text for an prospoal submitter to input additional details about
-    # their under represented dimensions.
-    under_represented_other = models.CharField(
-        "", blank=True, default="", max_length=200)
 
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
