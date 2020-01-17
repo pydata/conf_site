@@ -220,7 +220,6 @@
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="{% static 'js/retina.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
-<script src="{% static 'js/jquery.stellar.js' %}"></script>
 {% if sentry_public_dsn %}
 <script>
     Sentry.init({
@@ -229,22 +228,6 @@
     });
 </script>
 {% endif %}
-<!--
-<script>
-    jQuery(function($) {
-        $(window).stellar();
-        $("#header").sticky({topSpacing: 0});
-        $(window).bind('scroll', function(e){
-            parallaxScroll();
-        });
-        function parallaxScroll(){
-            var scrolledY = $(window).scrollTop();
-            $('.sec1x-elem.sec1x-before').css('background-position-y','+' + ((scrolledY * 0.7)) + 'px');
-            $('.sec1x-elem.sec1x-after').css('background-position-y','+' + ((scrolledY * 0.6)) + 'px');
-         }
-    });
-</script>
--->
 {% block extra_script %}{% endblock %}
 </body>
 </html>
