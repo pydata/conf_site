@@ -6,8 +6,7 @@
 
 {% block body %}
 <div id="sli" class="text-center">
-    <div class="bg-xc col-xs-12" data-stellar-background-ratio="1.1" data-stellar-vertical-offset="50"
-    style="background: url({% image page.background_image original as background %}{{ background.url }}) no-repeat fixed center top">
+    <div class="bg-xc col-xs-12" style="background: url({% image page.background_image original as background %}{{ background.url }}) no-repeat fixed center top">
             {% if page.image_credit %}<div class="image-credit">{{ page.image_credit|safe }}</div>{% endif %}
     </div>
 </div>
@@ -73,7 +72,7 @@
 </section>
 {% if page.news_keynote_section %}<section>
     <div id="nst-ovx">
-        <div class="nst-ovx sec1x-before" data-stellar-background-ratio="1.2" data-stellar-ratio="1.2"   data-stellar-vertical-offset="-1900"></div>
+        <div class="nst-ovx sec1x-before"></div>
         <div class="container" id="nst-con">
             <div class="col-xs-12 nopd vcs">
                 <div class="news-xl-heading news1 col-xs-12"><h1>NEWS</h1></div>
@@ -85,7 +84,7 @@
                     <div class="col-md-5 col-sm-4 col-xs-12 nst-img text-left">&nbsp;</div>
                 </div>
             </div>
-            <div class="nst-ovx sec1x-after" data-stellar-background-ratio="1.2" data-stellar-ratio="1.2" ></div>
+            <div class="nst-ovx sec1x-after"></div>
         </div>
     </div>
 </section>{% endif %}
