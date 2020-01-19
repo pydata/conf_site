@@ -3,7 +3,7 @@ django-allauth==0.41.0
 django-analytical==2.5.0
 django-autoslug==1.9.6
 django-bootstrap-form==3.4
-django-constance[redis]==2.4.0
+django-constance[redis]==2.5.0
 django-model-utils==3.2.0
 django-multiselectfield==0.1.9
 django-redis-cache==2.1.0
