@@ -31,16 +31,6 @@
 },
 {
     "model": "account.emailaddress",
-    "pk": 5,
-    "fields": {
-        "user": 5,
-        "email": "gina@numfocus.org",
-        "verified": false,
-        "primary": true
-    }
-},
-{
-    "model": "account.emailaddress",
     "pk": 6,
     "fields": {
         "user": 6,

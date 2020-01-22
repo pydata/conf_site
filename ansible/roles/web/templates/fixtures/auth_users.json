@@ -55,24 +55,6 @@
 },
 {
     "model": "auth.user",
-    "pk": 5,
-    "fields": {
-        "password": "!rJtkGqcV9pVuxbIetttRNHO2BJBp9uZD3cNZLeOd",
-        "last_login": null,
-        "is_superuser": true,
-        "username": "gina",
-        "first_name": "Gina",
-        "last_name": "Helfrich",
-        "email": "gina@numfocus.org",
-        "is_staff": true,
-        "is_active": true,
-        "date_joined": "2018-01-01T00:00:00Z",
-        "groups": [],
-        "user_permissions": []
-    }
-},
-{
-    "model": "auth.user",
     "pk": 6,
     "fields": {
         "password": "!monkGqcvbpVuxbIecttRNiHO3JBp3uZd4cNZ5LOd",
