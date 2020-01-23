@@ -264,7 +264,11 @@ def proposal_detail(request, pk):
     return render(
         request,
         "symposion/proposals/proposal_detail.html",
-        {"proposal": proposal, "feedback_form": feedback_form},
+        {
+            "proposal": proposal,
+            "feedback_form": feedback_form,
+            "actor": "speaker",
+        },
     )
 
 
