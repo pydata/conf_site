@@ -7,7 +7,10 @@ from conf_site.accounts.tests import AccountsTestCase
 from conf_site.reviews.tests import ReviewingTestCase
 
 from conf_site.proposals.tests.factories import ProposalFactory
-from conf_site.reviews.tests.factories import ProposalFeedbackFactory
+from conf_site.reviews.tests.factories import (
+    ProposalFeedbackFactory,
+    ProposalVoteFactory,
+)
 
 
 class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
@@ -114,6 +117,7 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
 
     def test_reviewer_cannot_view_other_reviewers_names(self):
         """Verify that a reviewer cannot view other reviewers' names."""
+        other_vote = ProposalVoteFactory(proposal=self.proposal)
         other_feedback = ProposalFeedbackFactory.create(proposal=self.proposal)
 
         self._add_to_reviewers_group()
@@ -122,5 +126,9 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
                 reverse(self.reverse_view_name, args=self.reverse_view_args)
             )
             self.assertContains(response, "Anonymous")
+
+            self.assertNotContains(response, other_vote.voter.username)
+            self.assertNotContains(response, other_vote.voter.email)
+
             self.assertNotContains(response, other_feedback.author.username)
             self.assertNotContains(response, other_feedback.author.email)
