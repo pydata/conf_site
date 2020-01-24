@@ -72,7 +72,14 @@
     {% if actor == "reviewer" %}<div class="tab-pane" id="proposal-reviews">
       <h3>Votes</h3>
       {% for review_vote in proposal.review_votes.all %}<hr><p>
-        <h4>{{ review_vote.voter.username }} ({{ review_vote.get_score_display }})</h4>
+        <h4>
+          {% if not request.user.is_superuser and config.BLIND_REVIEWERS and review_vote.voter != request.user %}
+            Anonymous
+          {% else %}
+            {{ review_vote.voter.username }}
+          {% endif %}
+          ({{ review_vote.get_score_display }})
+        </h4>
         {{ review_vote.comment_html|safe }}
       </p>{% endfor %}
       <form method="POST" action="{% url 'review_proposal_vote' proposal.id %}" class="review-form">
