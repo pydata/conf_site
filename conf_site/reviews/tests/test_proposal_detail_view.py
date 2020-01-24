@@ -111,3 +111,16 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
             reverse(self.reverse_view_name, args=self.reverse_view_args)
         )
         self.assertContains(response, "div-proposal-result-buttons")
+
+    def test_reviewer_cannot_view_other_reviewers_names(self):
+        """Verify that a reviewer cannot view other reviewers' names."""
+        other_feedback = ProposalFeedbackFactory.create(proposal=self.proposal)
+
+        self._add_to_reviewers_group()
+        with override_config(BLIND_REVIEWERS=True):
+            response = self.client.get(
+                reverse(self.reverse_view_name, args=self.reverse_view_args)
+            )
+            self.assertContains(response, "Anonymous")
+            self.assertNotContains(response, other_feedback.author.username)
+            self.assertNotContains(response, other_feedback.author.email)
