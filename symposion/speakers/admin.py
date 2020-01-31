@@ -6,7 +6,14 @@ from symposion.speakers.models import Speaker
 
 admin.site.register(
     Speaker,
-    list_display=["name", "slug", "email", "created", "twitter_username"],
+    list_display=[
+        "name",
+        "slug",
+        "email",
+        "created",
+        "github_username",
+        "twitter_username",
+    ],
     prepopulated_fields={"slug": ("name",)},
     search_fields=["name"],
 )

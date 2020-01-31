@@ -60,6 +60,9 @@ class Speaker(models.Model):
         help_text=_("Maximum file size: 10 MB"),
         verbose_name=_("Photo"),
     )
+    github_username = models.CharField(
+        max_length=39, blank=True, help_text=_("Your Github account")
+    )
     twitter_username = models.CharField(
         max_length=15, blank=True, help_text=_("Your Twitter account")
     )

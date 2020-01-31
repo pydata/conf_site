@@ -17,12 +17,18 @@
                 <li class="active">{{ speaker.name }}</li>
             </ol>
         </div>
-        {% if speaker.photo or speaker.twitter_username %}
+        {% if speaker.photo or speaker.github_username or speaker.twitter_username %}
         <div class="col-md-3 speaker-social">
             {% if speaker.photo %}
                 <img src="{% thumbnail speaker.photo '256x256' %}" alt="Photo of {{ speaker.name }}" />
             {% else %}
                 &nbsp;
+            {% endif %}
+            {% if speaker.github_username %}
+            <div><a href="https://github.com/{{ speaker.github_username }}/">
+                <i class="fa fa-github"></i>
+                {{ speaker.github_username }}
+            </a></div>
             {% endif %}
             {% if speaker.twitter_username %}
             <div><a href="https://twitter.com/{{ speaker.twitter_username }}/">
@@ -32,7 +38,7 @@
             {% endif %}
         </div>
         {% endif %}
-        <div class="col-md-{% if speaker.photo or speaker.twitter_username %}9{% else %}12{% endif %}">
+        <div class="col-md-{% if speaker.photo or speaker.github_username or speaker.twitter_username %}9{% else %}12{% endif %}">
             {% if speaker.user == request.user or request.user.is_staff %}
                 <a class="btn btn-default pull-right" href="{% url "speaker_edit" speaker.pk %}">Edit</a>
             {% endif %}
