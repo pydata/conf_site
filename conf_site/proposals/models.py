@@ -219,3 +219,9 @@ class Proposal(ProposalBase):
         return self._get_cached_vote_count(
             "proposal_{}_minus_one".format(self.pk), ProposalVote.MINUS_ONE
         )
+
+    @property
+    def total_votes(self):
+        return (
+            self.plus_one + self.plus_zero + self.minus_zero + self.minus_one
+        )

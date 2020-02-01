@@ -41,6 +41,7 @@
       <th>{% trans "+0" %}</th>
       <th>{% trans "-0" %}</th>
       <th>{% trans "-1" %}</th>
+      <th><i class="fa fa-hashtag" title="{% trans 'Total Reviews' %}"></i></th>
       <th><a href="#" class="tip" title="{% trans 'Your Rating' %}"><i class="fa fa-user"></i></a></th>
       <th>{% trans "Status" %}</th>
     </thead>
@@ -64,6 +65,7 @@
         <td>{{ proposal.plus_zero }}</td>
         <td>{{ proposal.minus_zero }}</td>
         <td>{{ proposal.minus_one }}</td>
+        <td>{{ proposal.total_votes }}</td>
         <td>{% user_score proposal request.user %}</td>
         <td>
           {% if proposal.review_result %}
