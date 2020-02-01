@@ -192,24 +192,28 @@ class Proposal(ProposalBase):
             return feedback_count
         return self._refresh_feedback_count()
 
+    @property
     def plus_one(self):
         """Enumerate number of +1 reviews."""
         return self._get_cached_vote_count(
             "proposal_{}_plus_one".format(self.pk), ProposalVote.PLUS_ONE
         )
 
+    @property
     def plus_zero(self):
         """Enumerate number of +0 reviews."""
         return self._get_cached_vote_count(
             "proposal_{}_plus_zero".format(self.pk), ProposalVote.PLUS_ZERO
         )
 
+    @property
     def minus_zero(self):
         """Enumerate number of -0 reviews."""
         return self._get_cached_vote_count(
             "proposal_{}_minus_zero".format(self.pk), ProposalVote.MINUS_ZERO,
         )
 
+    @property
     def minus_one(self):
         """Enumerate number of -1 reviews."""
         return self._get_cached_vote_count(
