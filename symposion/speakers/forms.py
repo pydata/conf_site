@@ -12,6 +12,7 @@ class SpeakerForm(forms.ModelForm):
             "name",
             "biography",
             "photo",
+            "github_username",
             "twitter_username",
         ]
 
