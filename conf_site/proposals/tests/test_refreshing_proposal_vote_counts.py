@@ -24,6 +24,7 @@ class ProposalVoteCountRefreshTestCase(ProposalTestCase):
         self.proposal._refresh_vote_counts()
         for cache_key in self.vote_cache_keys:
             self.assertEqual(cache.get(cache_key), 0)
+        self.assertEqual(self.proposal.total_votes, 0)
 
     def test_setting_votes(self):
         # Create a random assortment of votes on our proposal.
@@ -59,3 +60,4 @@ class ProposalVoteCountRefreshTestCase(ProposalTestCase):
         ]
         for index, cache_key in enumerate(self.vote_cache_keys):
             self.assertEqual(cache.get(cache_key), vote_counts[index])
+        self.assertEqual(self.proposal.total_votes, sum(vote_counts))
