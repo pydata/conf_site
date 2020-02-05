@@ -7,7 +7,7 @@ from conf_site.proposals.views import ExportProposalSubmittersView
 
 urlpatterns = [
     path(
-        "export/",
+        "submitters/export/",
         staff_member_required(ExportProposalSubmittersView.as_view()),
         name="proposal_submitter_export",
     ),
