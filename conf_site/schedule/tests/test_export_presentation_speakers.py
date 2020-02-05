@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from django.test import TestCase
-
+from conf_site.core.tests.test_csv_view import StaffOnlyCsvViewTestCase
 from conf_site.schedule.views import ExportPresentationSpeakerView
 
 
-class ExportPresentationSpeakerViewTestCase(TestCase):
-    def test_status_code(self):
-        response = ExportPresentationSpeakerView().get()
-        self.assertEqual(response.status_code, 200)
+class ExportPresentationSpeakerViewTestCase(StaffOnlyCsvViewTestCase):
+    view_class = ExportPresentationSpeakerView
+    view_name = "presentation_speaker_export"

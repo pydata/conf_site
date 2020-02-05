@@ -77,10 +77,9 @@ class ExportAcceptedSpeakerEmailView(CsvView):
     """Export email addresses of speakers with accepted presentations."""
 
     csv_filename = "accepted-speaker-emails.csv"
+    header_row = ["Name", "Email Address"]
 
     def get(self, *args, **kwargs):
-        self.csv_writer.writerow(["Name", "Email Address"])
-
         # Iterate through speakers.
         # Add speakers with accepted presentations to temp file.
         for speaker in Speaker.objects.all():

@@ -1,9 +1,7 @@
-from django.test import TestCase
-
+from conf_site.core.tests.test_csv_view import StaffOnlyCsvViewTestCase
 from conf_site.speakers.views import ExportAcceptedSpeakerEmailView
 
 
-class ExportAcceptedSpeakerEmailViewTestCase(TestCase):
-    def test_status_code(self):
-        response = ExportAcceptedSpeakerEmailView().get()
-        self.assertEqual(response.status_code, 200)
+class ExportAcceptedSpeakerEmailViewTestCase(StaffOnlyCsvViewTestCase):
+    view_class = ExportAcceptedSpeakerEmailView
+    view_name = "speaker_email_export"

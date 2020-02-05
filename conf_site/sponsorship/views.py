@@ -7,12 +7,9 @@ class ExportSponsorsView(CsvView):
     """Export information about active sponsors to CSV file."""
 
     csv_filename = "sponsors.csv"
+    header_row = ["Name", "URL", "Contact Name", "Contact Email", "Level"]
 
     def get(self, *args, **kwargs):
-        self.csv_writer.writerow(
-            ["Name", "URL", "Contact Name", "Contact Email", "Level"]
-        )
-
         # Add all **active** sponsors to CSV file.
         for sponsor in Sponsor.objects.filter(active=True):
             self.csv_writer.writerow(

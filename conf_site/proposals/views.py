@@ -25,12 +25,41 @@ class ExportProposalSubmittersView(CsvView):
         )
 
     def get(self, *args, **kwargs):
-        self.csv_writer.writerow(self.header_row)
-
-        # Iterate through proposals.
         for proposal in Proposal.objects.order_by("title"):
             self._write_submitter_row(proposal.speaker, proposal)
             for additional_submitter in proposal.additional_speakers.all():
                 self._write_submitter_row(additional_submitter, proposal)
 
         return super(ExportProposalSubmittersView, self).get(*args, **kwargs)
+
+
+class ExportProposalsView(CsvView):
+    """Export information about submitted proposals."""
+
+    csv_filename = "proposals.csv"
+    header_row = [
+        "Number",
+        "Title",
+        "Primary Speaker",
+        "Kind",
+        "Audience Level",
+        "Date Created",
+        "Date Modified",
+    ]
+
+    def get(self, *args, **kwargs):
+        # Iterate through proposals.
+        for proposal in Proposal.objects.order_by("pk"):
+            self.csv_writer.writerow(
+                [
+                    proposal.number,
+                    proposal.title,
+                    proposal.speaker.name,
+                    proposal.kind.name,
+                    proposal.get_audience_level_display(),
+                    proposal.date_created,
+                    proposal.date_last_modified,
+                ]
+            )
+
+        return super().get(*args, **kwargs)
