@@ -17,7 +17,6 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import ServeView as WagtailImageView
 
 from conf_site.core.views import csrf_failure
-from conf_site.proposals.views import ExportProposalSubmittersView
 from conf_site.schedule.views import (
     ExportPresentationSpeakerView,
     PresentationDetailView,
@@ -65,12 +64,7 @@ urlpatterns += [
         name="speaker_profile",
     ),
     url(r"^speaker/", include("symposion.speakers.urls")),
-    url(r"^proposals/", include("symposion.proposals.urls")),
-    path(
-        "proposals/export/",
-        staff_member_required(ExportProposalSubmittersView.as_view()),
-        name="proposal_submitter_export",
-    ),
+    url(r"^proposals/", include("conf_site.proposals.urls")),
     url(
         r"^sponsors/export/$",
         staff_member_required(ExportSponsorsView.as_view()),
