@@ -4,15 +4,14 @@ from random import randint
 from django.urls import reverse
 
 from conf_site.accounts.tests import AccountsTestCase
+from conf_site.core.tests.test_csv_view import CsvViewTestCase
 from conf_site.proposals.tests.factories import ProposalFactory
 from conf_site.proposals.views import ExportProposalSubmittersView
 from conf_site.speakers.tests.factories import SpeakerFactory
 
 
-class ExportProposalSubmittersViewTestCase(AccountsTestCase):
-    def test_status_code(self):
-        response = ExportProposalSubmittersView().get()
-        self.assertEqual(response.status_code, 200)
+class ExportProposalSubmittersViewTestCase(AccountsTestCase, CsvViewTestCase):
+    view_class = ExportProposalSubmittersView
 
     def test_header_row(self):
         """Verify that header row appears in CSV file response."""
