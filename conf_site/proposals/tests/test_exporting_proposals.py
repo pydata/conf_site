@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 from random import randint
 
-from django.urls import reverse
-
-from conf_site.accounts.tests import AccountsTestCase
-from conf_site.core.tests.test_csv_view import CsvViewTestCase
+from conf_site.core.tests.test_csv_view import StaffOnlyCsvViewTestCase
 from conf_site.proposals.tests.factories import ProposalFactory
 from conf_site.proposals.views import ExportProposalsView
 
 
-class ExportProposalsViewTestCase(AccountsTestCase, CsvViewTestCase):
+class ExportProposalsViewTestCase(StaffOnlyCsvViewTestCase):
     view_class = ExportProposalsView
+    view_name = "proposal_export"
 
     def test_all_proposals_are_included(self):
         proposals = ProposalFactory.create_batch(size=randint(2, 4))
@@ -25,14 +23,3 @@ class ExportProposalsViewTestCase(AccountsTestCase, CsvViewTestCase):
             )
             self.assertContains(response, proposal.date_created)
             self.assertContains(response, proposal.date_last_modified)
-
-    def test_no_anonymous_access(self):
-        self.client.logout()
-        response = self.client.get(reverse("proposal_export"))
-        self.assertEqual(response.status_code, 302)
-
-    def test_staff_access(self):
-        self._become_staff()
-        self.client.login(username=self.user.email, password=self.password)
-        response = self.client.get(reverse("proposal_export"))
-        self.assertEqual(response.status_code, 200)

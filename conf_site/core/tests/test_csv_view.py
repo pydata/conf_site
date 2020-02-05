@@ -1,5 +1,7 @@
 from django.test import TestCase
+from django.urls import reverse
 
+from conf_site.accounts.tests import AccountsTestCase
 from conf_site.core.views import CsvView
 
 
@@ -28,3 +30,24 @@ class CsvViewTestCase(TestCase):
         # to be quoted.
         quoted_header_row = '"{}"'.format('","'.join(header_row))
         self.assertContains(response, quoted_header_row)
+
+
+class StaffOnlyCsvViewTestCase(AccountsTestCase, CsvViewTestCase):
+    view_name = None
+
+    def test_no_anonymous_access(self):
+        if not self.view_name:
+            return
+
+        self.client.logout()
+        response = self.client.get(reverse(self.view_name))
+        self.assertEqual(response.status_code, 302)
+
+    def test_staff_access(self):
+        if not self.view_name:
+            return
+
+        self._become_staff()
+        self.client.login(username=self.user.email, password=self.password)
+        response = self.client.get(reverse(self.view_name))
+        self.assertEqual(response.status_code, 200)

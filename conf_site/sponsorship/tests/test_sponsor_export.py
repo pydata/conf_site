@@ -1,12 +1,13 @@
 import random
 
-from conf_site.core.tests.test_csv_view import CsvViewTestCase
+from conf_site.core.tests.test_csv_view import StaffOnlyCsvViewTestCase
 from conf_site.sponsorship.tests import SponsorFactory
 from conf_site.sponsorship.views import ExportSponsorsView
 
 
-class ExportSponsorsViewTestCase(CsvViewTestCase):
+class ExportSponsorsViewTestCase(StaffOnlyCsvViewTestCase):
     view_class = ExportSponsorsView
+    view_name = "sponsor_export"
 
     def test_not_including_inactive_sponsor(self):
         """Verify that inactive sponsors are not included."""
