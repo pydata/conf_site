@@ -2,10 +2,18 @@ from django.conf.urls import include
 from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import path
 
-from conf_site.proposals.views import ExportProposalSubmittersView
+from conf_site.proposals.views import (
+    ExportProposalSubmittersView,
+    ExportProposalsView,
+)
 
 
 urlpatterns = [
+    path(
+        "export/",
+        staff_member_required(ExportProposalsView.as_view()),
+        name="proposal_export",
+    ),
     path(
         "submitters/export/",
         staff_member_required(ExportProposalSubmittersView.as_view()),
