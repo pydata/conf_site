@@ -13,16 +13,6 @@ from conf_site.speakers.tests.factories import SpeakerFactory
 class ExportProposalSubmittersViewTestCase(AccountsTestCase, CsvViewTestCase):
     view_class = ExportProposalSubmittersView
 
-    def test_header_row(self):
-        """Verify that header row appears in CSV file response."""
-        view = ExportProposalSubmittersView()
-        response = view.get()
-        # Some formatting needs to be done so that the header row
-        # is compliant with the CSV dialect - all fields need
-        # to be quoted.
-        quoted_header_row = "\"{}\"".format("\",\"".join(view.header_row))
-        self.assertContains(response, quoted_header_row)
-
     def test_all_proposals_are_included(self):
         proposals = ProposalFactory.create_batch(size=randint(2, 4))
         response = ExportProposalSubmittersView().get()

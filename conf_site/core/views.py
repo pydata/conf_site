@@ -27,12 +27,12 @@ def csrf_failure(request, reason=""):
 
 class CsvView(View):
     """A abstract view that returns a CSV file as a response."""
-
     http_method_names = ["get"]
 
-    # Create generic names for required filenames.
+    # Create generic names for required attributes.
     # This should be overwritten by inherited views.
     csv_filename = "export.csv"
+    header_row = None
 
     def __init__(self, **kwargs):
         super(CsvView, self).__init__(**kwargs)
@@ -44,6 +44,8 @@ class CsvView(View):
 
         # Initialize CSV file.
         self.csv_writer = csv.writer(self.temp_file, dialect=csv.unix_dialect)
+        if self.header_row:
+            self.csv_writer.writerow(self.header_row)
 
     def get(self, *args, **kwargs):
         # Make sure that everything has been saved.
