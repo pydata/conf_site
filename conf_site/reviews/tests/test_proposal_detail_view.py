@@ -125,8 +125,6 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
             response = self.client.get(
                 reverse(self.reverse_view_name, args=self.reverse_view_args)
             )
-            self.assertContains(response, "Anonymous")
-
             self.assertNotContains(response, other_vote.voter.username)
             self.assertNotContains(response, other_vote.voter.email)
 

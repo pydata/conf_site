@@ -36,14 +36,16 @@
       {% endif %}
       <th>{% trans "Title" %}</th>
       <th>{% trans "Category" %}</th>
+      {% if request.user.is_superuser %}
       <th><i class="fa fa-comment" title="{% trans 'Number of Messages' %}"></i></th>
       <th>{% trans "+1" %}</th>
       <th>{% trans "+0" %}</th>
       <th>{% trans "-0" %}</th>
       <th>{% trans "-1" %}</th>
+      {% endif %}
       <th><i class="fa fa-hashtag" title="{% trans 'Total Number of Reviews' %}"></i></th>
       <th><a href="#" class="tip" title="{% trans 'Your Rating' %}"><i class="fa fa-user"></i></a></th>
-      <th>{% trans "Status" %}</th>
+      {% if request.user.is_superuser %}<th>{% trans "Status" %}</th>{% endif %}
     </thead>
     <tbody>
       {% for proposal in proposal_list %}<tr>
@@ -60,20 +62,22 @@
           </a>
         </td>
         <td>{{ proposal.kind.name }}</td>
+        {% if request.user.is_superuser %}
         <td>{{ proposal.feedback_count }}</td>
         <td>{{ proposal.plus_one }}</td>
         <td>{{ proposal.plus_zero }}</td>
         <td>{{ proposal.minus_zero }}</td>
         <td>{{ proposal.minus_one }}</td>
+        {% endif %}
         <td>{{ proposal.total_votes }}</td>
         <td>{% user_score proposal request.user %}</td>
-        <td>
+        {% if request.user.is_superuser %}<td>
           {% if proposal.review_result %}
             {{ proposal.review_result.get_status_display }}
           {% else %}
             Undecided
           {% endif %}
-        </td>
+        </td>{% endif %}
       </tr>{% endfor %}
     </tbody>
   </table>
