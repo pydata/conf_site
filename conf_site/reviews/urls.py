@@ -49,7 +49,7 @@ urlpatterns = [
         name="review_proposal_vote",
     ),
     path(
-        "reviews/result/<status>/",
+        "result/<status>/",
         ProposalResultListView.as_view(),
         name="review_proposal_result_list",
     ),
