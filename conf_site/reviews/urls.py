@@ -1,3 +1,4 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import path
 
 from conf_site.reviews.views import (
@@ -6,6 +7,7 @@ from conf_site.reviews.views import (
     ProposalListView,
     ProposalVotePostView,
 )
+from conf_site.reviews.views.export import ExportReviewersView
 from conf_site.reviews.views.keywords import (
     ReviewKeywordDetailView,
     ReviewKeywordListView,
@@ -52,6 +54,11 @@ urlpatterns = [
         "result/<status>/",
         ProposalResultListView.as_view(),
         name="review_proposal_result_list",
+    ),
+    path(
+        "reviewers/export/",
+        staff_member_required(ExportReviewersView.as_view()),
+        name="reviewer_export",
     ),
     path("", ProposalListView.as_view(), name="review_proposal_list"),
 ]
