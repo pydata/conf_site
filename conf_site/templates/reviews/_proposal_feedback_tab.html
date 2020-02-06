@@ -1,5 +1,6 @@
 {% load crispy_forms_tags i18n %}
 <div class="tab-pane" id="proposal-feedback">
+  <h3>Feedback</h3>
     {% for feedback in proposal.review_feedback.all %}<hr><p>
       {% if not request.user.is_superuser and config.BLIND_AUTHORS and actor == "speaker" and feedback.author != request.user %}
         <b>Anonymous</b>
