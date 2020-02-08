@@ -98,7 +98,13 @@ class ProposalDetailView(DetailView, ReviewingView):
         for speaker in self.get_object().speakers():
             if self.request.user == speaker.user:
                 context["actor"] = "speaker"
-        context["vote_form"] = ProposalVoteForm
+        try:
+            vote = ProposalVote.objects.get(
+                proposal=self.get_object(), voter=self.request.user
+            )
+            context["vote_form"] = ProposalVoteForm(instance=vote)
+        except ProposalVote.DoesNotExist:
+            context["vote_form"] = ProposalVoteForm
         context["feedback_form"] = ProposalFeedbackForm
         return context
 
