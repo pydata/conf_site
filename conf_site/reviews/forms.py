@@ -16,8 +16,11 @@ class ProposalVoteForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProposalVoteForm, self).__init__(*args, **kwargs)
         # Use a radio select widget instead of a dropdown for the score.
-        self.fields["score"] = forms.ChoiceField(
-            widget=forms.RadioSelect(), choices=ProposalVote.SCORES
+        self.fields["score"] = forms.TypedChoiceField(
+            choices=ProposalVote.SCORES,
+            coerce=int,
+            empty_value=0,
+            widget=forms.RadioSelect(),
         )
 
 
