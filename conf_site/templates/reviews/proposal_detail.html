@@ -83,7 +83,7 @@
         {{ review_vote.comment_html|safe }}
       </p>{% endfor %}
       <form method="POST" action="{% url 'review_proposal_vote' proposal.id %}" class="review-form">
-        <legend>{% trans "Submit Review" %}</legend>
+        <legend>{% if existing_vote %}{% trans 'Update Review' %}{% else %}{% trans 'Submit Review' %}{% endif %}</legend>
         <p>
           Enter your vote and any comment to go along with it.
           You can revise your vote or comment multiple times
@@ -93,7 +93,8 @@
         <input type="hidden" name="proposal_id" value="{{ proposal.id }}">
         {{ vote_form|bootstrap }}
         <div class="form-action">
-          <input type="submit" class="btn btn-primary" name="vote_submit" value="Submit Review" />
+          <input type="submit" class="btn btn-primary" name="vote_submit"
+              value="{% if existing_vote %}{% trans 'Update Review' %}{% else %}{% trans 'Submit Review' %}{% endif %}">
         </div>
       </form>
     </div>{% endif %}

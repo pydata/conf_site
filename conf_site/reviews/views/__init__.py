@@ -103,6 +103,7 @@ class ProposalDetailView(DetailView, ReviewingView):
                 proposal=self.get_object(), voter=self.request.user
             )
             context["vote_form"] = ProposalVoteForm(instance=vote)
+            context["existing_vote"] = True
         except ProposalVote.DoesNotExist:
             context["vote_form"] = ProposalVoteForm
         context["feedback_form"] = ProposalFeedbackForm
