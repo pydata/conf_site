@@ -1,39 +1,24 @@
-# -*- coding: utf-8 -*-
 from django.core import mail
-from django.urls import reverse
-
-from faker import Faker
-
 
 from conf_site.accounts.tests import AccountsTestCase
 from conf_site.accounts.tests.factories import UserFactory
-from conf_site.proposals.tests.factories import ProposalFactory
-from conf_site.reviews.tests import ReviewingTestCase
+from conf_site.reviews.tests import ReviewingPostViewTestCase
 from conf_site.reviews.tests.factories import ProposalFeedbackFactory
 
 
-class ProposalFeedbackPostingTestCase(ReviewingTestCase, AccountsTestCase):
-    http_method_name = "post"
+class ProposalFeedbackPostingTestCase(
+    ReviewingPostViewTestCase, AccountsTestCase
+):
     reverse_view_name = "review_proposal_feedback"
 
     def setUp(self):
-        super(ProposalFeedbackPostingTestCase, self).setUp()
+        super().setUp()
 
-        self.faker = Faker()
-        self.proposal = ProposalFactory()
-        self.reverse_view_args = [self.proposal.pk]
         self.reverse_view_data = {
             "comment": self.faker.paragraph(
                 nb_sentences=5, variable_nb_sentences=True
             )
         }
-
-    def _get_response(self):
-        return self.client.post(
-            reverse(self.reverse_view_name, args=self.reverse_view_args),
-            data=self.reverse_view_data,
-            follow=True,
-        )
 
     def _duplicate_email_addresses(self, message):
         """

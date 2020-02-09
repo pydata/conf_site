@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group
 from django.urls import reverse
 
 from constance.test import override_config
+from faker import Faker
 
 from conf_site.proposals.tests.factories import ProposalFactory
 from conf_site.reviews.tests.factories import ProposalFeedbackFactory
@@ -146,3 +147,21 @@ class ReviewingTestCase(object):
             self.assertContains(response, "Your superuser status")
             for proposal in proposals:
                 self.assertContains(response, proposal.speaker.name)
+
+
+class ReviewingPostViewTestCase(ReviewingTestCase):
+    http_method_name = "post"
+
+    def setUp(self):
+        super().setUp()
+
+        self.faker = Faker()
+        self.proposal = ProposalFactory()
+        self.reverse_view_args = [self.proposal.pk]
+
+    def _get_response(self):
+        return self.client.post(
+            reverse(self.reverse_view_name, args=self.reverse_view_args),
+            data=self.reverse_view_data,
+            follow=True,
+        )
