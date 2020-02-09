@@ -132,3 +132,29 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
 
             self.assertNotContains(response, other_feedback.author.username)
             self.assertNotContains(response, other_feedback.author.email)
+
+    def _test_button_text(self, good_text, bad_text):
+        self._add_to_reviewers_group()
+        response = self._get_response()
+        self.assertContains(response, good_text)
+        self.assertNotContains(response, bad_text)
+        return response
+
+    def test_submit_button_with_no_preexisting_vote(self):
+        """Test that 'Submit Review' appears by default."""
+        self._test_button_text("Submit Review", "Update Review")
+
+    def test_submit_button_with_other_votes(self):
+        """Test that other votes don't let 'Update Review' appear."""
+        ProposalVoteFactory.create_batch(size=5, proposal=self.proposal)
+        self._test_button_text("Submit Review", "Update Review")
+
+    def test_update_button_with_preexisting_vote(self):
+        """Test that 'Update Review' appears if reviewer has voted."""
+        vote = ProposalVoteFactory.create(
+            proposal=self.proposal, voter=self.user
+        )
+        response = self._test_button_text("Update Review", "Submit Review")
+        # Vote comment should appear twice - once in the list of votes
+        # and once in the form field.
+        self.assertContains(response, vote.comment, 2)
