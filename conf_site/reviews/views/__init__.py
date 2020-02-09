@@ -114,7 +114,7 @@ class ProposalVotePostView(ReviewingView):
             voter=self.request.user,
             defaults={"score": self.request.POST["score"]},
         )[0]
-        vote.score = self.request.POST["score"]
+        vote.score = int(self.request.POST["score"])
         vote.comment = self.request.POST["comment"]
         vote.save()
 
