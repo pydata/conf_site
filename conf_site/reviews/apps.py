@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class ReviewsConfig(AppConfig):
-    name = "reviews"
+    name = "conf_site.reviews"
