@@ -82,8 +82,8 @@ class Proposal(ProposalBase):
         max_length=2083,
         verbose_name="Repository")
 
-    first_time_at_pydata = models.CharField(
-        "Is this your first time speaking at a PyData event?",
+    first_time_at_jupytercon = models.CharField(
+        "Is this your first time speaking at JupyterCon?",
         choices=YES_NO_OTHER_ANSWERS,
         blank=True,
         default="",
