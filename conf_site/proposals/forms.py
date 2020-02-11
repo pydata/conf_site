@@ -41,7 +41,7 @@ class ProposalForm(forms.ModelForm):
             "audience_level",
             "description",
             "abstract",
-            "first_time_at_pydata",
+            "first_time_at_jupytercon",
             "affiliation",
             "additional_notes",
             "recording_release",
