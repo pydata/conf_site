@@ -27,6 +27,8 @@ class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
 
 
 class ProposalForm(forms.ModelForm):
+    required_css_class = "formfield-required"
+
     official_keywords = ModelMultipleTagChoiceField(
         label="Official Keywords",
         queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501

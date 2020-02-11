@@ -5,6 +5,7 @@ from symposion.speakers.models import Speaker
 
 
 class SpeakerForm(forms.ModelForm):
+    required_css_class = "formfield-required"
 
     class Meta:
         model = Speaker

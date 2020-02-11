@@ -800,6 +800,12 @@ img.right {
 	color: #007d8a;
 }
 
+label.formfield-required:after {
+    color: red;
+    content:" *";
+
+}
+
 @media (max-width: 1500px) {
   #sec1x-con .sec1-col, #nst-con .vcs { margin-left: 150px; }
 }

@@ -6,10 +6,11 @@
 
 {% block body %}
 <div class="container">
+    <h1>{% trans "Create Speaker Profile" %}</h1>
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        <legend>{% trans "Create Speaker Profile" %}</legend>
         <fieldset>
+            <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
             {{ speaker_form|bootstrap }}
         </fieldset>
         <div class="form-actions">

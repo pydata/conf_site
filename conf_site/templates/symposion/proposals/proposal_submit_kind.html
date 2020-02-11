@@ -6,9 +6,11 @@
 
 {% block body %}
 <div class="container">
+    <h1>Submit a {{ kind.name }}</h1>
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset>
+            <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
             {{ proposal_form|bootstrap }}
         </fieldset>
         <div class="form-group form-actions">
