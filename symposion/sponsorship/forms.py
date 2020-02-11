@@ -9,6 +9,8 @@ from symposion.sponsorship.models import Sponsor, SponsorBenefit
 
 
 class SponsorApplicationForm(forms.ModelForm):
+    required_css_class = "formfield-required"
+
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user")
         kwargs.update(
