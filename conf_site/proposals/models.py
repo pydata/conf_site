@@ -90,6 +90,37 @@ class Proposal(ProposalBase):
         max_length=1)
     affiliation = models.CharField(blank=True, default="", max_length=200)
 
+    gender = models.CharField(
+        "What is your gender?  (Female, Male, Non-binary, Other)",
+        blank=True,
+        default="",
+        max_length=200,
+    )
+    referral = models.CharField(
+        "Where did you hear about this CFP?  Please include sharer "
+        "(specific organization) and platform "
+        "(Examples:  Blogpost, Twitter, LinkedIn, Slack, etc.)",
+        blank=True,
+        default="",
+        max_length=200,
+    )
+    under_represented_group = models.CharField(
+        "Do you identify as an under-represented group with respect to "
+        "one or more of these: gender, age (40+), race, sexual orientation, "
+        "or other self-reported category?",
+        blank=True,
+        default="",
+        max_length=200,
+    )
+    accomodation_needs = models.CharField(
+        "Do you have any accommodation needs at the conference? "
+        "Examples include: sign language, closed captioning, mobility, "
+        "mother's room, etc. ",
+        blank=True,
+        default="",
+        max_length=200,
+    )
+
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
         blank=True,
