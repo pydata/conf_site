@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %} - Error{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 class="text-danger">{{ title }}</h1>
+  <div class="alert alert-danger" role="alert">
+    <p>{{ body }}</p>
+    <a class="btn btn-danger" href="javascript:history.back();">Go Back</a>
+  </div>
+</div>
+{% endblock %}
