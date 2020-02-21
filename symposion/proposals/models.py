@@ -60,6 +60,9 @@ class ProposalSection(models.Model):
             return False
         return True
 
+    is_available.boolean = True
+    is_available.short_description = "availability"
+
     def __str__(self):
         return self.section.name
 
