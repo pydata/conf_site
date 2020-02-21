@@ -164,9 +164,6 @@ class ProposalBase(models.Model):
         self.additional_notes_html = parse(self.additional_notes)
         return super(ProposalBase, self).save(*args, **kwargs)
 
-    def can_edit(self):
-        return True
-
     @property
     def section(self):
         return self.kind.section

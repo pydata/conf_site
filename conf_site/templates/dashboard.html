@@ -59,8 +59,10 @@
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
-                        {% for proposal in user.speaker_profile.proposals.all %}
-                            {% include "symposion/proposals/_proposal_row.html" %}
+                        {% for proposalbase in user.speaker_profile.proposals.all %}
+                            {% with proposal=proposalbase.proposal %}
+                                {% include "symposion/proposals/_proposal_row.html" %}
+                            {% endwith %}
                         {% endfor %}
                     </table>
                 {% else %}
