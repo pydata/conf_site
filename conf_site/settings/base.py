@@ -253,6 +253,11 @@ CONSTANCE_CONFIG = {
         "Hide identities of authors from reviewers.",
         bool,
     ),
+    "PROPOSAL_EDITING_WHEN_CFP_IS_CLOSED": (
+        True,
+        "If submitters can make changes to a proposal if the CFP is closed.",
+        bool,
+    ),
     "PROPOSAL_KEYWORDS": (False, "Support proposal keywords.", bool),
     "PROPOSAL_URL_FIELDS": (
         False,
@@ -267,6 +272,7 @@ CONSTANCE_CONFIG = {
 }
 CONSTANCE_CONFIG_FIELDSETS = {
     "Proposal Options": (
+        "PROPOSAL_EDITING_WHEN_CFP_IS_CLOSED",
         "PROPOSAL_KEYWORDS",
         "PROPOSAL_URL_FIELDS",
         "PROPOSALS_PER_PAGE",

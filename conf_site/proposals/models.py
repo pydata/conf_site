@@ -3,7 +3,8 @@ from django.core.cache import cache
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-from symposion.proposals.models import ProposalBase
+from constance import config
+from symposion.proposals.models import ProposalBase, ProposalSection
 from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
 
@@ -183,6 +184,14 @@ class Proposal(ProposalBase):
                 proposal=self, score=vote_score
             ).count()
             cache.set(cache_key, vote_count, settings.CACHE_TIMEOUT_LONG)
+
+    def can_edit(self):
+        if config.PROPOSAL_EDITING_WHEN_CFP_IS_CLOSED:
+            return True
+
+        # Determine whether this proposal's ProposalSection is open.
+        proposal_section = ProposalSection.objects.get(section=self.section)
+        return proposal_section.is_available()
 
     def feedback_count(self):
         """Helper method to retrieve feedback count."""
