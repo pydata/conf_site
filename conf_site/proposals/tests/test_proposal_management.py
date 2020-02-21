@@ -1,14 +1,10 @@
-from django.contrib.auth import get_user_model
 from django.urls import reverse
-from django.utils.crypto import get_random_string
 
-from faker import Faker
-
-from conf_site.proposals.tests import ProposalTestCase
+from conf_site.proposals.tests import ProposalSpeakerTestCase
 from symposion.speakers.models import Speaker
 
 
-class ProposalSpeakerManageViewTestCase(ProposalTestCase):
+class ProposalSpeakerManageViewTestCase(ProposalSpeakerTestCase):
     """Automated test cases for symposion's proposal_speaker_manage view."""
 
     INVITE_DUPLICATE_MESSAGE = (
@@ -18,29 +14,7 @@ class ProposalSpeakerManageViewTestCase(ProposalTestCase):
     INVITE_SUCCESS_MESSAGE = "Speaker invited to proposal."
 
     def setUp(self):
-        super(ProposalSpeakerManageViewTestCase, self).setUp()
-
-        self.faker = Faker()
-
-        user_model = get_user_model()
-        USER_EMAIL = self.faker.email()
-        USER_PASSWORD = get_random_string()
-        self.user = user_model.objects.create_user(
-            username=self.faker.profile()["username"],
-            email=USER_EMAIL,
-            password=USER_PASSWORD,
-        )
-        speaker = Speaker.objects.create(name=self.faker.name())
-        speaker.user = self.user
-        speaker.save()
-
-        # Overwrite speaker for this case's proposal.
-        self.proposal.speaker = speaker
-        self.proposal.save()
-
-        self.assertTrue(
-            self.client.login(username=USER_EMAIL, password=USER_PASSWORD)
-        )
+        super().setUp()
 
     def test_verify_proposal_jacking_does_not_work(self):
         """Verify that you can't manage a proposal that is not yours."""
