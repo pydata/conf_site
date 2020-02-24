@@ -52,7 +52,7 @@
             {% else %}
                 <h4>Your Proposals</h4>
                 {% if user.speaker_profile.proposals.exists %}
-                    <table class="table">
+                    <div class="table-responsive"><table class="table">
                         <tr>
                             <th>Title</th>
                             <th>Session type</th>
@@ -64,7 +64,7 @@
                                 {% include "symposion/proposals/_proposal_row.html" %}
                             {% endwith %}
                         {% endfor %}
-                    </table>
+                    </table></div>
                 {% else %}
                     <p>No proposals submitted yet.</p>
                 {% endif %}
@@ -72,7 +72,7 @@
                 {% associated_proposals as associated_proposals %}
                 {% if associated_proposals %}
                     <h4>Proposals you have joined as an additional speaker</h4>
-                    <table class="table">
+                    <div class="table-responsive"><table class="table">
                         <tr>
                             <th>Title</th>
                             <th>Session type</th>
@@ -82,13 +82,13 @@
                         {% for proposal in associated_proposals %}
                             {% include "symposion/proposals/_proposal_row.html" %}
                         {% endfor %}
-                    </table>
+                    </table></div>
                 {% endif %}
 
                 {% pending_proposals as pending_proposals %}
                 {% if pending_proposals %}
                     <h4>Proposals you have been invited to join</h4>
-                    <table class="table">
+                    <div class="table-responsive"><table class="table">
                         <tr>
                             <th>Title</th>
                             <th>Session type</th>
@@ -98,7 +98,7 @@
                         {% for proposal in pending_proposals %}
                             {% include "symposion/proposals/_pending_proposal_row.html" %}
                         {% endfor %}
-                    </table>
+                    </table></div>
                 {% endif %}
             {% endif %}
         </div>
