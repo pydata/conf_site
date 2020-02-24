@@ -873,7 +873,13 @@ label.formfield-required:after {
   .sp-logo-cs h2 {font-size:47px}
   .sp-logo-cs .sp {text-align:center !important;display: block;}
   #become-a-sponsor-row { margin: 0; }
-  .btn.btn1, .btn.btn2, .btn.btn3, .btn.btn4, .btn.btn6 {width:95%;padding-left:0px;padding-right:0px;min-width: 260px;}
+  .btn.btn1, .btn.btn2, .btn.btn3, .btn.btn4, .btn.btn6 {
+    font-size:25px;
+    min-width: 260px;
+    padding-left:0px;
+    padding-right:0px;
+    width:95%;
+  }
 #nst-con {overflow:hidden}
  #sec3 {width: 100%;display:block;padding-bottom: 0px;}
 #sec3 .container {display:block}
