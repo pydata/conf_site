@@ -20,6 +20,7 @@ def homepage_context(request):
     # If the homepage is not a HomePage (see models.py), it
     # won't have any of these custom fields.
     if type(home_page) == HomePage:
+        context["logo_image"] = home_page.logo_image
         context["ticketing_url"] = home_page.ticketing_url
         context["footer1_section"] = home_page.footer1_section
         context["footer_email"] = home_page.footer_email
