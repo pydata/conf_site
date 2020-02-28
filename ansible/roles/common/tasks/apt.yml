@@ -10,6 +10,7 @@
   apt:
     name:
       - git
+      - gpg
       - logrotate
       - ntp
       - python-pycurl
