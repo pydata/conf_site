@@ -2,18 +2,18 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.5.5-stretch
+      - image: circleci/python:3.7-buster
         environment:
           ANSIBLE_ASK_VAULT_PASS: False
           CC_TEST_REPORTER_ID: cf5093a40c8088ad26a5aca3e968037f90076dcbc825e5d10187dc3c81166e1a
           DJANGO_SETTINGS_MODULE: "conf_site.settings.testing"
           PGHOST: 127.0.0.1
           PYTHONWARNINGS: all
-      - image: circleci/postgres:9.6.10
+      - image: circleci/postgres:11.6
         environment:
           POSTGRES_USER: circleci
           POSTGRES_DB: testing
-      - image: redis:3.2.6
+      - image: redis:5.0-buster
     working_directory: ~/repo
     steps:
       - checkout

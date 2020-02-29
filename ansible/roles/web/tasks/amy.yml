@@ -1,7 +1,7 @@
 # Tasks specifically related to AMY integration.
 
 - name: install pexpect package systemwide so Ansible can use it
-  pip: name=pexpect version=4.2.0
+  pip: name=pexpect
   become: true
 
 # Creating a Django user account will fail if a user with that same
