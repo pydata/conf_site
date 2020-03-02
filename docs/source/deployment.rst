@@ -155,9 +155,8 @@ steps are not necessary to be run manually for PyData conference sites.
     DJANGO_SETTINGS_MODULE="conf_site.settings.production" ./manage.py loaddata fixtures/*
 
 - **Add a banner image** (required), appropriate text sections (recommended),
-  Mailchimp list ID (optional, but necessary to have the mailing list
-  subscription section show up), and ticketing website URL (optional,
-  but enables ticketing links in the main menu and footer) to the homepage.
+  and ticketing website URL (optional, but enables ticketing links
+  in the main menu and footer) to the homepage.
 - **Manually create any additional pages**.
 - **Add a main menu** in the "Settings" menu of the Wagtail admin. Only
   top-level menu items need to be added. *All pages that need to appear in the
