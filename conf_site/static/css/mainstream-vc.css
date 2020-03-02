@@ -411,47 +411,16 @@ html,body {
   text-align: center;
   color: #ffffff;
 }
-  #subscibe form {
+#subscibe div.container {
     max-width: 848px;
     margin: 0px auto;
 }
-  #subscibe form .inputbox-cs{
-  width: 100%;
-  min-height: 55px;
-  background-color: #ffffff;
-  font-family: 'Open Sans';
-  font-size: 24px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  text-align: left;
-  color: #3b3b3a;
-  display: block;
-  padding-right: 175px;
-  padding-left: 10px;
-  line-height: 130%;
-}
-#subscibe form p{display:inline-block;width: 100%;position: relative;}
-#subscibe form .sm-smb {
-  min-width: 171px;
-  min-height: 55px;
+#subscibe a.btn {
   background-color: #12ccea;
-  font-family: 'Nunito'; transition:all 233ms ease;
-    font-size: 24px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  text-align: center;
-  color: #ffffff;
-  border:none;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  border: 1px solid transparent;
-  border-left: 0px;
+  border-color: #12ccea;
+  margin: 0px 33%;
 }
-#subscibe form .sm-smb:hover {background-color: #595f73;color: #12ccea;border-color:#FFF}
-
+#subscibe a.btn:hover {background-color: #595f73;color: #12ccea;border-color:#FFF}
 #early-b2 {min-height: 352px;text-align:center;background-color: #3cb3d3;padding-bottom: 20px;}
 #early-b2 h2 {  font-family: 'Dosis';
   font-size: 52px; margin-top:70px;
