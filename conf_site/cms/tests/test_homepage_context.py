@@ -1,8 +1,11 @@
-from django.test import TestCase
+from django.core.files.images import ImageFile
+from django.test import override_settings, TestCase
 from django.urls import reverse
 
+from faker import Faker
 from symposion.conference.models import Conference
 from wagtail.core.models import Site
+from wagtail.images import get_image_model
 
 from conf_site.cms.models import HTMLPage, HomePage
 
@@ -46,3 +49,31 @@ class HomePageContextTestCase(TestCase):
     def test_symposion_page_context(self):
         response = self.client.get(reverse("account_login"))
         self.assertEqual(response.context["ticketing_url"], self.EXAMPLE_URL)
+
+    @override_settings(
+        STATICFILES_STORAGE=(
+            "django.contrib.staticfiles.storage.StaticFilesStorage"
+        )
+    )
+    def test_logo_image(self):
+        homepage = HomePage.objects.get()
+        self.assertIsNone(homepage.logo_image)
+        with self.settings(CONFERENCE_ID=self.conference.id):
+            # Test that default logo image appears.
+            response = self.client.get(homepage.url)
+            self.assertContains(response, "/logo.png")
+            # Replace default logo with a new image.
+            test_logo_name = Faker().uuid4()
+            image_file = ImageFile(
+                open("conf_site/cms/tests/test-logo.png", "rb"), test_logo_name
+            )
+            ImageModel = get_image_model()
+            image = ImageModel(file=image_file)
+            # The image must be saved before it is attached
+            # to the homepage.
+            image.save()
+            homepage.logo_image = image
+            homepage.save()
+            response = self.client.get(homepage.url)
+            self.assertNotContains(response, "/logo.288981a8dfa8.png")
+            self.assertContains(response, test_logo_name)
