@@ -1,6 +1,8 @@
 {% load i18n %}
 
 <dl class="dl-horizontal">
+    <dt>{% trans "Category" %}</dt>
+    <dd>{{ proposal.kind.name }}</dd>
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
     <dt>{% trans "Submitted by" %}</dt>
     <dd>{{ proposal.speaker.name }}</dd>
