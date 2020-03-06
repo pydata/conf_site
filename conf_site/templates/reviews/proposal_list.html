@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap i18n review_tags %}
+{% load crispy_forms_tags i18n review_tags %}
 {% load static from staticfiles %}
 
 {% block title %} - Reviewing {{ proposal_category }} Proposals{% endblock %}
@@ -83,7 +83,7 @@
   <div id="send-email-section">
     <h3>Send Email Message</h3>
     <p><em>This will send an email message to all selected proposals.</em></p>
-    {{ notification_form|bootstrap }}
+    {{ notification_form|crispy }}
     <div class="btn-group" role="group" style="margin-bottom: 1rem">
       <button type="submit" class="btn btn-standard" name="send_notification" value="EHLO">
         <i class="fa fa-envelope" aria-hidden="true"></i> Send Email Message

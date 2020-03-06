@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load bootstrap i18n %}
+{% load crispy_forms_tags i18n %}
 
 {% block title %} - Submit a Proposal for a {{ kind.name }}{% endblock %}
 
@@ -11,7 +11,7 @@
         {% csrf_token %}
         <fieldset>
             <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ proposal_form|bootstrap }}
+            {{ proposal_form|crispy }}
         </fieldset>
         <div class="form-group form-actions">
             <p>

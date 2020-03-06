@@ -1,4 +1,4 @@
-{% load bootstrap i18n %}
+{% load crispy_forms_tags i18n %}
 <div class="tab-pane" id="proposal-feedback">
     {% for feedback in proposal.review_feedback.all %}<hr><p>
       {% if not request.user.is_superuser and config.BLIND_AUTHORS and actor == "speaker" and feedback.author != request.user %}
@@ -14,7 +14,7 @@
         <legend>Write Feedback:</legend>
         {% csrf_token %}
         <input type="hidden" name="proposal_id" value="{{ proposal.id }}">
-        {{ feedback_form|bootstrap }}
+        {{ feedback_form|crispy }}
         <div class="form-action">
           <input type="submit" class="btn btn-primary" name="feedback_submit" value="Submit Feedback" />
         </div>
