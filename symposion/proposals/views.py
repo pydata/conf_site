@@ -95,7 +95,10 @@ def proposal_submit_kind(request, kind_slug):
     if not kind.section.proposalsection.is_available():
         return redirect("proposal_submit")
 
-    form_class = get_form(settings.PROPOSAL_FORMS[kind_slug])
+    try:
+        form_class = get_form(settings.PROPOSAL_FORMS[kind_slug])
+    except KeyError:
+        form_class = get_form(settings.DEFAULT_PROPOSAL_FORM)
 
     if request.method == "POST":
         form = form_class(request.POST)
@@ -223,7 +226,10 @@ def proposal_edit(request, pk):
         }
         return render(request, "symposion/proposals/proposal_error.html", ctx)
 
-    form_class = get_form(settings.PROPOSAL_FORMS[proposal.kind.slug])
+    try:
+        form_class = get_form(settings.PROPOSAL_FORMS[proposal.kind.slug])
+    except KeyError:
+        form_class = get_form(settings.DEFAULT_PROPOSAL_FORM)
 
     if request.method == "POST":
         form = form_class(request.POST, instance=proposal)
