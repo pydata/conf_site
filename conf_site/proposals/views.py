@@ -40,7 +40,9 @@ class ExportProposalsView(CsvView):
     header_row = [
         "Number",
         "Title",
-        "Primary Speaker",
+        "Primary Speaker Name",
+        "Primary Speaker Email",
+        "All Speaker Email Addresses",
         "Kind",
         "Audience Level",
         "Date Created",
@@ -50,11 +52,16 @@ class ExportProposalsView(CsvView):
     def get(self, *args, **kwargs):
         # Iterate through proposals.
         for proposal in Proposal.objects.order_by("pk"):
+            accepted_speaker_email_addresses = ", ".join(
+                speaker.email for speaker in proposal.speakers()
+            )
             self.csv_writer.writerow(
                 [
                     proposal.number,
                     proposal.title,
                     proposal.speaker.name,
+                    proposal.speaker.email,
+                    accepted_speaker_email_addresses,
                     proposal.kind.name,
                     proposal.get_audience_level_display(),
                     proposal.date_created,
