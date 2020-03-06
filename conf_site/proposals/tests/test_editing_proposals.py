@@ -19,14 +19,9 @@ class ProposalEditingViewTestCase(ProposalSpeakerTestCase):
 
     def _proposal_edit_response(self):
         """Helper method to get response from `proposal_edit` view."""
-        proposal_kind_slug = self.proposal.kind.slug
-        proposal_forms = {
-            proposal_kind_slug: "conf_site.proposals.forms.ProposalForm"
-        }
-        with self.settings(PROPOSAL_FORMS=proposal_forms):
-            return self.client.get(
-                reverse("proposal_edit", args=[self.proposal.pk])
-            )
+        return self.client.get(
+            reverse("proposal_edit", args=[self.proposal.pk])
+        )
 
     @override_config(PROPOSAL_EDITING_WHEN_CFP_IS_CLOSED=True)
     def test_ability_to_edit_if_setting_is_disabled(self):
