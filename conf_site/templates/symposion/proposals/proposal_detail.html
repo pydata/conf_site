@@ -32,9 +32,6 @@
     <div class="tabbable">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#proposal-detail" data-toggle="tab">{% trans "Proposal Details" %}</a></li>
-            {% if request.user == proposal.speaker.user %}
-                <li><a href="#proposal-documents" data-toggle="tab">{% trans "Supporting Documents" %}</a></li>
-            {% endif %}
             {% if feedback_form %}
                 <li><a href="#proposal-feedback" data-toggle="tab">{% trans "Reviewer Feedback" %} <span class="badge">{{ proposal.feedback_count }}</span></a></li>
             {% endif %}
@@ -43,35 +40,6 @@
             <div class="tab-pane active" id="proposal-detail">
                 {% include "symposion/proposals/_proposal_fields.html" %}
             </div>
-            {% if request.user == proposal.speaker.user %}
-                <div class="tab-pane" id="proposal-documents">
-                    <h3>{% trans 'Supporting Documents' %}</h3>
-
-                    {% if proposal.supporting_documents.exists %}
-                        <table class="table table-striped">
-                            {% for document in proposal.supporting_documents.all %}
-                                <tr>
-                                    <td><a href="{{ document.download_url }}">{{ document.description }}</a></td>
-                                    <td>
-                                    <form style="margin: 0;" method="post" action="{% url "proposal_document_delete" document.pk %}">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn">{% trans 'delete' %}</button>
-                                    </form>
-                                </td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    {% else %}
-                        <p>{% trans 'No supporting documents attached to this proposal.' %}</p>
-                    {% endif %}
-
-                    <a class="btn btn-sm{% if proposal.cancelled %} btn-disabled{% endif %}"
-                        href="{% url "proposal_document_create" proposal.pk %}">
-                        <i class="fa fa-upload"></i> {% trans 'Add Document' %}</a>
-
-                </div>
-            {% endif %}
-
             {% if feedback_form %}
                 {% include "reviews/_proposal_feedback_tab.html" %}
             {% endif %}
