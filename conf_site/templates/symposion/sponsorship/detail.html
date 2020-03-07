@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 {% load i18n %}
 
 {% block title %} - {{ sponsor }}{% endblock %}
@@ -14,7 +14,7 @@
     <form enctype="multipart/form-data" method="POST" action="" class="form-horizontal">
         {% csrf_token %}
         <fieldset>
-            {{ form|bootstrap_horizontal }}
+            {% crispy form %}
         </fieldset>
 
         <h3>{{ sponsor.level }} Sponsor Benefits</h3>
@@ -28,7 +28,7 @@
                     {{ form.instance.benefit }}
                 </label>
                 <div class="col-sm-10 col-lg-10">
-                    {{ form|bootstrap_horizontal }}
+                    {% crispy form %}
                 </div>
             </div>
         {% endfor %}

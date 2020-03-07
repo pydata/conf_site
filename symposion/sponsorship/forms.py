@@ -5,6 +5,9 @@ from django.forms.models import inlineformset_factory, BaseInlineFormSet
 from django.contrib.admin.widgets import AdminFileWidget
 from django.utils.translation import ugettext_lazy as _
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout
+
 from symposion.sponsorship.models import Sponsor, SponsorBenefit
 
 
@@ -22,6 +25,18 @@ class SponsorApplicationForm(forms.ModelForm):
             }
         )
         super(SponsorApplicationForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper(self)
+        self.helper.field_class = "col-sm-10 col-lg-10"
+        self.helper.form_tag = False
+        self.helper.label_class = "col-sm-2 col-lg-2"
+        self.helper.layout = Layout(
+            "name",
+            "external_url",
+            "contact_name",
+            "contact_email",
+            "level",
+        )
 
     class Meta:
         model = Sponsor
@@ -42,6 +57,20 @@ class SponsorApplicationForm(forms.ModelForm):
 
 
 class SponsorDetailsForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.helper = FormHelper(self)
+        self.helper.field_class = "col-sm-10 col-lg-10"
+        self.helper.form_tag = False
+        self.helper.label_class = "col-sm-2 col-lg-2"
+        self.helper.layout = Layout(
+            "name",
+            "external_url",
+            "contact_name",
+            "contact_email",
+        )
+
     class Meta:
         model = Sponsor
         fields = ["name", "external_url", "contact_name", "contact_email"]

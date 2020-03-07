@@ -139,8 +139,8 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "analytical",
-    "bootstrapform",
     "constance",
+    "crispy_forms",
     "easy_thumbnails",
     "modelcluster",
     "pinax.eventlog",
@@ -279,6 +279,7 @@ CONSTANCE_CONFIG_FIELDSETS = {
     ),
     "Reviewing Options": ("BLIND_AUTHORS", "BLIND_REVIEWERS"),
 }
+CRISPY_TEMPLATE_PACK = "bootstrap3"
 CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"
 DEFAULT_PROPOSAL_FORM = "conf_site.proposals.forms.ProposalForm"
 LOGIN_REDIRECT_URL = "dashboard"

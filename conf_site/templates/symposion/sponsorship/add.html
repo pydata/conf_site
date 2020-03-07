@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 {% load i18n %}
 
 {% block title %} - {% trans "Add a Sponsor" %}{% endblock %}
@@ -14,7 +14,7 @@
         {% csrf_token %}
         <fieldset>
             <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ form|bootstrap_horizontal }}
+            {% crispy form %}
         </fieldset>
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="Add" />

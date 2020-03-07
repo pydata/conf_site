@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 
 {% block title %} - Manage Speakers{% endblock %}
 
@@ -54,7 +54,7 @@
 
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ add_speaker_form|bootstrap }}
+        {{ add_speaker_form|crispy }}
         <div class="form-action">
             <input type="submit" value="Add speaker" class="btn btn-primary" />
         </div>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 
 {% block title %} - {% trans "Login" %}{% endblock %}
 
@@ -12,7 +12,7 @@
     <div class="row">
         <form method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
             {% csrf_token %}
-            {{ form|bootstrap }}
+            {{ form|crispy }}
             {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 
 {% block title %} - {{ team.name }}{% endblock %}
 
@@ -93,7 +93,7 @@
             <form method="POST" action="" class="form-horizontal">
                 {% csrf_token %}
                 <legend>Invite User to Team</legend>
-                {{ invite_form|bootstrap_horizontal }}
+                {{ invite_form|crispy }}
                 <div class="form-actions">
                     <input class="btn btn-primary" type="submit" value="Invite" />
                 </div>

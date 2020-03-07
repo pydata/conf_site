@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load bootstrap i18n wagtailsettings_tags %}
+{% load crispy_forms_tags i18n wagtailsettings_tags %}
 {% get_settings %}
 
 {% block title %} - {% trans "Apply to be a Sponsor" %}{% endblock %}
@@ -16,7 +16,7 @@
         {% csrf_token %}
         <fieldset>
             <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ form|bootstrap_horizontal }}
+            {% crispy form %}
         </fieldset>
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="Apply" />

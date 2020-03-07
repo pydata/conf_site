@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load bootstrap i18n %}
+{% load crispy_forms_tags i18n %}
 
 {% block title %} - {% trans "Edit Speaker Profile" %}{% endblock %}
 
@@ -11,7 +11,7 @@
         {% csrf_token %}
         <fieldset>
             <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ speaker_form|bootstrap }}
+            {{ speaker_form|crispy }}
         </fieldset>
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="Save" />
