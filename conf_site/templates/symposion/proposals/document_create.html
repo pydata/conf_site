@@ -9,7 +9,7 @@
     <form method="POST" action="" enctype="multipart/form-data" class="form form-horizontal">
         {% csrf_token %}
         <fieldset>
-            {{ form|bootstrap_horizontal }}
+            {{ form|crispy }}
         </fieldset>
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="Upload" />
