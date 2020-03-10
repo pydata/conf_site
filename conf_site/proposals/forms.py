@@ -1,8 +1,6 @@
 from django import forms
 
-from constance import config
-
-from .models import Proposal, ProposalKeyword
+from conf_site.proposals.models import Proposal
 
 
 class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
@@ -27,10 +25,6 @@ class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
 
 
 class ProposalForm(forms.ModelForm):
-    official_keywords = ModelMultipleTagChoiceField(
-        label="Official Keywords",
-        queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501
-
     class Meta:
         model = Proposal
         fields = [
@@ -48,23 +42,11 @@ class ProposalForm(forms.ModelForm):
             "accomodation_needs",
             "recording_release",
             "phone_number",
-            "slides_url",
-            "code_url",
-            "official_keywords",
-            "user_keywords",
         ]
 
     def __init__(self, *args, **kwargs):
         super(ProposalForm, self).__init__(*args, **kwargs)
 
-        # Don't display keyword fields if keyword support is disabled.
-        if not config.PROPOSAL_KEYWORDS:
-            del self.fields["official_keywords"]
-            del self.fields["user_keywords"]
-        # Don't display slide and code repo fields if support is disabled.
-        if not config.PROPOSAL_URL_FIELDS:
-            del self.fields["slides_url"]
-            del self.fields["code_url"]
 
     def clean_description(self):
         value = self.cleaned_data["description"]
