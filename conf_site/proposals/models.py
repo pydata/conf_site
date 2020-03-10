@@ -68,6 +68,23 @@ class Proposal(ProposalBase):
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
+    target_audience = models.TextField(
+        "Target Audience",
+        blank=True,
+        help_text=(
+            "Please provide details of the level of programming and "
+            "other topic-specific experience this tutorial is aiming for. "
+            "Who is this tutorial the most beneficial for?"
+        )
+    )
+    format = models.TextField(
+        blank=True,
+        help_text=(
+            "Please describe what portion of your tutorial you plan "
+            "to spend on student exercises, lecture, or other activities."
+        ),
+    )
+
     slides_url = models.URLField(
         blank=True,
         default="",
