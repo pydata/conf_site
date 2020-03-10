@@ -107,6 +107,18 @@ class Proposal(ProposalBase):
         max_length=1)
     affiliation = models.CharField(blank=True, default="", max_length=200)
 
+    requests = models.TextField(
+        "Requests",
+        blank=True,
+        default="",
+        help_text=(
+            "Let us know if you have specific needs or special requests — "
+            "for example, requests that involve accessibility, audio, or "
+            "restrictions on when your proposal can be scheduled. "
+            "We will be providing appropriate seating for attendees, "
+            "a projector, and a microphone for you."
+        )
+    )
     gender = models.CharField(
         "What is your gender?  (Female, Male, Non-binary, Other)",
         blank=True,
