@@ -100,12 +100,14 @@ class Proposal(ProposalBase):
         verbose_name="Repository")
 
     first_time_at_jupytercon = models.CharField(
-        "Is this your first time speaking at JupyterCon?",
+        "Is this your first time presenting at JupyterCon?",
         choices=YES_NO_OTHER_ANSWERS,
         blank=True,
         default="",
         max_length=1)
-    affiliation = models.CharField(max_length=200)
+    affiliation = models.CharField(
+        help_text="For the purpose of this talk.", max_length=200
+    )
 
     requests = models.TextField(
         "Requests",
@@ -120,17 +122,20 @@ class Proposal(ProposalBase):
         )
     )
     gender = models.CharField(
-        "What is your gender?  (Female, Male, Non-binary, Other)",
+        "What is your gender?",
         blank=True,
         default="",
         max_length=200,
     )
     referral = models.CharField(
-        "Where did you hear about this CFP?  Please include sharer "
-        "(specific organization) and platform "
-        "(Examples:  Blogpost, Twitter, LinkedIn, Slack, etc.)",
+        "Where did you hear about this CFP?",
         blank=True,
         default="",
+        help_text=(
+            "Please include the source (e.g. organization, individual) "
+            "and the channel/platform (e.g. Twitter, LinkedIn, Slack, "
+            "email, blog post, etc.)."
+        ),
         max_length=200,
     )
     under_represented_group = models.CharField(
@@ -139,14 +144,18 @@ class Proposal(ProposalBase):
         "or other self-reported category?",
         blank=True,
         default="",
+        help_text="If so, please list.",
         max_length=200,
     )
     accomodation_needs = models.CharField(
-        "Do you have any accommodation needs at the conference? "
-        "Examples include: sign language, closed captioning, mobility, "
-        "mother's room, etc. ",
+        "Do you have specific​ accessibility needs at the conference​?",
         blank=True,
         default="",
+        help_text=(
+            "Examples include, but not limited to: sign language, "
+            "closed captioning, mobility, parent room, diet, etc. "
+            "Please indicate the specific need so we can plan in advance."
+        ),
         max_length=200,
     )
 

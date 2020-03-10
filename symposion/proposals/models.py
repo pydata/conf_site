@@ -99,35 +99,46 @@ class ProposalBase(models.Model):
         ProposalKind, on_delete=models.CASCADE, verbose_name=_("Kind")
     )
 
-    title = models.CharField(max_length=100, verbose_name=_("Title"))
+    title = models.CharField(
+        help_text=(
+            "A clear title should convey in a few words "
+            "what your talk is about."
+        ),
+        max_length=100,
+        verbose_name=_("Title"),
+    )
     description = models.TextField(
-        _("Brief Summary"),
+        _("Brief summary"),
         max_length=400,  # @@@ need to enforce 400 in UI
         help_text=_(
-            "If your proposal is accepted this will be made public "
-            "and printed in the program. Should be one paragraph, "
-            "maximum 400 characters."
+            "Short, maximum 400 words. "
+            "If your proposal is accepted this will be public "
+            "and printed in the program. Should be one paragraph."
         ),
     )
     abstract = models.TextField(
-        _("Description"),
+        _("Outline"),
         help_text=_(
-            "Detailed outline. Will be made public "
-            "if your proposal is accepted. Edit using "
-            "<a href='https://daringfireball.net/projects/markdown/basics' "
-            "target='_blank'>Markdown</a>."
+            "This is a self-contained statement that summarizes "
+            "the objective of the proposal, its outline, central thesis, "
+            "and key takeaways. After reading the description, "
+            "the audience should have an idea of the overall presentation "
+            "and know what to expect. The description should also make clear "
+            "what background knowledge is expected from the attendees. "
+            "Include links to relevant source code, articles, videos, "
+            "or other information that add context to your proposal."
         ),
     )
     abstract_html = models.TextField(blank=True, editable=False)
     additional_notes = models.TextField(
-        _("Additional Notes"),
+        _(
+            "Past experience and any other information "
+            "you would like the reviewers to know."
+        ),
         blank=True,
         help_text=_(
-            "Anything else you'd like the program committee to know "
-            "when making their selection: your past experience, etc. "
-            "This is not made public. Edit using "
-            "<a href='https://daringfireball.net/projects/markdown/basics' "
-            "target='_blank'>Markdown</a>."
+            "If you have given a talk or poster before, "
+            "feel free to include links to slides or videos."
         ),
     )
     additional_notes_html = models.TextField(blank=True, editable=False)
