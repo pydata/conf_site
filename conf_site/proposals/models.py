@@ -105,7 +105,7 @@ class Proposal(ProposalBase):
         blank=True,
         default="",
         max_length=1)
-    affiliation = models.CharField(blank=True, default="", max_length=200)
+    affiliation = models.CharField(max_length=200)
 
     requests = models.TextField(
         "Requests",
