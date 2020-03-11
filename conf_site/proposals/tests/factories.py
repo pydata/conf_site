@@ -14,6 +14,17 @@ class ProposalFactory(factory.django.DjangoModelFactory):
     kind = factory.SubFactory(ProposalKindFactory)
     speaker = factory.SubFactory(SpeakerFactory)
     audience_level = factory.Faker("pyint")
+    target_audience = factory.Faker("sentence")
+    format = factory.Faker("sentence")
+    first_time_at_jupytercon = factory.Iterator(
+        Proposal.YES_NO_OTHER_ANSWERS, getter=lambda c: c[0]
+    )
+    affiliation = factory.Faker("sentence")
+    requests = factory.Faker("sentence")
+    gender = factory.Faker("sentence")
+    referral = factory.Faker("sentence")
+    under_represented_group = factory.Faker("sentence")
+    accomodation_needs = factory.Faker("sentence")
 
     class Meta:
         model = Proposal
