@@ -107,3 +107,94 @@ class ProposalForm(forms.ModelForm):
                 u"The description must be less than 400 characters"
             )
         return value
+
+
+class TutorialForm(ProposalForm):
+    class Meta:
+        model = Proposal
+        fields = [
+            "title",
+            "audience_level",
+            "target_audience",
+            "description",
+            "format",
+            "abstract",
+            "affiliation",
+            "additional_notes",
+            "first_time_at_jupytercon",
+            "requests",
+            "gender",
+            "referral",
+            "under_represented_group",
+            "accomodation_needs",
+            "recording_release",
+            "phone_number",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Make Tutorial-specific fields required.
+        # Since these fields aren't required for talks, they
+        # can't be defined in the Proposal model.
+        self.fields["target_audience"].required = True
+        self.fields["format"].required = True
+
+        # Update Tutorial-specific help text.
+        self.fields["title"].help_text = (
+            "A clear title should convey "
+            "in a few words what your tutorial is about."
+        )
+        self.fields["abstract"].help_text = (
+            "Your outline should list the topics and activities you will "
+            "guide your students through during your 3-hour tutorial."
+        )
+        self.fields["affiliation"].help_text = (
+            "For the purpose of this tutorial."
+        )
+        self.fields["additional_notes"].help_text = (
+            "Please summarize your teaching or public speaking experience, "
+            "as well as your experience with the subject of the tutorial."
+        )
+
+        self.helper.layout = Layout(
+            Fieldset(
+                SECTION1_LEGEND,
+                "title",
+                "audience_level",
+                "target_audience",
+                "description",
+                "format",
+                "abstract",
+                "affiliation",
+            ),
+            Fieldset(
+                SECTION2_LEGEND,
+                "additional_notes",
+                "first_time_at_jupytercon",
+            ),
+            Fieldset(
+                SECTION3_LEGEND,
+                "requests",
+                "gender",
+                "referral",
+                "under_represented_group",
+                "accomodation_needs",
+            ),
+            "recording_release",
+            "phone_number",
+        )
+
+
+class PosterForm(ProposalForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Update Poster-specific help text.
+        self.fields["title"].help_text = (
+            "A clear title should convey "
+            "in a few words what your poster is about."
+        )
+        self.fields["affiliation"].help_text = (
+            "For the purpose of this poster."
+        )
