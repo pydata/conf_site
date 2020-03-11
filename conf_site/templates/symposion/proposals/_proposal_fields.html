@@ -43,27 +43,53 @@
         {% endif %}
     {% endif %}
 
-    <dt>{% trans "Description" %}</dt>
+    {% if proposal.target_audience %}
+    <dt>Target Audience</dt>
+    <dd>{{ proposal.target_audience }}</dd>
+    {% endif %}
+
+    <dt>Brief Summary</dt>
     <dd>{{ proposal.description }}&nbsp;</dd>
 
-    <dt>{% trans "Abstract" %}</dt>
+    {% if proposal.format %}
+    <dt>Format</dt>
+    <dd>{{ proposal.format }}</dd>
+    {% endif %}
+
+    <dt>Outline</dt>
     <dd>{{ proposal.abstract_html|safe }}&nbsp;</dd>
 
-    {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
-    <dt>{% trans "Notes" %}</dt>
+    <hr>
+
+    <dt>Past Experience</dt>
     <dd>{{ proposal.additional_notes_html|safe }}&nbsp;</dd>
+
+    <dt>First time speaker?</dt>
+    <dd>{{ proposal.get_first_time_at_jupytercon_display }}&nbsp;</dd>
+
+    <hr>
+
+    {% if request.user == proposal.speaker.user %}
+    <div class="alert alert-info" role="alert">
+        <p>Reviewers cannot view the following information.</p>
+    </div>
+    <dt>Requests</dt>
+    <dd>{{ proposal.requests }}&nbsp;</dd>
+    <dt>Gender</dt>
+    <dd>{{ proposal.gender }}&nbsp;</dd>
+    <dt>Referral</dt>
+    <dd>{{ proposal.referral }}&nbsp;</dd>
+    <dt>Group Identity</dt>
+    <dd>{{ proposal.under_represented_group }}&nbsp;</dd>
+    <dt>Accessibility Needs</dt>
+    <dd>{{ proposal.accomodation_needs }}&nbsp;</dd>
     {% endif %}
 
-    {% if config.PROPOSAL_URL_FIELDS %}
-        {% if proposal.slides_url %}
-            <dt>Slides</dt>
-            <dd><a href="{{ proposal.slides_url }}">{{ proposal.slides_url }}</a></dd>
-        {% endif %}
-        {% if proposal.code_url %}
-            <dt>Code</dt>
-            <dd><a href="{{ proposal.code_url }}">{{ proposal.code_url }}</a></dd>
-        {% endif %}
-    {% endif %}
+    <hr>
+    <dt>Recording Release</dt>
+    <dd>{{ proposal.recording_release }}&nbsp;</dd>
+    <dt>Phone Number</dt>
+    <dd>{{ proposal.phone_number }}&nbsp;</dd>
 
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
     <dt>{% trans "Speaker Bio" %}</dt>
