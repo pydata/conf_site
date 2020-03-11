@@ -77,7 +77,7 @@ class Proposal(ProposalBase):
             "Who is this tutorial the most beneficial for?"
         )
     )
-    format = models.TextField(
+    tutorial_format = models.TextField(
         blank=True,
         help_text=(
             "Please describe what portion of your tutorial you plan "

@@ -117,7 +117,7 @@ class TutorialForm(ProposalForm):
             "audience_level",
             "target_audience",
             "description",
-            "format",
+            "tutorial_format",
             "abstract",
             "affiliation",
             "additional_notes",
@@ -138,7 +138,7 @@ class TutorialForm(ProposalForm):
         # Since these fields aren't required for talks, they
         # can't be defined in the Proposal model.
         self.fields["target_audience"].required = True
-        self.fields["format"].required = True
+        self.fields["tutorial_format"].required = True
 
         # Update Tutorial-specific help text.
         self.fields["title"].help_text = (
@@ -164,7 +164,7 @@ class TutorialForm(ProposalForm):
                 "audience_level",
                 "target_audience",
                 "description",
-                "format",
+                "tutorial_format",
                 "abstract",
                 "affiliation",
             ),

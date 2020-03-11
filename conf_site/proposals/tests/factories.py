@@ -15,7 +15,7 @@ class ProposalFactory(factory.django.DjangoModelFactory):
     speaker = factory.SubFactory(SpeakerFactory)
     audience_level = factory.Faker("pyint")
     target_audience = factory.Faker("sentence")
-    format = factory.Faker("sentence")
+    tutorial_format = factory.Faker("sentence")
     first_time_at_jupytercon = factory.Iterator(
         Proposal.YES_NO_OTHER_ANSWERS, getter=lambda c: c[0]
     )
