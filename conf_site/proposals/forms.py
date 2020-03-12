@@ -67,10 +67,24 @@ class ProposalForm(forms.ModelForm):
             "accomodation_needs",
             "recording_release",
             "phone_number",
+            "gdpr_grant",
+            "gdpr_revoke_awareness",
+            "gdpr_data_exemption",
         ]
 
     def __init__(self, *args, **kwargs):
         super(ProposalForm, self).__init__(*args, **kwargs)
+
+        # Ensure that GDPR checkboxes are required.
+        # This should happen automatically - see
+        # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#booleanfield
+        # but doesn't for some reason when the form is rendered with
+        # django-crispy-forms. This doesn't seem to be an inherent
+        # bug in the library, so it's not clear what part of our
+        # configuration here is causing it.
+        self.fields["gdpr_grant"].required = True
+        self.fields["gdpr_revoke_awareness"].required = True
+        self.fields["gdpr_data_exemption"].required = True
 
         self.helper = FormHelper()
         self.helper.form_tag = False
@@ -98,6 +112,12 @@ class ProposalForm(forms.ModelForm):
             ),
             "recording_release",
             "phone_number",
+            Fieldset(
+                "",
+                "gdpr_grant",
+                "gdpr_revoke_awareness",
+                "gdpr_data_exemption",
+            ),
         )
 
     def clean_description(self):
@@ -129,6 +149,9 @@ class TutorialForm(ProposalForm):
             "accomodation_needs",
             "recording_release",
             "phone_number",
+            "gdpr_grant",
+            "gdpr_revoke_awareness",
+            "gdpr_data_exemption",
         ]
 
     def __init__(self, *args, **kwargs):
@@ -183,6 +206,12 @@ class TutorialForm(ProposalForm):
             ),
             "recording_release",
             "phone_number",
+            Fieldset(
+                "",
+                "gdpr_grant",
+                "gdpr_revoke_awareness",
+                "gdpr_data_exemption",
+            ),
         )
 
 

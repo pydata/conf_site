@@ -191,6 +191,37 @@ class Proposal(ProposalBase):
         related_name="user_tagged_proposals",
         through=UserTaggedProposal)
 
+    gdpr_grant = models.BooleanField(
+        (
+            "I hereby grant NumFOCUS [P.O. Box 90596, Austin, TX 78709, USA] "
+            "the right to use this information for the purpose of organizing "
+            "the event JupyterCon according to GDPR."
+        ),
+        default=False,
+    )
+    gdpr_revoke_awareness = models.BooleanField(
+        (
+            "I am aware that I can revoke this permission at any time "
+            "according to Art. 7(1) GDPR. This withdrawal of consent "
+            "can be sent to [NumFOCUS, P.O. Box 90596, Austin, TX 78709, USA, "
+            "privacy@numfocus.org, +1 ​(512) 831-2870]. "
+            "The withdrawal of consent "
+            "shall not affect the lawfulness of processing based on consent "
+            "before its withdrawal however."
+        ),
+        default=False,
+    )
+    gdpr_data_exemption = models.BooleanField(
+        (
+            "If I chose to provide NumFOCUS with data about my ethnic origin, "
+            "data concerning my health or data concerning my sexual "
+            "orientation I hereby exempt them from the prohibition "
+            "in Art. 9(1) GDPR to process such personal data "
+            "until I withdraw this permission."
+        ),
+        default=False,
+    )
+
     date_created = models.DateTimeField(
         auto_now_add=True,
         null=True,
