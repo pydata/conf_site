@@ -284,8 +284,9 @@ CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"
 DEFAULT_PROPOSAL_FORM = "conf_site.proposals.forms.ProposalForm"
 LOGIN_REDIRECT_URL = "dashboard"
 PROPOSAL_FORMS = {
+    "poster": "conf_site.proposals.forms.PosterForm",
     "talk": "conf_site.proposals.forms.ProposalForm",
-    "tutorial": "conf_site.proposals.forms.ProposalForm",
+    "tutorial": "conf_site.proposals.forms.TutorialForm",
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 STATICFILES_STORAGE = (

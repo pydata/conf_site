@@ -68,6 +68,23 @@ class Proposal(ProposalBase):
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
+    target_audience = models.TextField(
+        "Target Audience",
+        blank=True,
+        help_text=(
+            "Please provide details of the level of programming and "
+            "other topic-specific experience this tutorial is aiming for. "
+            "Who is this tutorial the most beneficial for?"
+        )
+    )
+    tutorial_format = models.TextField(
+        blank=True,
+        help_text=(
+            "Please describe what portion of your tutorial you plan "
+            "to spend on student exercises, lecture, or other activities."
+        ),
+    )
+
     slides_url = models.URLField(
         blank=True,
         default="",
@@ -83,25 +100,42 @@ class Proposal(ProposalBase):
         verbose_name="Repository")
 
     first_time_at_jupytercon = models.CharField(
-        "Is this your first time speaking at JupyterCon?",
+        "Is this your first time presenting at JupyterCon?",
         choices=YES_NO_OTHER_ANSWERS,
         blank=True,
         default="",
         max_length=1)
-    affiliation = models.CharField(blank=True, default="", max_length=200)
+    affiliation = models.CharField(
+        help_text="For the purpose of this talk.", max_length=200
+    )
 
+    requests = models.TextField(
+        "Requests",
+        blank=True,
+        default="",
+        help_text=(
+            "Let us know if you have specific needs or special requests — "
+            "for example, requests that involve accessibility, audio, or "
+            "restrictions on when your proposal can be scheduled. "
+            "We will be providing appropriate seating for attendees, "
+            "a projector, and a microphone for you."
+        )
+    )
     gender = models.CharField(
-        "What is your gender?  (Female, Male, Non-binary, Other)",
+        "What is your gender?",
         blank=True,
         default="",
         max_length=200,
     )
     referral = models.CharField(
-        "Where did you hear about this CFP?  Please include sharer "
-        "(specific organization) and platform "
-        "(Examples:  Blogpost, Twitter, LinkedIn, Slack, etc.)",
+        "Where did you hear about this CFP?",
         blank=True,
         default="",
+        help_text=(
+            "Please include the source (e.g. organization, individual) "
+            "and the channel/platform (e.g. Twitter, LinkedIn, Slack, "
+            "email, blog post, etc.)."
+        ),
         max_length=200,
     )
     under_represented_group = models.CharField(
@@ -110,14 +144,18 @@ class Proposal(ProposalBase):
         "or other self-reported category?",
         blank=True,
         default="",
+        help_text="If so, please list.",
         max_length=200,
     )
     accomodation_needs = models.CharField(
-        "Do you have any accommodation needs at the conference? "
-        "Examples include: sign language, closed captioning, mobility, "
-        "mother's room, etc. ",
+        "Do you have specific​ accessibility needs at the conference​?",
         blank=True,
         default="",
+        help_text=(
+            "Examples include, but not limited to: sign language, "
+            "closed captioning, mobility, parent room, diet, etc. "
+            "Please indicate the specific need so we can plan in advance."
+        ),
         max_length=200,
     )
 
@@ -152,6 +190,37 @@ class Proposal(ProposalBase):
         help_text="Please add keywords as a comma-separated list.",
         related_name="user_tagged_proposals",
         through=UserTaggedProposal)
+
+    gdpr_grant = models.BooleanField(
+        (
+            "I hereby grant NumFOCUS [P.O. Box 90596, Austin, TX 78709, USA] "
+            "the right to use this information for the purpose of organizing "
+            "the event JupyterCon according to GDPR."
+        ),
+        default=False,
+    )
+    gdpr_revoke_awareness = models.BooleanField(
+        (
+            "I am aware that I can revoke this permission at any time "
+            "according to Art. 7(1) GDPR. This withdrawal of consent "
+            "can be sent to [NumFOCUS, P.O. Box 90596, Austin, TX 78709, USA, "
+            "privacy@numfocus.org, +1 ​(512) 831-2870]. "
+            "The withdrawal of consent "
+            "shall not affect the lawfulness of processing based on consent "
+            "before its withdrawal however."
+        ),
+        default=False,
+    )
+    gdpr_data_exemption = models.BooleanField(
+        (
+            "If I chose to provide NumFOCUS with data about my ethnic origin, "
+            "data concerning my health or data concerning my sexual "
+            "orientation I hereby exempt them from the prohibition "
+            "in Art. 9(1) GDPR to process such personal data "
+            "until I withdraw this permission."
+        ),
+        default=False,
+    )
 
     date_created = models.DateTimeField(
         auto_now_add=True,

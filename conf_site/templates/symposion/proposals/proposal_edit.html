@@ -14,7 +14,7 @@
         {% csrf_token %}
         <fieldset>
             <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ form|crispy }}
+            {% crispy form %}
         </fieldset>
         <div class="form-group form-actions">
             <input class="btn btn-primary" type="submit" value="Save" />

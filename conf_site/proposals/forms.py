@@ -1,8 +1,31 @@
 from django import forms
 
-from constance import config
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Fieldset, HTML, Layout
 
-from .models import Proposal, ProposalKeyword
+from conf_site.proposals.models import Proposal
+
+
+SECTION1_LEGEND = (
+    "<h4>The following information will be listed publicly "
+    "in the conference program for a {{ kind.name|lower }}. "
+    "This information should include what the {{ kind.name|lower }} "
+    "is about and why it is interesting, the target audience for "
+    "the {{ kind.name|lower }}, and what attendees will learn.</h4>"
+)
+
+
+SECTION2_LEGEND = (
+    "<h4>The following fields are for the review process "
+    "but are optional and will not be published publicly.</h4>"
+)
+
+
+SECTION3_LEGEND = (
+    "<h4>Additionally, we will ask you some optional questions "
+    "that will not be part of the review process and "
+    "will not be published publicly.</h4>"
+)
 
 
 class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
@@ -27,51 +50,82 @@ class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
 
 
 class ProposalForm(forms.ModelForm):
-    required_css_class = "formfield-required"
-
-    official_keywords = ModelMultipleTagChoiceField(
-        label="Official Keywords",
-        queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501
-
     class Meta:
         model = Proposal
         fields = [
-            "kind",
             "title",
             "audience_level",
             "description",
             "abstract",
-            "first_time_at_jupytercon",
             "affiliation",
+            "additional_notes",
+            "first_time_at_jupytercon",
+            "requests",
             "gender",
             "referral",
             "under_represented_group",
             "accomodation_needs",
-            "additional_notes",
             "recording_release",
             "phone_number",
-            "slides_url",
-            "code_url",
-            "official_keywords",
-            "user_keywords",
+            "gdpr_grant",
+            "gdpr_revoke_awareness",
+            "gdpr_data_exemption",
         ]
 
     def __init__(self, *args, **kwargs):
         super(ProposalForm, self).__init__(*args, **kwargs)
 
-        # Don't display kind if this proposal does not already exist,
-        # since the kind will be overwritten by
-        # symposion.proposals.views.proposal_submit_kind.
-        if not self.instance.pk:
-            del self.fields["kind"]
-        # Don't display keyword fields if keyword support is disabled.
-        if not config.PROPOSAL_KEYWORDS:
-            del self.fields["official_keywords"]
-            del self.fields["user_keywords"]
-        # Don't display slide and code repo fields if support is disabled.
-        if not config.PROPOSAL_URL_FIELDS:
-            del self.fields["slides_url"]
-            del self.fields["code_url"]
+        # Ensure that GDPR checkboxes are required.
+        # This should happen automatically - see
+        # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#booleanfield
+        # but doesn't for some reason when the form is rendered with
+        # django-crispy-forms. This doesn't seem to be an inherent
+        # bug in the library, so it's not clear what part of our
+        # configuration here is causing it.
+        self.fields["gdpr_grant"].required = True
+        self.fields["gdpr_revoke_awareness"].required = True
+        self.fields["gdpr_data_exemption"].required = True
+
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.layout = Layout(
+            Fieldset(
+                SECTION1_LEGEND,
+                "title",
+                "audience_level",
+                "description",
+                "abstract",
+                "affiliation",
+            ),
+            Fieldset(
+                SECTION2_LEGEND,
+                "additional_notes",
+                "first_time_at_jupytercon",
+            ),
+            Fieldset(
+                SECTION3_LEGEND,
+                "requests",
+                "gender",
+                "referral",
+                "under_represented_group",
+                "accomodation_needs",
+            ),
+            "recording_release",
+            "phone_number",
+            Fieldset(
+                "",
+                "gdpr_grant",
+                "gdpr_revoke_awareness",
+                "gdpr_data_exemption",
+            ),
+            HTML(
+                "Would you be able to review other proposal submissions "
+                "for JupyterCon? <a class='btn btn-default' "
+                "rel='noreferrer noopener'' target='_blank'"
+                "href='https://forms.gle/B3WY6myQASqWd3cYA'>"
+                "Register here to be a reviewer</a>"
+            ),
+        )
 
     def clean_description(self):
         value = self.cleaned_data["description"]
@@ -80,3 +134,110 @@ class ProposalForm(forms.ModelForm):
                 u"The description must be less than 400 characters"
             )
         return value
+
+
+class TutorialForm(ProposalForm):
+    class Meta:
+        model = Proposal
+        fields = [
+            "title",
+            "audience_level",
+            "target_audience",
+            "description",
+            "tutorial_format",
+            "abstract",
+            "affiliation",
+            "additional_notes",
+            "first_time_at_jupytercon",
+            "requests",
+            "gender",
+            "referral",
+            "under_represented_group",
+            "accomodation_needs",
+            "recording_release",
+            "phone_number",
+            "gdpr_grant",
+            "gdpr_revoke_awareness",
+            "gdpr_data_exemption",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Make Tutorial-specific fields required.
+        # Since these fields aren't required for talks, they
+        # can't be defined in the Proposal model.
+        self.fields["target_audience"].required = True
+        self.fields["tutorial_format"].required = True
+
+        # Update Tutorial-specific help text.
+        self.fields["title"].help_text = (
+            "A clear title should convey "
+            "in a few words what your tutorial is about."
+        )
+        self.fields["abstract"].help_text = (
+            "Your outline should list the topics and activities you will "
+            "guide your students through during your 3-hour tutorial."
+        )
+        self.fields["affiliation"].help_text = (
+            "For the purpose of this tutorial."
+        )
+        self.fields["additional_notes"].help_text = (
+            "Please summarize your teaching or public speaking experience, "
+            "as well as your experience with the subject of the tutorial."
+        )
+
+        self.helper.layout = Layout(
+            Fieldset(
+                SECTION1_LEGEND,
+                "title",
+                "audience_level",
+                "target_audience",
+                "description",
+                "tutorial_format",
+                "abstract",
+                "affiliation",
+            ),
+            Fieldset(
+                SECTION2_LEGEND,
+                "additional_notes",
+                "first_time_at_jupytercon",
+            ),
+            Fieldset(
+                SECTION3_LEGEND,
+                "requests",
+                "gender",
+                "referral",
+                "under_represented_group",
+                "accomodation_needs",
+            ),
+            "recording_release",
+            "phone_number",
+            Fieldset(
+                "",
+                "gdpr_grant",
+                "gdpr_revoke_awareness",
+                "gdpr_data_exemption",
+            ),
+            HTML(
+                "Would you be able to review other proposal submissions "
+                "for JupyterCon? <a class='btn btn-default' "
+                "rel='noreferrer noopener'' target='_blank'"
+                "href='https://forms.gle/B3WY6myQASqWd3cYA'>"
+                "Register here to be a reviewer</a>"
+            ),
+        )
+
+
+class PosterForm(ProposalForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Update Poster-specific help text.
+        self.fields["title"].help_text = (
+            "A clear title should convey "
+            "in a few words what your poster is about."
+        )
+        self.fields["affiliation"].help_text = (
+            "For the purpose of this poster."
+        )

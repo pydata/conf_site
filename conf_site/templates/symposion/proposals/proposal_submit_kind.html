@@ -11,7 +11,7 @@
         {% csrf_token %}
         <fieldset>
             <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ proposal_form|crispy }}
+            {% crispy proposal_form %}
         </fieldset>
         <div class="form-group form-actions">
             <p>

@@ -39,22 +39,6 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
             self.assertNotContains(response, self.reviewer.user.username)
             self.assertNotContains(response, self.reviewer.email)
 
-    def test_blind_reviewing_means_no_notes_section(self):
-        """
-        Verify that the Notes section does not appear if BLIND_REVIEWERS is on.
-        """
-        self._add_to_reviewers_group()
-        # Set this proposal's notes field to something memorable.
-        self.proposal.additional_notes = "xyzzy"
-        self.proposal.save()
-
-        with override_config(BLIND_REVIEWERS=True):
-            response = self.client.get(
-                reverse(self.reverse_view_name, args=self.reverse_view_args)
-            )
-            self.assertNotContains(response, "Notes")
-            self.assertNotContains(response, self.proposal.additional_notes)
-
     def test_primary_speaker_cannot_view_votes_tab(self):
         """Verify that proposal speakers cannot view their proposal's votes."""
         self._i_am_the_speaker_now()
@@ -156,3 +140,25 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
         # Vote comment should appear twice - once in the list of votes
         # and once in the form field.
         self.assertContains(response, vote.comment, 2)
+
+    def test_non_review_answers_do_not_appear(self):
+        """Test that reviewers cannot view speakers' non-review answers."""
+        self._add_to_reviewers_group()
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertNotContains(
+            response, "Reviewers cannot view the following information"
+        )
+        self.assertNotContains(response, "Requests")
+        self.assertNotContains(response, self.proposal.requests)
+        self.assertNotContains(response, "Gender")
+        self.assertNotContains(response, self.proposal.gender)
+        self.assertNotContains(response, "Referral")
+        self.assertNotContains(response, self.proposal.referral)
+        self.assertNotContains(response, "Group Identity")
+        self.assertNotContains(
+            response, self.proposal.under_represented_group
+        )
+        self.assertNotContains(response, "Accessibility Needs")
+        self.assertNotContains(response, self.proposal.accomodation_needs)
