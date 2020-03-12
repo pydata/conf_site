@@ -1,7 +1,7 @@
 from django import forms
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Fieldset, Layout
+from crispy_forms.layout import Fieldset, HTML, Layout
 
 from conf_site.proposals.models import Proposal
 
@@ -118,6 +118,13 @@ class ProposalForm(forms.ModelForm):
                 "gdpr_revoke_awareness",
                 "gdpr_data_exemption",
             ),
+            HTML(
+                "Would you be able to review other proposal submissions "
+                "for JupyterCon? <a class='btn btn-default' "
+                "rel='noreferrer noopener'' target='_blank'"
+                "href='https://forms.gle/B3WY6myQASqWd3cYA'>"
+                "Register here to be a reviewer</a>"
+            ),
         )
 
     def clean_description(self):
@@ -211,6 +218,13 @@ class TutorialForm(ProposalForm):
                 "gdpr_grant",
                 "gdpr_revoke_awareness",
                 "gdpr_data_exemption",
+            ),
+            HTML(
+                "Would you be able to review other proposal submissions "
+                "for JupyterCon? <a class='btn btn-default' "
+                "rel='noreferrer noopener'' target='_blank'"
+                "href='https://forms.gle/B3WY6myQASqWd3cYA'>"
+                "Register here to be a reviewer</a>"
             ),
         )
 
