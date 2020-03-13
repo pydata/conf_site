@@ -61,7 +61,7 @@ a {
 #header, #footer, #subscibe {
     display: none;
 }
-#header_jupyter {
+#header-jupytercon, #footer-jupytercon {
     margin: 0 auto;
     position: relative;
     min-width: 960px;
