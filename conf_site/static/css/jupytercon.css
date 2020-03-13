@@ -67,6 +67,9 @@ a {
     min-width: 960px;
     max-width: 1440px;
 }
+#footer-jupytercon {
+    padding-top: 20px;
+}
 
 /* reset bootstrap setting */
 @media (min-width: 1024px) {
