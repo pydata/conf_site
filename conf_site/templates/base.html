@@ -74,9 +74,18 @@
     {% endif %}
     <div id="header-jupytercon">
         <div id="header-jupytercon-vue">
-            <menu-bar baseUrl="{{ jupytercon_base_url|default:'http://localhost:3000'}}"></menu-bar>
+            <menu-bar></menu-bar>
         </div>
         <script>
+            Vue.mixin({
+                data: function() {
+                return {
+                    get jupyterConBaseUrl() {
+                        return "{{ jupytercon_base_url|default:'http://localhost:3000'}}"
+                    }
+                }
+                }
+            })
             new Vue({
                 el: '#header-jupytercon-vue',
             })
@@ -156,7 +165,7 @@
 <footer>
     <div id="footer-jupytercon">
         <div id="footer-jupytercon-vue">
-            <desktop-footer baseUrl="{{ jupytercon_base_url|default:'http://localhost:3000'}}"/>
+            <desktop-footer/>
         </div>
         <script>
             new Vue({
