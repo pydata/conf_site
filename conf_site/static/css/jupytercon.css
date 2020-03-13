@@ -48,3 +48,13 @@ html, body {
     background-color: #f7802f;
     border-color: #f7802f;
 }
+
+#header, #footer, #subscibe {
+    display: none;
+}
+#header_jupyter {
+    margin: 0 auto;
+    position: relative;
+    min-width: 960px;
+    max-width: 1440px;
+}
