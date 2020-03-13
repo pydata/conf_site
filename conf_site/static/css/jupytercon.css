@@ -44,9 +44,18 @@ html, body {
     color: #f7802f;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:active:focus {
     background-color: #f7802f;
     border-color: #f7802f;
+}
+
+btn-outline-primary {
+    border: 1px;
+    border-color: #f7802f;
+}
+
+a {
+    color: #f7802f;
 }
 
 #header, #footer, #subscibe {
