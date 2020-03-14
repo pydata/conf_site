@@ -10,7 +10,7 @@
     <title>{{ conference_title }}{% block title %} - {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,700|Nunito|Open+Sans:300,400" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500|IBM+Plex+Sans:400,500,600,700&display=swap" rel="stylesheet">
-    <link href="https://5e6bb3d0e721dd000978d352--condescending-pasteur-e9852d.netlify.com/export/component.css" rel="stylesheet">
+    <link href="https://master.jupytercon.com/export/component.css" rel="stylesheet">
     <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/mainstream-vc.css' %}" rel="stylesheet">
@@ -53,7 +53,7 @@
         window.Sentry || document.write("<script src='{% static 'js/sentry-5.11.1.min.js' %}'><\/script>");
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
-    <script src="https://5e6bb3d0e721dd000978d352--condescending-pasteur-e9852d.netlify.com/export/component.umd.js"></script>
+    <script src="https://master.jupytercon.com/export/component.umd.js"></script>
 </head>
 <body class="{% block body_class %}{% endblock %}">
 {% wagtailuserbar "bottom-left" %}
