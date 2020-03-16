@@ -9,25 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ conference_title }}{% block title %} - {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,700|Nunito|Open+Sans:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500|IBM+Plex+Sans:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://jupytercon.com/export/component.css" rel="stylesheet">
     <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/mainstream-vc.css' %}" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicon/apple-touch-icon-57x57.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicon/apple-touch-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicon/apple-touch-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicon/apple-touch-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicon/apple-touch-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicon/apple-touch-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicon/apple-touch-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicon/apple-touch-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-32x32.png' %}" sizes="32x32">
-    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-194x194.png' %}" sizes="194x194">
-    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-96x96.png' %}" sizes="96x96">
-    <link rel="icon" type="image/png" href="{% static 'favicon/android-chrome-192x192.png' %}" sizes="192x192">
-    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-16x16.png' %}" sizes="16x16">
-    <link rel="manifest" href="{% static 'favicon/manifest.json' %}">
-    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
+    <link href="{% static 'css/jupytercon.css' %}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon/favicon.ico' %}">
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="msapplication-TileImage" content="{% static 'favicon/mstile-144x144.png' %}">
     <meta name="msapplication-config" content="{% static 'favicon/browserconfig.xml' %}">
@@ -64,6 +52,8 @@
         window.jQuery || document.write("<script src='{% static 'js/jquery-1.12.4.min.js' %}'><\/script>");
         window.Sentry || document.write("<script src='{% static 'js/sentry-5.11.1.min.js' %}'><\/script>");
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="https://jupytercon.com/export/component.umd.js"></script>
 </head>
 <body class="{% block body_class %}{% endblock %}">
 {% wagtailuserbar "bottom-left" %}
@@ -82,6 +72,39 @@
         <h3><a href="./cfp/">CALL FOR PROPOSALS <strong>NOW OPEN!</strong></a></h3>
     </div>
     {% endif %}
+    <div id="header-jupytercon">
+        <div id="header-jupytercon-vue">
+            <menu-bar></menu-bar>
+        </div>
+        <script>
+            Vue.mixin({
+                data: function() {
+                return {
+                    get jupyterConBaseUrl() {
+                        return "{{ jupytercon_base_url|default:'http://localhost:3000'}}"
+                    }
+                }
+                }
+            })
+            new Vue({
+                el: '#header-jupytercon-vue',
+            })
+        </script>
+        {% if request.user.is_authenticated %}
+            <a class="btn btn-outline-primary" href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a>
+            {% if request.user.is_staff %}
+            <a class="btn btn-outline-primary" href="{% url THEME_ADMIN_URL|default:'admin:index' %}">{% trans 'Admin' %}</a>
+            {% endif %}
+            {% if request.user.speaker_profile %}
+            <a class="btn btn-outline-primary" href="{% url 'speaker_edit' %}">Speaker Profile</a>
+            {% endif %}
+            <a class="btn btn-outline-primary" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
+        {% else %}
+            <a class="btn btn-outline-primary" href="{% url 'account_login' %}">{% trans "Login" %}</a>
+            <a class="btn btn-outline-primary" href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>
+        {% endif %}
+    </div>
+
     <div id="header">
         <div class="container">
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" id="logo">
@@ -140,6 +163,16 @@
 </section>
 {% endif %}
 <footer>
+    <div id="footer-jupytercon">
+        <div id="footer-jupytercon-vue">
+            <desktop-footer/>
+        </div>
+        <script>
+            new Vue({
+                el: '#footer-jupytercon-vue',
+            })
+        </script>
+    </div>
     <div id="footer">
         <div class="container">
             <div class="col-md-5 col-sm-12 col-xs-12 fsec footer1">

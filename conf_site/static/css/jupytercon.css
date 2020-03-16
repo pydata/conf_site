@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'GoshaSans';
+    src: url('../fonts/GoshaSans-Regular.otf') format('opentype');
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'GoshaSans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+}
+
+h1 {
+    color: #f7802f;
+}
+
+p {
+    font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+}
+
+html, body {
+    font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+}
+
+.btn.btn3 {
+    border-color: #9E9E9E;
+    color: #9E9E9E;
+    font-family: 'IBM Plex Mono', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+}
+
+.btn.btn3:hover {
+    color: #9E9E9E;
+    text-decoration: underline;
+}
+
+.btn3.btn:hover:after {
+    background-color: white;
+}
+
+.btn {
+    border-radius: unset;
+    padding: 10px;
+}
+
+.btn-default {
+    border-color: #f7802f;
+    color: #f7802f;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:active:focus {
+    background-color: #f7802f;
+    border-color: #f7802f;
+}
+
+btn-outline-primary {
+    border: 1px;
+    border-color: #f7802f;
+}
+
+a {
+    color: #f7802f;
+}
+
+#header, #footer, #subscibe {
+    display: none;
+}
+#header-jupytercon, #footer-jupytercon {
+    margin: 0 auto;
+    position: relative;
+    min-width: 960px;
+    max-width: 1440px;
+}
+#footer-jupytercon {
+    padding-top: 20px;
+}
+
+/* reset bootstrap setting */
+@media (min-width: 1024px) {
+    .container {
+        width: initial;
+    }
+}
+
+/* mimic static site, but narrower */
+.container {
+    min-width: 960px;
+    max-width: 1440px;
+}
