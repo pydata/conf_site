@@ -157,8 +157,10 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
         self.assertNotContains(response, "Referral")
         self.assertNotContains(response, self.proposal.referral)
         self.assertNotContains(response, "Group Identity")
-        self.assertNotContains(
-            response, self.proposal.under_represented_group
-        )
+        # Proposal.under_represented_group is now either Y or N,
+        # so we can't/shouldn't test the contents of the field here.
+        # self.assertNotContains(
+        #     response, self.proposal.under_represented_group
+        # )
         self.assertNotContains(response, "Accessibility Needs")
         self.assertNotContains(response, self.proposal.accomodation_needs)
