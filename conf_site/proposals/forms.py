@@ -118,9 +118,9 @@ class ProposalForm(forms.ModelForm):
                 "referral",
                 "under_represented_group",
                 "accomodation_needs",
+                "phone_number",
+                "recording_release",
             ),
-            "recording_release",
-            "phone_number",
             Fieldset(
                 "",
                 "gdpr_grant",
@@ -219,9 +219,9 @@ class TutorialForm(ProposalForm):
                 "referral",
                 "under_represented_group",
                 "accomodation_needs",
+                "phone_number",
+                "recording_release",
             ),
-            "recording_release",
-            "phone_number",
             Fieldset(
                 "",
                 "gdpr_grant",
