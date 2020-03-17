@@ -5,6 +5,7 @@
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'GoshaSans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: normal;
 }
 
 h1 {
@@ -13,10 +14,12 @@ h1 {
 
 p {
     font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: normal;
 }
 
 html, body {
     font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: normal;
 }
 
 .btn.btn3 {
