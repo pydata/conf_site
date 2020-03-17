@@ -58,9 +58,6 @@ a {
     color: #f7802f;
 }
 
-#header, #footer, #subscibe {
-    display: none;
-}
 #header-jupytercon, #footer-jupytercon {
     margin: 0 auto;
     position: relative;
