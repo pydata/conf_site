@@ -1,12 +1,3 @@
-- name: bootstrap server for Ansible
-  gather_facts: false
-  hosts: staging
-  tasks:
-    - import_tasks: tasks/bootstrap.yml
-  vars:
-    - deployment_user: pydata
-
-
 - name: deploy to staging servers
   hosts: staging
   roles:
