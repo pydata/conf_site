@@ -16,7 +16,7 @@
 - name: run certbot and generate certificate
   command: >
     certbot certonly -n --standalone --agree-tos
-    -d {{ website_domain }} -d www.{{ website_domain }}
+    -d {{ website_domain }}
     -m {{ admin_email }}
     -w {{ project_root }}/.well-known
     --pre-hook "service nginx stop" --post-hook "service nginx start"
