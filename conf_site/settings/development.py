@@ -11,7 +11,7 @@ ALLOWED_HOSTS = ["localhost", "0.0.0.0"]
 DATABASES = {
     "default": DATABASES_DEFAULT,                   # noqa: F405
 }
-
+JUPYTERCON_BASE_URL = "http://localhost:3000"
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     ] + MIDDLEWARE                                  # noqa: F405
