@@ -122,7 +122,7 @@ class ProposalForm(forms.ModelForm):
                 "recording_release",
             ),
             Fieldset(
-                "",
+                "<hr>",
                 "gdpr_grant",
                 "gdpr_revoke_awareness",
                 "gdpr_data_exemption",
@@ -223,7 +223,7 @@ class TutorialForm(ProposalForm):
                 "recording_release",
             ),
             Fieldset(
-                "",
+                "<hr>",
                 "gdpr_grant",
                 "gdpr_revoke_awareness",
                 "gdpr_data_exemption",
