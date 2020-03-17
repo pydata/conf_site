@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.widgets import RadioSelect
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Fieldset, HTML, Layout
@@ -50,6 +51,17 @@ class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
 
 
 class ProposalForm(forms.ModelForm):
+    under_represented_group = forms.ChoiceField(
+        choices=Proposal.YES_OR_NO_ANSWERS,
+        label=(
+            "Do you identify as an under-represented group with respect to "
+            "one or more of these: gender, age (40+), race, "
+            "sexual orientation, or other self-reported category?"
+        ),
+        required=False,
+        widget=RadioSelect,
+    )
+
     class Meta:
         model = Proposal
         fields = [

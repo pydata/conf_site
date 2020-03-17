@@ -23,7 +23,9 @@ class ProposalFactory(factory.django.DjangoModelFactory):
     requests = factory.Faker("sentence")
     gender = factory.Faker("sentence")
     referral = factory.Faker("sentence")
-    under_represented_group = factory.Faker("sentence")
+    under_represented_group = factory.Iterator(
+        Proposal.YES_OR_NO_ANSWERS, getter=lambda c: c[0]
+    )
     accomodation_needs = factory.Faker("sentence")
 
     class Meta:

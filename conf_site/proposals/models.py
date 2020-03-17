@@ -59,6 +59,10 @@ class Proposal(ProposalBase):
         (AUDIENCE_LEVEL_INTERMEDIATE, "Intermediate"),
         (AUDIENCE_LEVEL_EXPERIENCED, "Experienced"),
     ]
+    YES_OR_NO_ANSWERS = (
+        (YES_NO_OTHER_YES, "Yes"),
+        (YES_NO_OTHER_NO, "No"),
+    )
     YES_NO_OTHER_ANSWERS = (
         ("", "----"),
         (YES_NO_OTHER_YES, "Yes"),
@@ -142,10 +146,10 @@ class Proposal(ProposalBase):
         "Do you identify as an under-represented group with respect to "
         "one or more of these: gender, age (40+), race, sexual orientation, "
         "or other self-reported category?",
+        choices=YES_OR_NO_ANSWERS,
         blank=True,
         default="",
-        help_text="If so, please list.",
-        max_length=200,
+        max_length=1,
     )
     accomodation_needs = models.CharField(
         "Do you have specific​ accessibility needs at the conference​?",
