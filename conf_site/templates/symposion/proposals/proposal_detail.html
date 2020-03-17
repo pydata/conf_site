@@ -27,7 +27,11 @@
         {% endif %}
     </div>
 
-    <h3>#{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker.name }}, Track: {{ proposal.track }})</h3>
+    {% if request.user == proposal.speaker.user %}
+    <h3>{{ proposal.title }}</h3>
+    {% else %}
+    <h3>#{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker.name }})</h3>
+    {% endif %}
 
     <div class="tabbable">
         <ul class="nav nav-tabs">

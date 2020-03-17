@@ -1,4 +1,1 @@
-cloudflare_enabled: true
-default_email: noreply@pydata.org
-email_host_user: noreply@pydata.org
 environment_type: production
