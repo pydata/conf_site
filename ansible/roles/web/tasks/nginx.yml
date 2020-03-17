@@ -35,12 +35,21 @@
     state: absent
   become: true
 
-- name: add customized nginx site configuration file
-  template: src=nginx-site.conf
+- name: add customized http nginx site configuration file
+  template: src=nginx-site-http.conf
             dest=/etc/nginx/conf.d/{{ website_domain }}.conf
             owner=root group=root mode=0644
   become: true
   notify: restart nginx
+  when: cloudflare_enabled or environment_type == "development"
+
+- name: add customized https nginx site configuration file
+  template: src=nginx-site-https.conf
+            dest=/etc/nginx/conf.d/{{ website_domain }}.conf
+            owner=root group=root mode=0644
+  become: true
+  notify: restart nginx
+  when: not cloudflare_enabled and environment_type != "development"
 
 - name: remove default nginx ssl site configuration file
   file:

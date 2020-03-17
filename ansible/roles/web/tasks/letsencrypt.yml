@@ -1,0 +1,32 @@
+- name: install certbot
+  apt: name=certbot
+       state=present
+  become: true
+
+- name: create .well-known directory
+  file: path={{ project_root }}/.well-known
+        state=directory
+  become: true
+
+# We use the "standalone" method because nginx needs a certificate to run,
+# so the webroot method will not work when we provision the certificate for
+# the first time.
+- name: run certbot and generate certificate
+  command: >
+    certbot certonly -n --standalone --agree-tos
+    -d {{ website_domain }} -d www.{{ website_domain }}
+    -m {{ admin_email }}
+    -w {{ project_root }}/.well-known
+    --pre-hook "service nginx stop" --post-hook "service nginx start"
+  args:
+    creates: /etc/letsencrypt/live/{{ website_domain }}/fullchain.pem
+  become: true
+  when: environment_type != "development"
+
+- name: use cronjob to periodically renew certificates
+  cron: >
+    name="renew SSL certificates"
+    job='certbot renew -nq --pre-hook "service nginx stop" --post-hook "service nginx start"'
+    hour=07
+    minute=35
+  become: true
