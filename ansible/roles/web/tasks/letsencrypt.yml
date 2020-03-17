@@ -2,11 +2,13 @@
   apt: name=certbot
        state=present
   become: true
+  when: not cloudflare_enabled
 
 - name: create .well-known directory
   file: path={{ project_root }}/.well-known
         state=directory
   become: true
+  when: not cloudflare_enabled
 
 # We use the "standalone" method because nginx needs a certificate to run,
 # so the webroot method will not work when we provision the certificate for
@@ -21,7 +23,7 @@
   args:
     creates: /etc/letsencrypt/live/{{ website_domain }}/fullchain.pem
   become: true
-  when: environment_type != "development"
+  when: not cloudflare_enabled and environment_type != "development"
 
 - name: use cronjob to periodically renew certificates
   cron: >
@@ -30,3 +32,4 @@
     hour=07
     minute=35
   become: true
+  when: not cloudflare_enabled
