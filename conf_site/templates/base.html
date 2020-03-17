@@ -104,64 +104,11 @@
             <a class="btn btn-outline-primary" href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>
         {% endif %}
     </div>
-
-    <div id="header">
-        <div class="container">
-            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" id="logo">
-                <a href="/">
-                    {% if logo_image %}
-                        {% image logo_image max-285x112 %}
-                    {% else %}
-                        <img alt="PyData" src="{% static 'images/logo.png' %}">
-                    {% endif %}
-                </a>
-            </div>
-            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" id="menu">
-                <nav class="navbar">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            {% main_menu %}
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
 </header>
 {% block body_outer %}
     {% block body %}
     {% endblock %}
 {% endblock %}
-<section>
-    <div id="subscibe">
-        <div class="container">
-            <div class="col-xs-12 sub-sr">
-                <h2>Subscribe to Receive PyData Updates</h2>
-                <a class="btn btn4" href="https://numfocus.salsalabs.org/email-subscribe" target="_blank">Subscribe</a>
-            </div>
-        </div>
-    </div>
-</section>
-{% if ticketing_url %}
-<section>
-    <div id="early-b2">
-        <div class="container">
-            <div class="col-xs-12 early-b2-sep">
-                <h2>Tickets</h2>
-                <a href="{{ ticketing_url }}" class="btn btn4">Get Now</a>
-            </div>
-        </div>
-    </div>
-</section>
-{% endif %}
 <footer>
     <div id="footer-jupytercon">
         <div id="footer-jupytercon-vue">
@@ -172,79 +119,6 @@
                 el: '#footer-jupytercon-vue',
             })
         </script>
-    </div>
-    <div id="footer">
-        <div class="container">
-            <div class="col-md-5 col-sm-12 col-xs-12 fsec footer1">
-                {% if footer1_section %}{{ footer1_section }}{% else %}
-                <h4>CODE OF CONDUCT</h4>
-                <p>
-                    PyData is dedicated to providing a harassment-free
-                    conference experience for everyone, regardless of gender,
-                    sexual orientation, gender identity and expression,
-                    disability, physical appearance, body size, race, or
-                    religion. We do not tolerate harassment of conference
-                    participants in any form. All communication should be
-                    appropriate for a professional audience including people
-                    of many different backgrounds. Sexual language and imagery
-                    is not appropriate for any conference venue, including
-                    talks. Be kind to others. Do not insult or put down other
-                    attendees. Behave professionally. Remember that harassment
-                    and sexist, racist, or exclusionary jokes are not
-                    appropriate for PyData. Attendees violating these rules
-                    may be asked to leave the conference without a refund at
-                    the sole discretion of the conference organizers. Thank
-                    you for helping make this a welcoming, friendly event
-                    for all.
-                </p>
-                {% endif %}
-            </div>
-            <div class="col-md-2 col-sm-6 col-xs-12 fsec footer2">
-                <h4>CONTACT</h4>
-                <address>
-                    <p></p>
-                    <p class="soc">
-                        {% if footer_email %}
-                        <a href="mailto:{{ footer_email }}"><i class="fa fa-envelope"></i>Email</a>
-                        {% endif %}
-                        {% if footer_twitter %}
-                        <a href="https://twitter.com/{{ footer_twitter }}/"><i class="fa fa-twitter"></i>Twitter</a>
-                        {% endif %}
-                    </p>
-                </address>
-            </div>
-            <div class="col-md-2 col-sm-6 col-xs-12 fsec footer3">
-                <h4>ACCOUNT</h4>
-                {% if request.user.is_authenticated %}
-                <ul>
-                    <li><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
-                    {% if request.user.is_staff %}
-                    <li><a href="{% url THEME_ADMIN_URL|default:'admin:index' %}">{% trans 'Admin' %}</a></li>
-                    {% endif %}
-                    {% if request.user.speaker_profile %}
-                    <li><a href="{% url 'speaker_edit' %}">Speaker Profile</a></li>
-                    {% endif %}
-                    <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
-                </ul>
-                {% else %}
-                <ul>
-                    <li><a href="{% url 'account_login' %}">{% trans "Login" %}</a></li>
-                    <li><a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a></li>
-                </ul>
-                {% endif %}
-            </div>
-            <div class="col-md-3 col-sm-12 col-xs-12 fsec footer4">
-                <h4>PyData is an educational program of</h4>
-                <a href="https://numfocus.org"><img src="{% static 'images/numfocus.png' %}" data-rjs="2"></a><br>
-                <p>
-                    NumFOCUS is committed to protecting your data. In compliance
-                    with the new data regulations, we have updated our
-                    <a href="https://numfocus.org/privacy-policy">Privacy
-                    Policy</a> and invite you to review our new practices. We have
-                    also updated PyData registration with new data collection procedures.
-                </p>
-            </div>
-        </div>
     </div>
 </footer>
 <script src="{% static 'js/bootstrap.js' %}"></script>
