@@ -111,9 +111,8 @@ class ProposalBase(models.Model):
         _("Brief summary"),
         max_length=400,  # @@@ need to enforce 400 in UI
         help_text=_(
-            "Short, maximum 400 words. "
-            "If your proposal is accepted this will be public "
-            "and printed in the program. Should be one paragraph."
+            "Short paragraph, maximum 400 characters. "
+            "If your proposal is accepted, this will be in the public printed program."
         ),
     )
     abstract = models.TextField(
@@ -123,7 +122,7 @@ class ProposalBase(models.Model):
             "the objective of the proposal, its outline, central thesis, "
             "and key takeaways. After reading the description, "
             "the audience should have an idea of the overall presentation "
-            "and know what to expect. The description should also make clear "
+            "and what they will learn. The description should also make clear "
             "what background knowledge is expected from the attendees. "
             "Include links to relevant source code, articles, videos, "
             "or other information that add context to your proposal."
