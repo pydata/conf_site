@@ -250,3 +250,9 @@ class PosterForm(ProposalForm):
         self.fields["affiliation"].help_text = (
             "For the purpose of this poster."
         )
+
+        self.fields["requests"].help_text = (
+            "Let us know if you have specific needs or special requests — "
+            "for example, requests that involve accessibility, audio, or "
+            "restrictions on when your poster can be scheduled."
+        )
