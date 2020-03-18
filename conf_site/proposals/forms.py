@@ -9,7 +9,7 @@ from conf_site.proposals.models import Proposal
 
 SECTION1_LEGEND = (
     "<h4>The following information will be listed publicly "
-    "in the conference program for a {{ kind.name|lower }}. "
+    "in the conference program for a {{ kind.name|lower }}.</h4>"
 )
 
 
