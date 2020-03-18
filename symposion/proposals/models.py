@@ -112,7 +112,8 @@ class ProposalBase(models.Model):
         max_length=400,  # @@@ need to enforce 400 in UI
         help_text=_(
             "Short paragraph, maximum 400 characters. "
-            "If your proposal is accepted, this will be in the public printed program."
+            "If your proposal is accepted, "
+            "this will be in the public printed program."
         ),
     )
     abstract = models.TextField(
