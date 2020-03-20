@@ -24,12 +24,3 @@
     creates: /etc/letsencrypt/live/{{ website_domain }}/fullchain.pem
   become: true
   when: not cloudflare_enabled and environment_type != "development"
-
-- name: use cronjob to periodically renew certificates
-  cron: >
-    name="renew SSL certificates"
-    job='certbot renew -nq --pre-hook "service nginx stop" --post-hook "service nginx start"'
-    hour=07
-    minute=35
-  become: true
-  when: not cloudflare_enabled
