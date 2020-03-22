@@ -3,7 +3,7 @@ from django import forms
 from django.forms.models import inlineformset_factory, BaseInlineFormSet
 
 from django.contrib.admin.widgets import AdminFileWidget
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout

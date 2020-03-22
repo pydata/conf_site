@@ -1,9 +1,5 @@
 # Tasks specifically related to AMY integration.
 
-- name: install pexpect package systemwide so Ansible can use it
-  pip: name=pexpect
-  become: true
-
 # Creating a Django user account will fail if a user with that same
 # name already exists, so we ignore errors.
 - name: create AMY superuser
@@ -11,18 +7,6 @@
                  app_path={{ project_root }}
                  settings=conf_site.settings.{{ environment_type }}
                  virtualenv={{ virtualenv_root }}/current
+  environment:
+    DJANGO_SUPERUSER_PASSWORD: "{{ amy_password }}"
   ignore_errors: yes
-
-# We can't use the django_manage Ansible module because the
-# django management command "changepassword" does not support
-# programatically changing passwords. See
-# <https://code.djangoproject.com/ticket/18897>.
-- name: change AMY superuser password
-  expect:
-    command: >
-      /bin/bash -c 'DJANGO_SETTINGS_MODULE=conf_site.settings.{{ environment_type }}
-      {{ virtualenv_root }}/current/bin/python
-      ./manage.py changepassword {{ amy_username }}'
-    chdir: "{{ project_root }}"
-    responses:
-      (?i)password: "{{ amy_password }}"

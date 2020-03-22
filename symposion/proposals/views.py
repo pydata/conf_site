@@ -14,7 +14,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 from django.utils.crypto import get_random_string
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from allauth.account.models import EmailAddress
 
