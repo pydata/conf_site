@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from constance import config
 from symposion.proposals.models import ProposalBase, ProposalSection
@@ -43,7 +42,6 @@ class UserTaggedProposal(GenericTaggedItemBase):
     )
 
 
-@python_2_unicode_compatible
 class Proposal(ProposalBase):
 
     AUDIENCE_LEVEL_NOVICE = 1

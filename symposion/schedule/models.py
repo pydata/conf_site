@@ -4,8 +4,7 @@ import datetime
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from autoslug.fields import AutoSlugField
 from symposion.markdown_parser import parse
@@ -14,7 +13,6 @@ from symposion.conference.models import Section
 from symposion.speakers.models import Speaker
 
 
-@python_2_unicode_compatible
 class Schedule(models.Model):
 
     section = models.OneToOneField(
@@ -40,7 +38,6 @@ class Schedule(models.Model):
         verbose_name_plural = _("Schedules")
 
 
-@python_2_unicode_compatible
 class Day(models.Model):
 
     schedule = models.ForeignKey(
@@ -58,7 +55,6 @@ class Day(models.Model):
         verbose_name_plural = _("dates")
 
 
-@python_2_unicode_compatible
 class Room(models.Model):
 
     schedule = models.ForeignKey(
@@ -75,7 +71,6 @@ class Room(models.Model):
         verbose_name_plural = _("Rooms")
 
 
-@python_2_unicode_compatible
 class SlotKind(models.Model):
     """
     A slot kind represents what kind a slot is. For example, a slot can be a
@@ -95,7 +90,6 @@ class SlotKind(models.Model):
         verbose_name_plural = _("Slot kinds")
 
 
-@python_2_unicode_compatible
 class Slot(models.Model):
     day = models.ForeignKey(
         Day, on_delete=models.CASCADE, verbose_name=_("Day")
@@ -188,7 +182,6 @@ class Slot(models.Model):
         verbose_name_plural = _("slots")
 
 
-@python_2_unicode_compatible
 class SlotRoom(models.Model):
     """
     Links a slot with a room.
@@ -211,7 +204,6 @@ class SlotRoom(models.Model):
         verbose_name_plural = _("Slot rooms")
 
 
-@python_2_unicode_compatible
 class Presentation(models.Model):
 
     slot = models.OneToOneField(

@@ -10,7 +10,7 @@ class ProposalSpeakerManageViewTestCase(ProposalSpeakerTestCase):
     INVITE_DUPLICATE_MESSAGE = (
         "This email address has already been invited to your talk proposal"
     )
-    INVITE_SELF_MESSAGE = "You can&#39;t invite yourself to this proposal"
+    INVITE_SELF_MESSAGE = "You can&#x27;t invite yourself to this proposal"
     INVITE_SUCCESS_MESSAGE = "Speaker invited to proposal."
 
     def setUp(self):
