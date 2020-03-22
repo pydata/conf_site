@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
 
 from timezone_field import TimeZoneField
 
@@ -9,7 +8,6 @@ from timezone_field import TimeZoneField
 CONFERENCE_CACHE = {}
 
 
-@python_2_unicode_compatible
 class Conference(models.Model):
     """
     the full conference for a specific year, e.g. US PyCon 2012.
@@ -45,7 +43,6 @@ class Conference(models.Model):
         verbose_name_plural = _("conferences")
 
 
-@python_2_unicode_compatible
 class Section(models.Model):
     """
     a section of the conference such as "Tutorials", "Workshops",

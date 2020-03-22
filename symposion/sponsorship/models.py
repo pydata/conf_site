@@ -6,7 +6,6 @@ from django.db import models
 from django.db.models.signals import post_init, post_save
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
@@ -48,7 +47,6 @@ BENEFITS = [
 ]
 
 
-@python_2_unicode_compatible
 class SponsorLevel(models.Model):
 
     conference = models.ForeignKey(
@@ -73,7 +71,6 @@ class SponsorLevel(models.Model):
         return self.sponsor_set.filter(active=True).order_by("added")
 
 
-@python_2_unicode_compatible
 class Sponsor(models.Model):
 
     applicant = models.ForeignKey(
@@ -272,7 +269,6 @@ CONTENT_TYPE_CHOICES = [("simple", "Simple")] + [
 ]
 
 
-@python_2_unicode_compatible
 class Benefit(models.Model):
 
     name = models.CharField(_("Name"), max_length=100)
@@ -294,7 +290,6 @@ class Benefit(models.Model):
         return self.name
 
 
-@python_2_unicode_compatible
 class BenefitLevel(models.Model):
 
     benefit = models.ForeignKey(
@@ -327,7 +322,6 @@ class BenefitLevel(models.Model):
         return "%s - %s" % (self.level, self.benefit)
 
 
-@python_2_unicode_compatible
 class SponsorBenefit(models.Model):
 
     sponsor = models.ForeignKey(
