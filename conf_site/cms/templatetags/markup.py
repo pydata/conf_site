@@ -1,6 +1,6 @@
 from django import template
 from django.template.defaultfilters import stringfilter
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.safestring import mark_safe
 
 import markdown as markdown_library
@@ -17,7 +17,7 @@ def markdown(value):
 
     return mark_safe(
         markdown_library.markdown(
-            force_text(value),
+            force_str(value),
             extensions=extensions,
         )
     )
