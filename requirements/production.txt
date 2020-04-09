@@ -1,4 +1,4 @@
-django==3.0.4
+django==3.0.5
 django-allauth==0.41.0
 django-analytical==2.5.0
 django-autoslug==1.9.6
@@ -8,7 +8,7 @@ django-model-utils==4.0.0
 django-redis-cache==2.1.0
 djangorestframework==3.11.0
 django-reversion==3.0.7
-django-taggit==1.1.0
+django-taggit==1.2.0
 django-timezone-field==4.0
 easy-thumbnails==2.7.0
 gunicorn==20.0.4
@@ -20,7 +20,7 @@ psycopg2==2.8.4
 pytz==2019.3
 redis==3.3.11
 sendgrid-django==4.2.0
-sentry-sdk==0.14.0
+sentry-sdk==0.14.3
 virtualenv==16.7.9
 wagtail==2.8
 wagtailmenus==3.0.1
