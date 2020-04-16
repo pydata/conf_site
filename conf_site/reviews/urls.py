@@ -4,6 +4,7 @@ from django.urls import path
 from conf_site.reviews.views import (
     ProposalDetailView,
     ProposalFeedbackPostView,
+    ProposalKindListView,
     ProposalListView,
     ProposalVotePostView,
 )
@@ -29,6 +30,11 @@ urlpatterns = [
         "keyword/<slug:keyword_slug>/",
         ReviewKeywordDetailView.as_view(),
         name="review_keyword_detail",
+    ),
+    path(
+        "kind/<kind>/",
+        ProposalKindListView.as_view(),
+        name="review_proposal_kind_list",
     ),
     path(
         "proposal/<int:pk>/",
