@@ -9,4 +9,7 @@
   <li><a href="{% url 'review_proposal_result_list' 'S' %}">Standby Proposals</a></li>
   <li><a href="{% url 'review_proposal_result_list' 'U' %}">Undecided Proposals</a></li>
 {% endif %}
+{% for kind in kind_list %}
+  <li><a href="{% url 'review_proposal_kind_list' kind.slug %}">All {{ kind.name }}s</a></li>
+{% endfor %}
 </ul>

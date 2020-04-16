@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import Group
-from django.http import HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, View
 
@@ -14,6 +14,7 @@ from conf_site.reviews.forms import (
     ProposalVoteForm,
 )
 from conf_site.reviews.models import ProposalFeedback, ProposalVote
+from symposion.proposals.models import ProposalKind
 from symposion.utils.mail import send_email
 
 
@@ -77,10 +78,34 @@ class ProposalListView(ListView, ReviewingView):
         if self.request.user.is_superuser:
             context["notification_form"] = ProposalNotificationForm()
         context["proposal_category"] = "All"
+        context["proposal_kind"] = "Proposal"
+        context["kind_list"] = ProposalKind.objects.order_by("name")
 
         # Add ARIA label for pagination.
         context["pagination_aria_label"] = "Proposal lists pages"
 
+        return context
+
+
+class ProposalKindListView(ProposalListView):
+    def get(self, request, *args, **kwargs):
+        try:
+            self.proposal_kind = ProposalKind.objects.get(slug=kwargs["kind"])
+        except ProposalKind.DoesNotExist:
+            raise Http404
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self, **kwargs):
+        return (
+            Proposal.objects.order_by("pk")
+            .exclude(cancelled=True)
+            .filter(kind=self.proposal_kind)
+            .select_related("speaker", "review_result")
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["proposal_kind"] = self.proposal_kind.name
         return context
 
 
