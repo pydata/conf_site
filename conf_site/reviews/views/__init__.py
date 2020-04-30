@@ -69,8 +69,11 @@ class ProposalListView(ListView, ReviewingView):
         # Add number of talks and tutorials to context data.
         context = super(ProposalListView, self).get_context_data(**kwargs)
         context["num_proposals"] = self.get_queryset().count()
+        context["num_posters"] = (
+            self.get_queryset().filter(kind__slug="poster").count()
+        )
         context["num_talks"] = (
-            self.get_queryset().filter(kind__slug="talk").count()
+            self.get_queryset().filter(kind__name__startswith="Talk").count()
         )
         context["num_tutorials"] = (
             self.get_queryset().filter(kind__slug="tutorial").count()
