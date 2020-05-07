@@ -29,6 +29,7 @@ class ProposalVote(models.Model):
     # calculating scores easier.
     PLUS_ONE = 3
     PLUS_ZERO = 1
+    TRUE_ZERO = 0
     MINUS_ZERO = -1
     MINUS_ONE = -3
     SCORES = [
@@ -39,6 +40,10 @@ class ProposalVote(models.Model):
         (
             PLUS_ZERO,
             "+0 — OK proposal, but I will not argue for it to be accepted.",
+        ),
+        (
+            TRUE_ZERO,
+            "±0 — I abstain from voting on this proposal.",
         ),
         (
             MINUS_ZERO,

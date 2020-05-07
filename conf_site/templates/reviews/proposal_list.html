@@ -43,6 +43,7 @@
       <th><i class="fa fa-comment" title="{% trans 'Number of Messages' %}"></i></th>
       <th>{% trans "+1" %}</th>
       <th>{% trans "+0" %}</th>
+      <th>{% trans "±0" %}</th>
       <th>{% trans "-0" %}</th>
       <th>{% trans "-1" %}</th>
       {% endif %}
@@ -69,6 +70,7 @@
         <td>{{ proposal.feedback_count }}</td>
         <td>{{ proposal.plus_one }}</td>
         <td>{{ proposal.plus_zero }}</td>
+        <td>{{ proposal.true_zero }}</td>
         <td>{{ proposal.minus_zero }}</td>
         <td>{{ proposal.minus_one }}</td>
         {% endif %}
