@@ -63,7 +63,7 @@ class ProposalVote(models.Model):
     voter = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="review_votes"
     )
-    score = models.SmallIntegerField(blank=True, choices=SCORES)
+    score = models.SmallIntegerField(blank=True, null=True, choices=SCORES)
     comment = models.TextField(blank=True)
     comment_html = models.TextField(blank=True, editable=False)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -75,6 +75,8 @@ class ProposalVote(models.Model):
 
     def get_numeric_score_display(self):
         """Returns numeric value at beginning of score display string."""
+        if self.score is None:
+            return "Review Requested"
         return self.get_score_display()[0:2].strip()
 
 

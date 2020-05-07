@@ -15,6 +15,7 @@ from conf_site.proposals.models import Proposal
 from conf_site.proposals.tests.factories import ProposalFactory
 from conf_site.reviews.models import ProposalResult
 from conf_site.reviews.tests import ReviewingTestCase
+from conf_site.reviews.tests.factories import ProposalVoteFactory
 from conf_site.speakers.tests.factories import SpeakerFactory
 
 
@@ -112,6 +113,26 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
                         proposal.review_result.status,
                         ProposalResult.RESULT_UNDECIDED,
                     )
+
+    def test_review_requested_proposal_status(self):
+        """Verify that blank votes display "Review Requested"."""
+        self._add_to_reviewers_group()
+        proposal = ProposalFactory.create()
+
+        # There are no votes, so "Review Requested" shouldn't appear.
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertNotContains(response, "Review Requested")
+
+        # "Review Requested" should appear after a blank vote is created.
+        ProposalVoteFactory.create(
+            proposal=proposal, voter=self.user, score=None
+        )
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertContains(response, "Review Requested")
 
     def test_creating_presentations(self):
         self._become_superuser()
