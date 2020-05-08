@@ -13,6 +13,7 @@ class ProposalVoteCountRefreshTestCase(ProposalTestCase):
         self.vote_cache_keys = [
             "proposal_{}_plus_one".format(self.proposal.pk),
             "proposal_{}_plus_zero".format(self.proposal.pk),
+            "proposal_{}_true_zero".format(self.proposal.pk),
             "proposal_{}_minus_zero".format(self.proposal.pk),
             "proposal_{}_minus_one".format(self.proposal.pk),
         ]
@@ -38,6 +39,11 @@ class ProposalVoteCountRefreshTestCase(ProposalTestCase):
             proposal=self.proposal,
             score=ProposalVote.PLUS_ZERO,
         )
+        true_zero_votes = ProposalVoteFactory.create_batch(
+            size=randint(0, 3),
+            proposal=self.proposal,
+            score=ProposalVote.TRUE_ZERO,
+        )
         minus_zero_votes = ProposalVoteFactory.create_batch(
             size=randint(0, 3),
             proposal=self.proposal,
@@ -55,6 +61,7 @@ class ProposalVoteCountRefreshTestCase(ProposalTestCase):
         vote_counts = [
             len(plus_one_votes),
             len(plus_zero_votes),
+            len(true_zero_votes),
             len(minus_zero_votes),
             len(minus_one_votes),
         ]

@@ -29,6 +29,7 @@ class ProposalVote(models.Model):
     # calculating scores easier.
     PLUS_ONE = 3
     PLUS_ZERO = 1
+    TRUE_ZERO = 0
     MINUS_ZERO = -1
     MINUS_ONE = -3
     SCORES = [
@@ -39,6 +40,10 @@ class ProposalVote(models.Model):
         (
             PLUS_ZERO,
             "+0 — OK proposal, but I will not argue for it to be accepted.",
+        ),
+        (
+            TRUE_ZERO,
+            "±0 — I abstain from voting on this proposal.",
         ),
         (
             MINUS_ZERO,
@@ -58,7 +63,7 @@ class ProposalVote(models.Model):
     voter = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="review_votes"
     )
-    score = models.SmallIntegerField(blank=True, choices=SCORES)
+    score = models.SmallIntegerField(blank=True, null=True, choices=SCORES)
     comment = models.TextField(blank=True)
     comment_html = models.TextField(blank=True, editable=False)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -70,6 +75,8 @@ class ProposalVote(models.Model):
 
     def get_numeric_score_display(self):
         """Returns numeric value at beginning of score display string."""
+        if self.score is None:
+            return "Review Requested"
         return self.get_score_display()[0:2].strip()
 
 

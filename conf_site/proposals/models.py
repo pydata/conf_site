@@ -278,6 +278,7 @@ class Proposal(ProposalBase):
         vote_count_dict = {
             "proposal_{}_plus_one".format(self.pk): ProposalVote.PLUS_ONE,
             "proposal_{}_plus_zero".format(self.pk): ProposalVote.PLUS_ZERO,
+            "proposal_{}_true_zero".format(self.pk): ProposalVote.TRUE_ZERO,
             "proposal_{}_minus_zero".format(self.pk): ProposalVote.MINUS_ZERO,
             "proposal_{}_minus_one".format(self.pk): ProposalVote.MINUS_ONE,
         }
@@ -318,6 +319,13 @@ class Proposal(ProposalBase):
         )
 
     @property
+    def true_zero(self):
+        """Enumerate number of ±0 reviews."""
+        return self._get_cached_vote_count(
+            "proposal_{}_true_zero".format(self.pk), ProposalVote.TRUE_ZERO
+        )
+
+    @property
     def minus_zero(self):
         """Enumerate number of -0 reviews."""
         return self._get_cached_vote_count(
@@ -334,5 +342,9 @@ class Proposal(ProposalBase):
     @property
     def total_votes(self):
         return (
-            self.plus_one + self.plus_zero + self.minus_zero + self.minus_one
+            self.plus_one
+            + self.plus_zero
+            + self.true_zero
+            + self.minus_zero
+            + self.minus_one
         )
