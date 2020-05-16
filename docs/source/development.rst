@@ -15,12 +15,22 @@ virtual machine containing your development environment.
 In order to successfully build virtualenvs, a number of development Python
 libraries/packages should also be installed.
 
+- python3-dev
+- python3-pip
+- python3-virtualenv
 - libffi-dev
-- libpq-dev
-- libpython-dev
-- pip
-- virtualenv
-- virtualenvwrapper
+- libimagequant-dev
+- libjpeg-dev
+- libssl-dev
+- libtiff-dev
+- libxml2
+- libxml2-dev
+- libxslt-dev
+- libxslt1-dev
+- zlib1g-dev
+
+Note that if you are not using a Debian server, the name of some of the
+libraries may be different.
 
 Local Development
 -----------------
