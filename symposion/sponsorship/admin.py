@@ -133,7 +133,10 @@ class BenefitAdmin(admin.ModelAdmin):
     inlines = [BenefitLevelInline]
 
     def levels(self, benefit):
-        return ", ".join(l.level.name for l in benefit.benefit_levels.all())
+        return ", ".join(
+            benefit_level.level.name
+            for benefit_level in benefit.benefit_levels.all()
+        )
 
 
 class SponsorLevelAdmin(admin.ModelAdmin):
