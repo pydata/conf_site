@@ -18,9 +18,9 @@ pinax-eventlog==2.0.3
 pip==20.1
 psycopg2==2.8.5
 pytz==2020.1
-redis==3.5.1
+redis==3.5.2
 sendgrid-django==4.2.0
-sentry-sdk==0.14.3
+sentry-sdk==0.14.4
 virtualenv==20.0.20
 wagtail==2.9
 wagtailmenus==3.0.1
