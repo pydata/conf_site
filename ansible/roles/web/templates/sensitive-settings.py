@@ -60,5 +60,12 @@ sentry_sdk.init(
 {% endif %}
 
 GOOGLE_ANALYTICS_PROPERTY_ID = "{{ google_analytics_id }}"
-
+SOCIALACCOUNT_PROVIDERS = {
+    {% if github_oauth_client_id is defined %}"github": {
+        "APP": {
+            "client_id": "{{ github_oauth_client_id }}",
+            "secret": "{{ github_oauth_client_secret }}",
+        }
+    },{% endif %}
+}
 WAGTAIL_SITE_NAME = "{{ conference_name }}"
