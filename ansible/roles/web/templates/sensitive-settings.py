@@ -67,5 +67,18 @@ SOCIALACCOUNT_PROVIDERS = {
             "secret": "{{ github_oauth_client_secret }}",
         }
     },{% endif %}
+    {% if google_oauth_client_id is defined %}"google": {
+        "APP": {
+            "client_id": "{{ google_oauth_client_id }}",
+            "secret": "{{ google_oauth_client_secret }}",
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    },{% endif %}
 }
 WAGTAIL_SITE_NAME = "{{ conference_name }}"
