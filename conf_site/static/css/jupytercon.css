@@ -64,7 +64,6 @@ a {
 #header-jupytercon, #footer-jupytercon {
     margin: 0 auto;
     position: relative;
-    min-width: 960px;
     max-width: 1440px;
 }
 #footer-jupytercon {
