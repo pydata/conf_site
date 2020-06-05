@@ -1,0 +1,9 @@
+{% load socialaccount %}
+
+{% get_providers as socialaccount_providers %}
+{% for provider in socialaccount_providers %}
+  <a class="btn btn-default" href="{% provider_login_url provider.id %}">
+    <i class="fa fa-{{ provider.id }}"></i> Login with {{ provider.name }}
+  </a>
+{% endfor %}
+{% providers_media_js %}
