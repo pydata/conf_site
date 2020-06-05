@@ -64,22 +64,8 @@ a {
 #header-jupytercon, #footer-jupytercon {
     margin: 0 auto;
     position: relative;
-    min-width: 960px;
     max-width: 1440px;
 }
 #footer-jupytercon {
     padding-top: 20px;
-}
-
-/* reset bootstrap setting */
-@media (min-width: 1024px) {
-    .container {
-        width: initial;
-    }
-}
-
-/* mimic static site, but narrower */
-.container {
-    min-width: 960px;
-    max-width: 1440px;
 }
