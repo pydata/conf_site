@@ -76,6 +76,7 @@
         <div id="header-jupytercon-vue">
             <menu-bar></menu-bar>
         </div>
+        <div class="container">
         <script>
             Vue.mixin({
                 data: function() {
@@ -103,6 +104,7 @@
             <a class="btn btn-outline-primary" href="{% url 'account_login' %}">{% trans "Login" %}</a>
             <a class="btn btn-outline-primary" href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>
         {% endif %}
+        </div>
     </div>
 </header>
 {% block body_outer %}
