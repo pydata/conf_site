@@ -1,5 +1,5 @@
-django==3.0.6
-django-allauth==0.41.0
+django==3.0.7
+django-allauth==0.42.0
 django-analytical==2.5.0
 django-autoslug==1.9.7
 django-constance[redis]==2.6.0
@@ -18,7 +18,7 @@ pinax-eventlog==2.0.3
 pip==20.1.1
 psycopg2==2.8.5
 pytz==2020.1
-redis==3.5.2
+redis==3.5.3
 sendgrid-django==4.2.0
 sentry-sdk==0.14.4
 virtualenv==20.0.21
