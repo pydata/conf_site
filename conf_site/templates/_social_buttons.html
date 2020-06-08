@@ -2,7 +2,8 @@
 
 {% get_providers as socialaccount_providers %}
 {% for provider in socialaccount_providers %}
-  <a class="btn btn-default" href="{% provider_login_url provider.id %}">
+  <a class="btn btn-default"
+     href="{% if user.is_authenticated %}{% provider_login_url provider.id process='connect' %}{% else %}{% provider_login_url provider.id %}{% endif %}">
     <i class="fa fa-{{ provider.id }}"></i> Login with {{ provider.name }}
   </a>
 {% endfor %}
