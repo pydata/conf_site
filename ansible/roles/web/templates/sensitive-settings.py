@@ -3,6 +3,8 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
 
+from conf_site.settings.base import INSTALLED_APPS
+
 
 DATABASES_DEFAULT = {
     "ENGINE": "django.db.backends.postgresql",
@@ -60,6 +62,12 @@ sentry_sdk.init(
 {% endif %}
 
 GOOGLE_ANALYTICS_PROPERTY_ID = "{{ google_analytics_id }}"
+{% if github_oauth_client_id is defined %}
+INSTALLED_APPS = INSTALLED_APPS + ["allauth.socialaccount.providers.github"]
+{% endif %}
+{% if google_oauth_client_id is defined %}
+INSTALLED_APPS = INSTALLED_APPS + ["allauth.socialaccount.providers.google"]
+{% endif %}
 SOCIALACCOUNT_PROVIDERS = {
     {% if github_oauth_client_id is defined %}"github": {
         "APP": {
