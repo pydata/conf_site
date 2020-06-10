@@ -43,7 +43,7 @@ class ProposalVote(models.Model):
         ),
         (
             TRUE_ZERO,
-            "±0 — I abstain from voting on this proposal.",
+            "n/a — I abstain from voting on this proposal.",
         ),
         (
             MINUS_ZERO,
