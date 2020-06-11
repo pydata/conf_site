@@ -623,70 +623,12 @@ background:#f7802f !important
 }
 .btn.btn6:hover {color:#3cb3d3 !important;}
 .btn.btn6:after {background-color:#FFF !important;}
-.foundation-cs h2 {  font-family: Dosis;
-  font-size: 100px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  text-align: center;
-  color: #12ccea;
-margin-bottom:45px;}
-.foundation-cs h4 {  font-family: 'Open Sans' !important;
-  font-size: 28px !important;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  letter-spacing: 0.9px;
-  text-align: center;
-  color: #0274a4;}
-.foundation-cs a {display:block;color:#333;font-weight:normal;padding:3px 0px;font-size:22px}
-.foundation-cs.cs2{margin-top: 100px;}
-.foundation-cs.cs2 h4 {margin-top:80px;margin-bottom: 100px;}
-.foundation-cs.cs2 h2 {margin-bottom:90px;}
-.foundation-cs.cs3 h2 {margin-bottom:100px;margin-top: 80px;}
-.foundation-cs.cs3 h4 {font-size:19px !important;margin-top: 30px;text-align:left;}
-.foundation-cs.cs3 p , .foundation-cs.cs3 a {  font-family: 'Open Sans';
-  font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  letter-spacing: 0.6px;
-  color: #595f73;text-align:left
-}
-.foundation-cs.cs4 h2 {margin-top: 60px;text-align:left;}
 .stp-even {background-color:#f9faff}
 
 .sec1-col {
     margin-top: 40px;
     margin-bottom: 70px;
 }
-.foundation-cs .imgc {min-height:165px;vertical-align:middle;/* display:flex; *//* text-align: center; *//* align-items: stretch; *//* align-self: stretch; *//* flex-flow: row wrap; *//* flex-direction: column; *//* display: flex; *//* flex-wrap: wrap; */}
-.foundation-cs .imgc img {align-self: inherit;vertical-align: middle;}
-
-.foundation-cs.cs5 , .foundation-cs.cs5 h4 {text-align:left}
-.foundation-cs.cs5 h4 {font-size:21px !important}
-.foundation-cs.cs5 p {font-size:15px}
-.right {float:right !important}
-.foundation-cs.text-right.cs5 h2 {text-align:right !important;margin-top:130px}
-.foundation-cs.cs2.colx2   {text-align:left;padding: 0px 45px;}
-.foundation-cs.cs2.colx2 h4{text-align:left;margin:20px 0px 20px 0px;font-size:21px !important}
-.foundation-cs.cs2.colx2 h4 a , .foundation-cs.cs5 h4 a {  font-family: 'Open Sans';
-  font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  letter-spacing: 0.6px;
-  color: #595f73;text-align:left
-}
-.foundation-cs.cs2.colx2 h4 a{ font-size:19px}
-.foundation-cs.cs2.colx2 p  {font-size:15px}
-.foundation-cs.text-left.cs5 {margin-top: 80px;margin-bottom: 30px;}
-.foundation-cs.text-left.cs5 h2 {text-align:left !important}
-.foundation-cs.cs6 h4 ,.foundation-cs.cs7 h4 {text-align:left !important;font-size:20px !important;margin-bottom: 20px;margin-top:20px}
-.foundation-cs.cs6 h4 a,.foundation-cs.cs7 h4 a{font-size:19px }
-.foundation-cs.cs6 ,.foundation-cs.cs7 {text-align:left;padding: 0px 55px;}
-.foundation-cs.cs6 p ,.foundation-cs.cs7 p {font-size:15px}
-.foundation-cs.cs6  ,.foundation-cs.cs7 {margin-bottom:30px}
 
 .apply-now {margin-top:100px;}
 .apply-now .btn {font-family: 'Dosis';
