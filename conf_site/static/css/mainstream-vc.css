@@ -393,12 +393,12 @@ html,body {
   margin-bottom: 25px;
   }
 
-#subscibe {
+#subscribe {
   /* min-height: 440px; */
   background-color: #595f73;
   padding-bottom: 140px;
 }
-  #subscibe h2 {  font-family: 'Dosis';
+  #subscribe h2 {  font-family: 'Dosis';
   font-size: 52px; margin-top:110px;margin-bottom:40px;
   font-weight: normal;
   font-style: normal;
@@ -406,16 +406,16 @@ html,body {
   text-align: center;
   color: #ffffff;
 }
-#subscibe div.container {
+#subscribe div.container {
     max-width: 848px;
     margin: 0px auto;
 }
-#subscibe a.btn {
+#subscribe a.btn {
   background-color: #12ccea;
   border-color: #12ccea;
   margin: 0px 33%;
 }
-#subscibe a.btn:hover {background-color: #595f73;color: #12ccea;border-color:#FFF}
+#subscribe a.btn:hover {background-color: #595f73;color: #12ccea;border-color:#FFF}
 #early-b2 {min-height: 352px;text-align:center;background-color: #3cb3d3;padding-bottom: 20px;}
 #early-b2 h2 {  font-family: 'Dosis';
   font-size: 52px; margin-top:70px;
@@ -794,10 +794,10 @@ label.formfield-required:after {
   .sec2 #mono2 { display:none; }
   .news-xl h1 {font-size:33px}
   .news-xl {margin-bottom: 30px;border-bottom: 1px solid #ccc;}
-  #subscibe h2 {margin-top:20px;font-size:31px}
-  #subscibe {padding-bottom:20px}
-  #subscibe form input {padding:0px  10px!important}
-  #subscibe form .sm-smb {position:relative;width:100%}
+  #subscribe h2 {margin-top:20px;font-size:31px}
+  #subscribe {padding-bottom:20px}
+  #subscribe form input {padding:0px  10px!important}
+  #subscribe form .sm-smb {position:relative;width:100%}
 #menu {padding:0px}
 
     table.calendar { font-size: 11px; }
