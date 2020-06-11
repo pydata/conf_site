@@ -779,6 +779,10 @@ div.dashboard-panel {
   margin: 0 0 3rem;
 }
 
+div.dashboard-panel .btn {
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 1500px) {
   #sec1x-con .sec1-col, #nst-con .vcs { margin-left: 150px; }
 }
