@@ -575,18 +575,6 @@ background:#f7802f !important
   text-align: center;
   color: #ee9036;;margin-top:50px;margin-bottom:50px}
 
-.sug-box h3 { font-family: 'Dosis';
-  font-size: 48px;
-  font-weight: normal;margin-top:40px;margin-bottom:40px;
-  font-style: normal;
-  font-stretch: normal;
-  color: #ee9036;}
-  .sug-box p { font-family: Dosis;
-  font-size: 21px;margin-bottom:30px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  color: #575d71;}
   .btn.btn6{  border: solid 5px #0274a4; font-family: Nunito;
   font-size: 36px;
   font-weight: normal;
@@ -594,7 +582,6 @@ background:#f7802f !important
   font-stretch: normal;
   text-align: center;
   color: #0274a4;padding:8px 40px;}
-  .sug-box {margin-bottom:30px}
 
   #strip2 {  min-height: 306px;
   background-color: #3cb3d3;
