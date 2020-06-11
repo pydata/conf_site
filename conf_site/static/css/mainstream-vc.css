@@ -4,9 +4,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! Fayaz S (dzkanch@gmail.com) | www.dzkanch.com */
-html {
-
-}
 body {
   margin: 0;
 }
@@ -353,8 +350,6 @@ html,body {
 #become-a-sponsor-row { margin: 0 33%; }
 .mgt70 {margin-top:70px;}
     img {max-width:100%}
-
-    .xl-heading {}
     .news-xl-heading h1{
   font-family: 'Dosis';
   font-size: 100px;
@@ -461,7 +456,6 @@ html,body {
 #footer .fsec {padding: 0px 20px;}
 #footer p {margin-bottom:30px}
 #footer ul {list-style-type:none;margig:0px;padding:0px}
-#footer ul li {}
 #footer ul li a {
   font-family: 'Open Sans';
   font-size: 14px;
