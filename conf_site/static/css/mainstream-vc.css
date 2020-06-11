@@ -4,9 +4,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! Fayaz S (dzkanch@gmail.com) | www.dzkanch.com */
-html {
-
-}
 body {
   margin: 0;
 }
@@ -351,10 +348,7 @@ html,body {
   text-align: center;
   color: #12ccea;}
 #become-a-sponsor-row { margin: 0 33%; }
-.mgt70 {margin-top:70px;}
     img {max-width:100%}
-
-    .xl-heading {}
     .news-xl-heading h1{
   font-family: 'Dosis';
   font-size: 100px;
@@ -398,12 +392,12 @@ html,body {
   margin-bottom: 25px;
   }
 
-#subscibe {
+#subscribe {
   /* min-height: 440px; */
   background-color: #595f73;
   padding-bottom: 140px;
 }
-  #subscibe h2 {  font-family: 'Dosis';
+  #subscribe h2 {  font-family: 'Dosis';
   font-size: 52px; margin-top:110px;margin-bottom:40px;
   font-weight: normal;
   font-style: normal;
@@ -411,16 +405,16 @@ html,body {
   text-align: center;
   color: #ffffff;
 }
-#subscibe div.container {
+#subscribe div.container {
     max-width: 848px;
     margin: 0px auto;
 }
-#subscibe a.btn {
+#subscribe a.btn {
   background-color: #12ccea;
   border-color: #12ccea;
   margin: 0px 33%;
 }
-#subscibe a.btn:hover {background-color: #595f73;color: #12ccea;border-color:#FFF}
+#subscribe a.btn:hover {background-color: #595f73;color: #12ccea;border-color:#FFF}
 #early-b2 {min-height: 352px;text-align:center;background-color: #3cb3d3;padding-bottom: 20px;}
 #early-b2 h2 {  font-family: 'Dosis';
   font-size: 52px; margin-top:70px;
@@ -460,8 +454,7 @@ html,body {
 #footer .footer4 {min-width: 305px;width: 24.55%;padding-right: 0px !important;}
 #footer .fsec {padding: 0px 20px;}
 #footer p {margin-bottom:30px}
-#footer ul {list-style-type:none;margig:0px;padding:0px}
-#footer ul li {}
+#footer ul {list-style-type:none;padding:0px}
 #footer ul li a {
   font-family: 'Open Sans';
   font-size: 14px;
@@ -581,18 +574,6 @@ background:#f7802f !important
   text-align: center;
   color: #ee9036;;margin-top:50px;margin-bottom:50px}
 
-.sug-box h3 { font-family: 'Dosis';
-  font-size: 48px;
-  font-weight: normal;margin-top:40px;margin-bottom:40px;
-  font-style: normal;
-  font-stretch: normal;
-  color: #ee9036;}
-  .sug-box p { font-family: Dosis;
-  font-size: 21px;margin-bottom:30px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  color: #575d71;}
   .btn.btn6{  border: solid 5px #0274a4; font-family: Nunito;
   font-size: 36px;
   font-weight: normal;
@@ -600,7 +581,6 @@ background:#f7802f !important
   font-stretch: normal;
   text-align: center;
   color: #0274a4;padding:8px 40px;}
-  .sug-box {margin-bottom:30px}
 
   #strip2 {  min-height: 306px;
   background-color: #3cb3d3;
@@ -623,70 +603,12 @@ background:#f7802f !important
 }
 .btn.btn6:hover {color:#3cb3d3 !important;}
 .btn.btn6:after {background-color:#FFF !important;}
-.foundation-cs h2 {  font-family: Dosis;
-  font-size: 100px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  text-align: center;
-  color: #12ccea;
-margin-bottom:45px;}
-.foundation-cs h4 {  font-family: 'Open Sans' !important;
-  font-size: 28px !important;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  letter-spacing: 0.9px;
-  text-align: center;
-  color: #0274a4;}
-.foundation-cs a {display:block;color:#333;font-weight:normal;padding:3px 0px;font-size:22px}
-.foundation-cs.cs2{margin-top: 100px;}
-.foundation-cs.cs2 h4 {margin-top:80px;margin-bottom: 100px;}
-.foundation-cs.cs2 h2 {margin-bottom:90px;}
-.foundation-cs.cs3 h2 {margin-bottom:100px;margin-top: 80px;}
-.foundation-cs.cs3 h4 {font-size:19px !important;margin-top: 30px;text-align:left;}
-.foundation-cs.cs3 p , .foundation-cs.cs3 a {  font-family: 'Open Sans';
-  font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  letter-spacing: 0.6px;
-  color: #595f73;text-align:left
-}
-.foundation-cs.cs4 h2 {margin-top: 60px;text-align:left;}
 .stp-even {background-color:#f9faff}
 
 .sec1-col {
     margin-top: 40px;
     margin-bottom: 70px;
 }
-.foundation-cs .imgc {min-height:165px;vertical-align:middle;/* display:flex; *//* text-align: center; *//* align-items: stretch; *//* align-self: stretch; *//* flex-flow: row wrap; *//* flex-direction: column; *//* display: flex; *//* flex-wrap: wrap; */}
-.foundation-cs .imgc img {align-self: inherit;vertical-align: middle;}
-
-.foundation-cs.cs5 , .foundation-cs.cs5 h4 {text-align:left}
-.foundation-cs.cs5 h4 {font-size:21px !important}
-.foundation-cs.cs5 p {font-size:15px}
-.right {float:right !important}
-.foundation-cs.text-right.cs5 h2 {text-align:right !important;margin-top:130px}
-.foundation-cs.cs2.colx2   {text-align:left;padding: 0px 45px;}
-.foundation-cs.cs2.colx2 h4{text-align:left;margin:20px 0px 20px 0px;font-size:21px !important}
-.foundation-cs.cs2.colx2 h4 a , .foundation-cs.cs5 h4 a {  font-family: 'Open Sans';
-  font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  letter-spacing: 0.6px;
-  color: #595f73;text-align:left
-}
-.foundation-cs.cs2.colx2 h4 a{ font-size:19px}
-.foundation-cs.cs2.colx2 p  {font-size:15px}
-.foundation-cs.text-left.cs5 {margin-top: 80px;margin-bottom: 30px;}
-.foundation-cs.text-left.cs5 h2 {text-align:left !important}
-.foundation-cs.cs6 h4 ,.foundation-cs.cs7 h4 {text-align:left !important;font-size:20px !important;margin-bottom: 20px;margin-top:20px}
-.foundation-cs.cs6 h4 a,.foundation-cs.cs7 h4 a{font-size:19px }
-.foundation-cs.cs6 ,.foundation-cs.cs7 {text-align:left;padding: 0px 55px;}
-.foundation-cs.cs6 p ,.foundation-cs.cs7 p {font-size:15px}
-.foundation-cs.cs6  ,.foundation-cs.cs7 {margin-bottom:30px}
 
 .apply-now {margin-top:100px;}
 .apply-now .btn {font-family: 'Dosis';
@@ -866,10 +788,10 @@ div.dashboard-panel .btn {
   .sec2 #mono2 { display:none; }
   .news-xl h1 {font-size:33px}
   .news-xl {margin-bottom: 30px;border-bottom: 1px solid #ccc;}
-  #subscibe h2 {margin-top:20px;font-size:31px}
-  #subscibe {padding-bottom:20px}
-  #subscibe form input {padding:0px  10px!important}
-  #subscibe form .sm-smb {position:relative;width:100%}
+  #subscribe h2 {margin-top:20px;font-size:31px}
+  #subscribe {padding-bottom:20px}
+  #subscribe form input {padding:0px  10px!important}
+  #subscribe form .sm-smb {position:relative;width:100%}
 #menu {padding:0px}
 
     table.calendar { font-size: 11px; }
