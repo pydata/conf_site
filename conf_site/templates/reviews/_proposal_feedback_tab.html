@@ -6,7 +6,7 @@
       {% elif not request.user.is_superuser and config.BLIND_REVIEWERS and actor == "reviewer" and feedback.author != request.user %}
         <b>Anonymous</b>
       {% else %}
-        <b>{{ feedback.author.username }}</b>:
+        <b>{{ feedback.author.get_full_name|default:feedback.author.username }}</b>:
       {% endif %}
       {{ feedback.comment_html|safe }}
     {% endfor %}
