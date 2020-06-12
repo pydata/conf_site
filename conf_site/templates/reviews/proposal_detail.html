@@ -76,7 +76,7 @@
           {% if not request.user.is_superuser and config.BLIND_REVIEWERS and review_vote.voter != request.user %}
             Anonymous
           {% else %}
-            {{ review_vote.voter.username }}
+            {{ review_vote.voter.get_full_name|default:review_vote.voter.username }}
           {% endif %}
           ({{ review_vote.get_score_display }})
         </h4>
