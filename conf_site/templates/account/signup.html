@@ -17,8 +17,10 @@
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
                 <button type="submit" class="btn btn-primary">{% trans "Sign up" %}</button>
+                {% include "_social_buttons.html" %}
             </form>
             <p class="login-signup">
+
                 <small>
                     {% trans "Already have an account?" %}  <strong><a href="{% url 'account_login' %}">{% trans "Log in" %}</a></strong>
                 </small>

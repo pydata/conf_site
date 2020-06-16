@@ -18,6 +18,7 @@
             {% endif %}
             <button type="submit" class="btn btn-primary">{% trans "Log in" %}</button>
             <a href="{% url 'account_reset_password' %}" class="btn btn-link">{% trans "Forgot your password?" %}</a>
+            {% include "_social_buttons.html" %}
         </form>
         <p class="login-signup">
             {% trans "Don't have an account?" %}
