@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %} - {% trans "Social Network Connections" %}{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div>
+      <h1>{% trans "Social Network Connections" %}</h1>
+      {% if form.accounts %}
+        <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+
+        <form action="{% url 'socialaccount_connections' %}" class="email_list" method="post">
+          {% csrf_token %}
+          <fieldset class="blockLabels">
+
+            {% for base_account in form.accounts %}
+            {% with base_account.get_provider_account as account %}
+            <div class="ctrlHolder">
+              <label for="account_radio_{{ base_account.id }}">
+                <input id="account_radio_{{ base_account.id }}" type="radio" name="account" value="{{ base_account.id }}">
+                <i class="fa fa-{{ account.get_brand.id }}" aria-hidden="true" title="{{ account.get_brand.name }}"></i>
+                <span class="sr-only">{{ account.get_brand.name }}</span>
+                {{ account }}
+              </label>
+            </div>
+            {% endwith %}
+            {% endfor %}
+
+          <div class="buttonHolder">
+            <button class="btn btn-primary" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+          </div>
+
+          </fieldset>
+        </form>
+      {% else %}
+        <p>
+          {% trans "You currently have no social networks connected to this account." %}
+        </p>
+      {% endif %}
+
+      <h2>{% trans 'Add a Social Network' %}</h2>
+
+      {% include "_social_buttons.html" %}
+
+    </div>
+  </div>
+</div>
+<br>
+{% endblock %}
