@@ -10,4 +10,5 @@ DATABASES = {
     "default": DATABASES_DEFAULT,       # noqa: F405
 }
 
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 SECURE_SSL_REDIRECT = True
