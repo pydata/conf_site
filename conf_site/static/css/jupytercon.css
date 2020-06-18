@@ -29,7 +29,7 @@ h1, h2 {
 }
 
 h1 {
-    color: #f7802f;
+    color: #f37626;
     font-size: 4.5rem;
 }
 
@@ -99,17 +99,17 @@ p {
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:active:focus {
-    background-color: #f7802f;
-    border-color: #f7802f;
+    background-color: #f37626;
+    border-color: #f37626;
 }
 
 btn-outline-primary {
     border: 1px;
-    border-color: #f7802f;
+    border-color: #f37626;
 }
 
 a {
-    color: #f7802f;
+    color: #f37626;
 }
 
 #header-jupytercon, #footer-jupytercon {
