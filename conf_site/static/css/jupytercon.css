@@ -98,9 +98,14 @@ p {
     color: #0a0a0a;
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:active:focus {
+.btn-primary {
     background-color: #f37626;
     border-color: #f37626;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #e2600d;
+    color: #fefefe;
 }
 
 btn-outline-primary {
@@ -110,6 +115,14 @@ btn-outline-primary {
 
 a {
     color: #f37626;
+}
+
+a:focus, a:hover {
+    color: #e5610d;
+}
+
+a.btn:hover {
+    text-decoration: underline;
 }
 
 #header-jupytercon, #footer-jupytercon {
