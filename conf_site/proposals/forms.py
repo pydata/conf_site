@@ -75,7 +75,6 @@ class ProposalForm(forms.ModelForm):
             "under_represented_group",
             "accomodation_needs",
             "recording_release",
-            "phone_number",
             "gdpr_grant",
             "gdpr_revoke_awareness",
             "gdpr_data_exemption",
@@ -118,7 +117,6 @@ class ProposalForm(forms.ModelForm):
                 "referral",
                 "under_represented_group",
                 "accomodation_needs",
-                "phone_number",
                 "recording_release",
             ),
             Fieldset(
@@ -164,7 +162,6 @@ class TutorialForm(ProposalForm):
             "under_represented_group",
             "accomodation_needs",
             "recording_release",
-            "phone_number",
             "gdpr_grant",
             "gdpr_revoke_awareness",
             "gdpr_data_exemption",
@@ -194,6 +191,8 @@ class TutorialForm(ProposalForm):
         self.fields["additional_notes"].help_text = (
             "Please summarize your teaching or public speaking experience, "
             "as well as your experience with the subject of the tutorial."
+            " Also, indicate if you have prior experience "
+            "creating online or recorded content."
         )
 
         self.helper.layout = Layout(
@@ -219,7 +218,6 @@ class TutorialForm(ProposalForm):
                 "referral",
                 "under_represented_group",
                 "accomodation_needs",
-                "phone_number",
                 "recording_release",
             ),
             Fieldset(
