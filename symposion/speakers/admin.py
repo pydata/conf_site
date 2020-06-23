@@ -10,10 +10,11 @@ admin.site.register(
         "name",
         "slug",
         "email",
-        "created",
+        "speaker_timezone",
         "github_username",
         "twitter_username",
+        "created",
     ],
     prepopulated_fields={"slug": ("name",)},
-    search_fields=["name"],
+    search_fields=["name", "user__email"],
 )
