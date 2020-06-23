@@ -109,7 +109,7 @@ class ProposalBase(models.Model):
         help_text=_(
             "Short paragraph, maximum 400 characters. "
             "If your proposal is accepted, "
-            "this will be in the public printed program."
+            "this will be in the public program."
         ),
     )
     abstract = models.TextField(

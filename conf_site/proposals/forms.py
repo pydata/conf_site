@@ -192,8 +192,7 @@ class TutorialForm(ProposalForm):
             "For the purpose of this tutorial."
         )
         self.fields["additional_notes"].help_text = (
-            "Please summarize your teaching or public speaking experience, "
-            "as well as your experience with the subject of the tutorial."
+            "Please summarize your teaching or public speaking experience, as well as your experience with the subject of the tutorial. Also, indicate if you have prior experience creating online or recorded content."
         )
 
         self.helper.layout = Layout(
