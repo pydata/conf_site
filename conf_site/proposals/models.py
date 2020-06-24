@@ -58,8 +58,10 @@ class Proposal(ProposalBase):
         (AUDIENCE_LEVEL_EXPERIENCED, "Experienced"),
     ]
     YES_OR_NO_ANSWERS = (
+        ("", "----"),
         (YES_NO_OTHER_YES, "Yes"),
         (YES_NO_OTHER_NO, "No"),
+        (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
     )
     YES_NO_OTHER_ANSWERS = (
         ("", "----"),
@@ -106,7 +108,7 @@ class Proposal(ProposalBase):
 
     first_time_at_jupytercon = models.CharField(
         "Is this your first time presenting at JupyterCon?",
-        choices=YES_NO_OTHER_ANSWERS,
+        choices=YES_OR_NO_ANSWERS,
         blank=True,
         default="",
         max_length=1)
