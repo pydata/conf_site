@@ -49,6 +49,7 @@ class Proposal(ProposalBase):
     AUDIENCE_LEVEL_INTERMEDIATE = 3
     YES_NO_OTHER_YES = "Y"
     YES_NO_OTHER_NO = "N"
+    YES_NO_OTHER_OTHER = "X"
     # https://en.wikipedia.org/wiki/Bartleby,_the_Scrivener
     YES_NO_OTHER_BARTLEBY = "O"
 
@@ -58,13 +59,16 @@ class Proposal(ProposalBase):
         (AUDIENCE_LEVEL_EXPERIENCED, "Experienced"),
     ]
     YES_OR_NO_ANSWERS = (
+        ("", "----"),
         (YES_NO_OTHER_YES, "Yes"),
         (YES_NO_OTHER_NO, "No"),
+        (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
     )
     YES_NO_OTHER_ANSWERS = (
         ("", "----"),
         (YES_NO_OTHER_YES, "Yes"),
         (YES_NO_OTHER_NO, "No"),
+        (YES_NO_OTHER_OTHER, "Other"),
         (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
     )
 
@@ -82,8 +86,11 @@ class Proposal(ProposalBase):
     tutorial_format = models.TextField(
         blank=True,
         help_text=(
-            "Please describe what portion of your tutorial you plan "
-            "to spend on student exercises, lecture, or other activities."
+            "Please describe what portion of the tutorial will be spent "
+            "on the video presentation, hands-on exercises and "
+            "self-assessment or knowledge checks (if any). "
+            "This does not have to be laid minute-by-minute but give "
+            "an overall idea on how the 3 hours will be distributed."
         ),
     )
 
@@ -103,7 +110,7 @@ class Proposal(ProposalBase):
 
     first_time_at_jupytercon = models.CharField(
         "Is this your first time presenting at JupyterCon?",
-        choices=YES_NO_OTHER_ANSWERS,
+        choices=YES_OR_NO_ANSWERS,
         blank=True,
         default="",
         max_length=1)
@@ -116,11 +123,10 @@ class Proposal(ProposalBase):
         blank=True,
         default="",
         help_text=(
-            "Let us know if you have specific needs or special requests — "
-            "for example, requests that involve accessibility, audio, or "
-            "restrictions on when your proposal can be scheduled. "
-            "We will be providing appropriate seating for attendees, "
-            "a projector, and a microphone for you."
+            "Let us know if you have specific requests or needs — "
+            "for example, restrictions on when you can participate "
+            "(e.g., live panels, office hours, etc.) and "
+            "if you anticipate any issues recording your content."
         )
     )
     gender = models.CharField(
@@ -144,7 +150,7 @@ class Proposal(ProposalBase):
         "Do you identify as an under-represented group with respect to "
         "one or more of these: gender, age (40+), race, sexual orientation, "
         "or other self-reported category?",
-        choices=YES_OR_NO_ANSWERS,
+        choices=YES_NO_OTHER_ANSWERS,
         blank=True,
         default="",
         max_length=1,
@@ -155,17 +161,12 @@ class Proposal(ProposalBase):
         default="",
         help_text=(
             "Examples include, but not limited to: sign language, "
-            "closed captioning, mobility, parent room, diet, etc. "
+            "closed captioning, assistance with recording, etc. "
             "Please indicate the specific need so we can plan in advance."
         ),
         max_length=200,
     )
 
-    phone_number = models.CharField(
-        "Phone number - to be used for last-minute schedule changes",
-        blank=True,
-        default="",
-        max_length=100)
     recording_release = models.BooleanField(
         default=True,
         help_text="By submitting your proposal, you agree to give permission "

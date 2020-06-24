@@ -1,5 +1,4 @@
 from django import forms
-from django.forms.widgets import RadioSelect
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Fieldset, HTML, Layout
@@ -48,16 +47,6 @@ class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
 
 
 class ProposalForm(forms.ModelForm):
-    under_represented_group = forms.ChoiceField(
-        choices=Proposal.YES_OR_NO_ANSWERS,
-        label=(
-            "Do you identify as an under-represented group with respect to "
-            "one or more of these: gender, age (40+), race, "
-            "sexual orientation, or other self-reported category?"
-        ),
-        required=False,
-        widget=RadioSelect,
-    )
 
     class Meta:
         model = Proposal
@@ -75,7 +64,6 @@ class ProposalForm(forms.ModelForm):
             "under_represented_group",
             "accomodation_needs",
             "recording_release",
-            "phone_number",
             "gdpr_grant",
             "gdpr_revoke_awareness",
             "gdpr_data_exemption",
@@ -118,7 +106,6 @@ class ProposalForm(forms.ModelForm):
                 "referral",
                 "under_represented_group",
                 "accomodation_needs",
-                "phone_number",
                 "recording_release",
             ),
             Fieldset(
@@ -164,7 +151,6 @@ class TutorialForm(ProposalForm):
             "under_represented_group",
             "accomodation_needs",
             "recording_release",
-            "phone_number",
             "gdpr_grant",
             "gdpr_revoke_awareness",
             "gdpr_data_exemption",
@@ -194,6 +180,8 @@ class TutorialForm(ProposalForm):
         self.fields["additional_notes"].help_text = (
             "Please summarize your teaching or public speaking experience, "
             "as well as your experience with the subject of the tutorial."
+            " Also, indicate if you have prior experience "
+            "creating online or recorded content."
         )
 
         self.helper.layout = Layout(
@@ -219,7 +207,6 @@ class TutorialForm(ProposalForm):
                 "referral",
                 "under_represented_group",
                 "accomodation_needs",
-                "phone_number",
                 "recording_release",
             ),
             Fieldset(
