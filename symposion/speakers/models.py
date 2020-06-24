@@ -55,7 +55,7 @@ class Speaker(models.Model):
     )
     biography_html = models.TextField(blank=True)
 
-    speaker_timezone = TimeZoneField(blank=True, verbose_name=_("Timezone"))
+    speaker_timezone = TimeZoneField(verbose_name=_("Timezone"))
 
     photo = models.ImageField(
         upload_to="speaker_photos",
