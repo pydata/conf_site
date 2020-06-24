@@ -49,6 +49,7 @@ class Proposal(ProposalBase):
     AUDIENCE_LEVEL_INTERMEDIATE = 3
     YES_NO_OTHER_YES = "Y"
     YES_NO_OTHER_NO = "N"
+    YES_NO_OTHER_OTHER = "X"
     # https://en.wikipedia.org/wiki/Bartleby,_the_Scrivener
     YES_NO_OTHER_BARTLEBY = "O"
 
@@ -67,6 +68,7 @@ class Proposal(ProposalBase):
         ("", "----"),
         (YES_NO_OTHER_YES, "Yes"),
         (YES_NO_OTHER_NO, "No"),
+        (YES_NO_OTHER_OTHER, "Other"),
         (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
     )
 
@@ -148,7 +150,7 @@ class Proposal(ProposalBase):
         "Do you identify as an under-represented group with respect to "
         "one or more of these: gender, age (40+), race, sexual orientation, "
         "or other self-reported category?",
-        choices=YES_OR_NO_ANSWERS,
+        choices=YES_NO_OTHER_ANSWERS,
         blank=True,
         default="",
         max_length=1,
