@@ -1,5 +1,7 @@
 import os
 
+from django.contrib.messages import constants as messages
+
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
@@ -283,6 +285,10 @@ CRISPY_TEMPLATE_PACK = "bootstrap3"
 CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"
 DEFAULT_PROPOSAL_FORM = "conf_site.proposals.forms.ProposalForm"
 LOGIN_REDIRECT_URL = "dashboard"
+MESSAGE_TAGS = {
+    messages.DEBUG: "info",
+    messages.ERROR: "danger",
+}
 PROPOSAL_FORMS = {
     "poster": "conf_site.proposals.forms.PosterForm",
     "talk": "conf_site.proposals.forms.ProposalForm",
