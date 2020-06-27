@@ -62,3 +62,30 @@ vagrant destroy
 
 vagrant ssh
   This logs you in to the VM as the vagrant user.
+
+
+Walkthrough for OSX
+-------------------
+
+The following commands should get you a working setup on OSX for local development/testing.::
+
+  $ brew cask install vagrant
+  $ brew install ansible
+  $ sudo /usr/bin/python3 -m pip install virtualenvwrapper
+  $ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+  $ virtualenvwrapper.sh conf_siteq
+  $ ansible-vault create foo.yml
+  # enter password and fill with content of ansible/secrets.yml.example
+  $ cp foo.yml ansible/secrets
+  $ vagrant up --provision
+
+  # wait a few minutes
+  $ vagrant ssh # this will connect to the VM or $ ssh -p2222 vagrant@127.0.0.1
+  # Following https://github.com/pydata/conf_site/blob/b6df905f61ae37845387f31d02d959929aacf34f/docs/source/deployment.rst#customization
+  # So the Following commands are inside the VM
+  $ cd /srv/pydata
+  $ source ~/.virtualenvs/current/bin/activate
+  $ DJANGO_SETTINGS_MODULE="conf_site.settings.production" ./manage.py loaddata fixtures/*
+  $ sudo systemctl start nginx
+  # Now go to http://localhost:8080/test
+  # and edit for instance templates/base.html
