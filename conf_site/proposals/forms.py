@@ -41,6 +41,8 @@ class ProposalForm(forms.ModelForm):
             "audience_level",
             "description",
             "abstract",
+            "already_recording",
+            "recording_url",
             "first_time_at_pydata",
             "affiliation",
             "additional_notes",
@@ -51,6 +53,9 @@ class ProposalForm(forms.ModelForm):
             "official_keywords",
             "user_keywords",
         ]
+        widgets = {
+            "already_recording": forms.RadioSelect,
+        }
 
     def __init__(self, *args, **kwargs):
         super(ProposalForm, self).__init__(*args, **kwargs)

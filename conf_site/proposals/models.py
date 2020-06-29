@@ -57,6 +57,10 @@ class Proposal(ProposalBase):
         (AUDIENCE_LEVEL_INTERMEDIATE, "Intermediate"),
         (AUDIENCE_LEVEL_EXPERIENCED, "Experienced"),
     ]
+    YES_NO_BOOL_ANSWERS = (
+        (True, "Yes"),
+        (False, "No"),
+    )
     YES_NO_OTHER_ANSWERS = (
         ("", "----"),
         (YES_NO_OTHER_YES, "Yes"),
@@ -65,6 +69,20 @@ class Proposal(ProposalBase):
     )
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
+
+    already_recording = models.BooleanField(
+        choices=YES_NO_BOOL_ANSWERS,
+        default=False,
+        verbose_name=(
+            "Is there a recording of this talk/tutorial already online?"
+        ),
+    )
+    recording_url = models.URLField(
+        blank=True,
+        default="",
+        max_length=2083,
+        verbose_name="If yes, what is the link?",
+    )
 
     slides_url = models.URLField(
         blank=True,
