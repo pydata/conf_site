@@ -30,7 +30,10 @@ class ProposalForm(forms.ModelForm):
     required_css_class = "formfield-required"
 
     official_keywords = ModelMultipleTagChoiceField(
-        label="Official Keywords",
+        label=(
+            "Please tag this proposal with all relevant tags, "
+            "to assist us with proposal review"
+        ),
         queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501
 
     class Meta:
