@@ -98,6 +98,15 @@ class Proposal(ProposalBase):
         (FIRST_TIME_THREE_MINUS, "Yes - First-time speaker (PyData) with < 3 conference talks"),    # noqa: E501
     )
 
+    AFFILIATION_COMPANY = "C"
+    AFFILIATION_SCHOOL = "S"
+    AFFILIATION_INDEPENDENT = "I"
+    AFFILIATIONS = (
+        (AFFILIATION_COMPANY, "Company"),
+        (AFFILIATION_SCHOOL, "School"),
+        (AFFILIATION_INDEPENDENT, "Independent"),
+    )
+
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
     already_recording = models.BooleanField(
@@ -150,7 +159,7 @@ class Proposal(ProposalBase):
         blank=True,
         default="",
         max_length=1)
-    affiliation = models.CharField(max_length=200)
+    affiliation = models.CharField(choices=AFFILIATIONS, max_length=1)
 
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
