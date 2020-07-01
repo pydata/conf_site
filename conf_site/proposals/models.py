@@ -107,6 +107,17 @@ class Proposal(ProposalBase):
         (AFFILIATION_INDEPENDENT, "Independent"),
     )
 
+    MENTORING_TECH = "T"
+    MENTORING_COMM = "C"
+    MENTORING_BOTH = "B"
+    MENTORING_CHOICES = (
+        (YES_NO_OTHER_YES, "Yes"),
+        (YES_NO_OTHER_NO, "No"),
+        (MENTORING_TECH, "Yes, providing technical mentorship"),
+        (MENTORING_COMM, "Yes, providing communication mentorship"),
+        (MENTORING_BOTH, "Yes, both technical and communication mentoring"),
+    )
+
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
     already_recording = models.BooleanField(
@@ -171,6 +182,18 @@ class Proposal(ProposalBase):
             "bring together the conference program much more quickly. "
             "If accepted, can you commit to presenting at PyData Global 2020?"
         ),
+    )
+    mentorship = models.BooleanField(
+        choices=YES_NO_BOOL_ANSWERS,
+        verbose_name=(
+            "Would you like to be considered "
+            "for our speaker mentorship program?"
+        ),
+    )
+    mentoring = models.CharField(
+        choices=MENTORING_CHOICES,
+        max_length=1,
+        verbose_name="Would you be interested in mentoring other speakers?",
     )
 
     phone_number = models.CharField(

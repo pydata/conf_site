@@ -15,6 +15,7 @@ class ProposalFactory(factory.django.DjangoModelFactory):
     speaker = factory.SubFactory(SpeakerFactory)
     audience_level = factory.Faker("pyint")
     commitment = factory.Faker("boolean")
+    mentorship = factory.Faker("boolean")
 
     class Meta:
         model = Proposal

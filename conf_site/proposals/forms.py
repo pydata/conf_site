@@ -53,6 +53,8 @@ class ProposalForm(forms.ModelForm):
             "affiliation",
             "additional_notes",
             "commitment",
+            "mentorship",
+            "mentoring",
             "recording_release",
             "phone_number",
             "slides_url",
