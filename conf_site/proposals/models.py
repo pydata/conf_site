@@ -87,6 +87,17 @@ class Proposal(ProposalBase):
         (PROPOSAL_TRACK_OPEN_SCIENCE, "Open Science"),
     )
 
+    FIRST_TIME_ANY = "1"
+    FIRST_TIME_THREE_PLUS = "2"
+    FIRST_TIME_THREE_MINUS = "3"
+    FIRST_TIME_ANSWERS = (
+        ("", "----"),
+        (YES_NO_OTHER_NO, "No"),
+        (FIRST_TIME_ANY, "Yes - First-time technical speaker (any)"),
+        (FIRST_TIME_THREE_PLUS, "Yes - First-time speaker (PyData) with 3+ conference talks"),      # noqa: E501
+        (FIRST_TIME_THREE_MINUS, "Yes - First-time speaker (PyData) with < 3 conference talks"),    # noqa: E501
+    )
+
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
     already_recording = models.BooleanField(
@@ -135,7 +146,7 @@ class Proposal(ProposalBase):
 
     first_time_at_pydata = models.CharField(
         "Is this your first time speaking at a PyData event?",
-        choices=YES_NO_OTHER_ANSWERS,
+        choices=FIRST_TIME_ANSWERS,
         blank=True,
         default="",
         max_length=1)
