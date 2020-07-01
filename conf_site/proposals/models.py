@@ -109,6 +109,16 @@ class Proposal(ProposalBase):
         verbose_name="Please choose a specialized track, if any",
     )
 
+    other_language = models.CharField(
+        blank=True,
+        default="",
+        max_length=100,
+        verbose_name=(
+            "Would this content be presented in a language other than English?"
+            " If so, please indicate here."
+        ),
+    )
+
     slides_url = models.URLField(
         blank=True,
         default="",

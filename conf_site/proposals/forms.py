@@ -45,6 +45,7 @@ class ProposalForm(forms.ModelForm):
             "recording_url",
             "specialized_track",
             "official_keywords",
+            "other_language",
             "first_time_at_pydata",
             "affiliation",
             "additional_notes",
