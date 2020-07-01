@@ -10,6 +10,9 @@
     <dd>{{ proposal.affiliation }}</dd>
     {% endif %}
 
+    <dt>{% trans "Specialized Track" %}</dt>
+    <dd>{{ proposal.get_specialized_track_display }}</dd>
+
     {% if config.PROPOSAL_KEYWORDS %}
     {% if request.user != proposal.speaker.user %}
     <dt>Editor Keywords</dt>

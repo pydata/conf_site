@@ -68,6 +68,25 @@ class Proposal(ProposalBase):
         (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
     )
 
+    PROPOSAL_TRACK_NA = 0
+    PROPOSAL_TRACK_ALGORITHMS = 1
+    PROPOSAL_TRACK_METHODS = 2
+    PROPOSAL_TRACK_PRODUCTION = 3
+    PROPOSAL_TRACK_VISUAL = 4
+    PROPOSAL_TRACK_JULIA = 5
+    PROPOSAL_TRACK_LESSONS = 6
+    PROPOSAL_TRACK_OPEN_SCIENCE = 7
+    PROPOSAL_TRACKS = (
+        (PROPOSAL_TRACK_NA, "Not Applicable"),
+        (PROPOSAL_TRACK_ALGORITHMS, "Algorithmic Accountability"),
+        (PROPOSAL_TRACK_METHODS, "Causal and Statistical Methods"),
+        (PROPOSAL_TRACK_PRODUCTION, "Data Science in Production"),
+        (PROPOSAL_TRACK_VISUAL, "Data Visualization & Interpretability"),
+        (PROPOSAL_TRACK_JULIA, "Julia for Python Users & Julia Users"),
+        (PROPOSAL_TRACK_LESSONS, "Lessons from Industry"),
+        (PROPOSAL_TRACK_OPEN_SCIENCE, "Open Science"),
+    )
+
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
     already_recording = models.BooleanField(
@@ -82,6 +101,12 @@ class Proposal(ProposalBase):
         default="",
         max_length=2083,
         verbose_name="If yes, what is the link?",
+    )
+
+    specialized_track = models.IntegerField(
+        choices=PROPOSAL_TRACKS,
+        default=PROPOSAL_TRACK_NA,
+        verbose_name="Please choose a specialized track, if any",
     )
 
     slides_url = models.URLField(

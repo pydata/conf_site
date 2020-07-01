@@ -43,6 +43,7 @@ class ProposalForm(forms.ModelForm):
             "abstract",
             "already_recording",
             "recording_url",
+            "specialized_track",
             "first_time_at_pydata",
             "affiliation",
             "additional_notes",
