@@ -44,6 +44,7 @@ class ProposalForm(forms.ModelForm):
             "already_recording",
             "recording_url",
             "specialized_track",
+            "official_keywords",
             "first_time_at_pydata",
             "affiliation",
             "additional_notes",
@@ -51,8 +52,6 @@ class ProposalForm(forms.ModelForm):
             "phone_number",
             "slides_url",
             "code_url",
-            "official_keywords",
-            "user_keywords",
         ]
         widgets = {
             "already_recording": forms.RadioSelect,
@@ -69,7 +68,6 @@ class ProposalForm(forms.ModelForm):
         # Don't display keyword fields if keyword support is disabled.
         if not config.PROPOSAL_KEYWORDS:
             del self.fields["official_keywords"]
-            del self.fields["user_keywords"]
         # Don't display slide and code repo fields if support is disabled.
         if not config.PROPOSAL_URL_FIELDS:
             del self.fields["slides_url"]
