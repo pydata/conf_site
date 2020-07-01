@@ -161,6 +161,18 @@ class Proposal(ProposalBase):
         max_length=1)
     affiliation = models.CharField(choices=AFFILIATIONS, max_length=1)
 
+    commitment = models.BooleanField(
+        choices=YES_NO_BOOL_ANSWERS,
+        verbose_name=(
+            "We are asking all speakers to commit to presenting "
+            "at PyData Global 2020 if their proposals are accepted. "
+            "This commitment will greatly simplify the Program Committee’s "
+            "deliberations and will enable us to communicate acceptances and "
+            "bring together the conference program much more quickly. "
+            "If accepted, can you commit to presenting at PyData Global 2020?"
+        ),
+    )
+
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
         blank=True,
