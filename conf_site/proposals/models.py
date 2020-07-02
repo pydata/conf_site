@@ -118,6 +118,11 @@ class Proposal(ProposalBase):
         (MENTORING_BOTH, "Yes, both technical and communication mentoring"),
     )
 
+    COMPANY_SPONSOR_CHOICES = (
+        (True, "Yes, I can make an introduction"),
+        (False, "No"),
+    )
+
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
     already_recording = models.BooleanField(
@@ -194,6 +199,13 @@ class Proposal(ProposalBase):
         choices=MENTORING_CHOICES,
         max_length=1,
         verbose_name="Would you be interested in mentoring other speakers?",
+    )
+
+    company_sponsor_intro = models.BooleanField(
+        choices=COMPANY_SPONSOR_CHOICES,
+        verbose_name=(
+            "Would your company be interested in sponsoring the event?"
+        )
     )
 
     phone_number = models.CharField(
