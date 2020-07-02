@@ -1,4 +1,4 @@
-django==3.0.7
+django==3.0.8
 django-allauth==0.42.0
 django-analytical==2.5.0
 django-autoslug==1.9.7
@@ -22,5 +22,5 @@ redis==3.5.3
 sendgrid-django==4.2.0
 sentry-sdk==0.15.1
 virtualenv==20.0.25
-wagtail==2.9
+wagtail==2.9.1
 wagtailmenus==3.0.2
