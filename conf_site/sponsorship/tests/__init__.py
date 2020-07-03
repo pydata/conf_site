@@ -22,6 +22,7 @@ class SponsorFactory(factory.django.DjangoModelFactory):
     contact_name = factory.Faker("name")
     contact_email = factory.Faker("company_email")
     level = factory.SubFactory(SponsorLevelFactory)
+    active = factory.Faker("boolean")
 
     class Meta:
         model = Sponsor
