@@ -58,6 +58,8 @@ class ProposalForm(forms.ModelForm):
             "company_sponsor_intro",
             "av_equipment_needed",
             "av_needs",
+            "stipend",
+            "stipend_amount",
             "recording_release",
             "phone_number",
             "slides_url",

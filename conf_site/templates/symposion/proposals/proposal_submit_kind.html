@@ -46,14 +46,29 @@
             jQuery("textarea#id_av_needs").removeAttr("required");
         }
     };
+    function stipendText(){
+        // Only show stipend_amount field if stipend is True.
+        if (jQuery("form#proposal-form input#id_stipend:checked").val() == "on"){
+            jQuery("div#div_id_stipend_amount").show();
+            jQuery("div#div_id_stipend_amount input#id_stipend_amount").attr("required", "");
+        } else {
+            jQuery("div#div_id_stipend_amount").hide();
+            jQuery("div#div_id_stipend_amount input#id_stipend_amount").removeAttr("required");
+        }
+    };
+
     jQuery(document).ready(function() {
         logicRecordingURL();
         avNeedsText();
+        stipendText();
     });
     jQuery("form#proposal-form input[name='already_recording']").change(function() {
         logicRecordingURL();
     });
     jQuery("form#proposal-form select#id_av_equipment_needed").change(function() {
         avNeedsText();
+    });
+    jQuery("form#proposal-form input#id_stipend").change(function() {
+        stipendText();
     });
 </script>{% endblock %}
