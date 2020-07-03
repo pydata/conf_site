@@ -92,3 +92,7 @@ class ProposalForm(forms.ModelForm):
                 u"The description must be less than 400 characters"
             )
         return value
+
+
+class PosterForm(ProposalForm):
+    pass

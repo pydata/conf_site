@@ -45,15 +45,9 @@
     <dd>{{ proposal.additional_notes_html|safe }}&nbsp;</dd>
     {% endif %}
 
-    {% if config.PROPOSAL_URL_FIELDS %}
-        {% if proposal.slides_url %}
-            <dt>Slides</dt>
-            <dd><a href="{{ proposal.slides_url }}">{{ proposal.slides_url }}</a></dd>
-        {% endif %}
-        {% if proposal.code_url %}
-            <dt>Code</dt>
-            <dd><a href="{{ proposal.code_url }}">{{ proposal.code_url }}</a></dd>
-        {% endif %}
+    {% if proposal.code_url %}
+        <dt>{% if proposal.kind.slug == "poster" %}Project/Paper URL{% else %}Code{% endif %}</dt>
+        <dd><a href="{{ proposal.code_url }}">{{ proposal.code_url }}</a></dd>
     {% endif %}
 
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
