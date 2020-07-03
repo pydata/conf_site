@@ -17,7 +17,10 @@
   <p>
     <strong>{{ num_proposals }}</strong> proposal{{ num_proposals|pluralize }}
     (<strong>{{ num_talks }}</strong> talk{{ num_talks|pluralize }},
-    <strong>{{ num_tutorials }}</strong> tutorial{{ num_tutorials|pluralize }})
+    <strong>{{ num_tutorials }}</strong> tutorial{{ num_tutorials|pluralize }},
+    <strong>{{ num_short_talks }}</strong> short talk{{ num_short_talks|pluralize }},
+    <strong>{{ num_posters }}</strong> poster{{ num_posters|pluralize }},
+    <strong>{{ num_sprints }}</strong> sprint{{ num_sprints|pluralize }})
   </p>
   {% if request.user.is_superuser %}
   <form method="post" action="{% url 'review_multiedit' %}" id="form-multiedit">
