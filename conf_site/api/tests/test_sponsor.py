@@ -1,9 +1,9 @@
 from django.urls import reverse
 
 from rest_framework import status
-from symposion.sponsorship.models import Sponsor, SponsorLevel
 
 from conf_site.api.tests import ConferenceSiteAPITestCase
+from conf_site.sponsorship.tests import SponsorFactory
 
 
 class ConferenceSiteAPISponsorTestCase(ConferenceSiteAPITestCase):
@@ -13,21 +13,7 @@ class ConferenceSiteAPISponsorTestCase(ConferenceSiteAPITestCase):
         super(ConferenceSiteAPISponsorTestCase, cls).setUpTestData()
 
         # Create a sponsor.
-        sponsor_level = SponsorLevel.objects.create(
-            conference=cls.conference,
-            name="Vibrantium",
-            cost=42
-        )
-        # We don't use Sponsor.objects.create() here because it
-        # fails with an IntegrityError.
-        cls.sponsor = Sponsor(
-            name="FooBar Inc.",
-            external_url="http://example.com",
-            contact_name="Foo Bar",
-            contact_email="foobar@example.com",
-            level=sponsor_level,
-            active=True,
-        )
+        cls.sponsor = SponsorFactory.create(active=True)
         cls.sponsor.save()
 
         # Create sponsor dict to avoid duplication.
