@@ -70,6 +70,7 @@ class ProposalForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        delete_code_url = kwargs.pop("delete_code_url", True)
         super(ProposalForm, self).__init__(*args, **kwargs)
 
         # Don't display kind if this proposal does not already exist,
@@ -83,7 +84,9 @@ class ProposalForm(forms.ModelForm):
         # Don't display slide and code repo fields if support is disabled.
         if not config.PROPOSAL_URL_FIELDS:
             del self.fields["slides_url"]
-            del self.fields["code_url"]
+            # Posters need this field.
+            if delete_code_url:
+                del self.fields["code_url"]
 
     def clean_description(self):
         value = self.cleaned_data["description"]
@@ -95,4 +98,32 @@ class ProposalForm(forms.ModelForm):
 
 
 class PosterForm(ProposalForm):
-    pass
+    def __init__(self, *args, **kwargs):
+        kwargs["delete_code_url"] = False
+        super().__init__(*args, **kwargs)
+
+        self.fields["description"].help_text = ""
+        self.fields["description"].label = (
+            "Describe your poster in 400 words or less. "
+            "Feel free to provide links to relevant projects, code and images."
+        )
+
+        self.fields["code_url"].help_text = ""
+        self.fields["code_url"].label = "Project or Paper URL, if applicable"
+
+    class Meta:
+        model = Proposal
+        fields = [
+            "kind",
+            "affiliation",
+            "title",
+            "description",
+            "code_url",
+            "official_keywords",
+            "experience",
+            "commitment",
+            "company_sponsor_intro",
+            "recording_release",
+            "phone_number",
+            "slides_url",
+        ]

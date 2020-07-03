@@ -283,6 +283,12 @@ class Proposal(ProposalBase):
         related_name="user_tagged_proposals",
         through=UserTaggedProposal)
 
+    experience = models.BooleanField(
+        default=False,
+        choices=YES_NO_BOOL_ANSWERS,
+        verbose_name="Have you presented at a conference before?",
+    )
+
     date_created = models.DateTimeField(
         auto_now_add=True,
         null=True,
