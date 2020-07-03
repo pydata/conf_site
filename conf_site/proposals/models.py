@@ -134,7 +134,9 @@ class Proposal(ProposalBase):
         (AV_EQUIPMENT_BOTH, "Yes, both"),
     )
 
-    audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
+    audience_level = models.IntegerField(
+        choices=AUDIENCE_LEVELS, default=AUDIENCE_LEVEL_INTERMEDIATE,
+    )
 
     already_recording = models.BooleanField(
         choices=YES_NO_BOOL_ANSWERS,
@@ -201,6 +203,7 @@ class Proposal(ProposalBase):
     )
     mentorship = models.BooleanField(
         choices=YES_NO_BOOL_ANSWERS,
+        default=False,
         verbose_name=(
             "Would you like to be considered "
             "for our speaker mentorship program?"
@@ -221,6 +224,7 @@ class Proposal(ProposalBase):
 
     av_equipment_needed = models.IntegerField(
         choices=AV_EQUIPMENT_CHOICES,
+        default=AV_EQUIPMENT_NO,
         verbose_name="Do you need audio and/or video recording equipment?",
     )
     av_needs = models.TextField(
