@@ -192,6 +192,7 @@ class Proposal(ProposalBase):
 
     commitment = models.BooleanField(
         choices=YES_NO_BOOL_ANSWERS,
+        default=False,
         verbose_name=(
             "We are asking all speakers to commit to presenting "
             "at PyData Global 2020 if their proposals are accepted. "
