@@ -10,7 +10,7 @@ class ConferenceSiteAPIConferenceTestCase(ConferenceSiteAPITestCase):
         response = self.client.get(reverse("conference-detail"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, {
-            "title": self.CONFERENCE_TITLE,
-            "start_date": self.CONFERENCE_START,
-            "end_date": self.CONFERENCE_END,
+            "title": self.conference.title,
+            "start_date": self.conference.start_date.strftime("%Y-%m-%d"),
+            "end_date": self.conference.end_date.strftime("%Y-%m-%d"),
         })

@@ -1,10 +1,9 @@
-from django.contrib.auth.models import User
 from django.urls import reverse
 
 from rest_framework import status
-from symposion.speakers.models import Speaker
 
 from conf_site.api.tests import ConferenceSiteAPITestCase
+from conf_site.speakers.tests.factories import SpeakerFactory
 
 
 class TestSpeaker(ConferenceSiteAPITestCase):
@@ -12,10 +11,7 @@ class TestSpeaker(ConferenceSiteAPITestCase):
     @classmethod
     def setUpTestData(cls):
         super(TestSpeaker, cls).setUpTestData()
-        cls.speaker = Speaker.objects.create(
-            user=User.objects.create_user('test', 'test@pydata.org', 'test'),
-            name='test speaker',
-        )
+        cls.speaker = SpeakerFactory.create()
         cls.speaker_dict = {
             "username": cls.speaker.user.username,
             "name": cls.speaker.name,
