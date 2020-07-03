@@ -293,6 +293,37 @@ class Proposal(ProposalBase):
         verbose_name="Have you presented at a conference before?",
     )
 
+    merge_ability = models.BooleanField(
+        default=False,
+        choices=YES_NO_BOOL_ANSWERS,
+        verbose_name=(
+            "Will you be able to merge PRs in real-time during the sprint?"
+        ),
+    )
+    attendance = models.CharField(
+        blank=True,
+        default="",
+        max_length=100,
+        verbose_name=(
+            "Who else (if anyone) from the project is likely to attend?"
+        ),
+    )
+    num_attendees = models.PositiveSmallIntegerField(
+        default=0,
+        verbose_name=(
+            "Approximately how many attendees would be ideal for you "
+            "to accommodate in the sprint?"
+        ),
+    )
+    issue_curation = models.BooleanField(
+        default=False,
+        choices=YES_NO_BOOL_ANSWERS,
+        verbose_name=(
+            "Will you be able to curate issues for first-time attendees "
+            "to work on ahead of the sprint?"
+        ),
+    )
+
     date_created = models.DateTimeField(
         auto_now_add=True,
         null=True,

@@ -34,7 +34,7 @@
         {% endif %}
     {% endif %}
 
-    <dt>{% trans "Description" %}</dt>
+    <dt>{% if proposal.kind.slug == "sprint" %}Materials{% else %}{% trans "Description" %}{% endif %}</dt>
     <dd>{{ proposal.description }}&nbsp;</dd>
 
     <dt>{% trans "Abstract" %}</dt>

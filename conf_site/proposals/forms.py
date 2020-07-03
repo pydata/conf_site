@@ -127,3 +127,39 @@ class PosterForm(ProposalForm):
             "phone_number",
             "slides_url",
         ]
+
+
+class SprintForm(ProposalForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.fields.get("official_keywords", False):
+            del self.fields["official_keywords"]
+
+        self.fields["title"].label = "Which library do you want to sprint on?"
+        self.fields["experience"].label = (
+            "Have you run a sprint before, either in-person or virtually?"
+        )
+        self.fields["description"].help_text = ""
+        self.fields["description"].label = (
+            "Please describe any materials you have or intend to create "
+            "to help attendees set up their development environment, "
+            "submit a pull request, etc. Include links where applicable."
+        )
+
+    class Meta:
+        model = Proposal
+        fields = [
+            "kind",
+            "title",
+            "merge_ability",
+            "attendance",
+            "num_attendees",
+            "issue_curation",
+            "experience",
+            "description",
+            "company_sponsor_intro",
+            "recording_release",
+            "phone_number",
+            "code_url",
+            "slides_url",
+        ]
