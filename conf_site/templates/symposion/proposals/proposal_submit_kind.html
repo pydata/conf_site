@@ -36,10 +36,24 @@
             jQuery("div#div_id_recording_url input[name='recording_url']").removeAttr("required");
         }
     };
+    function avNeedsText(){
+        // Only show av_needs field if av_equipment_needed is not No.
+        if (jQuery("form#proposal-form select#id_av_equipment_needed").val() > 0){
+            jQuery("div#div_id_av_needs").show();
+            jQuery("textarea#id_av_needs").attr("required", "");
+        } else {
+            jQuery("div#div_id_av_needs").hide();
+            jQuery("textarea#id_av_needs").removeAttr("required");
+        }
+    };
     jQuery(document).ready(function() {
         logicRecordingURL();
+        avNeedsText();
     });
     jQuery("form#proposal-form input[name='already_recording']").change(function() {
         logicRecordingURL();
+    });
+    jQuery("form#proposal-form select#id_av_equipment_needed").change(function() {
+        avNeedsText();
     });
 </script>{% endblock %}

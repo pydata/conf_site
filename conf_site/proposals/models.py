@@ -123,6 +123,17 @@ class Proposal(ProposalBase):
         (False, "No"),
     )
 
+    AV_EQUIPMENT_NO = 0
+    AV_EQUIPMENT_AUDIO = 1
+    AV_EQUIPMENT_VIDEO = 2
+    AV_EQUIPMENT_BOTH = 3
+    AV_EQUIPMENT_CHOICES = (
+        (AV_EQUIPMENT_NO, "No"),
+        (AV_EQUIPMENT_AUDIO, "Yes, audio"),
+        (AV_EQUIPMENT_VIDEO, "Yes, video"),
+        (AV_EQUIPMENT_BOTH, "Yes, both"),
+    )
+
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
 
     already_recording = models.BooleanField(
@@ -206,6 +217,14 @@ class Proposal(ProposalBase):
         verbose_name=(
             "Would your company be interested in sponsoring the event?"
         )
+    )
+
+    av_equipment_needed = models.IntegerField(
+        choices=AV_EQUIPMENT_CHOICES,
+        verbose_name="Do you need audio and/or video recording equipment?",
+    )
+    av_needs = models.TextField(
+        blank=True, verbose_name="If yes, describe your A/V needs."
     )
 
     phone_number = models.CharField(

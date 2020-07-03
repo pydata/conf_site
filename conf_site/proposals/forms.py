@@ -56,6 +56,8 @@ class ProposalForm(forms.ModelForm):
             "mentorship",
             "mentoring",
             "company_sponsor_intro",
+            "av_equipment_needed",
+            "av_needs",
             "recording_release",
             "phone_number",
             "slides_url",

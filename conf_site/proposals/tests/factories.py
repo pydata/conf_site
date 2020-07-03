@@ -17,6 +17,7 @@ class ProposalFactory(factory.django.DjangoModelFactory):
     commitment = factory.Faker("boolean")
     mentorship = factory.Faker("boolean")
     company_sponsor_intro = factory.Faker("boolean")
+    av_equipment_needed = factory.Faker("pyint")
 
     class Meta:
         model = Proposal
