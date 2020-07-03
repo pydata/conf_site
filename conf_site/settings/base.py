@@ -290,6 +290,8 @@ MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
 PROPOSAL_FORMS = {
+    "poster": "conf_site.proposals.forms.PosterForm",
+    "sprint": "conf_site.proposals.forms.SprintForm",
     "talk": "conf_site.proposals.forms.ProposalForm",
     "tutorial": "conf_site.proposals.forms.ProposalForm",
 }

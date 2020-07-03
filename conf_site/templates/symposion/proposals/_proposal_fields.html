@@ -7,24 +7,15 @@
     <dt>{% trans "Submitted by" %}</dt>
     <dd>{{ proposal.speaker.name }}</dd>
     <dt>Affiliation</dt>
-    <dd>{{ proposal.affiliation }}</dd>
+    <dd>{{ proposal.get_affiliation_display }}</dd>
     {% endif %}
+
+    <dt>{% trans "Specialized Track" %}</dt>
+    <dd>{{ proposal.get_specialized_track_display }}</dd>
 
     {% if config.PROPOSAL_KEYWORDS %}
-    {% if request.user != proposal.speaker.user %}
-    <dt>Editor Keywords</dt>
-    <dd>{% for keyword in proposal.editor_keywords.all %}
-        <a href="{% url 'review_keyword_detail' keyword.slug %}">{{ keyword }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}</dd>
-    {% endif %}
-
-    <dt>Official Keywords</dt>
+    <dt>Tags</dt>
     <dd>{% for keyword in proposal.official_keywords.all %}
-        <a href="{% url 'review_keyword_detail' keyword.slug %}">{{ keyword }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}</dd>
-
-    <dt>Additional Keywords</dt>
-    <dd>{% for keyword in proposal.user_keywords.all %}
         <a href="{% url 'review_keyword_detail' keyword.slug %}">{{ keyword }}</a>{% if not forloop.last %}, {% endif %}
     {% endfor %}</dd>
     {% endif %}
@@ -43,7 +34,7 @@
         {% endif %}
     {% endif %}
 
-    <dt>{% trans "Description" %}</dt>
+    <dt>{% if proposal.kind.slug == "sprint" %}Materials{% else %}{% trans "Description" %}{% endif %}</dt>
     <dd>{{ proposal.description }}&nbsp;</dd>
 
     <dt>{% trans "Abstract" %}</dt>
@@ -54,15 +45,9 @@
     <dd>{{ proposal.additional_notes_html|safe }}&nbsp;</dd>
     {% endif %}
 
-    {% if config.PROPOSAL_URL_FIELDS %}
-        {% if proposal.slides_url %}
-            <dt>Slides</dt>
-            <dd><a href="{{ proposal.slides_url }}">{{ proposal.slides_url }}</a></dd>
-        {% endif %}
-        {% if proposal.code_url %}
-            <dt>Code</dt>
-            <dd><a href="{{ proposal.code_url }}">{{ proposal.code_url }}</a></dd>
-        {% endif %}
+    {% if proposal.code_url %}
+        <dt>{% if proposal.kind.slug == "poster" %}Project/Paper URL{% else %}Code{% endif %}</dt>
+        <dd><a href="{{ proposal.code_url }}">{{ proposal.code_url }}</a></dd>
     {% endif %}
 
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}

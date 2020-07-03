@@ -10,7 +10,7 @@
 
     <p><a href="{% url "proposal_speaker_manage" proposal.pk %}">Manage speakers</a></p>
 
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form id="proposal-form" method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset>
             <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>

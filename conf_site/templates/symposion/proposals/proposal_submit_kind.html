@@ -7,7 +7,7 @@
 {% block body %}
 <div class="container">
     <h1>Submit a {{ kind.name }}</h1>
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form id="proposal-form" method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset>
             <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
@@ -24,3 +24,51 @@
     </form>
 </div>
 {% endblock %}
+
+{% block extra_script %}<script>
+    function logicRecordingURL(){
+        // Only show recording_url field if already_recording is True.
+        if (jQuery("form#proposal-form input[name='already_recording']:checked").val() == "True"){
+            jQuery("div#div_id_recording_url").show();
+            jQuery("div#div_id_recording_url input[name='recording_url']").attr("required", "");
+        } else {
+            jQuery("div#div_id_recording_url").hide();
+            jQuery("div#div_id_recording_url input[name='recording_url']").removeAttr("required");
+        }
+    };
+    function avNeedsText(){
+        // Only show av_needs field if av_equipment_needed is not No.
+        if (jQuery("form#proposal-form select#id_av_equipment_needed").val() > 0){
+            jQuery("div#div_id_av_needs").show();
+            jQuery("textarea#id_av_needs").attr("required", "");
+        } else {
+            jQuery("div#div_id_av_needs").hide();
+            jQuery("textarea#id_av_needs").removeAttr("required");
+        }
+    };
+    function stipendText(){
+        // Only show stipend_amount field if stipend is True.
+        if (jQuery("form#proposal-form input#id_stipend:checked").val() == "on"){
+            jQuery("div#div_id_stipend_amount").show();
+            jQuery("div#div_id_stipend_amount input#id_stipend_amount").attr("required", "");
+        } else {
+            jQuery("div#div_id_stipend_amount").hide();
+            jQuery("div#div_id_stipend_amount input#id_stipend_amount").removeAttr("required");
+        }
+    };
+
+    jQuery(document).ready(function() {
+        logicRecordingURL();
+        avNeedsText();
+        stipendText();
+    });
+    jQuery("form#proposal-form input[name='already_recording']").change(function() {
+        logicRecordingURL();
+    });
+    jQuery("form#proposal-form select#id_av_equipment_needed").change(function() {
+        avNeedsText();
+    });
+    jQuery("form#proposal-form input#id_stipend").change(function() {
+        stipendText();
+    });
+</script>{% endblock %}
