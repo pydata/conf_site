@@ -92,7 +92,7 @@ def proposal_submit_kind(request, kind_slug):
         except ObjectDoesNotExist:
             return redirect("dashboard")
 
-    if not kind.section.proposalsection.is_available():
+    if not kind.section.proposalsection.available():
         return redirect("proposal_submit")
 
     try:
