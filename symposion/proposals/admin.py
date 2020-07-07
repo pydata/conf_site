@@ -10,7 +10,7 @@ class ProposalSectionAdmin(admin.ModelAdmin):
         "end",
         "closed",
         "published",
-        "is_available",
+        "available",
     ]
 
 

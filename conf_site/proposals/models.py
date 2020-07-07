@@ -189,7 +189,7 @@ class Proposal(ProposalBase):
 
         # Determine whether this proposal's ProposalSection is open.
         proposal_section = ProposalSection.objects.get(section=self.section)
-        return proposal_section.is_available()
+        return proposal_section.available()
 
     def feedback_count(self):
         """Helper method to retrieve feedback count."""
