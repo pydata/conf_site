@@ -37,7 +37,7 @@ class ProposalEditingViewTestCase(ProposalSpeakerTestCase):
 
         self.proposal_section.closed = True
         self.proposal_section.save()
-        self.assertFalse(self.proposal_section.is_available())
+        self.assertFalse(self.proposal_section.available())
 
         response = self._proposal_edit_response()
         self.assertTemplateUsed(
