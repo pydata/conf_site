@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('symposion_proposals', '0003_standardize_markdown_links'),
+        ('symposion_proposals', '0006_virtual_cfp_changes'),
     ]
 
     operations = [
