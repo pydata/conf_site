@@ -36,6 +36,7 @@ class ProposalKindFactory(factory.DjangoModelFactory):
     section = factory.SubFactory(SectionFactory)
     name = fuzzy.FuzzyText()
     slug = fuzzy.FuzzyText()
+    order = fuzzy.FuzzyInteger(0, 100)
 
     class Meta:
         model = ProposalKind
