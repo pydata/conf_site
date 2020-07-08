@@ -70,6 +70,10 @@ class ProposalKind(models.Model):
 
     name = models.CharField(_("Name"), max_length=100)
     slug = models.SlugField(verbose_name=_("Slug"))
+    order = models.PositiveIntegerField(verbose_name=_("Order"))
+
+    class Meta:
+        ordering = ["order"]
 
     def __str__(self):
         return self.name

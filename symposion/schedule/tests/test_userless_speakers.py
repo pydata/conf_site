@@ -2,12 +2,10 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from symposion.conference.models import Conference, Section
-from symposion.proposals.models import (
-    ProposalBase,
-    ProposalKind,
-)
+from symposion.proposals.models import ProposalBase
 from symposion.speakers.models import Speaker
 from symposion.schedule.models import Presentation
+from symposion.schedule.tests.factories import ProposalKindFactory
 
 
 class UserlessSpeakersTestCase(TestCase):
@@ -35,9 +33,7 @@ class UserlessSpeakersTestCase(TestCase):
         section = Section.objects.create(
             conference=conference, name="Section", slug="section"
         )
-        proposal_kind = ProposalKind.objects.create(
-            section=section, name="Proposal Kind", slug="kind"
-        )
+        proposal_kind = ProposalKindFactory.create(section=section)
         proposal_base = ProposalBase.objects.create(
             title="Proposal",
             description="...",

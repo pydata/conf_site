@@ -6,7 +6,7 @@ from conf_site.accounts.tests import AccountsTestCase
 from conf_site.schedule.tests.factories import PresentationFactory
 from conf_site.speakers.tests.factories import SpeakerFactory
 from symposion.conference.models import Conference, Section
-from symposion.proposals.models import ProposalBase, ProposalKind
+from symposion.proposals.models import ProposalBase
 from symposion.schedule.models import (
     Presentation,
     Slot,
@@ -14,6 +14,7 @@ from symposion.schedule.models import (
     Schedule,
     Day,
 )
+from symposion.schedule.tests.factories import ProposalKindFactory
 from symposion.speakers.models import Speaker
 
 
@@ -34,9 +35,7 @@ class SpeakerListViewTestCase(AccountsTestCase):
         self.slot_kind = SlotKind.objects.create(
             schedule=schedule, label="slot kind"
         )
-        self.proposal_kind = ProposalKind.objects.create(
-            section=self.section, name="Kind", slug="kind"
-        )
+        self.proposal_kind = ProposalKindFactory.create(section=self.section)
 
     def _unpublish_schedule(self):
         """Utility method to unpublish associated schedule."""
