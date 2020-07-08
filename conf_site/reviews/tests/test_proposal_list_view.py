@@ -7,8 +7,10 @@ from django.urls import reverse
 
 from faker import Faker
 
-from symposion.proposals.models import AdditionalSpeaker, ProposalKind
-from symposion.schedule.tests.factories import SectionFactory
+from symposion.proposals.models import AdditionalSpeaker
+from symposion.schedule.tests.factories import (
+    ProposalKindFactory, SectionFactory
+)
 
 from conf_site.accounts.tests import AccountsTestCase
 from conf_site.proposals.models import Proposal
@@ -54,10 +56,10 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
         self._add_to_reviewers_group()
         # Setup the ProposalKinds for talks and tutorials.
         section = SectionFactory()
-        talk_kind = ProposalKind.objects.create(
+        talk_kind = ProposalKindFactory.create(
             section=section, name="Talk", slug="talk"
         )
-        tutorial_kind = ProposalKind.objects.create(
+        tutorial_kind = ProposalKindFactory.create(
             section=section, name="Tutorial", slug="tutorial"
         )
         # Create a random number of talks and tutorials.

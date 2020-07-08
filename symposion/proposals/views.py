@@ -19,11 +19,8 @@ from django.utils.translation import gettext_lazy as _
 from allauth.account.models import EmailAddress
 
 from symposion.proposals.models import (
-    ProposalBase,
-    ProposalSection,
-    ProposalKind,
+    AdditionalSpeaker, ProposalBase, ProposalKind, SupportingDocument
 )
-from symposion.proposals.models import SupportingDocument, AdditionalSpeaker
 from symposion.speakers.models import Speaker
 from symposion.utils.mail import send_email
 
@@ -71,9 +68,11 @@ def proposal_submit(request):
             return redirect("dashboard")
 
     kinds = []
-    for proposal_section in ProposalSection.available():
-        for kind in proposal_section.section.proposal_kinds.all():
-            kinds.append(kind)
+    for proposal_kind in ProposalKind.objects.all():
+        # Ignore proposal kinds located in unavailable ProposalSections.
+        if not proposal_kind.section.proposalsection.available():
+            continue
+        kinds.append(proposal_kind)
 
     return render(
         request, "symposion/proposals/proposal_submit.html", {"kinds": kinds}

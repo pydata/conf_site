@@ -4,7 +4,7 @@ from django.utils import timezone
 
 from faker import Faker
 from symposion.conference.models import Conference, Section
-from symposion.proposals.models import ProposalBase, ProposalKind
+from symposion.proposals.models import ProposalBase
 from symposion.schedule.models import (
     Presentation,
     Slot,
@@ -12,6 +12,7 @@ from symposion.schedule.models import (
     Schedule,
     Day,
 )
+from symposion.schedule.tests.factories import ProposalKindFactory
 from symposion.speakers.models import Speaker
 
 
@@ -36,7 +37,7 @@ class SpeakerProfileTestCase(TestCase):
             conference=conference, name="Section", slug="section"
         )
         section.save()
-        proposal_kind = ProposalKind(section=section, name="Kind", slug="kind")
+        proposal_kind = ProposalKindFactory.create(section=section)
         proposal_kind.save()
         first_proposal_base = ProposalBase.objects.create(
             title=FIRST_PRESENTATION_TITLE,
