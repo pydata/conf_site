@@ -188,7 +188,10 @@ class Proposal(ProposalBase):
         blank=True,
         default="",
         max_length=1)
-    affiliation = models.CharField(choices=AFFILIATIONS, max_length=1)
+    affiliation = models.CharField(
+        max_length=200,
+        verbose_name="Affiliation (Company, School, Independent)",
+    )
 
     commitment = models.BooleanField(
         choices=YES_NO_BOOL_ANSWERS,
