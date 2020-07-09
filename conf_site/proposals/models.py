@@ -240,9 +240,9 @@ class Proposal(ProposalBase):
         help_text=(
             "We have a number of modest speaker stipends available "
             "based on need; the quantity available will depend on successful "
-            "sponsorship of this effort. If a stipend would make a difference "
-            "in your ability to prepare and record your material, "
-            "and participate in live Q&A, please check this box for "
+            "sponsorship of this effort. <strong>If a stipend would make a "
+            "difference in your ability to prepare and record your material, "
+            "and participate in live Q&A</strong>, please check this box for "
             "consideration for this funding. "
             "Proposal selection is need-blind; asking to be considered for "
             "need-based stipends will have no bearing on the consideration "
