@@ -328,6 +328,16 @@ class Proposal(ProposalBase):
         ),
     )
 
+    review_ready = models.BooleanField(
+        default=False,
+        help_text=(
+            "Check the box below to indicate to the program committee "
+            "your proposal is ready for review. "
+            "This proposal will not be considered until the box is marked."
+        ),
+        verbose_name="This proposal is ready for review",
+    )
+
     date_created = models.DateTimeField(
         auto_now_add=True,
         null=True,

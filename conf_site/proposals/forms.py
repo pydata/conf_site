@@ -64,6 +64,7 @@ class ProposalForm(forms.ModelForm):
             "phone_number",
             "slides_url",
             "code_url",
+            "review_ready",
         ]
         widgets = {
             "already_recording": forms.RadioSelect,
@@ -126,6 +127,7 @@ class PosterForm(ProposalForm):
             "recording_release",
             "phone_number",
             "slides_url",
+            "review_ready",
         ]
 
 
@@ -162,4 +164,5 @@ class SprintForm(ProposalForm):
             "phone_number",
             "code_url",
             "slides_url",
+            "review_ready",
         ]
