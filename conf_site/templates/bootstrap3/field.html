@@ -26,11 +26,11 @@
 
         {% if not field|is_checkboxselectmultiple and not field|is_radioselect %}
             {% if field|is_checkbox and form_show_labels %}
+                {% include 'bootstrap3/layout/help_text_and_errors.html' %}
                 <label for="{{ field.id_for_label }}" class="{% if field.field.required %}{{ form.required_css_class }}{% endif %}">
                     {% crispy_field field %}
                     {{ field.label|safe }}
                 </label>
-                {% include 'bootstrap3/layout/help_text_and_errors.html' %}
             {% else %}
                 <div class="controls {{ field_class }}">
                     {% include 'bootstrap3/layout/help_text_and_errors.html' %}
