@@ -27,7 +27,8 @@
         "fields": {
             "section": 1,
             "name": "Tutorial",
-            "slug": "tutorial"
+            "slug": "tutorial",
+            "order": 1
         }
     },
     {
@@ -36,7 +37,8 @@
         "fields": {
             "section": 2,
             "name": "Talk",
-            "slug": "talk"
+            "slug": "talk",
+            "order": 2
         }
     }
 ]
