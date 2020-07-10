@@ -8,11 +8,13 @@ development:
 
 testing:
   hosts:
-    localhost
+    localhost:
+      ansible_connection: local
 
 production:
   hosts:
     amsterdam2020:
+    eindhoven2020:
     global2020:
     jupytercon2020:
     la2020:
