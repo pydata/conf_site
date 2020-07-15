@@ -43,9 +43,9 @@
       <th><i class="fa fa-comment" title="{% trans 'Number of Messages' %}"></i></th>
       <th>{% trans "+1" %}</th>
       <th>{% trans "+0" %}</th>
-      <th>{% trans "±0" %}</th>
       <th>{% trans "-0" %}</th>
       <th>{% trans "-1" %}</th>
+      <th><span title="I abstain from voting on this proposal">{% trans "A" %}</span></th>
       {% endif %}
       <th><i class="fa fa-hashtag" title="{% trans 'Total Number of Reviews' %}"></i></th>
       <th><a href="#" class="tip" title="{% trans 'Your Rating' %}"><i class="fa fa-user"></i></a></th>
@@ -70,9 +70,9 @@
         <td>{{ proposal.feedback_count }}</td>
         <td>{{ proposal.plus_one }}</td>
         <td>{{ proposal.plus_zero }}</td>
-        <td>{{ proposal.true_zero }}</td>
         <td>{{ proposal.minus_zero }}</td>
         <td>{{ proposal.minus_one }}</td>
+        <td>{{ proposal.true_zero }}</td>
         {% endif %}
         <td>{{ proposal.total_votes }}</td>
         <td>{% user_score proposal request.user %}</td>
