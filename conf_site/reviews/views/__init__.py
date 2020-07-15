@@ -73,7 +73,7 @@ class ProposalListView(ListView, ReviewingView):
             self.get_queryset().filter(kind__slug="poster").count()
         )
         context["num_talks"] = (
-            self.get_queryset().filter(kind__name__startswith="Talk").count()
+            self.get_queryset().filter(kind__name__endswith="Talk").count()
         )
         context["num_tutorials"] = (
             self.get_queryset().filter(kind__slug="tutorial").count()
