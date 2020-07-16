@@ -221,6 +221,10 @@
 <script>
     Sentry.init({
         dsn: "{{ sentry_public_dsn }}",
+        integrations: [
+            new Sentry.Integrations.Tracing(),
+        ],
+        tracesSampleRate: 0.1,
         whitelistUrls: ["pydata.org"],
     });
 </script>
