@@ -58,6 +58,7 @@ sentry_sdk.init(
     integrations=[DjangoIntegration(), RedisIntegration()],
     release="{{ git_status.stdout }}",
     server_name="{{ conference_identifier }}",
+    traces_sample_rate=0.1,
 )
 {% endif %}
 
