@@ -13,7 +13,44 @@ from conf_site.speakers.tests.factories import SpeakerFactory
 from symposion.proposals.models import AdditionalSpeaker
 
 
-class ReviewingTestCase(object):
+class ReviewingMixin(object):
+    def _add_to_reviewers_group(self):
+        self.user.groups.add(self.reviewers_group)
+        self.user.save()
+
+    def _get_response(self):
+        return self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+
+    def setUp(self):
+        super().setUp()
+
+        self.reviewers_group = Group.objects.get_or_create(name="Reviewers")[0]
+        # The majority of tests require user login.
+        self.client.login(username=self.user.email, password=self.password)
+
+
+class ReviewingNoAnonymousMixin(ReviewingMixin):
+    def test_no_anonymous_access(self):
+        """Verify that anonymous users cannot access the view."""
+        self.client.logout()
+        response = self._get_response()
+        self.assertEqual(response.status_code, 403)
+
+
+class ReviewingSuperuserMixin(ReviewingMixin):
+    def test_superuser_access(self):
+        """Verify that superusers can access the view."""
+        self._become_superuser()
+        self.assertFalse(self.reviewers_group in self.user.groups.all())
+        response = self._get_response()
+        self.assertEqual(response.status_code, 200)
+
+
+class ReviewingTestCase(
+    ReviewingNoAnonymousMixin, ReviewingSuperuserMixin, object
+):
     """
     Base automated test case for reviewing application.
 
@@ -26,10 +63,6 @@ class ReviewingTestCase(object):
 
     http_method_name = "get"
     reverse_view_args = None
-
-    def _add_to_reviewers_group(self):
-        self.user.groups.add(self.reviewers_group)
-        self.user.save()
 
     def _create_proposals(self):
         """Create proposals if needed to test a view."""
@@ -58,31 +91,6 @@ class ReviewingTestCase(object):
             speaker=self.reviewer,
             status=AdditionalSpeaker.SPEAKING_STATUS_ACCEPTED,
         )
-
-    def _get_response(self):
-        return self.client.get(
-            reverse(self.reverse_view_name, args=self.reverse_view_args)
-        )
-
-    def setUp(self):
-        super(ReviewingTestCase, self).setUp()
-
-        self.reviewers_group = Group.objects.get_or_create(name="Reviewers")[0]
-        # The majority of tests require user login.
-        self.client.login(username=self.user.email, password=self.password)
-
-    def test_no_anonymous_access(self):
-        """Verify that anonymous users cannot access the view."""
-        self.client.logout()
-        response = self._get_response()
-        self.assertEqual(response.status_code, 403)
-
-    def test_superuser_access(self):
-        """Verify that superusers can access the view."""
-        self._become_superuser()
-        self.assertFalse(self.reviewers_group in self.user.groups.all())
-        response = self._get_response()
-        self.assertEqual(response.status_code, 200)
 
     def test_user_not_in_reviewers_group(self):
         """Verify that a non-reviewer cannot access the view."""

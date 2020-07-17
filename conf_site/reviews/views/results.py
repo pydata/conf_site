@@ -1,28 +1,16 @@
 # -*- coding: utf-8 -*-
 # Views relating to accepting/rejecting a reviewed proposal.
 from django.contrib import messages
-from django.contrib.auth.mixins import UserPassesTestMixin
+
 from django.http import HttpResponseRedirect
 from django.template.defaultfilters import pluralize
 from django.urls import reverse
-from django.views.generic import View
 
+from conf_site.core.views import SuperuserOnlyView
 from conf_site.proposals.models import Proposal
 from conf_site.reviews.models import ProposalNotification, ProposalResult
 from conf_site.reviews.views import ProposalListView
 from symposion.schedule.models import Presentation
-
-
-class SuperuserOnlyView(UserPassesTestMixin, View):
-    """A view which only allows access to superusers."""
-
-    def test_func(self):
-        if self.request.user.is_superuser:
-            return True
-        elif not self.request.user.is_anonymous:
-            # Non-anonymous, non-superuser users should see an error page.
-            self.raise_exception = True
-        return False
 
 
 class ProposalChangeResultPostView(SuperuserOnlyView):
