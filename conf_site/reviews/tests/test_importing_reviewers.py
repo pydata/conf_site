@@ -25,6 +25,13 @@ class ImportReviewerCSVTestCase(ReviewingSuperuserMixin, AccountsTestCase):
         copyfile(csv_filepath, temp_csv_filename)
         return temp_csv_filename
 
+    def test_invalid_csv(self):
+        """Test that a CSV file with invalid rows returns False."""
+        num_initial_users = User.objects.count()
+        csv_filename = self._temp_csv("invalid.csv")
+        self.assertFalse(import_reviewer_csv(csv_filename))
+        self.assertEqual(num_initial_users, User.objects.count())
+
     def test_not_importing_header_row(self):
         """Test that user number does not change if empty CSV is imported."""
         num_initial_users = User.objects.count()
