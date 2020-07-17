@@ -3,11 +3,14 @@ import os
 from tempfile import mkstemp
 from wsgiref.util import FileWrapper
 
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
-from django.views.generic import DetailView, View
+from django.views.generic import DetailView, FormView, View
+
+from conf_site.core.forms import CsvUploadForm
 
 
 def csrf_failure(request, reason=""):
@@ -64,6 +67,31 @@ class CsvView(View):
         return response
 
 
+class CsvImportView(FormView):
+    form_class = CsvUploadForm
+    http_method_names = ["get", "post"]
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form(self.get_form_class())
+        if form.is_valid():
+            excel_file = request.FILES["csv_file"]
+            # Save file to temporary folder. We only need it for
+            # a short period of time.
+            temp_file, filename = mkstemp(suffix=".csv")
+            for chunk in excel_file.chunks():
+                os.write(temp_file, chunk)
+            os.fsync(temp_file)
+            os.close(temp_file)
+            self.process(filename, request.user.id)
+            os.remove(filename)
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def process(self, filename, user_id):
+        pass
+
+
 class SlugDetailView(DetailView):
     model = None
     view_name = None
@@ -115,3 +143,15 @@ class SlugRedirectView(View):
             kwargs={"pk": this_object.pk, "slug": this_object.slug},
         )
         return HttpResponsePermanentRedirect(redirect_url)
+
+
+class SuperuserOnlyView(UserPassesTestMixin, View):
+    """A view which only allows access to superusers."""
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        elif not self.request.user.is_anonymous:
+            # Non-anonymous, non-superuser users should see an error page.
+            self.raise_exception = True
+        return False

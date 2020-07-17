@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
+from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import Group
 from django.http import Http404, HttpResponseRedirect
-from django.urls import reverse
+from django.template.defaultfilters import pluralize
+from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, View
 
 from constance import config
 
+from conf_site.core.views import CsvImportView, SuperuserOnlyView
 from conf_site.proposals.models import Proposal
 from conf_site.reviews.forms import (
     ProposalFeedbackForm,
@@ -14,6 +17,7 @@ from conf_site.reviews.forms import (
     ProposalVoteForm,
 )
 from conf_site.reviews.models import ProposalFeedback, ProposalVote
+from conf_site.reviews.tasks import import_reviewer_csv
 from symposion.proposals.models import ProposalKind
 from symposion.utils.mail import send_email
 
@@ -218,3 +222,25 @@ class ProposalFeedbackPostView(ReviewingView):
         return HttpResponseRedirect(
             reverse("review_proposal_detail", args=[proposal.id])
         )
+
+
+class ReviewerCsvImportView(SuperuserOnlyView, CsvImportView):
+    success_url = reverse_lazy("reviewer_import")
+    template_name = "reviews/reviewer_import.html"
+
+    def process(self, filename, user_id):
+        result = import_reviewer_csv(filename)
+        if result:
+            messages.success(
+                self.request,
+                "{} user{} created. {} existing user{} found.".format(
+                    result[0],
+                    pluralize(result[0]),
+                    result[1],
+                    pluralize(result[1]),
+                ),
+            )
+        else:
+            messages.error(
+                self.request, "Unable to successfully import CSV file."
+            )
