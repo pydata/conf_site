@@ -3,6 +3,7 @@ import os
 from tempfile import mkstemp
 from wsgiref.util import FileWrapper
 
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
@@ -115,3 +116,15 @@ class SlugRedirectView(View):
             kwargs={"pk": this_object.pk, "slug": this_object.slug},
         )
         return HttpResponsePermanentRedirect(redirect_url)
+
+
+class SuperuserOnlyView(UserPassesTestMixin, View):
+    """A view which only allows access to superusers."""
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        elif not self.request.user.is_anonymous:
+            # Non-anonymous, non-superuser users should see an error page.
+            self.raise_exception = True
+        return False
