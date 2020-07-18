@@ -20,7 +20,7 @@ class ProposalVoteForm(forms.ModelForm):
             choices=ProposalVote.SCORES,
             coerce=int,
             empty_value=0,
-            widget=forms.RadioSelect(),
+            widget=forms.RadioSelect(attrs={"required": "required"}),
         )
 
 
