@@ -145,7 +145,9 @@ def proposal_speaker_manage(request, pk):
                 except Speaker.DoesNotExist:
                     token = get_random_string(5)
                     pending = Speaker.objects.create(
-                        invite_email=email_address, invite_token=token
+                        invite_email=email_address,
+                        invite_token=token,
+                        slug=email_address.split("@")[0],
                     )
                 else:
                     token = pending.invite_token
