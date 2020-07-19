@@ -71,7 +71,8 @@
     {# Only show reviews if user is a reviewer. #}
     {% if actor == "reviewer" %}<div class="tab-pane" id="proposal-reviews">
       <h3>Votes</h3>
-      {% for review_vote in proposal.review_votes.all %}{% if request.user.is_superuser or review_vote.voter == request.user %}<hr><p>
+      {% for review_vote in proposal.review_votes.all %}
+      {% if request.user.is_superuser or review_vote.voter == request.user %}{% if review_vote.score %}<hr><p>
         <h4>
           {% if not request.user.is_superuser and config.BLIND_REVIEWERS and review_vote.voter != request.user %}
             Anonymous
@@ -81,7 +82,8 @@
           ({{ review_vote.get_score_display }})
         </h4>
         {{ review_vote.comment_html|safe }}
-      </p>{% endif %}{% endfor %}
+      </p>{% endif %}{% endif %}
+      {% endfor %}
       <form method="POST" action="{% url 'review_proposal_vote' proposal.id %}" class="review-form">
         <legend>{% if existing_vote %}{% trans 'Update Review' %}{% else %}{% trans 'Submit Review' %}{% endif %}</legend>
         <p>
