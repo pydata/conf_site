@@ -134,7 +134,7 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
     def test_update_button_with_preexisting_vote(self):
         """Test that 'Update Review' appears if reviewer has voted."""
         vote = ProposalVoteFactory.create(
-            proposal=self.proposal, voter=self.user
+            proposal=self.proposal, voter=self.user, score=1,
         )
         response = self._test_button_text("Update Review", "Submit Review")
         # Vote comment should appear twice - once in the list of votes
