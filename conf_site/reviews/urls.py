@@ -7,9 +7,9 @@ from conf_site.reviews.views import (
     ProposalKindListView,
     ProposalListView,
     ProposalVotePostView,
-    ReviewerCsvImportView,
 )
 from conf_site.reviews.views.export import ExportReviewersView
+from conf_site.reviews.views.importing import ReviewerCsvImportView
 from conf_site.reviews.views.keywords import (
     ReviewKeywordDetailView,
     ReviewKeywordListView,
