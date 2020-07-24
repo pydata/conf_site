@@ -140,6 +140,7 @@
                 <ul>
                     {% if request.user.is_superuser %}
                     <li><a href="{% url 'reviewer_import' %}">Import Reviewers (CSV)</a></li>
+                    <li><a href="{% url 'reviewer_matching_import' %}">Match Reviewers to Proposal (CSV)</a></li>
                     {% endif %}
                     <li><a href="{% url 'review_proposal_list' %}">All Proposals</a></li>
                     {% if config.PROPOSAL_KEYWORDS %}
