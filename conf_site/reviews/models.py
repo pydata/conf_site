@@ -42,16 +42,16 @@ class ProposalVote(models.Model):
             "+0 — OK proposal, but I will not argue for it to be accepted.",
         ),
         (
-            TRUE_ZERO,
-            "n/a — I abstain from voting on this proposal.",
-        ),
-        (
             MINUS_ZERO,
             "−0 — Weak proposal, but I will not argue against acceptance.",
         ),
         (
             MINUS_ONE,
             "−1 — Serious issues and I will argue to reject this proposal.",
+        ),
+        (
+            TRUE_ZERO,
+            "A — I abstain from voting on this proposal.",
         ),
     ]
 
@@ -76,7 +76,7 @@ class ProposalVote(models.Model):
     def get_numeric_score_display(self):
         """Returns numeric value at beginning of score display string."""
         if self.score is None:
-            return "Review Requested"
+            return "R"
         return self.get_score_display()[0:2].strip()
 
 
