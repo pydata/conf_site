@@ -5,6 +5,7 @@ from conf_site.reviews.views import (
     ProposalDetailView,
     ProposalFeedbackPostView,
     ProposalKindListView,
+    ProposalReviewRequestedListView,
     ProposalListView,
     ProposalVotePostView,
 )
@@ -24,6 +25,11 @@ from conf_site.reviews.views.results import (
 )
 
 urlpatterns = [
+    path(
+        "assigned/",
+        ProposalReviewRequestedListView.as_view(),
+        name="review_assigned",
+    ),
     path(
         "edit/", ProposalMultieditPostView.as_view(), name="review_multiedit"
     ),
