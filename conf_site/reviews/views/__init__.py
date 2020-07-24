@@ -112,6 +112,22 @@ class ProposalKindListView(ProposalListView):
         return context
 
 
+class ProposalReviewRequestedListView(ProposalListView):
+    def get_queryset(self, **kwargs):
+        user_votes = self.request.user.review_votes.filter(score=None)
+        return (
+            Proposal.objects.order_by("pk")
+            .exclude(cancelled=True)
+            .filter(review_votes__in=user_votes)
+            .select_related("speaker", "review_result")
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["proposal_category"] = "Assigned"
+        return context
+
+
 class ProposalDetailView(DetailView, ReviewingView):
     allow_speakers = True
     context_object_name = "proposal"
