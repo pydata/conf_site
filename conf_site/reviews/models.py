@@ -76,7 +76,7 @@ class ProposalVote(models.Model):
     def get_numeric_score_display(self):
         """Returns numeric value at beginning of score display string."""
         if self.score is None:
-            return "Review Requested"
+            return "R"
         return self.get_score_display()[0:2].strip()
 
 
