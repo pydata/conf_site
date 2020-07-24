@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} - Match Reviewers{% endblock %}
+
+{% block body %}
+<div class="container">
+  {% include "reviews/_proposal_mini_navigation.html" %}
+  <h2>{% block page-title %}Match Reviewers{% endblock %}</h2>
+  <form method="post" action="{% url 'reviewer_matching_import' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-plug" aria-hidden="true"></i> Match Reviewers
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

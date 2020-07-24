@@ -7,9 +7,12 @@ from conf_site.reviews.views import (
     ProposalKindListView,
     ProposalListView,
     ProposalVotePostView,
-    ReviewerCsvImportView,
 )
 from conf_site.reviews.views.export import ExportReviewersView
+from conf_site.reviews.views.importing import (
+    ReviewerCsvImportView,
+    ReviewerProposalMatchingCsvImportView,
+)
 from conf_site.reviews.views.keywords import (
     ReviewKeywordDetailView,
     ReviewKeywordListView,
@@ -71,6 +74,11 @@ urlpatterns = [
         "reviewers/import/",
         ReviewerCsvImportView.as_view(),
         name="reviewer_import",
+    ),
+    path(
+        "reviewers/match/",
+        ReviewerProposalMatchingCsvImportView.as_view(),
+        name="reviewer_matching_import",
     ),
     path("", ProposalListView.as_view(), name="review_proposal_list"),
 ]
