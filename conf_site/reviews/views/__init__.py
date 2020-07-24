@@ -114,7 +114,9 @@ class ProposalKindListView(ProposalListView):
 
 class ProposalReviewRequestedListView(ProposalListView):
     def get_queryset(self, **kwargs):
-        user_votes = self.request.user.review_votes.filter(score=None)
+        # Return all Proposals that the user has voted on, or where a review
+        # has been requested.
+        user_votes = self.request.user.review_votes.all()
         return (
             Proposal.objects.order_by("pk")
             .exclude(cancelled=True)
