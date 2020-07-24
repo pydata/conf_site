@@ -42,16 +42,16 @@ class ProposalVote(models.Model):
             "+0 — OK proposal, but I will not argue for it to be accepted.",
         ),
         (
-            TRUE_ZERO,
-            "n/a — I abstain from voting on this proposal.",
-        ),
-        (
             MINUS_ZERO,
             "−0 — Weak proposal, but I will not argue against acceptance.",
         ),
         (
             MINUS_ONE,
             "−1 — Serious issues and I will argue to reject this proposal.",
+        ),
+        (
+            TRUE_ZERO,
+            "A — I abstain from voting on this proposal.",
         ),
     ]
 
