@@ -4,6 +4,8 @@ from tempfile import mkstemp
 
 from django.contrib.auth.models import User
 
+from allauth.account.models import EmailAddress
+
 from conf_site.accounts.tests import AccountsTestCase
 from conf_site.reviews.tasks import import_reviewer_csv
 from conf_site.reviews.tests import ReviewingSuperuserMixin
@@ -51,3 +53,4 @@ class ImportReviewerCSVTestCase(ReviewingSuperuserMixin, AccountsTestCase):
         self.assertTrue(imported_user.first_name, "Example")
         self.assertTrue(imported_user.last_name, "Reviewer")
         self.assertTrue(self.reviewers_group in imported_user.groups.all())
+        EmailAddress.objects.get(email="reviewer@example.com")

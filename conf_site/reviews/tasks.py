@@ -2,6 +2,7 @@ import csv
 
 from django.contrib.auth.models import Group, User
 
+from allauth.account.models import EmailAddress
 from allauth.utils import generate_unique_username
 
 from conf_site.proposals.models import Proposal
@@ -38,6 +39,7 @@ def import_reviewer_csv(filename):
             )
             if user_created:
                 num_users_created += 1
+                EmailAddress.objects.create(user=user, email=email)
             else:
                 num_existing_users += 1
             if not user.first_name:
