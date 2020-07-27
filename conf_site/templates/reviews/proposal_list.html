@@ -45,7 +45,7 @@
       <th>{% trans "-0" %}</th>
       <th>{% trans "-1" %}</th>
       <th><i class="fa fa-hashtag" title="{% trans 'Total Number of Reviews' %}"></i></th>
-      <th><a href="#" class="tip" title="{% trans 'Your Rating' %}"><i class="fa fa-user"></i></a></th>
+      <th class="sorter-user-scores"><a href="#" class="tip" title="{% trans 'Your Rating' %}"><i class="fa fa-user"></i></a></th>
       <th>{% trans "Status" %}</th>
     </thead>
     <tbody>
@@ -102,6 +102,18 @@
 <script src="{% static 'js/jquery.tablesorter.js' %}"></script>
 <script src="{% static 'js/jquery.tablesorter.widgets.js' %}"></script>
 <script>
+  $.tablesorter.addParser({
+    id: "user-scores",
+    is: function(s, table, cell, $cell) { return false; },
+    format: function(s, table, cell, cellIndex) {
+      return s
+        .replace(/\−1/g, 1)
+        .replace(/\−0/g, 2)
+        .replace(/\+0/g, 3)
+        .replace(/\+1/g, 4)
+    },
+    type: "numeric"
+  });
   $(function() {
     $("#table-proposals").tablesorter({
       cssIcon: "fa",
