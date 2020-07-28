@@ -41,11 +41,10 @@ class ImportReviewerCSVTestCase(ReviewingSuperuserMixin, AccountsTestCase):
         self.assertTrue(import_reviewer_csv(csv_filename))
         self.assertEqual(num_initial_users, User.objects.count())
 
-    def test_using_test_csv(self):
-        """Test that importing predefined CSV file works properly."""
+    def _test_for_success(self, filename):
         num_initial_users = User.objects.count()
-        csv_filename = self._temp_csv("test.csv")
-        self.assertTrue(import_reviewer_csv(csv_filename))
+
+        self.assertTrue(import_reviewer_csv(filename))
         # A single User should have been added.
         self.assertEqual(num_initial_users + 1, User.objects.count())
         # Verify that all user data/changes were properly imported.
@@ -54,3 +53,11 @@ class ImportReviewerCSVTestCase(ReviewingSuperuserMixin, AccountsTestCase):
         self.assertTrue(imported_user.last_name, "Reviewer")
         self.assertTrue(self.reviewers_group in imported_user.groups.all())
         EmailAddress.objects.get(email="reviewer@example.com")
+
+    def test_using_test_csv(self):
+        """Test that importing predefined CSV file works properly."""
+        self._test_for_success(self._temp_csv("test.csv"))
+
+    def test_using_unstripped_csv(self):
+        """Test that extra spaces are stripped correctly."""
+        self._test_for_success(self._temp_csv("unstripped.csv"))
