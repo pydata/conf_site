@@ -20,9 +20,9 @@ def import_reviewer_csv(filename):
 
         for row in csvreader:
             try:
-                first_name = row[1]
-                last_name = row[2]
-                email = row[3].lower()
+                first_name = row[1].strip()
+                last_name = row[2].strip()
+                email = row[3].lower().strip()
             except IndexError:
                 return False
 
