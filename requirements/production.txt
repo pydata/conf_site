@@ -1,7 +1,7 @@
 django==3.0.8
 django-allauth==0.42.0
 django-analytical==2.5.0
-django-autoslug==1.9.7
+django-autoslug==1.9.8
 django-constance[redis]==2.7.0
 django-crispy-forms==1.9.1
 django-model-utils==4.0.0
