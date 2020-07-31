@@ -74,6 +74,9 @@ class ProposalForm(forms.ModelForm):
         delete_code_url = kwargs.pop("delete_code_url", True)
         super(ProposalForm, self).__init__(*args, **kwargs)
 
+        self.fields["description"].widget = forms.Textarea(
+            attrs={"maxlength": 400}
+        )
         # Don't display kind if this proposal does not already exist,
         # since the kind will be overwritten by
         # symposion.proposals.views.proposal_submit_kind.
@@ -105,8 +108,11 @@ class PosterForm(ProposalForm):
 
         self.fields["description"].help_text = ""
         self.fields["description"].label = (
-            "Describe your poster in 400 words or less. "
+            "Describe your poster in 2500 characters or less. "
             "Feel free to provide links to relevant projects, code and images."
+        )
+        self.fields["description"].widget = forms.Textarea(
+            attrs={"maxlength": 2500}
         )
 
         self.fields["code_url"].help_text = ""
@@ -129,6 +135,14 @@ class PosterForm(ProposalForm):
             "slides_url",
             "review_ready",
         ]
+
+    def clean_description(self):
+        value = self.cleaned_data["description"]
+        if len(value) > 2500:
+            raise forms.ValidationError(
+                u"The description must be less than 2500 characters."
+            )
+        return value
 
 
 class SprintForm(ProposalForm):
