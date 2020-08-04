@@ -2,6 +2,7 @@ from constance import config
 
 from conf_site.core.views import CsvView
 from conf_site.proposals.models import Proposal
+from conf_site.reviews.models import ProposalVote
 
 
 class ExportProposalSubmittersView(CsvView):
@@ -118,4 +119,79 @@ class ExportProposalsView(CsvView):
                 ]
             )
 
+        return super().get(*args, **kwargs)
+
+
+class ExportSubmissionsView(CsvView):
+    csv_filename = "submissions.csv"
+    header_row = [
+        "Speaker",
+        "Title",
+        "Audience Level",
+        "Affiliation",
+        "Timezone",
+        "Track",
+        "URL",
+        "Category",
+        "+1",
+        "+0",
+        "-0",
+        "-1",
+        "#",
+        "Score",
+        "Tags",
+    ]
+
+    def get(self, *args, **kwargs):
+        for proposal in Proposal.objects.order_by("pk"):
+            plus_one_votes = ProposalVote.objects.filter(
+                proposal=proposal, score=ProposalVote.PLUS_ONE
+            ).count()
+            plus_zero_votes = ProposalVote.objects.filter(
+                proposal=proposal, score=ProposalVote.PLUS_ZERO
+            ).count()
+            minus_zero_votes = ProposalVote.objects.filter(
+                proposal=proposal, score=ProposalVote.MINUS_ZERO
+            ).count()
+            minus_one_votes = ProposalVote.objects.filter(
+                proposal=proposal, score=ProposalVote.MINUS_ONE
+            ).count()
+
+            num_votes = ProposalVote.objects.filter(proposal=proposal).count()
+
+            score = (
+                (plus_one_votes * ProposalVote.PLUS_ONE)
+                + (plus_zero_votes * ProposalVote.PLUS_ZERO)
+                + (minus_zero_votes * ProposalVote.MINUS_ZERO)
+                + (minus_one_votes * ProposalVote.MINUS_ONE)
+            )
+
+            if config.PROPOSAL_KEYWORDS:
+                keywords = ", ".join(
+                    map(
+                        lambda keyword: keyword.name,
+                        proposal.official_keywords.all(),
+                    )
+                )
+            else:
+                keywords = ""
+            self.csv_writer.writerow(
+                [
+                    proposal.speaker.name,
+                    proposal.title,
+                    proposal.get_audience_level_display(),
+                    proposal.affiliation,
+                    proposal.speaker.get_speaker_timezone_display(),
+                    proposal.get_specialized_track_display(),
+                    proposal.code_url,
+                    proposal.kind.name,
+                    plus_one_votes,
+                    plus_zero_votes,
+                    minus_zero_votes,
+                    minus_one_votes,
+                    num_votes,
+                    score,
+                    keywords,
+                ]
+            )
         return super().get(*args, **kwargs)
