@@ -1,3 +1,5 @@
+from constance import config
+
 from conf_site.core.views import CsvView
 from conf_site.proposals.models import Proposal
 from conf_site.reviews.models import ProposalResult
@@ -46,6 +48,13 @@ class ExportProposalsView(CsvView):
         "All Speaker Email Addresses",
         "Kind",
         "Audience Level",
+        "Keywords",
+        "Slides",
+        "Repository",
+        "First Time at PyData",
+        "Affiliation",
+        "Sponsoring",
+        "Phone Number",
         "Status",
         "Date Created",
         "Date Modified",
@@ -68,6 +77,15 @@ class ExportProposalsView(CsvView):
                     proposal_status = dict(ProposalResult.RESULT_STATUSES).get(
                         ProposalResult.RESULT_UNDECIDED
                     )
+            if config.PROPOSAL_KEYWORDS:
+                keywords = ", ".join(
+                    map(
+                        lambda keyword: keyword.name,
+                        proposal.official_keywords.all(),
+                    )
+                )
+            else:
+                keywords = ""
             self.csv_writer.writerow(
                 [
                     proposal.number,
@@ -77,6 +95,13 @@ class ExportProposalsView(CsvView):
                     accepted_speaker_email_addresses,
                     proposal.kind.name,
                     proposal.get_audience_level_display(),
+                    keywords,
+                    proposal.slides_url,
+                    proposal.code_url,
+                    proposal.get_first_time_at_pydata_display(),
+                    proposal.affiliation,
+                    proposal.get_sponsoring_interest_display(),
+                    proposal.phone_number,
                     proposal_status,
                     proposal.date_created,
                     proposal.date_last_modified,
