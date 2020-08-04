@@ -42,6 +42,13 @@ class ProposalAdmin(admin.ModelAdmin):
     list_filter = (
         'kind',
         'audience_level',
+        "already_recording",
+        "specialized_track",
+        "first_time_at_pydata",
+        "mentorship",
+        "mentoring",
+        "company_sponsor_intro",
+        "stipend",
         'cancelled',
         'recording_release',
     )
