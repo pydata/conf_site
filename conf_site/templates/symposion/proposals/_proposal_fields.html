@@ -69,7 +69,7 @@
 
     <hr>
 
-    {% if request.user == proposal.speaker.user %}
+    {% if request.user == proposal.speaker.user or request.user.is_superuser %}
     <div class="alert alert-info" role="alert">
         <p>Reviewers cannot view the following information.</p>
     </div>
@@ -83,9 +83,7 @@
     <dd>{{ proposal.under_represented_group }}&nbsp;</dd>
     <dt>Accessibility Needs</dt>
     <dd>{{ proposal.accomodation_needs }}&nbsp;</dd>
-    {% endif %}
 
-    {% if request.user == proposal.speaker.user or request.user.is_superuser %}
     <hr>
     <dt>Recording Release</dt>
     <dd>{{ proposal.recording_release }}&nbsp;</dd>
