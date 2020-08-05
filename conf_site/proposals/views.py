@@ -45,6 +45,8 @@ class ExportProposalsView(CsvView):
         "All Speaker Email Addresses",
         "Kind",
         "Audience Level",
+        "Gender",
+        "Group Identity",
         "Date Created",
         "Date Modified",
     ]
@@ -64,6 +66,8 @@ class ExportProposalsView(CsvView):
                     accepted_speaker_email_addresses,
                     proposal.kind.name,
                     proposal.get_audience_level_display(),
+                    proposal.gender,
+                    proposal.get_under_represented_group_display(),
                     proposal.date_created,
                     proposal.date_last_modified,
                 ]
