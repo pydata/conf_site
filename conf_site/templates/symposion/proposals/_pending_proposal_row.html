@@ -11,15 +11,7 @@
         {% if proposal.cancelled %}
             <span class="label label-danger">{% trans 'Cancelled' %}</span>
         {% else %}
-            {% if request.user == proposal.speaker.user %}
-                {% if proposal.result.status == "accepted" %}
-                    <span class="label label-success">{% trans 'Accepted' %}</span>
-                {% else %}
-                    <span class="label label-default">{% trans 'Submitted' %}</span>
-                {% endif %}
-            {% else %}
-                <span class="label label-default">{% trans 'Invited' %}</span>
-            {% endif %}
+            <span class="label label-default">{% trans 'Invited' %}</span>
         {% endif %}
     </td>
 
