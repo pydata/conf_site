@@ -47,8 +47,11 @@ class ProposalResultListView(SuperuserOnlyView, ProposalListView):
         )
 
     def get_queryset(self):
-        return Proposal.objects.order_by("pk").filter(
-            review_result__status=self.status
+        return (
+            Proposal.objects.order_by("pk")
+            .exclude(cancelled=True)
+            .filter(review_result__status=self.status)
+            .select_related("speaker", "review_result")
         )
 
     def get_context_data(self, **kwargs):
