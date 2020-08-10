@@ -1,3 +1,6 @@
+from django.contrib.sites.models import Site
+from django.urls import reverse
+
 from constance import config
 
 from conf_site.core.views import CsvView
@@ -144,6 +147,12 @@ class ExportSubmissionsView(CsvView):
 
     def get(self, *args, **kwargs):
         for proposal in Proposal.objects.order_by("pk"):
+            current_site = Site.objects.get_current()
+            proposal_url = "https://{}{}".format(
+                current_site,
+                reverse("review_proposal_detail", args=[proposal.id]),
+            )
+
             plus_one_votes = ProposalVote.objects.filter(
                 proposal=proposal, score=ProposalVote.PLUS_ONE
             ).count()
@@ -183,7 +192,7 @@ class ExportSubmissionsView(CsvView):
                     proposal.affiliation,
                     proposal.speaker.get_speaker_timezone_display(),
                     proposal.get_specialized_track_display(),
-                    proposal.code_url,
+                    proposal_url,
                     proposal.kind.name,
                     plus_one_votes,
                     plus_zero_votes,
