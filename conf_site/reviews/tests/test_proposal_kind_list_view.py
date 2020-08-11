@@ -2,22 +2,20 @@ from random import randint
 
 from django.urls import reverse
 
-from faker import Faker
-
-from conf_site.accounts.tests import AccountsTestCase
 from conf_site.proposals.tests.factories import (
     ProposalFactory,
     ProposalKindFactory,
 )
-from conf_site.reviews.tests import ReviewingTestCase
+from conf_site.reviews.tests.test_proposal_list_view import (
+    ProposalListViewTestCase,
+)
 
 
-class ProposalKindListViewTestCase(ReviewingTestCase, AccountsTestCase):
+class ProposalKindListViewTestCase(ProposalListViewTestCase):
     reverse_view_name = "review_proposal_kind_list"
 
     def setUp(self):
         super().setUp()
-        self.faker = Faker()
 
         self.proposal_kind = ProposalKindFactory.create()
         self.reverse_view_args = [self.proposal_kind.slug]
@@ -29,6 +27,39 @@ class ProposalKindListViewTestCase(ReviewingTestCase, AccountsTestCase):
 
     def test_blind_reviewers_as_superuser(self):
         pass
+
+    def test_no_cancelled_proposals(self):
+        """Verify that cancelled proposals do not appear in proposal list."""
+        VALID_PROPOSAL_COUNT = 4
+        INVALID_PROPOSAL_COUNT = 3
+
+        # Create proposals - with this proposal kind.
+        valid_proposals = ProposalFactory.create_batch(
+            size=VALID_PROPOSAL_COUNT, kind=self.proposal_kind, cancelled=False
+        )
+        invalid_proposals = ProposalFactory.create_batch(
+            size=INVALID_PROPOSAL_COUNT,
+            kind=self.proposal_kind,
+            cancelled=True,
+        )
+
+        self._validate_proposals(valid_proposals, True)
+        self._validate_proposals(invalid_proposals, False)
+
+    def test_proposal_count(self):
+        self._add_to_reviewers_group()
+
+        num_proposals = randint(2, 10)
+        ProposalFactory.create_batch(
+            size=num_proposals, kind=self.proposal_kind
+        )
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        self.assertContains(
+            response,
+            "<strong>{}</strong> proposals".format(num_proposals),
+        )
 
     def test_invalid_kind(self):
         """Verify that a random kind returns a 404."""
