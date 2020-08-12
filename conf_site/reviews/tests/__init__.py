@@ -39,7 +39,7 @@ class ReviewingNoAnonymousMixin(ReviewingMixin):
         self.assertEqual(response.status_code, 403)
 
 
-class ReviewingSuperuserMixin(ReviewingMixin):
+class ReviewingSuperuserMixin(ReviewingNoAnonymousMixin):
     def test_superuser_access(self):
         """Verify that superusers can access the view."""
         self._become_superuser()
@@ -48,9 +48,7 @@ class ReviewingSuperuserMixin(ReviewingMixin):
         self.assertEqual(response.status_code, 200)
 
 
-class ReviewingTestCase(
-    ReviewingNoAnonymousMixin, ReviewingSuperuserMixin, object
-):
+class ReviewingTestCase(ReviewingSuperuserMixin):
     """
     Base automated test case for reviewing application.
 
