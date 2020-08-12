@@ -7,6 +7,7 @@ from conf_site.reviews.tasks import import_reviewer_csv
 
 
 class ReviewerCsvImportView(SuperuserOnlyView, CsvImportView):
+    raise_exception = True
     success_url = reverse_lazy("reviewer_import")
     template_name = "reviews/reviewer_import.html"
 
