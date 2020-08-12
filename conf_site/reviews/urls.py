@@ -8,6 +8,7 @@ from conf_site.reviews.views import (
     ProposalReviewRequestedListView,
     ProposalListView,
     ProposalVotePostView,
+    ReviewerListView,
 )
 from conf_site.reviews.views.export import ExportReviewersView
 from conf_site.reviews.views.importing import (
@@ -86,5 +87,6 @@ urlpatterns = [
         ReviewerProposalMatchingCsvImportView.as_view(),
         name="reviewer_matching_import",
     ),
+    path("reviewers/", ReviewerListView.as_view(), name="reviewer_list"),
     path("", ProposalListView.as_view(), name="review_proposal_list"),
 ]
