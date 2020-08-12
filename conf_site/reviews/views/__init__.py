@@ -7,6 +7,7 @@ from django.views.generic import DetailView, ListView, View
 
 from constance import config
 
+from conf_site.core.views import SuperuserOnlyView
 from conf_site.proposals.models import Proposal
 from conf_site.reviews.forms import (
     ProposalFeedbackForm,
@@ -231,3 +232,14 @@ class ProposalFeedbackPostView(ReviewingView):
         return HttpResponseRedirect(
             reverse("review_proposal_detail", args=[proposal.id])
         )
+
+
+class ReviewerListView(SuperuserOnlyView, ListView, ReviewingView):
+    template_name = "reviews/reviewer_list.html"
+
+    def get_queryset(self, **kwargs):
+        try:
+            reviewers_group = Group.objects.get(name="Reviewers")
+        except Group.DoesNotExist:
+            raise Exception("Reviewers user group does not exist.")
+        return reviewers_group.user_set.all()

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags i18n review_tags %}
+{% load static %}
+
+{% block title %} - Reviewers{% endblock %}
+
+{% block body %}
+<div class="container">
+  {% include "reviews/_proposal_mini_navigation.html" %}
+  <h2>{% block page-title %}Reviewers{% endblock %}</h2>
+  {% include "_pagination.html" %}
+  <table class="table table-bordered table-hover" id="table-proposals">
+    <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th><i class="fa fa-comment" title="{% trans 'Number of Messages' %}"></i></th>
+      <th><span title="Number of +1 Votes">{% trans "+1" %}</span></th>
+      <th><span title="Number of +0 Votes"></span>{% trans "+0" %}</span></th>
+      <th><span title="Number of -0 Votes"></span>{% trans "-0" %}</span></th>
+      <th><span title="Number of -1 Votes"></span>{% trans "-1" %}</span></th>
+      <th><span title="Number of Abstentions">{% trans "A" %}</span></th>
+      <th><i class="fa fa-question" title="{% trans 'Number of Reviews Still Requested' %}"></i></th>
+    </thead>
+    <tbody>
+      {% for reviewer in user_list %}<tr>
+        <td>{{ reviewer.get_full_name }}</td>
+        <td><a href="mailto:{{ reviewer.email }}">{{ reviewer.email }}</a></td>
+        <td>{{ reviewer.review_feedback.count }}</td>
+        <td>{% user_vote_count reviewer 3 %}</td>
+        <td>{% user_vote_count reviewer 1 %}</td>
+        <td>{% user_vote_count reviewer -1 %}</td>
+        <td>{% user_vote_count reviewer -3 %}</td>
+        <td>{% user_vote_count reviewer 0 %}</td>
+        <td>{% user_vote_count reviewer None %}</td>
+      </tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

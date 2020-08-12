@@ -27,6 +27,12 @@ def user_score(proposal, user):
     return uncached_score
 
 
+@register.simple_tag
+def user_vote_count(user, score_type):
+    """Retrieve the number of reviews by a user."""
+    return ProposalVote.objects.filter(voter=user, score=score_type).count()
+
+
 @register.filter(name="is_reviewer")
 def is_reviewer(user):
     """Determine whether selected user is in the Reviewers user group."""
