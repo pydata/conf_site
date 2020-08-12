@@ -27,6 +27,19 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
         super(ProposalListViewTestCase, self).setUp()
         self.faker = Faker()
 
+    def _validate_proposals(self, proposals, should_contain=True):
+        # User must be in the reviewers group in order to access
+        # this view.
+        self._add_to_reviewers_group()
+        response = self.client.get(
+            reverse(self.reverse_view_name, args=self.reverse_view_args)
+        )
+        for proposal in proposals:
+            if should_contain:
+                self.assertContains(response, proposal.title)
+            else:
+                self.assertNotContains(response, proposal.title)
+
     def test_no_cancelled_proposals(self):
         """Verify that cancelled proposals do not appear in proposal list."""
         VALID_PROPOSAL_COUNT = 4
@@ -40,16 +53,8 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
             size=INVALID_PROPOSAL_COUNT, cancelled=True
         )
 
-        # User must be in the reviewers group in order to access
-        # this view.
-        self._add_to_reviewers_group()
-        response = self.client.get(
-            reverse(self.reverse_view_name, args=self.reverse_view_args)
-        )
-        for valid_proposal in valid_proposals:
-            self.assertContains(response, valid_proposal.title)
-        for invalid_proposal in invalid_proposals:
-            self.assertNotContains(response, invalid_proposal.title)
+        self._validate_proposals(valid_proposals, True)
+        self._validate_proposals(invalid_proposals, False)
 
     def test_proposal_count(self):
         """Verify that proposal list contains count of proposals."""
