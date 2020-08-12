@@ -28,6 +28,9 @@ class ProposalKindListViewTestCase(ProposalListViewTestCase):
     def test_blind_reviewers_as_superuser(self):
         pass
 
+    def test_review_requested_proposal_status(self):
+        pass
+
     def test_no_cancelled_proposals(self):
         """Verify that cancelled proposals do not appear in proposal list."""
         VALID_PROPOSAL_COUNT = 4
