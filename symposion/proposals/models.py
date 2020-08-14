@@ -189,6 +189,7 @@ class ProposalBase(models.Model):
             "speaker": self.speaker.name,
             "speakers": ", ".join([x.name for x in self.speakers()]),
             "kind": self.kind.name,
+            "votes": self.review_votes.all(),
         }
 
     def __str__(self):
