@@ -5,7 +5,7 @@ from constance import config
 
 from conf_site.core.views import CsvView
 from conf_site.proposals.models import Proposal
-from conf_site.reviews.models import ProposalVote
+from conf_site.reviews.models import ProposalResult, ProposalVote
 
 
 class ExportProposalSubmittersView(CsvView):
@@ -70,6 +70,7 @@ class ExportProposalsView(CsvView):
         "Phone Number",
         "Review Ready",
         "Cancelled",
+        "Status",
         "Date Created",
         "Date Modified",
     ]
@@ -89,6 +90,12 @@ class ExportProposalsView(CsvView):
                 )
             else:
                 keywords = ""
+            try:
+                proposal_status = proposal.review_result.get_status_display()
+            except ProposalResult.DoesNotExist:
+                proposal_status = dict(ProposalResult.RESULT_STATUSES).get(
+                    ProposalResult.RESULT_UNDECIDED
+                )
             self.csv_writer.writerow(
                 [
                     proposal.number,
@@ -117,6 +124,7 @@ class ExportProposalsView(CsvView):
                     proposal.phone_number,
                     proposal.review_ready,
                     proposal.cancelled,
+                    proposal_status,
                     proposal.date_created,
                     proposal.date_last_modified,
                 ]
