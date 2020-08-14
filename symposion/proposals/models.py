@@ -200,7 +200,7 @@ class ProposalBase(models.Model):
             "speaker": self.speaker.name,
             "speakers": ", ".join([x.name for x in self.speakers()]),
             "kind": self.kind.name,
-            "votes": self.review_votes.all(),
+            "votes": self.review_votes.exclude(score=None),
         }
 
     def __str__(self):
