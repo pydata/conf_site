@@ -1,5 +1,6 @@
 from conf_site.core.views import CsvView
 from conf_site.proposals.models import Proposal
+from conf_site.reviews.models import ProposalResult
 
 
 class ExportProposalSubmittersView(CsvView):
@@ -47,6 +48,7 @@ class ExportProposalsView(CsvView):
         "Audience Level",
         "Gender",
         "Group Identity",
+        "Status",
         "Date Created",
         "Date Modified",
     ]
@@ -57,6 +59,12 @@ class ExportProposalsView(CsvView):
             accepted_speaker_email_addresses = ", ".join(
                 speaker.email for speaker in proposal.speakers()
             )
+            try:
+                proposal_status = proposal.review_result.get_status_display()
+            except ProposalResult.DoesNotExist:
+                proposal_status = dict(ProposalResult.RESULT_STATUSES).get(
+                    ProposalResult.RESULT_UNDECIDED
+                )
             self.csv_writer.writerow(
                 [
                     proposal.number,
@@ -68,6 +76,7 @@ class ExportProposalsView(CsvView):
                     proposal.get_audience_level_display(),
                     proposal.gender,
                     proposal.get_under_represented_group_display(),
+                    proposal_status,
                     proposal.date_created,
                     proposal.date_last_modified,
                 ]
