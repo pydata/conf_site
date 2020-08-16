@@ -23,3 +23,9 @@ class ExportProposalsViewTestCase(StaffOnlyCsvViewTestCase):
             )
             self.assertContains(response, proposal.date_created)
             self.assertContains(response, proposal.date_last_modified)
+
+    def test_include_cancelled_proposal_status(self):
+        proposal = ProposalFactory.create(cancelled=True)
+        response = ExportProposalsView().get()
+        self.assertContains(response, proposal.title)
+        self.assertContains(response, "Cancelled")

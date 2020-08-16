@@ -90,12 +90,17 @@ class ExportProposalsView(CsvView):
                 )
             else:
                 keywords = ""
-            try:
-                proposal_status = proposal.review_result.get_status_display()
-            except ProposalResult.DoesNotExist:
-                proposal_status = dict(ProposalResult.RESULT_STATUSES).get(
-                    ProposalResult.RESULT_UNDECIDED
-                )
+            if proposal.cancelled:
+                proposal_status = "Cancelled"
+            else:
+                try:
+                    proposal_status = (
+                        proposal.review_result.get_status_display()
+                    )
+                except ProposalResult.DoesNotExist:
+                    proposal_status = dict(ProposalResult.RESULT_STATUSES).get(
+                        ProposalResult.RESULT_UNDECIDED
+                    )
             self.csv_writer.writerow(
                 [
                     proposal.number,
