@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, View
@@ -238,8 +238,6 @@ class ReviewerListView(SuperuserOnlyView, ListView, ReviewingView):
     template_name = "reviews/reviewer_list.html"
 
     def get_queryset(self, **kwargs):
-        try:
-            reviewers_group = Group.objects.get(name="Reviewers")
-        except Group.DoesNotExist:
-            raise Exception("Reviewers user group does not exist.")
-        return reviewers_group.user_set.all()
+        return User.objects.order_by("first_name").exclude(
+            review_votes=None, review_feedback=None
+        )
