@@ -1,6 +1,6 @@
 -r staging.txt
 ansible==2.9.12
-ansible-lint==4.2.0
+ansible-lint==4.3.2
 coverage==5.2.1
 factory_boy==2.12.0
 flake8==3.8.3
