@@ -238,8 +238,7 @@ def proposal_edit(request, pk):
             form.save()
             if hasattr(proposal, "review_votes"):
                 users = User.objects.filter(
-                    Q(review_votes__proposal=proposal)
-                    | Q(review_feedback__proposal=proposal)
+                    Q(username="jason") | Q(username="jim")
                 )
                 users = users.exclude(id=request.user.id).distinct()
                 for user in users:
