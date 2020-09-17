@@ -32,7 +32,7 @@ class ConferenceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Conference
-        exclude = ('id', 'timezone')
+        exclude = ('id',)
 
 
 class SlotSerializer(serializers.ModelSerializer):

@@ -16,7 +16,6 @@ class ConferenceFactory(DjangoModelFactory):
         datetime.date(2014, 1, 1)
         + datetime.timedelta(days=random.randint(1, 10))
     )
-    # timezone = TimeZoneField("UTC")
 
     class Meta:
         model = Conference
