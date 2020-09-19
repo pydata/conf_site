@@ -17,6 +17,21 @@ class SchedulePresentationDetailViewTestCase(PresentationTestCase):
         schedule.published = False
         schedule.save()
 
+    def _staff_login(self):
+        # Create a staff user and login as them.
+        password = self.faker.sentence(nb_words=6)
+        user_model = get_user_model()
+        user = user_model.objects.create(
+            username="test",
+            email="example@example.com",
+            first_name="Test",
+            last_name="User",
+            is_staff=True,
+        )
+        user.set_password(password)
+        user.save()
+        self.client.force_login(user)
+
     def test_status_code(self):
         """Verify that presentation page returns a 200 status code."""
 
@@ -39,21 +54,7 @@ class SchedulePresentationDetailViewTestCase(PresentationTestCase):
         requesting user is staff.
         """
         self._unpublish_schedule()
-
-        # Create a staff user and login as them.
-        password = self.faker.sentence(nb_words=6)
-        user_model = get_user_model()
-        user = user_model.objects.create(
-            username="test",
-            email="example@example.com",
-            first_name="Test",
-            last_name="User",
-            is_staff=True,
-        )
-        user.set_password(password)
-        user.save()
-        self.client.force_login(user)
-
+        self._staff_login()
         response = self.client.get(self.presentation_url)
         self.assertEqual(response.status_code, 200)
 
@@ -81,3 +82,15 @@ class SchedulePresentationDetailViewTestCase(PresentationTestCase):
             args=[nameless_speaker.pk, nameless_speaker.slug],
         )
         self.assertNotContains(response, nameless_speaker_url)
+
+    def test_staff_only_edit_button(self):
+        admin_edit_url = reverse(
+            "admin:symposion_schedule_presentation_change",
+            args=[self.presentation.id],
+        )
+        response = self.client.get(self.presentation_url)
+        self.assertNotContains(response, admin_edit_url)
+
+        self._staff_login()
+        response = self.client.get(self.presentation_url)
+        self.assertContains(response, admin_edit_url)

@@ -13,6 +13,9 @@
             {% endif %}
         </h4>
     {% endif %}
+    {% if request.user.is_staff %}
+        <a class="btn btn-default pull-right" href="{% url 'admin:symposion_schedule_presentation_change' presentation.id %}">Edit</a>
+    {% endif %}
     <h2>{{ presentation.title }}</h2>
 
     <h4>{% for speaker in presentation.speakers %}{% if speaker.name %}{% if not forloop.first %}, {% endif %}<a href="{% url "speaker_profile" speaker.pk speaker.slug %}">{{ speaker }}</a>{% endif %}{% endfor %}</h4>
