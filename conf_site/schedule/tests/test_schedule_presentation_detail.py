@@ -82,3 +82,15 @@ class SchedulePresentationDetailViewTestCase(PresentationTestCase):
             args=[nameless_speaker.pk, nameless_speaker.slug],
         )
         self.assertNotContains(response, nameless_speaker_url)
+
+    def test_staff_only_edit_button(self):
+        admin_edit_url = reverse(
+            "admin:symposion_schedule_presentation_change",
+            args=[self.presentation.id],
+        )
+        response = self.client.get(self.presentation_url)
+        self.assertNotContains(response, admin_edit_url)
+
+        self._staff_login()
+        response = self.client.get(self.presentation_url)
+        self.assertContains(response, admin_edit_url)
