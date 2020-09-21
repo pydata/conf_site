@@ -40,7 +40,6 @@ class SlotAdmin(admin.ModelAdmin):
 class RoomAdmin(admin.ModelAdmin):
     list_display = ["name", "order", "schedule"]
     list_filter = ["schedule"]
-    inlines = [SlotRoomInline]
 
 
 class PresentationAdmin(admin.ModelAdmin):
