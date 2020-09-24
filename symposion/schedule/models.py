@@ -1,7 +1,3 @@
-from __future__ import unicode_literals
-
-import datetime
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -97,8 +93,8 @@ class Slot(models.Model):
     kind = models.ForeignKey(
         SlotKind, on_delete=models.CASCADE, verbose_name=_("Kind")
     )
-    start = models.TimeField(verbose_name=_("Start"))
-    end = models.TimeField(verbose_name=_("End"))
+    start = models.DateTimeField(verbose_name=_("Start"))
+    end = models.DateTimeField(verbose_name=_("End"))
     content_override = models.TextField(
         blank=True, verbose_name=_("Content override")
     )
@@ -134,29 +130,9 @@ class Slot(models.Model):
             return None
 
     @property
-    def start_datetime(self):
-        return datetime.datetime(
-            self.day.date.year,
-            self.day.date.month,
-            self.day.date.day,
-            self.start.hour,
-            self.start.minute,
-        )
-
-    @property
-    def end_datetime(self):
-        return datetime.datetime(
-            self.day.date.year,
-            self.day.date.month,
-            self.day.date.day,
-            self.end.hour,
-            self.end.minute,
-        )
-
-    @property
     def length_in_minutes(self):
         return int(
-            (self.end_datetime - self.start_datetime).total_seconds() / 60
+            (self.end - self.start).total_seconds() / 60
         )
 
     @property

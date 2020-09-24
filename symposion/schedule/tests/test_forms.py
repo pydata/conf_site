@@ -93,12 +93,12 @@ class ScheduleSectionFormTests(TestCase):
         ingested CSV
         """
         form = ScheduleSectionForm(schedule=self.schedule)
-        start = "12:00 PM"
-        end = "01:00 PM"
+        start = "2000-01-01T12:00:00+00:00"
+        end = "2000-01-01T13:00:00+00:00"
         data = {"time_start": start, "time_end": end}
         start_time, end_time = form._get_start_end_times(data)
-        self.assertEqual(start, start_time.strftime("%I:%M %p"))
-        self.assertEqual(end, end_time.strftime("%I:%M %p"))
+        self.assertEqual(start, start_time.isoformat())
+        self.assertEqual(end, end_time.isoformat())
 
     def test_get_start_end_times_malformed(self):
         """
