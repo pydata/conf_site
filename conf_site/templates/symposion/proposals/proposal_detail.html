@@ -36,6 +36,12 @@
     <div class="tabbable">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#proposal-detail" data-toggle="tab">{% trans "Proposal Details" %}</a></li>
+            {% if not config.BLIND_AUTHORS %}
+            <li><a href="#proposal-reviewers" data-toggle="tab">
+                {% trans "Reviewer List" %}
+                <span class="badge">{{ proposal.review_votes.count }}</span>
+            </a></li>
+            {% endif %}
             {% if feedback_form %}
                 <li><a href="#proposal-feedback" data-toggle="tab">{% trans "Reviewer Feedback" %} <span class="badge">{{ proposal.feedback_count }}</span></a></li>
             {% endif %}
@@ -44,6 +50,14 @@
             <div class="tab-pane active" id="proposal-detail">
                 {% include "symposion/proposals/_proposal_fields.html" %}
             </div>
+            {% if not config.BLIND_AUTHORS %}<div class="tab-pane" id="proposal-reviewers">
+                <h3>Reviewers</h3>
+                <ol>
+                {% for review_vote in proposal.review_votes.all %}<li>
+                    {{ review_vote.voter.get_full_name|default:review_vote.voter.username }}
+                </li>{% endfor %}
+                </ol>
+            </div>{% endif %}
             {% if feedback_form %}
                 {% include "reviews/_proposal_feedback_tab.html" %}
             {% endif %}

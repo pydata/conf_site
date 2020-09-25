@@ -21,7 +21,7 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
         self.proposal = ProposalFactory()
         self.reverse_view_args = [self.proposal.pk]
 
-    def test_blind_reviewing_types_as_author(self):
+    def test_blind_authors(self):
         """Verify whether BLIND_AUTHORS setting works properly."""
         self._i_am_the_speaker_now()
 
@@ -30,6 +30,9 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
         ProposalFeedbackFactory(
             proposal=self.proposal, author=self.reviewer.user
         )
+
+        # Create a vote.
+        ProposalVoteFactory(proposal=self.proposal, voter=self.reviewer.user)
 
         with override_config(BLIND_AUTHORS=True):
             response = self.client.get(
