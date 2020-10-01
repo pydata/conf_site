@@ -17,10 +17,6 @@
                 <a href="{% url "proposal_cancel" proposal.pk %}" class="btn btn-default">
                     {% trans "Cancel this proposal" %}
                 </a>
-            {% else %}
-                <a href="{% url "proposal_leave" proposal.pk %}" class="btn btn-default">
-                    {% trans "Remove me from this proposal" %}
-                </a>
             {% endif %}
         {% else %}
             {% trans 'Cancelled' }
