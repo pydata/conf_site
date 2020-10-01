@@ -51,7 +51,7 @@
                 <h3><a href="{% url "schedule_presentation_detail" presentation.pk presentation.slug %}">{{ presentation.title }}</a></h3>
                 {% if presentation.slot %}
                     <p>
-                        {{ presentation.slot.day.date|date:"l" }}
+                        {{ presentation.slot.start|date:"l" }}
                         {{ presentation.slot.start}}&ndash;{{ presentation.slot.end }}
                         {% if presentation.slot.rooms %}
                             in {{ presentation.slot.rooms|join:", " }}
