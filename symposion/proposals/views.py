@@ -303,30 +303,6 @@ def proposal_cancel(request, pk):
 
 
 @login_required
-def proposal_leave(request, pk):
-    queryset = ProposalBase.objects.select_related("speaker")
-    proposal = get_object_or_404(queryset, pk=pk)
-    proposal = ProposalBase.objects.get_subclass(pk=proposal.pk)
-
-    try:
-        speaker = proposal.additional_speakers.get(user=request.user)
-    except ObjectDoesNotExist:
-        return HttpResponseForbidden()
-    if request.method == "POST":
-        # The AdditionalSpeaker object requires a Speaker and a ProposalBase,
-        # so the only way to "remove" it from the proposal is through
-        # deletion.
-        speaker.delete()
-        # @@@ fire off email to submitter and other speakers
-        messages.success(
-            request, "You are no longer speaking on %s" % proposal.title
-        )
-        return redirect("dashboard")
-    ctx = {"proposal": proposal}
-    return render(request, "symposion/proposals/proposal_leave.html", ctx)
-
-
-@login_required
 def proposal_pending_join(request, pk):
     proposal = get_object_or_404(ProposalBase, pk=pk)
     speaking = get_object_or_404(
