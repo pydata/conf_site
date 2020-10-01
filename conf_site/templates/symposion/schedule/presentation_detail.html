@@ -3,6 +3,7 @@
 {% block title %} - Presentation: {{ presentation.title }}{% endblock %}
 
 {% block body %}
+{% include "_time_zone_selector.html" %}
 <div class="container">
     {% if presentation.slot %}
         <h4>

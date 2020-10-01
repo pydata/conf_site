@@ -24,6 +24,7 @@
 {% endblock %}
 
 {% block body %}
+{% include "_time_zone_selector.html" %}
 <div class="container">
     <h2>Accepted {{ schedule.section.name }}</h2>
         {% for presentation in presentations %}
