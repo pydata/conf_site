@@ -7,7 +7,6 @@ from .views import (
     proposal_edit,
     proposal_speaker_manage,
     proposal_cancel,
-    proposal_leave,
     proposal_pending_join,
     proposal_pending_decline,
     document_create,
@@ -30,7 +29,6 @@ urlpatterns = [
         name="proposal_speaker_manage",
     ),
     url(r"^(\d+)/cancel/$", proposal_cancel, name="proposal_cancel"),
-    url(r"^(\d+)/leave/$", proposal_leave, name="proposal_leave"),
     url(r"^(\d+)/join/$", proposal_pending_join, name="proposal_pending_join"),
     url(
         r"^(\d+)/decline/$",
