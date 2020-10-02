@@ -4,7 +4,7 @@
     <input type="hidden" name="next" value="{{ request.get_full_path }}">
     <div class="form-group">
       <label for="time_zone">Time Zone</label>
-      <select name="time_zone">
+      <select name="time_zone" class="select2-enabled">
         {% for time_zone in TIME_ZONES %}
           <option value="{{ time_zone }}" {% if time_zone == TIME_ZONE %}selected{% endif %}>{{ time_zone }}</option>
         {% endfor %}
