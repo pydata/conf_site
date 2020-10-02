@@ -16,7 +16,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import ServeView as WagtailImageView
 
-from conf_site.core.views import csrf_failure
+from conf_site.core.views import csrf_failure, TimeZoneChangeView
 from conf_site.schedule.views import (
     ExportPresentationSpeakerView,
     PresentationDetailView,
@@ -86,6 +86,9 @@ urlpatterns += [
         staff_member_required(ExportPresentationSpeakerView.as_view()),
         name="presentation_speaker_export"),
     url(r"^schedule/", include("symposion.schedule.urls")),
+    url(
+        r"^time-zone/$", TimeZoneChangeView.as_view(), name="time_zone_change"
+    ),
     url(r"^403-csrf/", csrf_failure, name="403-csrf"),
     url(r"^413/", TemplateView.as_view(template_name="413.html")),
     url(r"", include(wagtail_urls)),

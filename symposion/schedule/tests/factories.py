@@ -1,7 +1,7 @@
 import datetime
 import random
 
-from factory import fuzzy, SubFactory
+from factory import faker, fuzzy, SubFactory
 from factory.django import DjangoModelFactory
 
 from symposion.schedule.models import Schedule, Day, Slot, SlotKind
@@ -16,7 +16,6 @@ class ConferenceFactory(DjangoModelFactory):
         datetime.date(2014, 1, 1)
         + datetime.timedelta(days=random.randint(1, 10))
     )
-    # timezone = TimeZoneField("UTC")
 
     class Meta:
         model = Conference
@@ -66,11 +65,14 @@ class DayFactory(DjangoModelFactory):
         model = Day
 
 
+fake_tzinfo = faker.faker.Faker().pytimezone()
+
+
 class SlotFactory(DjangoModelFactory):
     day = SubFactory(DayFactory)
     kind = SubFactory(SlotKindFactory)
-    start = datetime.time(random.randint(0, 23), random.randint(0, 59))
-    end = datetime.time(random.randint(0, 23), random.randint(0, 59))
+    start = faker.Faker("past_datetime", tzinfo=fake_tzinfo)
+    end = faker.Faker("future_datetime", tzinfo=fake_tzinfo)
 
     class Meta:
         model = Slot

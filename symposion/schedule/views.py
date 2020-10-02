@@ -169,8 +169,8 @@ def schedule_json(request):
         slot_data = {
             "room": ", ".join(room["name"] for room in slot.rooms.values()),
             "rooms": [room["name"] for room in slot.rooms.values()],
-            "start": slot.start_datetime.isoformat(),
-            "end": slot.end_datetime.isoformat(),
+            "start": slot.start.isoformat(),
+            "end": slot.end.isoformat(),
             "duration": slot.length_in_minutes,
             "kind": slot.kind.label,
             "section": slot.day.schedule.section.slug,
