@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 import csv
 from io import TextIOWrapper
-import time
 
 from datetime import datetime
 
@@ -82,17 +81,14 @@ class ScheduleSectionForm(forms.Form):
 
     def _get_start_end_times(self, data):
         "Return start and end time objects"
-        times = []
+        datetimes = []
         for x in [data[self.START_KEY], data[self.END_KEY]]:
             try:
-                time_obj = time.strptime(x, "%I:%M %p")
+                datetime_obj = datetime.fromisoformat(x)
             except (ValueError, TypeError):
                 return messages.ERROR, "Malformed time found: %s." % x
-            time_obj = datetime(
-                100, 1, 1, time_obj.tm_hour, time_obj.tm_min, 00
-            )
-            times.append(time_obj.time())
-        return times
+            datetimes.append(datetime_obj)
+        return datetimes
 
     def _build_rooms(self, data):
         "Get or Create Rooms based on schedule type and set of Tracks"

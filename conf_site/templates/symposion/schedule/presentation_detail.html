@@ -3,10 +3,11 @@
 {% block title %} - Presentation: {{ presentation.title }}{% endblock %}
 
 {% block body %}
+{% include "_time_zone_selector.html" %}
 <div class="container">
     {% if presentation.slot %}
         <h4>
-            {{ presentation.slot.day.date|date:"l" }}
+            {{ presentation.slot.start|date:"l" }}
             {{ presentation.slot.start}}&ndash;{{ presentation.slot.end }}
             {% if presentation.slot.rooms %}
                 in {{ presentation.slot.rooms|join:", " }}

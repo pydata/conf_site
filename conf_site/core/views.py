@@ -4,7 +4,12 @@ from tempfile import mkstemp
 from wsgiref.util import FileWrapper
 
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
+from django.http import (
+    Http404,
+    HttpResponse,
+    HttpResponseRedirect,
+    HttpResponsePermanentRedirect,
+)
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
@@ -30,6 +35,7 @@ def csrf_failure(request, reason=""):
 
 class CsvView(View):
     """A abstract view that returns a CSV file as a response."""
+
     http_method_names = ["get"]
 
     # Create generic names for required attributes.
@@ -155,3 +161,15 @@ class SuperuserOnlyView(UserPassesTestMixin, View):
             # Non-anonymous, non-superuser users should see an error page.
             self.raise_exception = True
         return False
+
+
+class TimeZoneChangeView(View):
+    """
+    A view that stores the user's time zone in the session.
+    """
+
+    http_method_names = ["post"]
+
+    def post(self, request, *args, **kwargs):
+        request.session["time_zone"] = request.POST["time_zone"]
+        return HttpResponseRedirect(request.POST["next"])

@@ -15,6 +15,7 @@
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/mainstream-vc.css' %}" rel="stylesheet">
     <link href="{% static 'css/jupytercon.css' %}" rel="stylesheet">
+    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="{% static 'favicon/favicon.ico' %}">
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="msapplication-TileImage" content="{% static 'favicon/mstile-144x144.png' %}">
@@ -125,6 +126,7 @@
 </footer>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="{% static 'js/retina.min.js' %}"></script>
+<script src="{% static 'js/select2.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 {% if sentry_public_dsn %}
 <script>
@@ -138,6 +140,11 @@
     });
 </script>
 {% endif %}
+<script>
+    jQuery(document).ready(function() {
+        jQuery(".select2-enabled").select2();
+    });
+</script>
 {% block extra_script %}{% endblock %}
 </body>
 </html>

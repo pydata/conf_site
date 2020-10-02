@@ -2,8 +2,6 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from timezone_field import TimeZoneField
-
 
 CONFERENCE_CACHE = {}
 
@@ -18,9 +16,6 @@ class Conference(models.Model):
     # when the conference runs
     start_date = models.DateField(_("Start date"), null=True, blank=True)
     end_date = models.DateField(_("End date"), null=True, blank=True)
-
-    # timezone the conference is in
-    timezone = TimeZoneField(blank=True, verbose_name=_("timezone"))
 
     def __str__(self):
         return self.title
