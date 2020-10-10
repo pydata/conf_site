@@ -2,8 +2,10 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
+from conf_site.schedule.tests.factories import PresentationFactory
 from symposion.conference.models import Conference, Section
 from symposion.schedule.models import Schedule
+from symposion.schedule.tests.factories import SlotFactory, SlotKindFactory
 
 
 class ScheduleListCSVViewTestCase(TestCase):
@@ -57,3 +59,15 @@ class ScheduleListCSVViewTestCase(TestCase):
 
         response = self.client.get(reverse("schedule_list_csv"))
         self.assertEqual(response.status_code, 200)
+
+    def test_no_cancelled_presentations(self):
+        self.schedule.published = True
+        self.schedule.save()
+        cancelled_presentation = PresentationFactory(
+            cancelled=True,
+            slot=SlotFactory(kind=SlotKindFactory(schedule=self.schedule)),
+        )
+        response = self.client.get(
+            reverse("schedule_list_csv", args=[self.schedule.section.slug])
+        )
+        self.assertNotContains(response, cancelled_presentation.title)

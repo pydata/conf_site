@@ -26,6 +26,10 @@ class PresentationDetailView(SlugDetailView):
     def render_to_response(self, context, **response_kwargs):
         presentation = self.get_object()
 
+        # Do not render if presentation is cancelled.
+        if presentation.cancelled:
+            raise Http404()
+
         # Verify that schedule is published (or user is staff).
         if presentation.slot is not None:
             schedule = presentation.slot.day.schedule
@@ -58,13 +62,14 @@ class ExportPresentationSpeakerView(CsvView):
         # Iterate through speakers and presentations.
         for speaker in Speaker.objects.all():
             for presentation in speaker.all_presentations:
-                self.csv_writer.writerow(
-                    [
-                        speaker.name,
-                        speaker.email,
-                        presentation.title,
-                        presentation.proposal.kind.name,
-                    ]
-                )
+                if not presentation.cancelled:
+                    self.csv_writer.writerow(
+                        [
+                            speaker.name,
+                            speaker.email,
+                            presentation.title,
+                            presentation.proposal.kind.name,
+                        ]
+                    )
 
         return super(ExportPresentationSpeakerView, self).get(*args, **kwargs)

@@ -115,3 +115,14 @@ class Speaker(models.Model):
             for p in self.copresentations.all():
                 presentations.append(p)
         return presentations
+
+    @property
+    def not_cancelled_presentations(self):
+        """Property containing non-cancelled presentations."""
+        presentations = []
+        if self.presentations:
+            for p in self.presentations.exclude(cancelled=True):
+                presentations.append(p)
+            for p in self.copresentations.exclude(cancelled=True):
+                presentations.append(p)
+        return presentations
