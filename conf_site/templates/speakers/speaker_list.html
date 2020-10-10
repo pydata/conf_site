@@ -13,7 +13,7 @@
       <th>Presentation(s)</th>
     </thead>
     <tbody>
-      {% for speaker in speakers %}{% if speaker.name %}<tr>
+      {% for speaker in speakers %}{% if speaker.name and speaker.not_cancelled_presentations %}<tr>
         <td><a href="{% url 'speaker_profile' speaker.pk speaker.slug %}">{{ speaker.name }}</a></td>
         <td>{% for presentation in speaker.not_cancelled_presentations %}
           <a href="{% url 'schedule_presentation_detail' presentation.pk presentation.slug %}">

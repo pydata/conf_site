@@ -180,3 +180,4 @@ class SpeakerListViewTestCase(AccountsTestCase):
         presentation = PresentationFactory(cancelled=True)
         response = self.client.get(reverse("speaker_list"))
         self.assertNotContains(response, presentation.title)
+        self.assertNotContains(response, presentation.speaker.name)
