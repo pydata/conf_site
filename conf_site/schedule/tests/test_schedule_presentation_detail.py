@@ -94,3 +94,10 @@ class SchedulePresentationDetailViewTestCase(PresentationTestCase):
         self._staff_login()
         response = self.client.get(self.presentation_url)
         self.assertContains(response, admin_edit_url)
+
+    def test_cancelled_presentation(self):
+        """Verify that pages do not work if presentation is cancelled."""
+        self.presentation.cancelled = True
+        self.presentation.save()
+        response = self.client.get(self.presentation_url)
+        self.assertEqual(response.status_code, 404)

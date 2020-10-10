@@ -174,3 +174,9 @@ class SpeakerListViewTestCase(AccountsTestCase):
             "speaker_profile", args=[speaker2.pk, speaker2.slug]
         )
         self.assertNotContains(response, speaker2_url)
+
+    def test_cancelled_presentations(self):
+        """Verify that cancelled presentations do not appear."""
+        presentation = PresentationFactory(cancelled=True)
+        response = self.client.get(reverse("speaker_list"))
+        self.assertNotContains(response, presentation.title)

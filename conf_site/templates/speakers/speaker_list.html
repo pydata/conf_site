@@ -15,7 +15,7 @@
     <tbody>
       {% for speaker in speakers %}{% if speaker.name %}<tr>
         <td><a href="{% url 'speaker_profile' speaker.pk speaker.slug %}">{{ speaker.name }}</a></td>
-        <td>{% for presentation in speaker.all_presentations %}
+        <td>{% for presentation in speaker.not_cancelled_presentations %}
           <a href="{% url 'schedule_presentation_detail' presentation.pk presentation.slug %}">
             {{ presentation.title }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}</td>
