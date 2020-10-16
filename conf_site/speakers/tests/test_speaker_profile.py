@@ -96,7 +96,7 @@ class SpeakerProfileTestCase(TestCase):
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertContains(response, SECOND_PRESENTATION_TITLE)
 
-    def test_do_not_display_unscheduled_presentations(self):
+    def test_display_unscheduled_presentations(self):
         self.second_presentation.slot = None
         self.second_presentation.save()
 
@@ -106,7 +106,31 @@ class SpeakerProfileTestCase(TestCase):
             )
         )
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
+        self.assertContains(response, SECOND_PRESENTATION_TITLE)
+
+    def test_do_not_display_cancelled_presentations(self):
+        self.second_presentation.cancelled = True
+        self.second_presentation.save()
+
+        response = self.client.get(
+            reverse(
+                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
+            )
+        )
+        self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertNotContains(response, SECOND_PRESENTATION_TITLE)
+
+    def test_do_not_display_if_schedule_is_not_published(self):
+        for schedule in Schedule.objects.all():
+            schedule.published = False
+            schedule.save()
+
+        response = self.client.get(
+            reverse(
+                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
+            )
+        )
+        self.assertEqual(response.status_code, 404)
 
     def test_second_speaker_profile_page(self):
         """Verify that a second speaker's profile page is public."""

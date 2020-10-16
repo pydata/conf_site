@@ -18,9 +18,7 @@ class SpeakerDetailView(SlugDetailView):
     def _get_presentations(self):
         """Utility method to retrive a speaker's presentations."""
         speaker = self.get_object()
-        return list(speaker.presentations.exclude(slot=None)) + list(
-            speaker.copresentations.exclude(slot=None)
-        )
+        return speaker.not_cancelled_presentations
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,6 +35,17 @@ class SpeakerDetailView(SlugDetailView):
         # Verify that speaker has presentations (or user is staff).
         presentations = self._get_presentations()
         if not presentations and not self.request.user.is_staff:
+            raise Http404()
+
+        # Make sure that at least one presentation is on a published schedule.
+        for presentation in presentations:
+            try:
+                schedule = Schedule.objects.get(section=presentation.section)
+            except Schedule.DoesNotExist:
+                continue
+            if schedule.published:
+                break
+        else:
             raise Http404()
 
         return super().render_to_response(context, **response_kwargs)
