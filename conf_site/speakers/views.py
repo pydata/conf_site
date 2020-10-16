@@ -18,9 +18,7 @@ class SpeakerDetailView(SlugDetailView):
     def _get_presentations(self):
         """Utility method to retrive a speaker's presentations."""
         speaker = self.get_object()
-        return list(speaker.presentations.exclude(slot=None)) + list(
-            speaker.copresentations.exclude(slot=None)
-        )
+        return speaker.not_cancelled_presentations
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

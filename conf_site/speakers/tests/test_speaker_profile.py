@@ -96,8 +96,20 @@ class SpeakerProfileTestCase(TestCase):
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertContains(response, SECOND_PRESENTATION_TITLE)
 
-    def test_do_not_display_unscheduled_presentations(self):
+    def test_display_unscheduled_presentations(self):
         self.second_presentation.slot = None
+        self.second_presentation.save()
+
+        response = self.client.get(
+            reverse(
+                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
+            )
+        )
+        self.assertContains(response, FIRST_PRESENTATION_TITLE)
+        self.assertContains(response, SECOND_PRESENTATION_TITLE)
+
+    def test_do_not_display_cancelled_presentations(self):
+        self.second_presentation.cancelled = True
         self.second_presentation.save()
 
         response = self.client.get(
