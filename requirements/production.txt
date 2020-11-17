@@ -22,5 +22,5 @@ redis==3.5.3
 sendgrid-django==4.2.0
 sentry-sdk==0.18.0
 virtualenv==20.0.31
-wagtail==2.9.3
+wagtail==2.11.2
 wagtailmenus==3.0.2
