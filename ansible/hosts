@@ -13,9 +13,4 @@ testing:
 
 production:
   hosts:
-    eindhoven2020:
-    global2020:
     israel2021:
-    jupytercon2020:
-    taipei2020:
-    warsaw2020:
