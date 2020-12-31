@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.conf.urls import include, re_path
 from rest_framework.routers import SimpleRouter
 
 from . import views
@@ -11,6 +11,6 @@ router.register(r'presentation', views.PresentationViewSet)
 router.register(r'sponsor', views.SponsorViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
-    url(r'^$', views.ConferenceDetail.as_view(), name='conference-detail'),
+    re_path(r'^', include(router.urls)),
+    re_path(r'^$', views.ConferenceDetail.as_view(), name='conference-detail'),
 ]

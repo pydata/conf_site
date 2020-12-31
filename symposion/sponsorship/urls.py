@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import re_path
 from django.views.generic import TemplateView
 
 from .views import (
@@ -9,13 +9,13 @@ from .views import (
 )
 
 urlpatterns = [
-    url(
+    re_path(
         r"^$",
         TemplateView.as_view(template_name="symposion/sponsorship/list.html"),
         name="sponsor_list",
     ),
-    url(r"^apply/$", sponsor_apply, name="sponsor_apply"),
-    url(r"^add/$", sponsor_add, name="sponsor_add"),
-    url(r"^ziplogos/$", sponsor_zip_logo_files, name="sponsor_zip_logos"),
-    url(r"^(?P<pk>\d+)/$", sponsor_detail, name="sponsor_detail"),
+    re_path(r"^apply/$", sponsor_apply, name="sponsor_apply"),
+    re_path(r"^add/$", sponsor_add, name="sponsor_add"),
+    re_path(r"^ziplogos/$", sponsor_zip_logo_files, name="sponsor_zip_logos"),
+    re_path(r"^(?P<pk>\d+)/$", sponsor_detail, name="sponsor_detail"),
 ]

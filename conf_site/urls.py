@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import include, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
@@ -34,25 +34,31 @@ from conf_site.sponsorship.views import ExportSponsorsView
 WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
 
 if settings.DEBUG:
-    urlpatterns = [url(r"^__debug__/", include(debug_toolbar.urls)), ]
+    urlpatterns = [
+        re_path(r"^__debug__/", include(debug_toolbar.urls)),
+    ]
 else:
     urlpatterns = []
 urlpatterns += [
-    url(r"^admin/", admin.site.urls),
-    url(r"^accounts/", include("allauth.urls")),
-    url(r"^api/", include("conf_site.api.urls")),
-    url(r"^cms/", include(wagtailadmin_urls)),
-    url(r"^dashboard/", symposion.views.dashboard, name="dashboard"),
-    url(r"^documents/", include(wagtaildocs_urls)),
-    url(
+    re_path(r"^admin/", admin.site.urls),
+    re_path(r"^accounts/", include("allauth.urls")),
+    re_path(r"^api/", include("conf_site.api.urls")),
+    re_path(r"^cms/", include(wagtailadmin_urls)),
+    re_path(r"^dashboard/", symposion.views.dashboard, name="dashboard"),
+    re_path(r"^documents/", include(wagtaildocs_urls)),
+    re_path(
         r"^images/([^/]*)/(\d*)/([^/]*)/[^/]*$",
         WagtailImageView.as_view(action="redirect"),
         name="wagtailimages_serve",
     ),
-    url(r"^speaker/export/$",
+    re_path(
+        r"^speaker/export/$",
         staff_member_required(ExportAcceptedSpeakerEmailView.as_view()),
-        name="speaker_email_export"),
-    url(r"^speaker/list/$", SpeakerListView.as_view(), name="speaker_list"),
+        name="speaker_email_export",
+    ),
+    re_path(
+        r"^speaker/list/$", SpeakerListView.as_view(), name="speaker_list"
+    ),
     path(
         "speaker/profile/<int:pk>/",
         SpeakerRedirectView.as_view(),
@@ -63,15 +69,15 @@ urlpatterns += [
         SpeakerDetailView.as_view(),
         name="speaker_profile",
     ),
-    url(r"^speaker/", include("symposion.speakers.urls")),
-    url(r"^proposals/", include("conf_site.proposals.urls")),
-    url(
+    re_path(r"^speaker/", include("symposion.speakers.urls")),
+    re_path(r"^proposals/", include("conf_site.proposals.urls")),
+    re_path(
         r"^sponsors/export/$",
         staff_member_required(ExportSponsorsView.as_view()),
         name="sponsor_export",
     ),
-    url(r"^sponsors/", include("symposion.sponsorship.urls")),
-    url(r"^reviews/", include("conf_site.reviews.urls")),
+    re_path(r"^sponsors/", include("symposion.sponsorship.urls")),
+    re_path(r"^reviews/", include("conf_site.reviews.urls")),
     path(
         "schedule/presentation/<int:pk>/",
         PresentationRedirectView.as_view(),
@@ -82,16 +88,18 @@ urlpatterns += [
         PresentationDetailView.as_view(),
         name="schedule_presentation_detail",
     ),
-    url(r"^schedule/presentation/export/$",
+    re_path(
+        r"^schedule/presentation/export/$",
         staff_member_required(ExportPresentationSpeakerView.as_view()),
-        name="presentation_speaker_export"),
-    url(r"^schedule/", include("symposion.schedule.urls")),
-    url(
+        name="presentation_speaker_export",
+    ),
+    re_path(r"^schedule/", include("symposion.schedule.urls")),
+    re_path(
         r"^time-zone/$", TimeZoneChangeView.as_view(), name="time_zone_change"
     ),
-    url(r"^403-csrf/", csrf_failure, name="403-csrf"),
-    url(r"^413/", TemplateView.as_view(template_name="413.html")),
-    url(r"", include(wagtail_urls)),
+    re_path(r"^403-csrf/", csrf_failure, name="403-csrf"),
+    re_path(r"^413/", TemplateView.as_view(template_name="413.html")),
+    re_path(r"", include(wagtail_urls)),
 ]
 
 
