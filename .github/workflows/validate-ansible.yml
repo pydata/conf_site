@@ -20,11 +20,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/venv
-          key: ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          key: ${{ runner.os }}-python3.7-venv-v2-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
-            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-
-            ${{ runner.os }}-python3.7-venv-v1-
+            ${{ runner.os }}-python3.7-venv-v2-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.7-venv-v2-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.7-venv-v2-
       - name: Install libimagequant-dev
         uses: ./.github/actions/install-libimagequant-dev
       - name: Install Python dependencies
@@ -47,11 +47,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/venv
-          key: ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          key: ${{ runner.os }}-python3.7-venv-v2-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
-            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-
-            ${{ runner.os }}-python3.7-venv-v1-
+            ${{ runner.os }}-python3.7-venv-v2-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.7-venv-v2-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.7-venv-v2-
       - name: Install libimagequant-dev
         uses: ./.github/actions/install-libimagequant-dev
       - name: Install Python dependencies
