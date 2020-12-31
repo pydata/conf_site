@@ -7,6 +7,7 @@
 - name: create .well-known directory
   file: path={{ project_root }}/.well-known
         state=directory
+        mode=0755
   become: true
   when: not cloudflare_enabled
 

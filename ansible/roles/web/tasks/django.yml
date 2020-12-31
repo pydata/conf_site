@@ -96,6 +96,7 @@
 - name: add supervisor configuration file for gunicorn
   template: src=supervisor.conf
             dest=/etc/supervisor/conf.d/gunicorn.conf
+            mode=0644
   become: true
   notify:
     - restart supervisor
@@ -140,6 +141,7 @@
   template:
     dest: "{{ project_root }}/fixtures/{{ item }}"
     src: "templates/fixtures/{{ item }}"
+    mode: 0600
   with_items: "{{ fixture_templates.stdout.splitlines() }}"
   when: not fixtures_applied.stat.exists
   tags:
