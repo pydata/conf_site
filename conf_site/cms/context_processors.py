@@ -1,3 +1,5 @@
+from wagtail.core.models import Site
+
 from conf_site.cms.models import HomePage
 
 
@@ -11,7 +13,8 @@ def homepage_context(request):
     """
     context = {}
     # Assume that the homepage is the root page in Wagtail.
-    home_page = request.site.root_page.specific
+    site = Site.find_for_request(request)
+    home_page = site.root_page.specific
 
     if home_page.seo_title:
         context["conference_title"] = home_page.seo_title
