@@ -20,7 +20,7 @@ psycopg2==2.8.6
 pytz==2020.1
 redis==3.5.3
 sendgrid-django==4.2.0
-sentry-sdk==0.18.0
+sentry-sdk==0.19.5
 virtualenv==20.2.2
 wagtail==2.11.3
 wagtailmenus==3.0.2
