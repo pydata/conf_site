@@ -2,14 +2,22 @@ from conf_site.settings.base import *    # noqa: F401,F403
 
 DEBUG = False
 
+CACHES = {
+    "default": {
+        "BACKEND": "redis_cache.RedisCache",
+        "LOCATION": "redis:6379",
+    }
+}
+CONSTANCE_REDIS_CONNECTION = "redis://redis:6379/0"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "testing",
-        "USER": "",
+        "NAME": "testing_db",
+        "USER": "postgres",
         "PASSWORD": "",
-        "HOST": "",
-        "PORT": "", }
+        "HOST": "postgres",
+        "PORT": "",
+    }
 }
 
 GOOGLE_ANALYTICS_PROPERTY_ID = "UA-000000-0"
