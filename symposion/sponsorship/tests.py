@@ -128,6 +128,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor,
                     benefit=self.text_benefit,
                     text="Foo!",
+                    is_complete=True,
                 )
 
                 self.make_temp_file("file1", 10)
@@ -135,6 +136,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor,
                     benefit=self.file_benefit,
                     upload="file1",
+                    is_complete=True,
                 )
 
                 self.make_temp_file("file2", 20)
@@ -142,6 +144,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor,
                     benefit=self.weblogo_benefit,
                     upload="file2",
+                    is_complete=True,
                 )
 
                 # Benefit whose file is missing from the disk
@@ -149,6 +152,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor,
                     benefit=self.weblogo_benefit,
                     upload="file3",
+                    is_complete=True,
                 )
 
                 # print logo benefit
@@ -157,6 +161,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor,
                     benefit=self.printlogo_benefit,
                     upload="file4",
+                    is_complete=True,
                 )
 
                 self.make_temp_file("file5", 50)
@@ -164,6 +169,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor,
                     benefit=self.advertisement_benefit,
                     upload="file5",
+                    is_complete=True,
                 )
 
                 rsp = self.client.get(self.url)
@@ -202,6 +208,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor,
                     benefit=self.weblogo_benefit,
                     upload="file1",
+                    is_complete=True,
                 )
                 # print logo benefit
                 self.make_temp_file("file2", 20)
@@ -209,6 +216,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor,
                     benefit=self.printlogo_benefit,
                     upload="file2",
+                    is_complete=True,
                 )
                 # Sponsor 2
                 self.make_temp_file("file3", 30)
@@ -216,6 +224,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor2,
                     benefit=self.weblogo_benefit,
                     upload="file3",
+                    is_complete=True,
                 )
                 # print logo benefit
                 self.make_temp_file("file4", 42)
@@ -223,6 +232,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor2,
                     benefit=self.printlogo_benefit,
                     upload="file4",
+                    is_complete=True,
                 )
                 # ad benefit
                 self.make_temp_file("file5", 55)
@@ -230,6 +240,7 @@ class TestSponsorZipDownload(TestCase):
                     sponsor=self.sponsor2,
                     benefit=self.advertisement_benefit,
                     upload="file5",
+                    is_complete=True,
                 )
 
                 rsp = self.client.get(self.url)
@@ -276,6 +287,7 @@ class TestBenefitValidation(TestCase):
             sponsor=self.sponsor,
             upload=upload,
             text=text,
+            is_complete=True,
         )
         if should_work:
             obj.save()

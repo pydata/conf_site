@@ -105,20 +105,26 @@ class Sponsor(models.Model):
     )
 
     # Whether things are complete
-    # True = complete, False = incomplate, Null = n/a for this sponsor level
-    web_logo_benefit = models.NullBooleanField(
-        _("Web logo benefit"), help_text=_("Web logo benefit is complete")
+    # True = complete, False = incomplete, Null = n/a for this sponsor level
+    web_logo_benefit = models.BooleanField(
+        _("Web logo benefit"),
+        help_text=_("Web logo benefit is complete"),
+        null=True,
     )
-    print_logo_benefit = models.NullBooleanField(
-        _("Print logo benefit"), help_text=_("Print logo benefit is complete")
+    print_logo_benefit = models.BooleanField(
+        _("Print logo benefit"),
+        help_text=_("Print logo benefit is complete"),
+        null=True,
     )
-    print_description_benefit = models.NullBooleanField(
+    print_description_benefit = models.BooleanField(
         _("Print description benefit"),
         help_text=_("Print description benefit is complete"),
+        null=True,
     )
-    company_description_benefit = models.NullBooleanField(
+    company_description_benefit = models.BooleanField(
         _("Company description benefit"),
         help_text=_("Company description benefit is complete"),
+        null=True,
     )
 
     objects = SponsorManager()
@@ -353,11 +359,12 @@ class SponsorBenefit(models.Model):
 
     # Whether any assets required from the sponsor have been provided
     # (e.g. a logo file for a Web logo benefit).
-    is_complete = models.NullBooleanField(
+    is_complete = models.BooleanField(
         _("Complete?"),
         help_text=_(
             "True - benefit complete; False - benefit incomplete; Null - n/a"
         ),
+        null=True,
     )
 
     class Meta:
