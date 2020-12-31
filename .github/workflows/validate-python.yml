@@ -5,6 +5,7 @@ on:
       - ".github/**"
       - "conf_site/**"
       - "requirements/**"
+      - "symposion/**"
 env:
   CC_TEST_REPORTER_ID: cf5093a40c8088ad26a5aca3e968037f90076dcbc825e5d10187dc3c81166e1a
   DJANGO_SETTINGS_MODULE: "conf_site.settings.testing"
