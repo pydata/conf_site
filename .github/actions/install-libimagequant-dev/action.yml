@@ -1,0 +1,10 @@
+name: Install libimagequant-dev
+runs:
+  using: composite
+  steps:
+    - name: Update apt package cache
+      run: apt-get -y update
+      shell: bash
+    - name: Install libimagequant-dev
+      run: apt-get -y install libimagequant-dev
+      shell: bash

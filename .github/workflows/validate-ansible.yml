@@ -1,0 +1,60 @@
+name: Validate Ansible playbooks
+on:
+  push:
+    paths:
+      - ".github/**"
+      - "ansible/**"
+      - "requirements/development.txt"
+env:
+  ANSIBLE_ASK_VAULT_PASS: False
+  ENVIRONMENT: testing
+jobs:
+  ansible-lint:
+    name: Lint Ansible playbooks
+    runs-on: ubuntu-latest
+    container: python:3.7-buster
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Virtualenv caching
+        uses: actions/cache@v2
+        with:
+          path: ~/venv
+          key: ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.7-venv-v1-
+      - name: Install libimagequant-dev
+        uses: ./.github/actions/install-libimagequant-dev
+      - name: Install Python dependencies
+        uses: mobolic/install-python-dependencies@v0.1.0
+      - name: Run ansible-lint
+        run: |
+          ~/venv/bin/ansible-lint ansible/testing.yml &&
+          ~/venv/bin/ansible-lint ansible/development.yml &&
+          ~/venv/bin/ansible-lint ansible/staging.yml &&
+          ~/venv/bin/ansible-lint ansible/production.yml
+  ansible-test:
+    name: Test Ansible playbooks
+    needs: ansible-lint
+    runs-on: ubuntu-latest
+    container: python:3.7-buster
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Virtualenv caching
+        uses: actions/cache@v2
+        with:
+          path: ~/venv
+          key: ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.7-venv-v1-
+      - name: Install libimagequant-dev
+        uses: ./.github/actions/install-libimagequant-dev
+      - name: Install Python dependencies
+        uses: mobolic/install-python-dependencies@v0.1.0
+      - name: Run Ansible testing tasks
+        run: ~/venv/bin/ansible-playbook -i ansible/hosts -l testing --connection=local --tags testing ansible/testing.yml

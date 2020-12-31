@@ -1,0 +1,91 @@
+name: Validate Python code
+on:
+  push:
+    paths:
+      - ".github/**"
+      - "conf_site/**"
+      - "requirements/**"
+env:
+  CC_TEST_REPORTER_ID: cf5093a40c8088ad26a5aca3e968037f90076dcbc825e5d10187dc3c81166e1a
+  DJANGO_SETTINGS_MODULE: "conf_site.settings.testing"
+  ENVIRONMENT: testing
+  PYTHONWARNINGS: all
+jobs:
+  python-lint:
+    name: Lint Python code
+    runs-on: ubuntu-latest
+    container: python:3.7-buster
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Virtualenv caching
+        uses: actions/cache@v2
+        with:
+          path: ~/venv
+          key: ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.7-venv-v1-
+      - name: Install libimagequant-dev
+        uses: ./.github/actions/install-libimagequant-dev
+      - name: Install Python dependencies
+        uses: mobolic/install-python-dependencies@v0.1.0
+      - name: Run flake8 linting
+        run: ~/venv/bin/flake8 --exclude=ansible,docs,migrations .
+  python-test:
+    name: Test Python code
+    needs: python-lint
+    runs-on: ubuntu-latest
+    container: python:3.7-buster
+    services:
+      postgres:
+        image: postgres:11.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: testing_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:5.0-buster
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Virtualenv caching
+        uses: actions/cache@v2
+        with:
+          path: ~/venv
+          key: ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.7-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.7-venv-v1-
+      - name: Install libimagequant-dev
+        uses: ./.github/actions/install-libimagequant-dev
+      - name: Install Python dependencies
+        uses: mobolic/install-python-dependencies@v0.1.0
+      - name: Check for missing database migrations
+        run: ~/venv/bin/python3 ./manage.py makemigrations --check
+      - name: Migrate the database
+        run: ~/venv/bin/python3 ./manage.py migrate --noinput
+      - name: Collect static files
+        run: |
+             ~/venv/bin/python3 ./manage.py collectstatic --noinput
+      - name: Download CodeClimate test reporter utility
+        run: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - name: Run automated tests
+        run: |
+            ./cc-test-reporter before-build
+            ~/venv/bin/coverage run --source='.' manage.py test --noinput
+            ~/venv/bin/coverage xml
+            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
