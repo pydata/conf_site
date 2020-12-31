@@ -7,14 +7,14 @@
 
 {% block body %}
 <div class="container">
-    <h1>{% trans 'Proposal:' %} {{ proposal.title }}</h1>
+    <h1>{% translate 'Proposal:' %} {{ proposal.title }}</h1>
 
     <p>
-      <a href="{% url "proposal_edit" proposal.pk %}">{% trans 'Edit proposal' %}
+      <a href="{% url "proposal_edit" proposal.pk %}">{% translate 'Edit proposal' %}
       </a>
     </p>
 
-    <h2>{% trans 'Current Speakers' %}</h2>
+    <h2>{% translate 'Current Speakers' %}</h2>
 
     <ul class="list-group">{% for speaker in speakers %}{% spaceless %}
         <li class="list-group-item">
@@ -24,16 +24,16 @@
                 {{ speaker.email }}
             {% endif %}
             {% if not speaker.user %}
-                <span class="label label-warning">{% trans 'No User Account' %}</span>
+                <span class="label label-warning">{% translate 'No User Account' %}</span>
             {% elif speaker.user == request.user %}
-                <span class="label label-primary">{% trans 'You' %}</span>
+                <span class="label label-primary">{% translate 'You' %}</span>
             {% elif speaker in proposal.speakers %}
-                <span class="label label-success">{% trans 'Associated' %}</span>
+                <span class="label label-success">{% translate 'Associated' %}</span>
             {% endif %}
         </li>
     {% endspaceless %}{% endfor %}</ul>
 
-    {% if invited_speakers %}<h2>{% trans 'Invited Speakers' %}</h2>
+    {% if invited_speakers %}<h2>{% translate 'Invited Speakers' %}</h2>
 
     <ul class="list-group">{% for invited_speaker in invited_speakers %}{% spaceless %}
         <li class="list-group-item">
@@ -43,14 +43,14 @@
                 {{ invited_speaker.speaker.email }}
             {% endif %}
             {% if invited_speaker.status == invited_speaker.SPEAKING_STATUS_PENDING %}
-                <span class="label label-warning">{% trans 'Pending' %}</span>
+                <span class="label label-warning">{% translate 'Pending' %}</span>
             {% else %}
-                <span class="label label-danger">{% trans 'Declined' %}</span>
+                <span class="label label-danger">{% translate 'Declined' %}</span>
             {% endif %}
         </li>
     {% endspaceless %}{% endfor %}</ul>{% endif %}
 
-    <h2>{% trans 'Add another speaker' %}</h2>
+    <h2>{% translate 'Add another speaker' %}</h2>
 
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}

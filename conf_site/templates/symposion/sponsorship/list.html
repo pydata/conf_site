@@ -3,13 +3,13 @@
 {% load i18n markup sponsorship_tags wagtailsettings_tags %}
 {% get_settings %}
 
-{% block title %} - {% trans "About Our Sponsors" %}{% endblock %}
+{% block title %} - {% translate "About Our Sponsors" %}{% endblock %}
 
 {% block body_class %}sponsorships{% endblock %}
 
 {% block body %}
 <div class="container">
-    <h1>{% trans "About Our Sponsors" %}</h1>
+    <h1>{% translate "About Our Sponsors" %}</h1>
     <a href="{{ settings.sponsorship.SponsorshipSettings.info_link }}">Learn how to become a sponsor</a>
     {% sponsor_levels as levels %}
     {% for level in levels %}

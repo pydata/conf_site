@@ -13,19 +13,19 @@
     <h2>Dashboard</h2>
     <div class="dashboard-panel">
         <div class="dashboard-panel-account">
-            <h3><i class="fa fa-user"></i> {% trans "Account" %}</h3>
+            <h3><i class="fa fa-user"></i> {% translate "Account" %}</h3>
             <div class="header-actions">
                 <a href="{% url 'account_change_password' %}" class="btn btn-default">
-                    <i class="fa fa-lock"></i> {% trans "Change Password" %}
+                    <i class="fa fa-lock"></i> {% translate "Change Password" %}
                 </a>
                 <a href="{% url 'account_email' %}" class="btn btn-default">
-                    <i class="fa fa-envelope"></i> {% trans "Manage E-mail Addresses" %}
+                    <i class="fa fa-envelope"></i> {% translate "Manage E-mail Addresses" %}
                 </a>
                 <a href="{% url 'socialaccount_connections' %}" class="btn btn-default">
-                    <i class="fa fa-globe" aria-hidden="true"></i> {% trans "Manage Social Networks" %}
+                    <i class="fa fa-globe" aria-hidden="true"></i> {% translate "Manage Social Networks" %}
                 </a>
                 <a href="{% url 'account_logout' %}" class="btn btn-default">
-                    <i class="fa fa-sign-out"></i> {% trans "Logout" %}
+                    <i class="fa fa-sign-out"></i> {% translate "Logout" %}
                 </a>
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div class="dashboard-panel-speaking">
             <h3>
                 <i class="fa fa-bullhorn"></i>
-                {% trans "Speaking" %}
+                {% translate "Speaking" %}
             </h3>
             <div class="pull-right header-actions">
                 {% if not user.speaker_profile %}
@@ -114,7 +114,7 @@
         <div class="dashboard-panel-header">
             <h3>
                 <i class="fa fa-briefcase"></i>
-                {% trans "Sponsorship" %}
+                {% translate "Sponsorship" %}
             </h3>
             <div class="pull-right header-actions">
                 {% if not user.sponsorships.exists %}
@@ -165,7 +165,7 @@
             <div class="dashboard-panel-header">
                 <h3>
                     <i class="fa fa-briefcase"></i>
-                    {% trans "Reviews" %}
+                    {% translate "Reviews" %}
                 </h3>
             </div>
 
@@ -194,7 +194,7 @@
         <div class="dashboard-panel-header">
             <h3>
                 <i class="fa fa-database"></i>
-                {% trans "Export" %}
+                {% translate "Export" %}
             </h3>
         </div>
 

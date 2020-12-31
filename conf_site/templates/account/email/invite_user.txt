@@ -1,4 +1,4 @@
-{% load i18n %}{% blocktrans with name=current_site.name %}You have been invited to sign up at {{ name }}.
+{% load i18n %}{% blocktranslate with name=current_site.name %}You have been invited to sign up at {{ name }}.
 
 {{ signup_url }}
-{% endblocktrans %}
+{% endblocktranslate %}

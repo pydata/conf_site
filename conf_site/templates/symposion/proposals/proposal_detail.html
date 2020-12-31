@@ -12,14 +12,14 @@
         {% if not proposal.cancelled %}
             {% if request.user == proposal.speaker.user %}
                 {% if proposal.can_edit %}<a href="{% url "proposal_edit" proposal.pk %}" class="btn btn-default">
-                    {% trans "Edit this proposal" %}
+                    {% translate "Edit this proposal" %}
                 </a>{% endif %}
                 <a href="{% url "proposal_cancel" proposal.pk %}" class="btn btn-default">
-                    {% trans "Cancel this proposal" %}
+                    {% translate "Cancel this proposal" %}
                 </a>
             {% endif %}
         {% else %}
-            {% trans 'Cancelled' }
+            {% translate 'Cancelled' }
         {% endif %}
     </div>
 
@@ -31,18 +31,18 @@
 
     <div class="tabbable">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#proposal-detail" data-toggle="tab">{% trans "Proposal Details" %}</a></li>
+            <li class="active"><a href="#proposal-detail" data-toggle="tab">{% translate "Proposal Details" %}</a></li>
             {% if request.user == proposal.speaker.user %}
-                <li><a href="#proposal-documents" data-toggle="tab">{% trans "Supporting Documents" %}</a></li>
+                <li><a href="#proposal-documents" data-toggle="tab">{% translate "Supporting Documents" %}</a></li>
             {% endif %}
             {% if not config.BLIND_AUTHORS %}
             <li><a href="#proposal-reviewers" data-toggle="tab">
-                {% trans "Reviewer List" %}
+                {% translate "Reviewer List" %}
                 <span class="badge">{{ proposal.review_votes.count }}</span>
             </a></li>
             {% endif %}
             {% if feedback_form %}
-                <li><a href="#proposal-feedback" data-toggle="tab">{% trans "Reviewer Feedback" %} <span class="badge">{{ proposal.feedback_count }}</span></a></li>
+                <li><a href="#proposal-feedback" data-toggle="tab">{% translate "Reviewer Feedback" %} <span class="badge">{{ proposal.feedback_count }}</span></a></li>
             {% endif %}
         </ul>
         <div class="tab-content">
@@ -51,7 +51,7 @@
             </div>
             {% if request.user == proposal.speaker.user %}
                 <div class="tab-pane" id="proposal-documents">
-                    <h3>{% trans 'Supporting Documents' %}</h3>
+                    <h3>{% translate 'Supporting Documents' %}</h3>
 
                     {% if proposal.supporting_documents.exists %}
                         <table class="table table-striped">
@@ -61,19 +61,19 @@
                                     <td>
                                     <form style="margin: 0;" method="post" action="{% url "proposal_document_delete" document.pk %}">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn">{% trans 'delete' %}</button>
+                                        <button type="submit" class="btn">{% translate 'delete' %}</button>
                                     </form>
                                 </td>
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>{% trans 'No supporting documents attached to this proposal.' %}</p>
+                        <p>{% translate 'No supporting documents attached to this proposal.' %}</p>
                     {% endif %}
 
                     <a class="btn btn-sm{% if proposal.cancelled %} btn-disabled{% endif %}"
                         href="{% url "proposal_document_create" proposal.pk %}">
-                        <i class="fa fa-upload"></i> {% trans 'Add Document' %}</a>
+                        <i class="fa fa-upload"></i> {% translate 'Add Document' %}</a>
 
                 </div>
             {% endif %}

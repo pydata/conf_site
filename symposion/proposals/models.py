@@ -38,8 +38,8 @@ class ProposalSection(models.Model):
         null=True, blank=True, verbose_name=_("Start")
     )
     end = models.DateTimeField(null=True, blank=True, verbose_name=_("End"))
-    closed = models.NullBooleanField(verbose_name=_("Closed"))
-    published = models.NullBooleanField(verbose_name=_("Published"))
+    closed = models.BooleanField(null=True, verbose_name=_("Closed"))
+    published = models.BooleanField(null=True, verbose_name=_("Published"))
 
     @classmethod
     def available(cls):

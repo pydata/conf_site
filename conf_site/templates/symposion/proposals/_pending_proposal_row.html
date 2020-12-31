@@ -9,9 +9,9 @@
 
     <td>
         {% if proposal.cancelled %}
-            <span class="label label-danger">{% trans 'Cancelled' %}</span>
+            <span class="label label-danger">{% translate 'Cancelled' %}</span>
         {% else %}
-            <span class="label label-default">{% trans 'Invited' %}</span>
+            <span class="label label-default">{% translate 'Invited' %}</span>
         {% endif %}
     </td>
 
@@ -19,14 +19,14 @@
         {% if not proposal.cancelled %}
             <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                {% trans 'Choose Response' %}
+                {% translate 'Choose Response' %}
                 <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="{% url "proposal_pending_join" proposal.id %}">
-			{% trans 'Accept invitation' %}</a></li>
+			{% translate 'Accept invitation' %}</a></li>
                     <li><a href="{% url 'proposal_pending_decline' proposal.id %}">
-            {% trans 'Decline invitation' %}</a></li>
+            {% translate 'Decline invitation' %}</a></li>
                 </ul>
             </div>
         {% endif %}

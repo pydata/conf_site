@@ -2,11 +2,11 @@
 
 {% load i18n %}
 
-{% block title %} - {% trans "Email confirmed" %}{% endblock %}
+{% block title %} - {% translate "Email confirmed" %}{% endblock %}
 
 {% block body %}
 <div class="container">
-    <h1>{% trans "Email confirmed" %}</h1>
-    <p>{% blocktrans with email=confirmation.email_address.email %}You have confirmed <b>{{ email }}</b>{% endblocktrans %}</p>
+    <h1>{% translate "Email confirmed" %}</h1>
+    <p>{% blocktranslate with email=confirmation.email_address.email %}You have confirmed <b>{{ email }}</b>{% endblocktranslate %}</p>
 </div>
 {% endblock %}

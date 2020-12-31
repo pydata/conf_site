@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block title %} - {% trans 'Cancel Proposal' %}{% endblock %}
+{% block title %} - {% translate 'Cancel Proposal' %}{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -12,7 +12,7 @@
         {% csrf_token %}
         <p>Are you sure you want to cancel <b>{{ proposal.title }}</b>?</p>
         <input class="btn btn-danger" type="submit" value="I am sure" />
-        <a class="btn btn-default" href="{% url "proposal_detail" proposal.pk %}">{% trans 'No, keep it for now' %}</a>
+        <a class="btn btn-default" href="{% url "proposal_detail" proposal.pk %}">{% translate 'No, keep it for now' %}</a>
     </form>
 </div>
 {% endblock %}

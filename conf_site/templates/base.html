@@ -185,19 +185,19 @@
                 <h4>ACCOUNT</h4>
                 {% if request.user.is_authenticated %}
                 <ul>
-                    <li><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li><a href="{% url 'dashboard' %}">{% translate "Dashboard" %}</a></li>
                     {% if request.user.is_staff %}
-                    <li><a href="{% url THEME_ADMIN_URL|default:'admin:index' %}">{% trans 'Admin' %}</a></li>
+                    <li><a href="{% url THEME_ADMIN_URL|default:'admin:index' %}">{% translate 'Admin' %}</a></li>
                     {% endif %}
                     {% if request.user.speaker_profile %}
                     <li><a href="{% url 'speaker_edit' %}">Speaker Profile</a></li>
                     {% endif %}
-                    <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
+                    <li><a href="{% url 'account_logout' %}">{% translate "Log out" %}</a>
                 </ul>
                 {% else %}
                 <ul>
-                    <li><a href="{% url 'account_login' %}">{% trans "Login" %}</a></li>
-                    <li><a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a></li>
+                    <li><a href="{% url 'account_login' %}">{% translate "Login" %}</a></li>
+                    <li><a href="{% url 'account_signup' %}">{% translate "Sign up" %}</a></li>
                 </ul>
                 {% endif %}
             </div>

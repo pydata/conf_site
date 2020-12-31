@@ -1,10 +1,10 @@
 {% load i18n %}
 
 <dl class="dl-horizontal">
-    <dt>{% trans "Category" %}</dt>
+    <dt>{% translate "Category" %}</dt>
     <dd>{{ proposal.kind.name }}</dd>
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
-    <dt>{% trans "Submitted by" %}</dt>
+    <dt>{% translate "Submitted by" %}</dt>
     <dd>{{ proposal.speaker.name }}</dd>
     <dt>Affiliation</dt>
     <dd>{{ proposal.affiliation }}</dd>
@@ -29,12 +29,12 @@
     {% endfor %}</dd>
     {% endif %}
 
-    <dt>{% trans "Audience Level" %}</dt>
+    <dt>{% translate "Audience Level" %}</dt>
     <dd>{{ proposal.get_audience_level_display }}&nbsp;</dd>
 
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
         {% if proposal.additional_speakers.all %}
-            <dt>{% trans "Additional Speakers" %}</dt>
+            <dt>{% translate "Additional Speakers" %}</dt>
             <dd>
                 {% for speaker in proposal.additional_speakers.all %}
                     <li><strong>{{ speaker.name }}</strong></li>
@@ -43,14 +43,14 @@
         {% endif %}
     {% endif %}
 
-    <dt>{% trans "Description" %}</dt>
+    <dt>{% translate "Description" %}</dt>
     <dd>{{ proposal.description }}&nbsp;</dd>
 
-    <dt>{% trans "Abstract" %}</dt>
+    <dt>{% translate "Abstract" %}</dt>
     <dd>{{ proposal.abstract_html|safe }}&nbsp;</dd>
 
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
-    <dt>{% trans "Notes" %}</dt>
+    <dt>{% translate "Notes" %}</dt>
     <dd>{{ proposal.additional_notes_html|safe }}&nbsp;</dd>
     {% endif %}
 
@@ -66,11 +66,11 @@
     {% endif %}
 
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
-    <dt>{% trans "Speaker Bio" %}</dt>
+    <dt>{% translate "Speaker Bio" %}</dt>
     <dd>{{ proposal.speaker.biography_html|safe }}&nbsp;</dd>
     {% endif %}
 
-    <dt>{% trans "Documents" %}</dt>
+    <dt>{% translate "Documents" %}</dt>
     <dd>
         {% if proposal.supporting_documents.exists %}
             <table class="table table-striped">
