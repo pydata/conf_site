@@ -3,26 +3,26 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block title %} - {% trans "Sign up" %}{% endblock %}
+{% block title %} - {% translate "Sign up" %}{% endblock %}
 
 {% block body %}
 <div class="container">
     <div class="row">
         <div class="col-md-4">
             <form id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-                <legend>{% trans "Sign up" %}</legend>
+                <legend>{% translate "Sign up" %}</legend>
                 {% csrf_token %}
                 {{ form|crispy }}
                 {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
-                <button type="submit" class="btn btn-primary">{% trans "Sign up" %}</button>
+                <button type="submit" class="btn btn-primary">{% translate "Sign up" %}</button>
                 {% include "_social_buttons.html" %}
             </form>
             <p class="login-signup">
 
                 <small>
-                    {% trans "Already have an account?" %}  <strong><a href="{% url 'account_login' %}">{% trans "Log in" %}</a></strong>
+                    {% translate "Already have an account?" %}  <strong><a href="{% url 'account_login' %}">{% translate "Log in" %}</a></strong>
                 </small>
             </p>
         </div>

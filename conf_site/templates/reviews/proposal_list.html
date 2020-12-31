@@ -30,20 +30,20 @@
       {% if request.user.is_superuser %}
         <th></th>
       {% endif %}
-      <th>{% trans "Number" %}</th>
+      <th>{% translate "Number" %}</th>
       {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
-        <th>{% trans "Speaker" %}</th>
+        <th>{% translate "Speaker" %}</th>
       {% endif %}
-      <th>{% trans "Title" %}</th>
-      <th>{% trans "Category" %}</th>
-      <th><i class="fa fa-comment" title="{% trans 'Number of Messages' %}"></i></th>
-      <th>{% trans "+1" %}</th>
-      <th>{% trans "+0" %}</th>
-      <th>{% trans "-0" %}</th>
-      <th>{% trans "-1" %}</th>
-      <th><i class="fa fa-hashtag" title="{% trans 'Total Number of Reviews' %}"></i></th>
-      <th class="sorter-user-scores"><a href="#" class="tip" title="{% trans 'Your Rating' %}"><i class="fa fa-user"></i></a></th>
-      <th>{% trans "Status" %}</th>
+      <th>{% translate "Title" %}</th>
+      <th>{% translate "Category" %}</th>
+      <th><i class="fa fa-comment" title="{% translate 'Number of Messages' %}"></i></th>
+      <th>{% translate "+1" %}</th>
+      <th>{% translate "+0" %}</th>
+      <th>{% translate "-0" %}</th>
+      <th>{% translate "-1" %}</th>
+      <th><i class="fa fa-hashtag" title="{% translate 'Total Number of Reviews' %}"></i></th>
+      <th class="sorter-user-scores"><a href="#" class="tip" title="{% translate 'Your Rating' %}"><i class="fa fa-user"></i></a></th>
+      <th>{% translate "Status" %}</th>
     </thead>
     <tbody>
       {% for proposal in proposal_list %}<tr>

@@ -5,10 +5,10 @@
 <li>
     {% url cl.opts|admin_urlname:'add' as add_url %}
     <a href="{% add_preserved_filters add_url is_popup to_field %}" class="addlink">
-        {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+        {% blocktranslate with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktranslate %}
     </a>
 </li>
 <li>
-    <a href="{% url 'speaker_email_export' %}">{% trans "Export" %}</a>
+    <a href="{% url 'speaker_email_export' %}">{% translate "Export" %}</a>
 </li>
 {% endblock %}

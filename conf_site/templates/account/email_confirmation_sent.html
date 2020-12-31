@@ -2,13 +2,13 @@
 
 {% load i18n %}
 
-{% block title %} - {% trans "Confirm your email address" %}{% endblock %}
+{% block title %} - {% translate "Confirm your email address" %}{% endblock %}
 
 {% block body %}
 <div class="container">
-    <h2>{% trans "Confirm your email address" %}</h2>
+    <h2>{% translate "Confirm your email address" %}</h2>
 
-    <p>{% blocktrans %}We have sent you an email to <b>{{ email }}</b> for verification. Follow the link provided to finalize the signup process. If you do not receive it within a few minutes, contact us at <a href="mailto:web@pydata.org">web@pydata.org</a>.{% endblocktrans %}</p>
+    <p>{% blocktranslate %}We have sent you an email to <b>{{ email }}</b> for verification. Follow the link provided to finalize the signup process. If you do not receive it within a few minutes, contact us at <a href="mailto:web@pydata.org">web@pydata.org</a>.{% endblocktranslate %}</p>
     <p><a href="{{ success_url }}">Go back</a></p>
 </div>
 {% endblock %}
