@@ -8,7 +8,7 @@ class AccountsTestCase(TestCase):
     def setUp(self):
         super(AccountsTestCase, self).setUp()
 
-        self.password = fuzzy.FuzzyText(length=16)
+        self.password = str(fuzzy.FuzzyText(length=16))
         self.new_password = fuzzy.FuzzyText(length=16)
 
         user_model = get_user_model()
