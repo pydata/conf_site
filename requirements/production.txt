@@ -15,7 +15,7 @@ gunicorn==20.0.4
 markdown==3.3.3
 pillow --install-option="build_ext" --install-option="--enable-imagequant"
 pinax-eventlog==2.0.3
-pip==20.3.3
+pip==20.3.4
 psycopg2==2.8.6
 pytz==2020.5
 redis==3.5.3
