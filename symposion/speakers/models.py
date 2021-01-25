@@ -69,6 +69,9 @@ class Speaker(models.Model):
     twitter_username = models.CharField(
         max_length=15, blank=True, help_text=_("Your Twitter account")
     )
+    personal_site_url = models.URLField(
+        blank=True, max_length=2083, verbose_name=_("Personal site URL")
+    )
     annotation = models.TextField(
         blank=True, verbose_name=_("Annotation")
     )  # staff only
