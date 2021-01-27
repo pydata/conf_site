@@ -1,0 +1,83 @@
+error_page 413 {{ subdirectory }}/413/;
+
+location {{ subdirectory }}/media/ {
+    alias {{ project_root }}/public/media/;
+}
+location {{ subdirectory }}/static/ {
+    alias {{ project_root }}/public/static/;
+}
+
+location {{ subdirectory }}/403-csrf/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/413/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/accounts/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/admin/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/api/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/cms/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/dashboard/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/documents/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/images/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/proposals/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/reviews/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/schedule/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/speaker/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/sponsors/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
+
+location {{ subdirectory }}/time-zone/ {
+    proxy_pass http://127.0.0.1:{{ gunicorn_port }};
+    {% include "./templates/_proxy_variables.j2" %}
+}
