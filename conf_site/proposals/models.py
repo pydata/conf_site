@@ -65,6 +65,9 @@ class Proposal(ProposalBase):
     )
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
+    audience_background = models.CharField(
+        "Audience background needed to attend", blank=True, max_length=400
+    )
 
     slides_url = models.URLField(
         blank=True,

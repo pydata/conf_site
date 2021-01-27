@@ -34,6 +34,9 @@
     <dt>{% translate "Audience Level" %}</dt>
     <dd>{{ proposal.get_audience_level_display }}&nbsp;</dd>
 
+    <dt>{% translate "Audience Background" %}</dt>
+    <dd>{{ proposal.audience_background }}</dd>
+
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
         {% if proposal.additional_speakers.all %}
             <dt>{% translate "Additional Speakers" %}</dt>
