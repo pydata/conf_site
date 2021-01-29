@@ -40,6 +40,7 @@ class ProposalForm(forms.ModelForm):
             "title",
             "audience_level",
             "audience_background",
+            "outline",
             "description",
             "abstract",
             "first_time_at_pydata",

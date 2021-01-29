@@ -1,8 +1,10 @@
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from constance import config
+from symposion.markdown_parser import parse
 from symposion.proposals.models import ProposalBase, ProposalSection
 from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
@@ -68,6 +70,11 @@ class Proposal(ProposalBase):
     audience_background = models.CharField(
         "Audience background needed to attend", blank=True, max_length=400
     )
+    outline = models.TextField(
+        _("Brief Bullet Point Outline"),
+        blank=True,
+    )
+    outline_html = models.TextField(blank=True, editable=False)
 
     slides_url = models.URLField(
         blank=True,
@@ -136,6 +143,8 @@ class Proposal(ProposalBase):
         return self.title
 
     def save(self, *args, **kwargs):
+        # HTMLize markdown fields.
+        self.outline_html = parse(self.outline)
         # Update associated presentation if it exists.
         if hasattr(self, "presentation") and self.presentation:
             self.presentation.title = self.title

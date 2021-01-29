@@ -48,6 +48,9 @@
         {% endif %}
     {% endif %}
 
+    <dt>{% translate "Brief Bullet Point Outline" %}</dt>
+    <dd>{{ proposal.outline_html|safe }}&nbsp;</dd>
+
     <dt>{% translate "Description" %}</dt>
     <dd>{{ proposal.description }}&nbsp;</dd>
 
