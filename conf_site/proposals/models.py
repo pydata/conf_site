@@ -1,8 +1,10 @@
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from constance import config
+from symposion.markdown_parser import parse
 from symposion.proposals.models import ProposalBase, ProposalSection
 from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
@@ -63,8 +65,21 @@ class Proposal(ProposalBase):
         (YES_NO_OTHER_NO, "No"),
         (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
     )
+    YES_NO_SPONSOR_ANSWERS = (
+        ("", "----"),
+        (YES_NO_OTHER_YES, "Yes, I can make an introduction"),
+        (YES_NO_OTHER_NO, "No"),
+    )
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
+    audience_background = models.CharField(
+        "Audience background needed to attend", blank=True, max_length=400
+    )
+    outline = models.TextField(
+        _("Brief Bullet Point Outline"),
+        blank=True,
+    )
+    outline_html = models.TextField(blank=True, editable=False)
 
     slides_url = models.URLField(
         blank=True,
@@ -80,26 +95,71 @@ class Proposal(ProposalBase):
         max_length=2083,
         verbose_name="Repository")
 
-    first_time_at_pydata = models.CharField(
-        "Is this your first time speaking at a PyData event?",
+    recording_online = models.BooleanField(
+        _("Is there a recording of this talk/tutorial already online?"),
+        default=False,
+    )
+
+    affiliation = models.CharField(
+        _("Affiliation (Company, School, Independent)"),
+        max_length=200,
+    )
+
+    accessibility_needs = models.CharField(
+        _("Do you have specific accessibility needs at the conference?"),
+        blank=True,
+        help_text=(
+            "Examples include, but not limited to: "
+            "sign language, closed captioning, "
+            "assistance with recording, etc. "
+            "Please indicate the specific need so we can plan in advance."
+        ),
+        max_length=1083,
+    )
+
+    under_represented_group = models.CharField(
+        _("Do you identify as a member of an under-represented group?"),
         choices=YES_NO_OTHER_ANSWERS,
+        default="",
+        max_length=1,
+    )
+
+    sponsoring_interest = models.CharField(
+        _("Would your company be interested in sponsoring the event?"),
+        choices=YES_NO_SPONSOR_ANSWERS,
+        default="",
+        max_length=1,
+    )
+
+    stipend = models.BooleanField(
+        default=False,
+        help_text=(
+            "We have a number of modest speaker stipends available "
+            "based on need; the quantity available will depend on successful "
+            "sponsorship of this effort. <strong>If a stipend would make a "
+            "difference in your ability to prepare and present your material"
+            "</strong>, please check this box for "
+            "consideration for this funding. "
+            "Proposal selection is need-blind; asking to be considered for "
+            "need-based stipends will have no bearing on the consideration "
+            "or likelihood of acceptance of your proposal."
+        ),
+        verbose_name="I would like to be considered for a stipend",
+    )
+    stipend_amount = models.CharField(
         blank=True,
         default="",
-        max_length=1)
-    affiliation = models.CharField(max_length=200)
+        max_length=100,
+        verbose_name=(
+            "If yes, please provide an estimated amount for the stipend."
+        ),
+    )
 
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
         blank=True,
         default="",
         max_length=100)
-    recording_release = models.BooleanField(
-        default=True,
-        help_text="By submitting your proposal, you agree to give permission "
-                  "to the conference organizers to record, edit, and release "
-                  "audio and/or video of your presentation. If you do not "
-                  "agree to this, please uncheck this box."
-    )
 
     editor_keywords = TaggableManager(
         "Editor Keywords",
@@ -133,6 +193,8 @@ class Proposal(ProposalBase):
         return self.title
 
     def save(self, *args, **kwargs):
+        # HTMLize markdown fields.
+        self.outline_html = parse(self.outline)
         # Update associated presentation if it exists.
         if hasattr(self, "presentation") and self.presentation:
             self.presentation.title = self.title
