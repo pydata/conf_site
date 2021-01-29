@@ -90,12 +90,6 @@ class Proposal(ProposalBase):
         max_length=2083,
         verbose_name="Repository")
 
-    first_time_at_pydata = models.CharField(
-        "Is this your first time speaking at a PyData event?",
-        choices=YES_NO_OTHER_ANSWERS,
-        blank=True,
-        default="",
-        max_length=1)
     affiliation = models.CharField(max_length=200)
 
     phone_number = models.CharField(

@@ -43,7 +43,6 @@ class ProposalForm(forms.ModelForm):
             "outline",
             "description",
             "abstract",
-            "first_time_at_pydata",
             "affiliation",
             "additional_notes",
             "recording_release",
