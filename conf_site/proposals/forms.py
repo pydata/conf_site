@@ -50,6 +50,7 @@ class ProposalForm(forms.ModelForm):
             "additional_notes",
             "accessibility_needs",
             "under_represented_group",
+            "sponsoring_interest",
             "phone_number",
             "slides_url",
             "code_url",

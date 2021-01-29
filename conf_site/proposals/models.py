@@ -65,6 +65,11 @@ class Proposal(ProposalBase):
         (YES_NO_OTHER_NO, "No"),
         (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
     )
+    YES_NO_SPONSOR_ANSWERS = (
+        ("", "----"),
+        (YES_NO_OTHER_YES, "Yes, I can make an introduction"),
+        (YES_NO_OTHER_NO, "No"),
+    )
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
     audience_background = models.CharField(
@@ -115,6 +120,13 @@ class Proposal(ProposalBase):
     under_represented_group = models.CharField(
         _("Do you identify as a member of an under-represented group?"),
         choices=YES_NO_OTHER_ANSWERS,
+        default="",
+        max_length=1,
+    )
+
+    sponsoring_interest = models.CharField(
+        _("Would your company be interested in sponsoring the event?"),
+        choices=YES_NO_SPONSOR_ANSWERS,
         default="",
         max_length=1,
     )
