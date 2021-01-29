@@ -112,6 +112,13 @@ class Proposal(ProposalBase):
         max_length=1083,
     )
 
+    under_represented_group = models.CharField(
+        _("Do you identify as a member of an under-represented group?"),
+        choices=YES_NO_OTHER_ANSWERS,
+        default="",
+        max_length=1,
+    )
+
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
         blank=True,
