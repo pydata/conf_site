@@ -44,14 +44,14 @@ class ProposalForm(forms.ModelForm):
             "description",
             "abstract",
             "recording_online",
+            "official_keywords",
+            "user_keywords",
             "affiliation",
             "additional_notes",
             "recording_release",
             "phone_number",
             "slides_url",
             "code_url",
-            "official_keywords",
-            "user_keywords",
         ]
 
     def __init__(self, *args, **kwargs):
