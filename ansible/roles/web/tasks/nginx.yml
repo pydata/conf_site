@@ -41,7 +41,7 @@
             owner=root group=root mode=0644
   become: true
   notify: restart nginx
-  when: cloudflare_enabled or environment_type == "development"
+  when: not ssl_enabled or environment_type == "development"
 
 - name: add customized https nginx site configuration file
   template: src=nginx-site-https.conf
@@ -49,7 +49,7 @@
             owner=root group=root mode=0644
   become: true
   notify: restart nginx
-  when: not cloudflare_enabled and environment_type != "development"
+  when: ssl_enabled and environment_type != "development"
 
 - name: remove default nginx ssl site configuration file
   file:

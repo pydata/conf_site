@@ -10,6 +10,7 @@ google_analytics_id: UA-00000-0
 subdirectory: ""
 time_format: P
 timezone: US/Eastern
+upstream_server_ip: ""
 website_domain: localhost
 website_port: 8080
 website_url: http://{{ website_domain }}:{{ website_port }}{{ subdirectory }}

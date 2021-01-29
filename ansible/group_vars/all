@@ -3,6 +3,7 @@ amy_username: amy
 ansible_python_interpreter: /usr/bin/python3
 application_owner: mobolic
 cloudflare_enabled: true
+content_site_uri: ""
 database_host: localhost
 default_email: noreply@pydata.org
 email_host_user: noreply@pydata.org
@@ -10,4 +11,5 @@ git_version: master
 gunicorn_port: 10501
 project_root: "/srv/pydata"
 sendgrid_api_key: ""
+ssl_enabled: false
 virtualenv_root: "/home/{{ ansible_user_id }}/.virtualenvs"
