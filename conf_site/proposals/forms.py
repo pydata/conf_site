@@ -51,6 +51,8 @@ class ProposalForm(forms.ModelForm):
             "accessibility_needs",
             "under_represented_group",
             "sponsoring_interest",
+            "stipend",
+            "stipend_amount",
             "phone_number",
             "slides_url",
             "code_url",

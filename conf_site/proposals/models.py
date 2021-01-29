@@ -131,6 +131,30 @@ class Proposal(ProposalBase):
         max_length=1,
     )
 
+    stipend = models.BooleanField(
+        default=False,
+        help_text=(
+            "We have a number of modest speaker stipends available "
+            "based on need; the quantity available will depend on successful "
+            "sponsorship of this effort. <strong>If a stipend would make a "
+            "difference in your ability to prepare and present your material"
+            "</strong>, please check this box for "
+            "consideration for this funding. "
+            "Proposal selection is need-blind; asking to be considered for "
+            "need-based stipends will have no bearing on the consideration "
+            "or likelihood of acceptance of your proposal."
+        ),
+        verbose_name="I would like to be considered for a stipend",
+    )
+    stipend_amount = models.CharField(
+        blank=True,
+        default="",
+        max_length=100,
+        verbose_name=(
+            "If yes, please provide an estimated amount for the stipend."
+        ),
+    )
+
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
         blank=True,
