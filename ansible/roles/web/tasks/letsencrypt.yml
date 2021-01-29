@@ -2,14 +2,14 @@
   apt: name=certbot
        state=present
   become: true
-  when: not cloudflare_enabled
+  when: ssl_enabled
 
 - name: create .well-known directory
   file: path={{ project_root }}/.well-known
         state=directory
         mode=0755
   become: true
-  when: not cloudflare_enabled
+  when: ssl_enabled
 
 # We use the "standalone" method because nginx needs a certificate to run,
 # so the webroot method will not work when we provision the certificate for
@@ -24,4 +24,4 @@
   args:
     creates: /etc/letsencrypt/live/{{ website_domain }}/fullchain.pem
   become: true
-  when: not cloudflare_enabled and environment_type != "development"
+  when: ssl_enabled and environment_type != "development"
