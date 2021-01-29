@@ -95,7 +95,10 @@ class Proposal(ProposalBase):
         default=False,
     )
 
-    affiliation = models.CharField(max_length=200)
+    affiliation = models.CharField(
+        _("Affiliation (Company, School, Independent)"),
+        max_length=200,
+    )
 
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
