@@ -48,6 +48,7 @@ class ProposalForm(forms.ModelForm):
             "user_keywords",
             "affiliation",
             "additional_notes",
+            "accessibility_needs",
             "recording_release",
             "phone_number",
             "slides_url",

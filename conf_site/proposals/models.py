@@ -100,6 +100,18 @@ class Proposal(ProposalBase):
         max_length=200,
     )
 
+    accessibility_needs = models.CharField(
+        _("Do you have specific accessibility needs at the conference?"),
+        blank=True,
+        help_text=(
+            "Examples include, but not limited to: "
+            "sign language, closed captioning, "
+            "assistance with recording, etc. "
+            "Please indicate the specific need so we can plan in advance."
+        ),
+        max_length=1083,
+    )
+
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
         blank=True,
