@@ -90,6 +90,11 @@ class Proposal(ProposalBase):
         max_length=2083,
         verbose_name="Repository")
 
+    recording_online = models.BooleanField(
+        _("Is there a recording of this talk/tutorial already online?"),
+        default=False,
+    )
+
     affiliation = models.CharField(max_length=200)
 
     phone_number = models.CharField(

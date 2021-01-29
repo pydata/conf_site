@@ -16,6 +16,7 @@ class ProposalFactory(factory.django.DjangoModelFactory):
     audience_level = factory.Faker("pyint")
     audience_background = factory.Faker("sentence")
     outline = factory.Faker("paragraph")
+    recording_online = factory.Faker("pybool")
 
     class Meta:
         model = Proposal

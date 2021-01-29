@@ -43,6 +43,7 @@ class ProposalForm(forms.ModelForm):
             "outline",
             "description",
             "abstract",
+            "recording_online",
             "affiliation",
             "additional_notes",
             "recording_release",
