@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} - Leaving {{ proposal.title }}{% endblock %}
+{% block title %}Leaving {{ proposal.title }} | {% endblock %}
 
 {% block body %}
 <div class="container">
@@ -9,7 +9,7 @@
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         <p>Are you sure you wish to leave as a speaker on <b>{{ proposal.title }}</b>?</p>
-        <input type="submit" class="btn btn-primary" value="I am sure" />
+        <input type="submit" class="btn btn-base-color" value="I am sure" />
     </form>
 </div>
 {% endblock %}

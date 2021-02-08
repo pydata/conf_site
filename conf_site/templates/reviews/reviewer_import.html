@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %} - Import Reviewers{% endblock %}
+{% block title %}Import Reviewers | {% endblock %}
 
 {% block body %}
 <div class="container">
@@ -11,7 +11,7 @@
     {% csrf_token %}
     {{ form|crispy }}
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-base-color">
         <i class="fa fa-envelope" aria-hidden="true"></i> Import Reviewers
       </button>
     </div>

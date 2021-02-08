@@ -7,38 +7,226 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ conference_title }}{% block title %} - {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}</title>
-    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700|Nunito|Open+Sans:300,400" rel="stylesheet">
-    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/mainstream-vc.css' %}" rel="stylesheet">
-    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicon/apple-touch-icon-57x57.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicon/apple-touch-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicon/apple-touch-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicon/apple-touch-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicon/apple-touch-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicon/apple-touch-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicon/apple-touch-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicon/apple-touch-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-32x32.png' %}" sizes="32x32">
-    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-194x194.png' %}" sizes="194x194">
-    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-96x96.png' %}" sizes="96x96">
-    <link rel="icon" type="image/png" href="{% static 'favicon/android-chrome-192x192.png' %}" sizes="192x192">
-    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-16x16.png' %}" sizes="16x16">
-    <link rel="manifest" href="{% static 'favicon/manifest.json' %}">
-    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
-    <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta name="msapplication-TileImage" content="{% static 'favicon/mstile-144x144.png' %}">
-    <meta name="msapplication-config" content="{% static 'favicon/browserconfig.xml' %}">
-    <meta name="theme-color" content="#ffffff">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %} | {% endblock %}{{ conference_title }}</title>
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta property="og:locale" content="en_US">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %} | {{ conference_title }}">
+	<meta property="og:site_name" content="Dask Distributed Summit">
+    <link rel='stylesheet' id='parent-style-css'  href='https://summit.dask.org/wp-content/themes/ova-dione/style.css?ver=5.5.3' type='text/css' media='all'>
+    <link rel='stylesheet' id='ova-dione-fonts-css'  href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%22%7CMontserrat%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;subset=latin%2Clatin-ext' type='text/css' media='all'>
+    <link rel='stylesheet' id='bootstrap-css'  href='https://summit.dask.org/wp-content/themes/ova-dione/assets/css/bootstrap.min.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='font-awesome-css'  href='https://summit.dask.org/wp-content/themes/ova-dione/assets/css/font-awesome.min.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='flickity.min.css-css'  href='https://summit.dask.org/wp-content/themes/ova-dione/assets/css/flickity.min.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='magnific-popup.css-css'  href='https://summit.dask.org/wp-content/themes/ova-dione/assets/css/magnific-popup.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='jquery.countdown.css-css'  href='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/countdown/jquery.countdown.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='dione_main.css-css'  href='https://summit.dask.org/wp-content/themes/ova-dione/assets/css/dione_main.min.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='ova-dione-default-css'  href='https://summit.dask.org/wp-content/themes/ova-dione/assets/css/default.min.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='parent-stylesheet-css'  href='https://summit.dask.org/wp-content/themes/ova-dione/style.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='ova-dione-style-css'  href='https://summit.dask.org/wp-content/themes/ova-dione-child/style.css' type='text/css' media='all'>
+    <style id='ova-dione-style-inline-css' type='text/css'>
+        body{ font-family: Roboto, sans-serif; }
+        .font-family-base,.ova_tab .vc_toggle_active .vc_toggle_title h4 {
+            font-family: Roboto, sans-serif !important;
+        }
+        .countdown .clock-item,.font-family-alt,.btn,.mfp-title,.mfp-counter, .ovatheme_header_default .dropdown-menu>.active>a, .header_v1 .dropdown-menu>.active>a,.ova_clock .countdown-section{
+             font-family: Montserrat, sans-serif !important;
+        }
+        .ovatheme_header_default nav.navbar li.active>a{
+          color: #f4522a;
+        }
+        .title-underline-base-color {
+            border-color: #f4522a;
+        }
+        .title-underline-thick-base-color {
+            border-color: #f4522a;
+        }
+        .title-sideline-base-color:before {
+            background-color: #f4522a;
+        }
+        .title-strikethrough-base-color:before {
+            background-color: #f4522a;
+        }
+        .text-base-color {
+            color: #f4522a !important;
+        }
+        .text-hover-base-color:hover,
+        .text-hover-base-color:focus {
+            color: #f4522a !important;
+        }
+        .bg-base-color {
+            background-color: #f4522a !important;
+        }
+        .bg-hover-base-color:hover {
+            background-color: #f4522a !important;
+        }
+        .border-base-color {
+            border-color: #f4522a !important;
+        }
+        .btn.btn-base-color {
+            background-color: #f4522a;
+        }
+        .btn.btn-base-color.btn-hover-transparent:hover {
+            border-color: #f4522a;
+            color: #f4522a;
+        }
+        .btn.btn-outline-base-color {
+            border-color: #f4522a;
+            color: #f4522a;
+        }
+        .btn.btn-outline-base-color:hover,
+        .btn.btn-outline-base-color:focus {
+            background-color: #f4522a;
+        }
+        .btn.btn-outline-base-color.btn-hover-transparent:hover,
+        .btn.btn-outline-base-color.btn-hover-transparent:focus {
+            color: #f4522a;
+        }
+        .pace .pace-progress {
+            background-color: #f4522a;
+        }
+        .panel-group .panel.active .panel-heading {
+            background-color: #f4522a;
+        }
+        .pricing ul > li.check-mark:before {
+            background-color: #f4522a;
+        }
+        .timeline-item.highlight:before {
+            background-color: #f4522a;
+            border: #f4522a;
+        }
+        .ova_tab .vc_tta-tab.vc_active a{
+            background-color: #f4522a!important;
+        }
+        .ova_tab .vc_toggle_active .vc_toggle_title{
+            background-color: #f4522a!important;
+        }
+        .navbar.navbar-white.shrink .navbar-nav > li > a.active,
+        .navbar .navbar-nav > li > a.active,
+        .navbar .navbar-nav > li.active>a{
+            color: #f4522a;   
+        }
+        .header_v1 .dropdown-menu>.active>a, .header_v1  .dropdown-menu>.active>a:hover, .header_v1  .dropdown-menu>.active>a:focus{
+            color: #f4522a;
+        }
+        div.wpcf7-mail-sent-ok{
+         color: #f4522a;
+        }
+        
+        /* custom */
+        .primary-color {
+            color: #f4522a!important;
+        }
+        .bg-primary,
+        .vc_btn3-container.button-primary a {
+            background-color: #f4522a!important;
+        }
+        .vc_icon_element-color-custom .vc_icon_element-icon {
+            color: #f4522a!important;
+            transition: all .2s ease-in-out;
+        }
+        .vc_btn3-container.button-primary a:hover,
+        .vc_icon_element-color-custom .vc_icon_element-icon:hover {
+            opacity: .9;
+        }
+    </style>
+    <link rel='stylesheet' id='js_composer_front-css'  href='https://summit.dask.org/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=6.4.1' type='text/css' media='all'>
+    <link rel='stylesheet' id='dione_plugin-css'  href='https://summit.dask.org/wp-content/plugins/ova-dione//dione-plugin.css' type='text/css' media='all'>
+    <script type='text/javascript' src='https://summit.dask.org/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp' id='jquery-core-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/bootstrap.min.js' id='bootstrap-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/pace.min.js' id='pace.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/debouncer.min.js' id='debouncer.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/jquery.easing.min.js' id='jquery.easing.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/jquery.inview.min.js' id='jquery.inview.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/jquery.matchHeight.js' id='jquery.matchHeight.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/isotope.pkgd.min.js' id='isotope.pkgd.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/imagesloaded.pkgd.min.js' id='imagesloaded.pkgd.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/flickity.pkgd.min.js' id='flickity.pkgd.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/jquery.countTo.js' id='jquery.countTo.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/jquery.magnific-popup.min.js' id='jquery.magnific-popup.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/jquery.validate.min.js' id='jquery.validate.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/jquery.flexslider.min.js' id='jquery.flexslider.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/typed.min.js' id='typed.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/countdown/jquery.plugin.js' id='jquery.plugin.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/countdown/jquery.countdown.min.js' id='countdown.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/lib/greensock/TweenMax.min.js' id='TweenMax-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/ScrollMagic.min.js' id='ScrollMagic-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/animation.gsap.min.js' id='animation.gsap.min.js-js'></script>
+    <script type='text/javascript' src='https://summit.dask.org/wp-content/themes/ova-dione/assets/js/main.js' id='main.js-js'></script>
+    <link rel="icon" href="https://summit.dask.org/wp-content/uploads/2021/01/cropped-favicon-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://summit.dask.org/wp-content/uploads/2021/01/cropped-favicon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="https://summit.dask.org/wp-content/uploads/2021/01/cropped-favicon-180x180.png">
+    <meta name="msapplication-TileImage" content="https://summit.dask.org/wp-content/uploads/2021/01/cropped-favicon-270x270.png">
+    <style type="text/css" id="wp-custom-css">
+        .page:not(.home) nav {
+            background-color: #000;
+        }
+        .title-extra-large-5 {
+            font-size: 50px!important;
+            line-height: 50px!important;
+        }
+        .large {
+            font-size: 1.4em;
+        }
+        .vc_btn3-container a,
+        .eventbrite-btn {
+            font-family: Montserrat, sans-serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .vc_icon_element-color-custom {
+            top: 0;
+            transition: all .2s ease-in-out;
+        }
+        .vc_icon_element-color-custom:hover {
+            top: -2px;
+        }
+        section#dask {
+            padding-bottom: 0;
+        }
+        .ova_speaker a {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3px;
+            color: #FFF;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .ova_speaker a:after {
+            content: '\f360';
+            position: absolute;
+            bottom: 0;
+            right: -20px;
+            font-family: Font Awesome\ 5 Free;
+            font-weight: 900;
+            font-style: normal;
+            text-decoration: none;
+        }
+        .patter_bg {
+            pointer-events: none;
+        }
+        /*************************************/
+        .btn.btn-default {
+            border-color: #ccc;
+        }
+        .btn.btn-info:hover {
+            background-color: #1b6d85;
+        }
+        .btn.btn-success:hover {
+            background-color: #398439;
+        }
+        .btn.btn-warning:hover {
+            background-color: #ec971f;
+        }
+        .btn.btn-danger:hover {
+            background-color: #ac2925;
+        label.formfield-required:after {
+            color: red;
+            content:" *";
+        }
+    </style>
+
     {% block extra_head %}{% endblock %}
     {% if not request.user.is_superuser %}
     <script>
@@ -55,19 +243,14 @@
     </script>
     <script async src="{% static 'js/autotrack.js' %}"></script>
     {% endif %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
-        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
-        crossorigin="anonymous"></script>
     <script src="https://browser.sentry-cdn.com/5.19.1/bundle.apm.min.js"
         integrity="sha384-qcuJnBVywcOnVTsYC4W46ENmLFtgTt1rojscXpw6pgE6BDJ+MSj3AgdT897AgysN"
         crossorigin="anonymous"></script>
     <script>
-        window.jQuery || document.write("<script src='{% static 'js/jquery-1.12.4.min.js' %}'><\/script>");
         window.Sentry || document.write("<script src='{% static 'js/sentry-5.19.1.apm.min.js' %}'><\/script>");
     </script>
 </head>
-<body class="{% block body_class %}{% endblock %}">
-{% wagtailuserbar "bottom-left" %}
+<body class="page {% block body_class %}{% endblock %}">
 <header>
     {% if messages %}
     <div class="text-center">
@@ -78,147 +261,98 @@
         {% endfor %}
     </div>
     {% endif %}
-    {% if cfp_open %}
-    <div id="stp1" class="text-center">
-        <h3><a href="./cfp/">CALL FOR PROPOSALS <strong>NOW OPEN!</strong></a></h3>
-    </div>
-    {% endif %}
     <div id="header">
         <div class="container">
-            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" id="logo">
-                <a href="/">
-                    {% if logo_image %}
-                        {% image logo_image max-285x112 %}
-                    {% else %}
-                        <img alt="PyData" src="{% static 'images/logo.png' %}">
-                    {% endif %}
-                </a>
-            </div>
-            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" id="menu">
-                <nav class="navbar">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <nav id="navigation" class="navbar navbar-fixed-top navbar-dark header_v1">
+                <div class="container">
+                    <div class="row">
+                        <div class="navbar-header col-md-3">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-dione">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
+                            <a href="/" class="navbar-brand page-scroll font-family-alt letter-spacing-1 text-extra-large text-uppercase">
+                                <img class="logo-navbar-dark" src="https://summit.dask.org/wp-content/uploads/2021/01/Dask-Distributed-Summit-2021-logo-horiz_white-01.png" alt="Dask Distributed Summit">
+                                <img class="logo-navbar-white" src="https://summit.dask.org/wp-content/uploads/2021/01/Dask-Distributed-Summit-2021-logo-horiz.png" alt="Dask Distributed Summit">
+                            </a>
                         </div>
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            {% main_menu %}
+                        <div id="navbar-dione" class="navbar-collapse collapse col-md-9 pull-right">
+                            <ul id="menu-scroll-menu" class="nav navbar-nav font-family-alt letter-spacing-1 text-small text-uppercase">
+                                <li id="menu-item-542" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-483 current_page_item menu-item-542">
+                                    <a title="Home" href="https://summit.dask.org/">Home</a>
+                                </li>
+                                <li id="menu-item-628" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-628 dropdown">
+                                    <a title="About" href="https://summit.dask.org/about/" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+                                    <ul role="menu" class=" dropdown-menu">
+                                        <li id="menu-item-665" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-665"><a title="Summit Overview" href="https://summit.dask.org/about/#overview">Summit Overview</a></li>
+                                        <li id="menu-item-649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-649"><a title="About Dask" href="https://summit.dask.org/about/#dask">About Dask</a></li>
+                                        <li id="menu-item-650" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-650"><a title="Organizing Committee" href="https://summit.dask.org/about/#committee">Organizing Committee</a></li>
+                                        <li id="menu-item-638" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-638"><a title="Conduct" href="https://summit.dask.org/conduct/">Conduct</a></li>
+                                        <li id="menu-item-691" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-691"><a title="Diversity" href="https://summit.dask.org/diversity/">Diversity</a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-653" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-653 dropdown">
+                                    <a title="Present" href="https://summit.dask.org/present/" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Present <span class="caret"></span></a>
+                                    <ul role="menu" class=" dropdown-menu">
+                                        <li id="menu-item-726" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-726">
+                                            <a title="Proposal Guidelines" href="https://summit.dask.org/present/#guidelines">Proposal Guidelines</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-657" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-657">
+                                    <a title="Sponsor" href="https://summit.dask.org/sponsor/">Sponsor</a>
+                                </li>
+                                <li id="menu-item-660" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-660">
+                                    <a title="Tickets" href="https://summit.dask.org/tickets/">Tickets</a>
+                                </li>
+                            </ul>               
                         </div>
                     </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </div>
     </div>
 </header>
+<div class="vc_empty_space" style="height: 200px"><span class="vc_empty_space_inner"></span></div>
 {% block body_outer %}
     {% block body %}
     {% endblock %}
 {% endblock %}
-<section>
-    <div id="subscribe">
-        <div class="container">
-            <div class="col-xs-12 sub-sr">
-                <h2>Subscribe to Receive PyData Updates</h2>
-                <a class="btn btn4" href="https://numfocus.salsalabs.org/email-subscribe" target="_blank">Subscribe</a>
+<footer class="footer bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="footer-logo xs-text-center">
+                    <div id="text-1" class="widget widget_text"></div>
+                    <div id="text-2" class="widget widget_text">
+                        <div class="textwidget">
+                            <p><img src="https://summit.dask.org/wp-content/uploads/2021/01/Dask-Distributed-Summit-2021-logo-horiz.png" alt="logo" style="width: 200px;"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="footer-social text-right"></div>
             </div>
         </div>
-    </div>
-</section>
-{% if ticketing_url %}
-<section>
-    <div id="early-b2">
-        <div class="container">
-            <div class="col-xs-12 early-b2-sep">
-                <h2>Tickets</h2>
-                <a href="{{ ticketing_url }}" class="btn btn4">Get Now</a>
-            </div>
-        </div>
-    </div>
-</section>
-{% endif %}
-<footer>
-    <div id="footer">
-        <div class="container">
-            <div class="col-md-5 col-sm-12 col-xs-12 fsec footer1">
-                {% if footer1_section %}{{ footer1_section }}{% else %}
-                <h4>CODE OF CONDUCT</h4>
-                <p>
-                    PyData is dedicated to providing a harassment-free
-                    conference experience for everyone, regardless of gender,
-                    sexual orientation, gender identity and expression,
-                    disability, physical appearance, body size, race, or
-                    religion. We do not tolerate harassment of conference
-                    participants in any form. All communication should be
-                    appropriate for a professional audience including people
-                    of many different backgrounds. Sexual language and imagery
-                    is not appropriate for any conference venue, including
-                    talks. Be kind to others. Do not insult or put down other
-                    attendees. Behave professionally. Remember that harassment
-                    and sexist, racist, or exclusionary jokes are not
-                    appropriate for PyData. Attendees violating these rules
-                    may be asked to leave the conference without a refund at
-                    the sole discretion of the conference organizers. Thank
-                    you for helping make this a welcoming, friendly event
-                    for all.
-                </p>
-                {% endif %}
-            </div>
-            <div class="col-md-2 col-sm-6 col-xs-12 fsec footer2">
-                <h4>CONTACT</h4>
-                <address>
-                    <p></p>
-                    <p class="soc">
-                        {% if footer_email %}
-                        <a href="mailto:{{ footer_email }}"><i class="fa fa-envelope"></i>Email</a>
-                        {% endif %}
-                        {% if footer_twitter %}
-                        <a href="https://twitter.com/{{ footer_twitter }}/"><i class="fa fa-twitter"></i>Twitter</a>
-                        {% endif %}
-                    </p>
-                </address>
-            </div>
-            <div class="col-md-2 col-sm-6 col-xs-12 fsec footer3">
-                <h4>ACCOUNT</h4>
-                {% if request.user.is_authenticated %}
-                <ul>
-                    <li><a href="{% url 'dashboard' %}">{% translate "Dashboard" %}</a></li>
-                    {% if request.user.is_staff %}
-                    <li><a href="{% url THEME_ADMIN_URL|default:'admin:index' %}">{% translate 'Admin' %}</a></li>
-                    {% endif %}
-                    {% if request.user.speaker_profile %}
-                    <li><a href="{% url 'speaker_edit' %}">Speaker Profile</a></li>
-                    {% endif %}
-                    <li><a href="{% url 'account_logout' %}">{% translate "Log out" %}</a>
-                </ul>
-                {% else %}
-                <ul>
-                    <li><a href="{% url 'account_login' %}">{% translate "Login" %}</a></li>
-                    <li><a href="{% url 'account_signup' %}">{% translate "Sign up" %}</a></li>
-                </ul>
-                {% endif %}
-            </div>
-            <div class="col-md-3 col-sm-12 col-xs-12 fsec footer4">
-                <h4>PyData is an educational program of</h4>
-                <a href="https://numfocus.org"><img src="{% static 'images/numfocus.png' %}" data-rjs="2"></a><br>
-                <p>
-                    NumFOCUS is committed to protecting your data. In compliance
-                    with the new data regulations, we have updated our
-                    <a href="https://numfocus.org/privacy-policy">Privacy
-                    Policy</a> and invite you to review our new practices. We have
-                    also updated PyData registration with new data collection procedures.
-                </p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="footer-copyright text-center border-top border-gray-light">
+                    <div class="font-family-alt letter-spacing-1 text-gray-dark text-small text-uppercase">
+                        <div id="text-4" class="widget widget_text">
+                            <div class="textwidget">
+                                <p>&copy; 2021 Dask Distributed Summit</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </footer>
-<script src="{% static 'js/bootstrap.js' %}"></script>
-<script src="{% static 'js/retina.min.js' %}"></script>
 <script src="{% static 'js/select2.min.js' %}"></script>
-<script src="{% static 'js/jquery.sticky.js' %}"></script>
 {% if sentry_public_dsn %}
 <script>
     Sentry.init({
@@ -227,7 +361,7 @@
             new Sentry.Integrations.Tracing(),
         ],
         tracesSampleRate: 0.1,
-        whitelistUrls: ["pydata.org"],
+        whitelistUrls: ["summit.dask.org"],
     });
 </script>
 {% endif %}

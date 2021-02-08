@@ -2,7 +2,7 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %} - Upload Document to '{{ proposal.title }}'{% endblock %}
+{% block title %}Upload Document to '{{ proposal.title }}' | {% endblock %}
 
 {% block body %}
 <div class="container">
@@ -12,7 +12,7 @@
             {{ form|crispy }}
         </fieldset>
         <div class="form-actions">
-            <input class="btn btn-primary" type="submit" value="Upload" />
+            <input class="btn btn-base-color" type="submit" value="Upload" />
         </div>
     </form>
 </div>

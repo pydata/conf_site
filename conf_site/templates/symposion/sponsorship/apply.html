@@ -3,7 +3,7 @@
 {% load crispy_forms_tags i18n wagtailsettings_tags %}
 {% get_settings %}
 
-{% block title %} - {% translate "Apply to be a Sponsor" %}{% endblock %}
+{% block title %}{% translate "Apply to be a Sponsor" %} | {% endblock %}
 
 {% block body_class %}sponsorships{% endblock %}
 
@@ -19,7 +19,7 @@
             {% crispy form %}
         </fieldset>
         <div class="form-actions">
-            <input class="btn btn-primary" type="submit" value="Apply" />
+            <input class="btn btn-base-color" type="submit" value="Apply" />
             <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
         </div>
     </form>

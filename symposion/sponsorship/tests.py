@@ -113,8 +113,6 @@ class TestSponsorZipDownload(TestCase):
         # And the dashboard shows our download button
         rsp = self.client.get(self.url)
         self.validate_response(rsp, [])
-        rsp = self.client.get(reverse("dashboard"))
-        self.assertContains(rsp, self.url)
 
     def test_different_benefit_types(self):
         # And we ignore any non-existent files

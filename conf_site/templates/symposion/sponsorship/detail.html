@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 
-{% block title %} - {{ sponsor }}{% endblock %}
+{% block title %}{{ sponsor }} | {% endblock %}
 
 {% block page_title %}{% translate "Sponsorship" %}{% endblock %}
 
@@ -34,7 +34,7 @@
         {% endfor %}
 
         <div class="form-actions">
-            <input class="btn btn-primary" type="submit" value="Save" />
+            <input class="btn btn-base-color" type="submit" value="Save" />
             <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
         </div>
 
