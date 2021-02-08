@@ -12,10 +12,7 @@
     <h1>{% translate "Add a Sponsor" %}</h1>
     <form method="POST" action="{% url "sponsor_add" %}" class="form-horizontal">
         {% csrf_token %}
-        <fieldset>
-            <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {% crispy form %}
-        </fieldset>
+        {% crispy form %}
         <div class="form-actions">
             <input class="btn btn-base-color" type="submit" value="Add" />
             <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>

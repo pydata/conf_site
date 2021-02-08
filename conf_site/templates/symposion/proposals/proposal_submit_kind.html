@@ -9,10 +9,7 @@
     <h1>Submit a {{ kind.name }}</h1>
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        <fieldset>
-            <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ proposal_form|crispy }}
-        </fieldset>
+        {{ proposal_form|crispy }}
         <div class="form-group form-actions">
             <p>
                 You will be able to edit your proposal after it has been submitted. The program committee may ask questions, provide feedback, and even suggest changes to your proposal as part of the review processes.

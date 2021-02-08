@@ -9,10 +9,7 @@
     <h1>{% translate "Create Speaker Profile" %}</h1>
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        <fieldset>
-            <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ speaker_form|crispy }}
-        </fieldset>
+        {{ speaker_form|crispy }}
         <div class="form-actions">
             <input class="btn btn-base-color" type="submit" value="Save" />
             <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
