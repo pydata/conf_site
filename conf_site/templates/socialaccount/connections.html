@@ -20,7 +20,7 @@
             {% with base_account.get_provider_account as account %}
             <div class="ctrlHolder">
               <label for="account_radio_{{ base_account.id }}">
-                <input id="account_radio_{{ base_account.id }}" type="radio" name="account" value="{{ base_account.id }}">
+                <input style="width:inherit" id="account_radio_{{ base_account.id }}" type="radio" name="account" value="{{ base_account.id }}">
                 <i class="fa fa-{{ account.get_brand.id }}" aria-hidden="true" title="{{ account.get_brand.name }}"></i>
                 <span class="sr-only">{{ account.get_brand.name }}</span>
                 {{ account }}
