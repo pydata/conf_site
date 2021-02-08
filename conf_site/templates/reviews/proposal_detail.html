@@ -18,7 +18,7 @@
     </p>
   {% endif %}
 
-  <div class="pull-right">
+  <div class="pull-right" style="margin-top:-3rem">
     {% if not proposal.cancelled %}
       {% if request.user == proposal.speaker.user %}
         {% if proposal.can_edit %}<a href="{% url "proposal_edit" proposal.pk %}" class="btn btn-default">
@@ -93,7 +93,7 @@
         <input type="hidden" name="proposal_id" value="{{ proposal.id }}">
         {{ vote_form|crispy }}
         <div class="form-action">
-          <input type="submit" class="btn btn-primary" name="vote_submit"
+          <input type="submit" class="btn btn-base-color" name="vote_submit"
               value="{% if existing_vote %}{% translate 'Update Review' %}{% else %}{% translate 'Submit Review' %}{% endif %}">
         </div>
       </form>
