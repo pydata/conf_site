@@ -12,10 +12,7 @@
 
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        <fieldset>
-            <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ form|crispy }}
-        </fieldset>
+        {{ form|crispy }}
         <div class="form-group form-actions">
             <input class="btn btn-base-color" type="submit" value="Save" />
             <a class="btn btn-default" href="{% url "proposal_detail" proposal.pk %}">Cancel</a>
