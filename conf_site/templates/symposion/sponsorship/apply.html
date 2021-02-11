@@ -14,7 +14,10 @@
 
     <form method="POST" action="" class="form-horizontal">
         {% csrf_token %}
-        {% crispy form %}
+        <fieldset>
+            <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
+            {% crispy form %}
+        </fieldset>
         <div class="form-actions">
             <input class="btn btn-base-color" type="submit" value="Apply" />
             <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
