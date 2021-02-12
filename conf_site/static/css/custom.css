@@ -1,0 +1,170 @@
+body{ font-family: Roboto, sans-serif; }
+.font-family-base,.ova_tab .vc_toggle_active .vc_toggle_title h4 {
+    font-family: Roboto, sans-serif !important;
+}
+.countdown .clock-item,.font-family-alt,.btn,.mfp-title,.mfp-counter, .ovatheme_header_default .dropdown-menu>.active>a, .header_v1 .dropdown-menu>.active>a,.ova_clock .countdown-section{
+     font-family: Montserrat, sans-serif !important;
+}
+.ovatheme_header_default nav.navbar li.active>a{
+  color: #f4522a;
+}
+.title-underline-base-color {
+    border-color: #f4522a;
+}
+.title-underline-thick-base-color {
+    border-color: #f4522a;
+}
+.title-sideline-base-color:before {
+    background-color: #f4522a;
+}
+.title-strikethrough-base-color:before {
+    background-color: #f4522a;
+}
+.text-base-color {
+    color: #f4522a !important;
+}
+.text-hover-base-color:hover,
+.text-hover-base-color:focus {
+    color: #f4522a !important;
+}
+.bg-base-color {
+    background-color: #f4522a !important;
+}
+.bg-hover-base-color:hover {
+    background-color: #f4522a !important;
+}
+.border-base-color {
+    border-color: #f4522a !important;
+}
+.btn.btn-base-color {
+    background-color: #f4522a;
+}
+.btn.btn-base-color.btn-hover-transparent:hover {
+    border-color: #f4522a;
+    color: #f4522a;
+}
+.btn.btn-outline-base-color {
+    border-color: #f4522a;
+    color: #f4522a;
+}
+.btn.btn-outline-base-color:hover,
+.btn.btn-outline-base-color:focus {
+    background-color: #f4522a;
+}
+.btn.btn-outline-base-color.btn-hover-transparent:hover,
+.btn.btn-outline-base-color.btn-hover-transparent:focus {
+    color: #f4522a;
+}
+.pace .pace-progress {
+    background-color: #f4522a;
+}
+.panel-group .panel.active .panel-heading {
+    background-color: #f4522a;
+}
+.pricing ul > li.check-mark:before {
+    background-color: #f4522a;
+}
+.timeline-item.highlight:before {
+    background-color: #f4522a;
+    border: #f4522a;
+}
+.ova_tab .vc_tta-tab.vc_active a{
+    background-color: #f4522a!important;
+}
+.ova_tab .vc_toggle_active .vc_toggle_title{
+    background-color: #f4522a!important;
+}
+.navbar.navbar-white.shrink .navbar-nav > li > a.active,
+.navbar .navbar-nav > li > a.active,
+.navbar .navbar-nav > li.active>a{
+    color: #f4522a;   
+}
+.header_v1 .dropdown-menu>.active>a, .header_v1  .dropdown-menu>.active>a:hover, .header_v1  .dropdown-menu>.active>a:focus{
+    color: #f4522a;
+}
+div.wpcf7-mail-sent-ok{
+ color: #f4522a;
+}
+.page:not(.home) nav {
+    background-color: #000;
+}
+.title-extra-large-5 {
+    font-size: 50px!important;
+    line-height: 50px!important;
+}
+.large {
+    font-size: 1.4em;
+}
+.vc_btn3-container a,
+.eventbrite-btn {
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.vc_icon_element-color-custom {
+    top: 0;
+    transition: all .2s ease-in-out;
+}
+.vc_icon_element-color-custom:hover {
+    top: -2px;
+}
+section#dask {
+    padding-bottom: 0;
+}
+.ova_speaker a {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 3px;
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.ova_speaker a:after {
+    content: '\f360';
+    position: absolute;
+    bottom: 0;
+    right: -20px;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
+    font-style: normal;
+    text-decoration: none;
+}
+.patter_bg {
+    pointer-events: none;
+}
+/*************************************/
+.primary-color {
+    color: #f4522a!important;
+}
+.bg-primary,
+.vc_btn3-container.button-primary a {
+    background-color: #f4522a!important;
+}
+.vc_icon_element-color-custom .vc_icon_element-icon {
+    color: #f4522a!important;
+    transition: all .2s ease-in-out;
+}
+.vc_btn3-container.button-primary a:hover,
+.vc_icon_element-color-custom .vc_icon_element-icon:hover {
+    opacity: .9;
+}
+.btn.btn-default {
+    border-color: #ccc;
+}
+.btn.btn-info:hover {
+    background-color: #1b6d85;
+}
+.btn.btn-success:hover {
+    background-color: #398439;
+}
+.btn.btn-warning:hover {
+    background-color: #ec971f;
+}
+.btn.btn-danger:hover {
+    background-color: #ac2925;
+}
+label.formfield-required:after {
+    color: red;
+    content:" *";
+}
