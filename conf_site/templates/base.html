@@ -143,21 +143,6 @@
 </header>
 <div class="vc_empty_space" style="height: 200px"><span class="vc_empty_space_inner"></span></div>
 
-{% if request.user.is_authenticated %}
-<div class="container">
-    <div class="btn-group-sm text-center" role="toolbar">
-        <a class="btn btn-default" href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a>
-        {% if request.user.is_staff %}
-        <a class="btn btn-default" href="{% url THEME_ADMIN_URL|default:'admin:index' %}">{% trans 'Admin' %}</a>
-        {% endif %}
-        {% if request.user.speaker_profile %}
-        <a class="btn btn-default" href="{% url 'speaker_edit' %}">Speaker Profile</a>
-        {% endif %}
-        <a class="btn btn-default" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
-    </div>
-</div>
-{% endif %}
-
 {% block body_outer %}
     {% block body %}
     {% endblock %}
@@ -176,7 +161,21 @@
                 </div>
             </div>
             <div class="col-sm-8">
-                <div class="footer-social text-right"></div>
+                <div class="footer-social text-right">
+                    {% if request.user.is_authenticated %}
+                        <strong><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a> |
+                        {% if request.user.is_staff %}
+                        <strong><a href="{% url THEME_ADMIN_URL|default:'admin:index' %}">{% trans 'Admin' %}</a></strong> |
+                        {% endif %}
+                        {% if request.user.speaker_profile %}
+                        <strong><a href="{% url 'speaker_edit' %}">Speaker Profile</a></strong> |
+                        {% endif %}
+                        <strong><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></strong>
+                    {% else %}
+                        <strong><a href="{% url 'account_login' %}">{% trans "Log in" %}</a></strong> |
+                        <strong><a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a></strong>
+                    {% endif %}
+                </div>
             </div>
         </div>
         <div class="row">
