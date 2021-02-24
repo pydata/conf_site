@@ -35,7 +35,7 @@
 - name: change ownership of everything to this user
   file:
     path: "{{ project_root }}"
-    recurse: yes
+    recurse: true
     owner: "{{ ansible_user_id }}"
     group: www-data
   become: true
@@ -65,7 +65,7 @@
   args:
     warn: false
   when: venv_dir.stat.isdir is not defined
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: add/update "current" virtualenv symlink
   file:
