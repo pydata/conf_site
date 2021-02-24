@@ -9,4 +9,4 @@
                  virtualenv={{ virtualenv_root }}/current
   environment:
     DJANGO_SUPERUSER_PASSWORD: "{{ amy_password }}"
-  ignore_errors: yes
+  ignore_errors: true
