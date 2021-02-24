@@ -32,7 +32,7 @@ jobs:
       - name: Run ansible-lint
         run: |
           bash -c "source ~/venv/bin/activate &&
-          ansible-lint ansible/testing.yml ansible/development.yml ansible/staging.yml ansible/production.yml"
+          ansible-lint ansible/roles/common ansible/roles/db ansible/roles/web"
   ansible-test:
     name: Test Ansible playbooks
     needs: ansible-lint
