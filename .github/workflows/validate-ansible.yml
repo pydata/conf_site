@@ -31,10 +31,8 @@ jobs:
         uses: mobolic/install-python-dependencies@v0.1.0
       - name: Run ansible-lint
         run: |
-          ~/venv/bin/ansible-lint ansible/testing.yml &&
-          ~/venv/bin/ansible-lint ansible/development.yml &&
-          ~/venv/bin/ansible-lint ansible/staging.yml &&
-          ~/venv/bin/ansible-lint ansible/production.yml
+          bash -c "source ~/venv/bin/activate &&
+          ansible-lint ansible/testing.yml ansible/development.yml ansible/staging.yml ansible/production.yml"
   ansible-test:
     name: Test Ansible playbooks
     needs: ansible-lint
