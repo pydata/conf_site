@@ -1,5 +1,5 @@
 dependencies:
-  - { role: common }
+  - {role: common}
 galaxy_info:
   author: Martey Dodoo
   description: Ansible role for web servers.
