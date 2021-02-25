@@ -1,4 +1,4 @@
-cryptography<3.4
+cryptography<3.5
 django==3.1.7
 django-allauth==0.42.0
 django-analytical==2.6.0
