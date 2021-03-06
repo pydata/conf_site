@@ -1,8 +1,9 @@
-from factory import Faker, fuzzy
-
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
+
+from factory import fuzzy
+from faker import Faker
 
 
 class UserRegistrationTestCase(TestCase):
@@ -14,7 +15,7 @@ class UserRegistrationTestCase(TestCase):
 
     def test_user_registration(self):
         """Ensure that user registration works properly."""
-        EMAIL = Faker("email").generate()
+        EMAIL = Faker().email()
         PASSWORD = fuzzy.FuzzyText(length=16)
         test_user_data = {
             "password1": PASSWORD,
