@@ -1,9 +1,9 @@
 -r staging.txt
-ansible==3.0.0
-ansible-lint[yamllint]==5.0.2
+ansible==3.1.0
+ansible-lint[yamllint]==5.0.4
 coverage==5.5
 factory_boy==3.2.0
-flake8==3.8.4
+flake8==3.9.0
 ipython==7.21.0
 rstcheck==3.3.1
-sphinx==3.5.1
+sphinx==3.5.3
