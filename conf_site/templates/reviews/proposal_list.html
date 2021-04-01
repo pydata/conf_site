@@ -99,7 +99,7 @@
 <script src="{% static 'js/jquery.tablesorter.js' %}"></script>
 <script src="{% static 'js/jquery.tablesorter.widgets.js' %}"></script>
 <script>
-  $.tablesorter.addParser({
+  jQuery.tablesorter.addParser({
     id: "user-scores",
     is: function(s, table, cell, $cell) { return false; },
     format: function(s, table, cell, cellIndex) {
@@ -111,8 +111,8 @@
     },
     type: "numeric"
   });
-  $(function() {
-    $("#table-proposals").tablesorter({
+  jQuery(function() {
+    jQuery("#table-proposals").tablesorter({
       cssIcon: "fa",
       cssIconAsc: "fa-sort-asc",
       cssIconDesc: "fa-sort-desc",
