@@ -29,17 +29,17 @@
 
 {% block extra_script %}
     <script type="text/javascript">
-        $(function() {
-            $("a.edit-slot").click(function(e) {
-                $("#slotEditModal").load($(this).data("action"), function() {
-                    $("#slotEditModal").modal("show");
+        jQuery(function() {
+            jQuery("a.edit-slot").click(function(e) {
+                jQuery("#slotEditModal").load(jQuery(this).data("action"), function() {
+                    jQuery("#slotEditModal").modal("show");
                 });
                 e.preventDefault();
             });
         });
-        $(function() {
+        jQuery(function() {
            //submit event handler
-            $("form#schedule-builder :submit").click(function(e) {
+           jQuery("form#schedule-builder :submit").click(function(e) {
                 var name = this.name;
                 if(name == 'delete') {
                     if (!confirm("Are you sure you want to delete the schedule?"))
