@@ -168,3 +168,7 @@ label.formfield-required:after {
     color: red;
     content:" *";
 }
+input[type="checkbox"] {
+    max-width: inherit;
+    width: inherit;
+}
