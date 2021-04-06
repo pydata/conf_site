@@ -1,5 +1,5 @@
 cryptography<3.4
-django==3.1.7
+django==3.1.8
 django-allauth==0.42.0
 django-analytical==2.6.0
 django-autoslug==1.9.8
