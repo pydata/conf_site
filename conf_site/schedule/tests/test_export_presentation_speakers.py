@@ -16,3 +16,11 @@ class ExportPresentationSpeakerViewTestCase(StaffOnlyCsvViewTestCase):
         cancelled_presentation = PresentationFactory(cancelled=True)
         response = self.client.get(reverse(self.view_name))
         self.assertNotContains(response, cancelled_presentation.title)
+
+    def test_time_zone_appears(self):
+        time_zone = PresentationFactory.create().speaker.speaker_timezone
+
+        self._become_staff()
+        self.client.login(username=self.user.email, password=self.password)
+        response = self.client.get(reverse(self.view_name))
+        self.assertContains(response, time_zone)

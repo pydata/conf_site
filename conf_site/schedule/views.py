@@ -54,6 +54,7 @@ class ExportPresentationSpeakerView(CsvView):
             [
                 "Speaker Name",
                 "Speaker Email",
+                "Speaker Time Zone",
                 "Presentation Name",
                 "Presentation Type",
             ]
@@ -67,6 +68,7 @@ class ExportPresentationSpeakerView(CsvView):
                         [
                             speaker.name,
                             speaker.email,
+                            speaker.speaker_timezone,
                             presentation.title,
                             presentation.proposal.kind.name,
                         ]
