@@ -16,11 +16,6 @@ class ScheduleSettingsTestCase(TestCase):
             Site.objects.get(is_default_site=True)
         )
 
-    def test_no_legend_set(self):
-        """Verify that default text appears if no custom legend is set."""
-        response = self.client.get(reverse("schedule_conference"))
-        self.assertContains(response, "<p>View past PyData event schedules")
-
     def test_legend_display(self):
         """Verify that the legend appears if set."""
         new_legend = "<h3>ZELDA</h3>"
@@ -29,4 +24,3 @@ class ScheduleSettingsTestCase(TestCase):
 
         response = self.client.get(reverse("schedule_conference"))
         self.assertContains(response, new_legend)
-        self.assertNotContains(response, "<p>View past PyData event schedules")
