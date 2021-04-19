@@ -18,8 +18,6 @@
     </div>
     {% if settings.schedule.ScheduleSettings.legend %}
     {{ settings.schedule.ScheduleSettings.legend }}
-    {% else %}
-    <p>View past PyData event schedules <a href="https://pydata.org/past-events.html" title="Past PyData Events">here</a>.</p>
     {% endif %}
     {% for section in sections %}
             {% for timetable in section.days %}
