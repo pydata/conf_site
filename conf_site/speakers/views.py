@@ -37,16 +37,20 @@ class SpeakerDetailView(SlugDetailView):
         if not presentations and not self.request.user.is_staff:
             raise Http404()
 
-        # Make sure that at least one presentation is on a published schedule.
-        for presentation in presentations:
-            try:
-                schedule = Schedule.objects.get(section=presentation.section)
-            except Schedule.DoesNotExist:
-                continue
-            if schedule.published:
-                break
-        else:
-            raise Http404()
+        if not self.request.user.is_staff:
+            # If user is not staff, make sure that at least one presentation
+            # is on a published schedule.
+            for presentation in presentations:
+                try:
+                    schedule = Schedule.objects.get(
+                        section=presentation.section
+                    )
+                except Schedule.DoesNotExist:
+                    continue
+                if schedule.published:
+                    break
+            else:
+                raise Http404()
 
         return super().render_to_response(context, **response_kwargs)
 
