@@ -24,6 +24,18 @@ class SpeakerProfileTestCase(TestCase):
     """Tests relating to a speaker's profile page."""
     faker = Faker()
 
+    def _speaker_profile(self, expected_result):
+        response = self.client.get(
+            reverse(
+                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
+            )
+        )
+        if expected_result:
+            self.assertEqual(response.status_code, 200)
+        else:
+            self.assertEqual(response.status_code, 404)
+        return response
+
     def setUp(self):
         self.speaker = Speaker.objects.create(name="Paul Ryan")
         self.speaker_profile_url = reverse(
@@ -88,11 +100,7 @@ class SpeakerProfileTestCase(TestCase):
 
     def test_display_presentation(self):
         """Verify that presentations display on speaker profiles."""
-        response = self.client.get(
-            reverse(
-                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
-            )
-        )
+        response = self._speaker_profile(True)
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertContains(response, SECOND_PRESENTATION_TITLE)
 
@@ -100,11 +108,7 @@ class SpeakerProfileTestCase(TestCase):
         self.second_presentation.slot = None
         self.second_presentation.save()
 
-        response = self.client.get(
-            reverse(
-                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
-            )
-        )
+        response = self._speaker_profile(True)
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertContains(response, SECOND_PRESENTATION_TITLE)
 
@@ -112,11 +116,7 @@ class SpeakerProfileTestCase(TestCase):
         self.second_presentation.cancelled = True
         self.second_presentation.save()
 
-        response = self.client.get(
-            reverse(
-                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
-            )
-        )
+        response = self._speaker_profile(True)
         self.assertContains(response, FIRST_PRESENTATION_TITLE)
         self.assertNotContains(response, SECOND_PRESENTATION_TITLE)
 
@@ -125,12 +125,7 @@ class SpeakerProfileTestCase(TestCase):
             schedule.published = False
             schedule.save()
 
-        response = self.client.get(
-            reverse(
-                "speaker_profile", args=[self.speaker.pk, self.speaker.slug]
-            )
-        )
-        self.assertEqual(response.status_code, 404)
+        self._speaker_profile(False)
 
     def test_second_speaker_profile_page(self):
         """Verify that a second speaker's profile page is public."""
