@@ -1,8 +1,9 @@
-from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
 from faker import Faker
+
+from conf_site.accounts.tests import AccountsTestCase
 from symposion.conference.models import Conference, Section
 from symposion.proposals.models import ProposalBase
 from symposion.schedule.models import (
@@ -20,7 +21,7 @@ FIRST_PRESENTATION_TITLE = "Time Traveling with pandas"
 SECOND_PRESENTATION_TITLE = "Last night, numpy saved my life"
 
 
-class SpeakerProfileTestCase(TestCase):
+class SpeakerProfileTestCase(AccountsTestCase):
     """Tests relating to a speaker's profile page."""
     faker = Faker()
 
@@ -36,7 +37,13 @@ class SpeakerProfileTestCase(TestCase):
             self.assertEqual(response.status_code, 404)
         return response
 
+    def _unpublish_schedules(self):
+        for schedule in Schedule.objects.all():
+            schedule.published = False
+            schedule.save()
+
     def setUp(self):
+        super().setUp()
         self.speaker = Speaker.objects.create(name="Paul Ryan")
         self.speaker_profile_url = reverse(
             "speaker_profile",
@@ -121,11 +128,16 @@ class SpeakerProfileTestCase(TestCase):
         self.assertNotContains(response, SECOND_PRESENTATION_TITLE)
 
     def test_do_not_display_if_schedule_is_not_published(self):
-        for schedule in Schedule.objects.all():
-            schedule.published = False
-            schedule.save()
-
+        self._unpublish_schedules()
         self._speaker_profile(False)
+
+    def test_display_if_staff_while_schedule_is_not_published(self):
+        self._unpublish_schedules()
+        self._become_staff()
+        self.assertTrue(self.client.login(
+            username=self.user.email, password=self.password
+        ))
+        self._speaker_profile(True)
 
     def test_second_speaker_profile_page(self):
         """Verify that a second speaker's profile page is public."""
