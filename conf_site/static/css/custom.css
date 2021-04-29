@@ -173,6 +173,7 @@ input[type="checkbox"] {
     width: inherit;
 }
 
+table.calendar a:hover, a:focus {color:#222; text-decoration:underline}
 table.calendar tr{min-height:36px}
 table.calendar th{background-color:#D67548;text-align:center}
 table.calendar th.time{width:60px}
