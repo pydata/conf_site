@@ -18,8 +18,11 @@ DATABASES_DEFAULT = {
 
 SECRET_KEY = "{{ django_secret_key }}"
 SESSION_COOKIE_PATH = "{{ subdirectory }}" or "/"
-TIME_FORMAT = "{{ time_format }}"
+
+DATE_FORMAT = "{{ date_format }}"
+TIME_FORMAT= "{{ time_format }}"
 TIME_ZONE = "{{ timezone }}"
+DATETIME_FORMAT= "{{ date_format }} {{ time_format }}"
 
 DEFAULT_FROM_EMAIL = "{{ default_email }}"
 SERVER_EMAIL = "{{ default_email }}"
