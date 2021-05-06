@@ -35,8 +35,7 @@
                     {{ presentation.description }}
                     {% if presentation.slot %}
                         <h4>
-                            {{ presentation.slot.start|date:"l" }}
-                            {{ presentation.slot.start}}&ndash;{{ presentation.slot.end }}
+                            {{ presentation.slot.start}} &ndash; {{ presentation.slot.end }}
                             {% if presentation.slot.rooms %}
                                 in {{ presentation.slot.rooms|join:", " }}
                             {% endif %}
