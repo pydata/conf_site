@@ -1,6 +1,7 @@
 cloudflare_enabled: true
 conference_name: "PyData Test 2018"
 database_user: "{{ conference_identifier }}"
+date_format: "l F j"
 default_email: noreply@pydata.org
 django_database: "{{ conference_identifier }}"
 email_host_user: noreply@pydata.org

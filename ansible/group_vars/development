@@ -2,6 +2,7 @@ cloudflare_enabled: false
 conference_identifier: test
 conference_name: Local Development Conference 2017
 database_user: "{{ conference_identifier }}"
+date_format: "l F j"
 default_email: example@example.com
 django_database: "{{ conference_identifier }}"
 email_host_user: example@example.com

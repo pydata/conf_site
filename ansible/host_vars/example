@@ -3,6 +3,7 @@ conference_identifier: metropolis2000
 conference_name: "PyData Metropolis 2000"
 content_site_uri: ""
 database_user: "{{ conference_identifier }}"
+date_format: "l F j"
 django_database: "{{ conference_identifier }}"
 github_oauth_client_id: ""
 github_oauth_client_secret: ""

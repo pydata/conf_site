@@ -43,6 +43,8 @@ Suggested variables in this file include:
 - **database_user**: The name of the PostgreSQL database user that will be
   created during deployment. For PyData sites, this is the
   `conference_identifer`.
+- **date_format**: A string in `Django date/time templating format`_
+  explaining how dates should be formatted on the conference site.
 - **django_database**: The name of the PostgreSQL database that will be
   created during deployment. For PyData sites, this is generally the
   `conference_identifer`.

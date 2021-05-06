@@ -10,7 +10,7 @@
     <tbody>
         {% for row in timetable %}
             <tr>
-                <td class="time">{{ row.time|time }}</td>
+                <td class="time">{{ row.time }}</td>
                 {% for slot in row.slots %}
                     <td class="slot slot-{{ slot.content.proposal.kind.slug }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
                       {% if slot.content %}
