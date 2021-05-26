@@ -1,3 +1,5 @@
+from re import escape
+
 from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
@@ -49,10 +51,10 @@ class SpeakerListViewTestCase(AccountsTestCase):
         response = self.client.get(reverse("speaker_list"))
         # Regular users should get redirected to the login page,
         # because SpeakerListView.raise_exception is False.
-        login_url_redirecting_to_speaker_list = "{}?next={}".format(
-            settings.LOGIN_URL, reverse("speaker_list")
+        speaker_list_login_regex = r"^{}\?next\=(.*){}$".format(
+            escape(settings.LOGIN_URL), escape(reverse("speaker_list"))
         )
-        self.assertEqual(response.url, login_url_redirecting_to_speaker_list)
+        self.assertRegex(response.url, speaker_list_login_regex)
 
     def test_staff_access_to_speaker_list_with_unpublished_schedule(self):
         """

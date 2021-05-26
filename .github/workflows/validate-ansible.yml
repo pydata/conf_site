@@ -15,9 +15,9 @@ jobs:
     container: python:3.7-buster
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
       - name: Virtualenv caching
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.5
         with:
           path: ~/venv
           key: ${{ runner.os }}-python3.7-venv-v2-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
@@ -40,9 +40,9 @@ jobs:
     container: python:3.7-buster
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
       - name: Virtualenv caching
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.5
         with:
           path: ~/venv
           key: ${{ runner.os }}-python3.7-venv-v2-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
