@@ -283,6 +283,7 @@ CONSTANCE_CONFIG_FIELDSETS = {
 }
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 DEFAULT_PROPOSAL_FORM = "conf_site.proposals.forms.ProposalForm"
 LOGIN_REDIRECT_URL = "dashboard"
 MESSAGE_TAGS = {
