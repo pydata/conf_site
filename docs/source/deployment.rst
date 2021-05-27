@@ -99,7 +99,6 @@ be found at `ansible/secrets.yml.example`.
 
 Required variables include:
 
-- **amy_password**: A password for an administrative user account.
 - **database_password**: The PostgreSQL database password.
 - **django_secret_key**: The `Django SECRET_KEY setting`_.
 - **email_host_name**: The hostname of the SMTP server that sends email
