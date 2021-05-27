@@ -2,4 +2,3 @@
 - include: nginx.yml
 - include: letsencrypt.yml
 - include: django.yml
-- include: amy.yml
