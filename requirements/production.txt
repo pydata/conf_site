@@ -2,6 +2,7 @@ cryptography<3.4
 django==3.2.3
 django-allauth==0.42.0
 django-analytical==2.6.0
+django-anymail[postmark]==8.3
 django-autoslug==1.9.8
 django-constance[redis]==2.8.0
 django-crispy-forms==1.11.2
@@ -20,7 +21,6 @@ pip==21.1.2
 psycopg2==2.8.6
 pytz==2021.1
 redis==3.5.3
-sendgrid-django==4.2.0
 sentry-sdk==1.1.0
 virtualenv==20.4.7
 wagtail==2.13
