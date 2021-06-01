@@ -140,6 +140,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "anymail",
     "analytical",
     "constance",
     "crispy_forms",

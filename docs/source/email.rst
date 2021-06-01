@@ -5,18 +5,18 @@ Conference sites send email for a variety of transactional reasons, including
 email address confirmations, password resets, sponsorship applications and
 proposal result notifications.
 
-There are currently two possible ways to send email: SendGrid and SMTP.
+There are currently two possible ways to send email: Postmark and SMTP.
 
-SendGrid
+Postmark
 --------
 
-`SendGrid`_ is an external email service provider (ESP). Conference sites
-integrate with SendGrid through the `sendgrid_django library`_. Setting the
-Ansible variable ``sendgrid_api_key`` will automatically cause SendGrid to be
+`Postmark`_ is an external email service provider (ESP). Conference sites
+integrate with Postmark through `django-anymail`_. Setting the
+Ansible variable ``postmark_api_token`` will automatically cause Postmark to be
 used in production environments.
 
-.. _SendGrid: https://sendgrid.com/
-.. _sendgrid_django library: https://github.com/elbuo8/sendgrid-django
+.. Postmark: https://postmarkapp.com/
+.. _django-anymail: https://github.com/anymail/django-anymail
 
 SMTP
 ----
@@ -37,7 +37,7 @@ Required Ansible variables:
 Other
 -----
 
-It is possible to use an email service provider other than SendGrid. The
+It is possible to use an email service provider other than Postmark. The
 easiest way is by using the provider's SMTP server. The difficulty of
 integrating another provider is dependent on the configuration of the library
 used for integration.

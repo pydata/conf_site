@@ -33,9 +33,14 @@ EMAIL_HOST_PASSWORD = '{{ email_host_password }}'
 EMAIL_PORT = '587'
 # Determine which email backend to use. Note that previous variables
 # are only relevant to the SMTP backend.
-{% if sendgrid_api_key and environment_type != "development" %}
-EMAIL_BACKEND = "sgbackend.SendGridBackend"
-SENDGRID_API_KEY = "{{ sendgrid_api_key }}"
+{% if postmark_api_token and environment_type != "development" %}
+EMAIL_BACKEND = "anymail.backends.postmark.EmailBackend"
+ANYMAIL = {
+    "POSTMARK_SEND_DEFAULTS": {
+        "esp_extra": {"MessageStream": "{{ conference_identifier }}"},
+    },
+    "POSTMARK_SERVER_TOKEN": "{{ postmark_api_token }}",
+}
 {% elif environment_type != "development" %}
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 {% else %}
