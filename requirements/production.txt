@@ -1,5 +1,5 @@
 cryptography<3.4
-django==3.2.3
+django==3.2.4
 django-allauth==0.42.0
 django-analytical==2.6.0
 django-anymail[postmark]==8.3
