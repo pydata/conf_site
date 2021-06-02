@@ -23,5 +23,5 @@ pytz==2021.1
 redis==3.5.3
 sentry-sdk==1.1.0
 virtualenv==20.4.7
-wagtail==2.13
+wagtail==2.13.1
 wagtailmenus==3.0.2
