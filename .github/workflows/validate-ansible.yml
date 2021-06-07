@@ -4,6 +4,7 @@ on:
     paths:
       - ".github/**"
       - "ansible/**"
+      - "ansible.cfg"
       - "requirements/development.txt"
 env:
   ANSIBLE_ASK_VAULT_PASS: False
