@@ -1,1 +1,1 @@
-{% load i18n %}{% blocktranslate with site_name=current_site.name %}[{{ site_name }}] Confirm your email address{% endblocktranslate %}
+Confirm your email address
