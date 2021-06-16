@@ -2,7 +2,7 @@ cryptography<3.4
 django==3.2.4
 django-allauth==0.42.0
 django-analytical==2.6.0
-django-anymail[postmark]==8.3
+django-anymail[postmark]==8.4
 django-autoslug==1.9.8
 django-constance[redis]==2.8.0
 django-crispy-forms==1.11.2
