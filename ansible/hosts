@@ -14,5 +14,3 @@ testing:
 production:
   hosts:
     dask2021:
-    israel2021:
-    test2021:
