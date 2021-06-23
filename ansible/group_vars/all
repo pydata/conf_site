@@ -6,7 +6,7 @@ content_site_uri: ""
 database_host: localhost
 default_email: noreply@pydata.org
 email_host_user: noreply@pydata.org
-git_version: master
+git_version: main
 gunicorn_port: 10501
 project_root: "/srv/pydata"
 postmark_api_token: ""

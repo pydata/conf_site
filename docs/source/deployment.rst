@@ -68,7 +68,7 @@ Suggested variables in this file include:
    file templates in the `ansible/roles/web/templates/` directory so that
    the conference site will load properly.
 
-.. _an example file: https://github.com/pydata/conf_site/blob/master/ansible/host_vars/example
+.. _an example file: https://github.com/pydata/conf_site/blob/main/ansible/host_vars/example
 .. _Google Analytics tracking ID: https://support.google.com/analytics/answer/1032385
 .. _Django date/time templating format: https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#date
 .. _tz database format: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -84,7 +84,7 @@ For PyData sites, a listing with the conference identifier should be added
 to the `production` group. For other sites, the entire `production` group
 should be replaced with your own server(s).
 
-.. _ansible/hosts: https://github.com/pydata/conf_site/blob/master/ansible/hosts
+.. _ansible/hosts: https://github.com/pydata/conf_site/blob/main/ansible/hosts
 
 The Secrets File
 ~~~~~~~~~~~~~~~~
