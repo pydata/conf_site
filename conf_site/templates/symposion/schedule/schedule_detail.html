@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
-{% load i18n wagtailsettings_tags %}
-{% get_settings %}
+{% load i18n %}
 
 {% block title %} - Conference Schedule{% endblock %}
 
@@ -16,11 +15,7 @@
     <div class="page-head">
         <h1>{{ schedule.section }} Schedule</h1>
     </div>
-    {% if settings.schedule.ScheduleSettings.legend %}
-    {{ settings.schedule.ScheduleSettings.legend }}
-    {% else %}
     <p>View past PyData event schedules <a href="https://pydata.org/past-events.html" title="Past PyData Events">here</a>.</p>
-    {% endif %}
     {% for timetable in days %}
         <h3>{{ timetable.day.date }}</h3>
         {% include "symposion/schedule/_grid.html" %}

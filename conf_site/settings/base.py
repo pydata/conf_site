@@ -98,11 +98,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.messages.context_processors.messages",
                 "constance.context_processors.config",
-                "wagtailmenus.context_processors.wagtailmenus",
-                "wagtail.contrib.settings.context_processors.settings",
                 "conf_site.core.context_processors.core_context",
                 "conf_site.core.context_processors.time_zone_context",
-                "conf_site.cms.context_processors.homepage_context",
             ]
         },
     },
@@ -117,7 +114,6 @@ MIDDLEWARE = [
     "conf_site.core.middleware.TimeZoneMiddleware",
     "reversion.middleware.RevisionMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 ROOT_URLCONF = "conf_site.urls"
@@ -145,7 +141,6 @@ INSTALLED_APPS = [
     "constance",
     "crispy_forms",
     "easy_thumbnails",
-    "modelcluster",
     "pinax.eventlog",
     "rest_framework",
     "reversion",
@@ -156,23 +151,8 @@ INSTALLED_APPS = [
     "symposion.speakers",
     "symposion.sponsorship",
     "taggit",
-    "wagtail.contrib.forms",
-    "wagtail.contrib.redirects",
-    "wagtail.embeds",
-    "wagtail.sites",
-    "wagtail.users",
-    "wagtail.snippets",
-    "wagtail.documents",
-    "wagtail.images",
-    "wagtail.search",
-    "wagtail.admin",
-    "wagtail.core",
-    "wagtail.contrib.modeladmin",
-    "wagtail.contrib.settings",
-    "wagtailmenus",
 
     "conf_site",
-    "conf_site.cms",
     "conf_site.core",
     "conf_site.proposals",
     "conf_site.reviews",
@@ -300,5 +280,3 @@ STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.ManifestStaticFilesStorage")
 SYMPOSION_PAGE_REGEX = r"(([\w-]{1,})(/[\w-]{1,})*)/"
 TAGGIT_CASE_INSENSITIVE = True
-WAGTAIL_ENABLE_UPDATE_CHECK = False
-WAGTAIL_MODERATION_ENABLED = False

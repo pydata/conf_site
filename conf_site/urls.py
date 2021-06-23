@@ -11,10 +11,6 @@ try:
 except ImportError:
     pass
 import symposion.views
-from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.core import urls as wagtail_urls
-from wagtail.documents import urls as wagtaildocs_urls
-from wagtail.images.views.serve import ServeView as WagtailImageView
 
 from conf_site.core.views import csrf_failure, TimeZoneChangeView
 from conf_site.schedule.views import (
@@ -43,14 +39,7 @@ urlpatterns += [
     re_path(r"^admin/", admin.site.urls),
     re_path(r"^accounts/", include("allauth.urls")),
     re_path(r"^api/", include("conf_site.api.urls")),
-    re_path(r"^cms/", include(wagtailadmin_urls)),
     re_path(r"^dashboard/", symposion.views.dashboard, name="dashboard"),
-    re_path(r"^documents/", include(wagtaildocs_urls)),
-    re_path(
-        r"^images/([^/]*)/(\d*)/([^/]*)/[^/]*$",
-        WagtailImageView.as_view(action="redirect"),
-        name="wagtailimages_serve",
-    ),
     re_path(
         r"^speaker/export/$",
         staff_member_required(ExportAcceptedSpeakerEmailView.as_view()),
@@ -99,7 +88,6 @@ urlpatterns += [
     ),
     re_path(r"^403-csrf/", csrf_failure, name="403-csrf"),
     re_path(r"^413/", TemplateView.as_view(template_name="413.html")),
-    re_path(r"", include(wagtail_urls)),
 ]
 
 
