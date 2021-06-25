@@ -6,7 +6,7 @@ date_format: "l F j"
 default_email: example@example.com
 django_database: "{{ conference_identifier }}"
 email_host_user: example@example.com
-environment_type: production
+environment_type: testing
 google_analytics_id: UA-00000-0
 project_root: ".."
 subdirectory: /{{ conference_identifier }}
