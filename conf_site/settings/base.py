@@ -149,7 +149,6 @@ INSTALLED_APPS = [
     "symposion.proposals",
     "symposion.schedule",
     "symposion.speakers",
-    "symposion.sponsorship",
     "taggit",
 
     "conf_site",
@@ -158,7 +157,6 @@ INSTALLED_APPS = [
     "conf_site.reviews",
     "conf_site.schedule",
     "conf_site.speakers",
-    "conf_site.sponsorship",
 ]
 
 # Note that this logging configuration DOES NOT SEND ERROR REPORTS

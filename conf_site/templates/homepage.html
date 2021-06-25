@@ -40,32 +40,6 @@
     </div>
 </section>
 {% endif %}
-<section>
-    <div class="container sp-logo-cs" style="background-color: #fff; display:table; padding-bottom:60px; position:relative;">
-        <h2 style="text-transform:uppercase">Our Sponsors</h2>
-        <div class="row sponsor-logo-row text-center">
-            {% sponsor_levels as levels %}
-            {% for level in levels %}
-                {% if level.sponsors %}
-                    {% for sponsor in level.sponsors %}
-                        {# We don't display sponsors without logos. #}
-                        {% if sponsor.website_logo %}
-                        <div class="col-md-3 col-sm-4 col-xs-12 sp">
-                            <a href="{{ sponsor.external_url }}">
-                                <img src="{{ sponsor.website_logo.url }}" alt="{{ sponsor.name }}">
-                            </a>
-                        </div>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-            <div class="clearfix"></div>
-        </div>
-        <div class="row" id="become-a-sponsor-row">
-            <a href="{% url 'sponsor_apply' %}" class="btn btn3">Become a Sponsor</a>
-        </div>
-    </div>
-</section>
 {% if page.news_keynote_section %}<section>
     <div id="nst-ovx">
         <div class="nst-ovx sec1x-before"></div>
