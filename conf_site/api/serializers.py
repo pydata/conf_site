@@ -4,7 +4,6 @@ from rest_framework.reverse import reverse_lazy
 from symposion.conference.models import Conference
 from symposion.speakers.models import Speaker
 from symposion.schedule.models import Presentation, Slot
-from symposion.sponsorship.models import Sponsor, SponsorLevel
 
 
 class SpeakerSerializer(serializers.ModelSerializer):
@@ -60,34 +59,3 @@ class PresentationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Presentation
         exclude = ('id', 'description_html', 'abstract_html', 'proposal_base')
-
-
-class SponsorLevelSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = SponsorLevel
-        fields = ('name', 'cost')
-
-
-class SponsorSerializer(serializers.ModelSerializer):
-    level = SponsorLevelSerializer()
-    absolute_url = serializers.SerializerMethodField()
-
-    def get_absolute_url(self, obj):
-        return reverse_lazy(
-            'sponsor_detail',
-            kwargs={'pk': obj.pk},
-            request=self.context['request'],
-        )
-
-    class Meta:
-        model = Sponsor
-        fields = (
-            'name',
-            'external_url',
-            'contact_name',
-            'contact_email',
-            'level',
-            'absolute_url',
-            'annotation',
-        )

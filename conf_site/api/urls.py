@@ -8,7 +8,6 @@ from . import views
 router = SimpleRouter()
 router.register(r'speaker', views.SpeakerViewSet)
 router.register(r'presentation', views.PresentationViewSet)
-router.register(r'sponsor', views.SponsorViewSet)
 
 urlpatterns = [
     re_path(r'^', include(router.urls)),

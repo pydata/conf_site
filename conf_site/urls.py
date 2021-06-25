@@ -24,7 +24,6 @@ from conf_site.speakers.views import (
     SpeakerListView,
     SpeakerRedirectView,
 )
-from conf_site.sponsorship.views import ExportSponsorsView
 
 
 WIKI_SLUG = r"(([\w-]{2,})(/[\w-]{2,})*)"
@@ -60,12 +59,6 @@ urlpatterns += [
     ),
     re_path(r"^speaker/", include("symposion.speakers.urls")),
     re_path(r"^proposals/", include("conf_site.proposals.urls")),
-    re_path(
-        r"^sponsors/export/$",
-        staff_member_required(ExportSponsorsView.as_view()),
-        name="sponsor_export",
-    ),
-    re_path(r"^sponsors/", include("symposion.sponsorship.urls")),
     re_path(r"^reviews/", include("conf_site.reviews.urls")),
     path(
         "schedule/presentation/<int:pk>/",
