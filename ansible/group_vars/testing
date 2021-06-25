@@ -8,7 +8,7 @@ django_database: "{{ conference_identifier }}"
 email_host_user: example@example.com
 environment_type: testing
 google_analytics_id: UA-00000-0
-project_root: ".."
+project_root: "/__w/conf_site/conf_site"
 subdirectory: /{{ conference_identifier }}
 time_format: P
 timezone: US/Eastern
