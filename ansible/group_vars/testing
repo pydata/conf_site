@@ -6,12 +6,13 @@ date_format: "l F j"
 default_email: example@example.com
 django_database: "{{ conference_identifier }}"
 email_host_user: example@example.com
-environment_type: production
+environment_type: testing
 google_analytics_id: UA-00000-0
-project_root: ".."
+project_root: "/__w/conf_site/conf_site"
 subdirectory: /{{ conference_identifier }}
 time_format: P
 timezone: US/Eastern
+virtualenv_root: "~/venv/"
 website_domain: localhost
 website_port: 8080
 website_url: http://{{ website_domain }}:{{ website_port }}{{ subdirectory }}

@@ -7,6 +7,7 @@ on:
       - "requirements/**"
       - "symposion/**"
 env:
+  ANSIBLE_ASK_VAULT_PASS: False
   CC_TEST_REPORTER_ID: cf5093a40c8088ad26a5aca3e968037f90076dcbc825e5d10187dc3c81166e1a
   DJANGO_SETTINGS_MODULE: "conf_site.settings.testing"
   ENVIRONMENT: testing
@@ -22,7 +23,7 @@ jobs:
       - name: Virtualenv caching
         uses: actions/cache@v2.1.6
         with:
-          path: ~/venv
+          path: ~/venv/current
           key: ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
             ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
@@ -31,9 +32,11 @@ jobs:
       - name: Install libimagequant-dev
         uses: ./.github/actions/install-libimagequant-dev
       - name: Install Python dependencies
-        uses: mobolic/install-python-dependencies@v0.1.0
+        uses: mobolic/install-python-dependencies@v0.2.0
+        with:
+          virtualenv-location: "~/venv/current"
       - name: Run flake8 linting
-        run: ~/venv/bin/flake8 --exclude=ansible,docs,migrations .
+        run: ~/venv/current/bin/flake8 --exclude=ansible,docs,migrations .
   python-test:
     name: Test Python code
     needs: python-lint
@@ -63,7 +66,7 @@ jobs:
       - name: Virtualenv caching
         uses: actions/cache@v2.1.6
         with:
-          path: ~/venv
+          path: ~/venv/current
           key: ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
             ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
@@ -72,14 +75,18 @@ jobs:
       - name: Install libimagequant-dev
         uses: ./.github/actions/install-libimagequant-dev
       - name: Install Python dependencies
-        uses: mobolic/install-python-dependencies@v0.1.0
+        uses: mobolic/install-python-dependencies@v0.2.0
+        with:
+          virtualenv-location: "~/venv/current"
       - name: Check for missing database migrations
-        run: ~/venv/bin/python3 ./manage.py makemigrations --check
+        run: ~/venv/current/bin/python3 ./manage.py makemigrations --check
       - name: Migrate the database
-        run: ~/venv/bin/python3 ./manage.py migrate --noinput
+        run: ~/venv/current/bin/python3 ./manage.py migrate --noinput
+      - name: Validate and load fixtures
+        run: ~/venv/current/bin/ansible-playbook -i ansible/hosts -l testing --connection=local --tags fixtures ansible/testing.yml
       - name: Collect static files
         run: |
-             ~/venv/bin/python3 ./manage.py collectstatic --noinput
+             ~/venv/current/bin/python3 ./manage.py collectstatic --noinput
       - name: Download CodeClimate test reporter utility
         run: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -87,6 +94,6 @@ jobs:
       - name: Run automated tests
         run: |
             ./cc-test-reporter before-build
-            ~/venv/bin/coverage run --source='.' manage.py test --noinput
-            ~/venv/bin/coverage xml
+            ~/venv/current/bin/coverage run --source='.' manage.py test --noinput
+            ~/venv/current/bin/coverage xml
             ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
