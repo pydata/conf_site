@@ -135,14 +135,8 @@ steps are not necessary to be run manually for PyData conference sites.
 - **Create additional Django administrator accounts if necessary.** The
   easiest way to do this is to login with the master admin account
   (using the admin email address defined in `ansible\group_vars\all` and
-  the admin password defined in the Ansible Vault file) in the Wagtail admin
-  (in the `cms` subfolder of the conference site's URL) and `adding users`_.
-- **Create a new root page** using the HomePage model
-  (see :ref:`wagtail-page-types`) to replace the default "Welcome to Wagtail"
-  page.
-- **Update the default Wagtail Site** with the correct name and the
-  new root page. This can be found in the "Settings" menu.
-- **Delete or unpublish the "Welcome to Wagtail" page**.
+  the admin password defined in the Ansible Vault file) in the Django admin
+  (in the `cms` subfolder of the conference site's URL) and adding users.
 - **Load fixtures to help set up sites.** While the data in these fixtures
   are specific to PyData sites, it is a good idea for other users to edit
   and run them as well to `avoid possible issues`_. If not using Ansible,
@@ -155,19 +149,10 @@ steps are not necessary to be run manually for PyData conference sites.
     source ~/.virtualenvs/current/bin/activate
     DJANGO_SETTINGS_MODULE="conf_site.settings.production" ./manage.py loaddata fixtures/*
 
-- **Add a banner image** (required), appropriate text sections (recommended),
-  and ticketing website URL (optional, but enables ticketing links
-  in the main menu and footer) to the homepage.
-- **Manually create any additional pages**.
-- **Add a main menu** in the "Settings" menu of the Wagtail admin. Only
-  top-level menu items need to be added. *All pages that need to appear in the
-  menu must have the "Show in menus" settings enabled* (found on the
-  "Promote" tab when editing a page).
 - **Update the conference name in the Django admin**.
 - **Change the name of the Django Site in the Django admin**.
 - **Open the Symposion proposal sections** if the call for proposals is
   already open. Change "Closed" to "No" in
   `admin/symposion_proposals/proposalsection/`.
 
-.. _adding users: http://docs.wagtail.io/en/v1.9/editor_manual/administrator_tasks/managing_users.html
 .. _avoid possible issues: https://github.com/pinax/symposion/pull/13

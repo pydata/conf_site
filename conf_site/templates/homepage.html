@@ -1,15 +1,10 @@
 {% extends "base.html" %}
-{% load sponsorship_tags wagtailcore_tags wagtailimages_tags %}
+{% load sponsorship_tags %}
 {% load static %}
 
 {% block title %}{% endblock %}
 
 {% block body %}
-<div id="sli" class="text-center">
-    <div class="bg-xc col-xs-12" style="background: url({% image page.background_image original as background %}{{ background.url }}) no-repeat fixed center top">
-            {% if page.image_credit %}<div class="image-credit">{{ page.image_credit|safe }}</div>{% endif %}
-    </div>
-</div>
 <section>
     <div id="sec1x-con">
         <div class="sec1x-elem sec1x-before"></div>

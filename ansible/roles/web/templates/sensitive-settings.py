@@ -98,4 +98,3 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     },{% endif %}
 }
-WAGTAIL_SITE_NAME = "{{ conference_name }}"
