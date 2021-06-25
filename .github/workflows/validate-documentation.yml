@@ -16,7 +16,7 @@ jobs:
       - name: Virtualenv caching
         uses: actions/cache@v2.1.6
         with:
-          path: ~/venv
+          path: ~/venv/current
           key: ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
             ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
@@ -25,6 +25,8 @@ jobs:
       - name: Install libimagequant-dev
         uses: ./.github/actions/install-libimagequant-dev
       - name: Install Python dependencies
-        uses: mobolic/install-python-dependencies@v0.1.0
+        uses: mobolic/install-python-dependencies@v0.2.0
+        with:
+          virtualenv-location: "~/venv/current"
       - name: Run rstcheck
-        run: ~/venv/bin/rstcheck --report warning docs/source/*.rst
+        run: ~/venv/current/bin/rstcheck --report warning docs/source/*.rst

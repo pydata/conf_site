@@ -12,6 +12,7 @@ project_root: "/__w/conf_site/conf_site"
 subdirectory: /{{ conference_identifier }}
 time_format: P
 timezone: US/Eastern
+virtualenv_root: "~/venv/"
 website_domain: localhost
 website_port: 8080
 website_url: http://{{ website_domain }}:{{ website_port }}{{ subdirectory }}

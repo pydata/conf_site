@@ -20,7 +20,7 @@ jobs:
       - name: Virtualenv caching
         uses: actions/cache@v2.1.6
         with:
-          path: ~/venv
+          path: ~/venv/current
           key: ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
             ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
@@ -29,10 +29,12 @@ jobs:
       - name: Install libimagequant-dev
         uses: ./.github/actions/install-libimagequant-dev
       - name: Install Python dependencies
-        uses: mobolic/install-python-dependencies@v0.1.0
+        uses: mobolic/install-python-dependencies@v0.2.0
+        with:
+          virtualenv-location: "~/venv/current"
       - name: Run ansible-lint
         run: |
-          bash -c "source ~/venv/bin/activate &&
+          bash -c "source ~/venv/current/bin/activate &&
           ansible-lint ansible/roles/common ansible/roles/db ansible/roles/web"
   ansible-test:
     name: Test Ansible playbooks
@@ -45,7 +47,7 @@ jobs:
       - name: Virtualenv caching
         uses: actions/cache@v2.1.6
         with:
-          path: ~/venv
+          path: ~/venv/current
           key: ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
             ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
@@ -54,6 +56,8 @@ jobs:
       - name: Install libimagequant-dev
         uses: ./.github/actions/install-libimagequant-dev
       - name: Install Python dependencies
-        uses: mobolic/install-python-dependencies@v0.1.0
+        uses: mobolic/install-python-dependencies@v0.2.0
+        with:
+          virtualenv-location: "~/venv/current"
       - name: Run Ansible testing tasks
-        run: ~/venv/bin/ansible-playbook -i ansible/hosts -l testing --connection=local --tags testing ansible/testing.yml
+        run: ~/venv/current/bin/ansible-playbook -i ansible/hosts -l testing --connection=local --tags testing ansible/testing.yml
