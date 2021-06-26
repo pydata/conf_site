@@ -19,7 +19,6 @@ libraries/packages should also be installed.
 - python3-pip
 - python3-virtualenv
 - libffi-dev
-- libimagequant-dev
 - libjpeg-dev
 - libssl-dev
 - libtiff-dev
