@@ -10,6 +10,7 @@ def core_context(self):
     context = {}
     context["conference_title"] = Site.objects.get_current().name
     context["google_analytics_id"] = settings.GOOGLE_ANALYTICS_PROPERTY_ID
+    context["logo_url"] = settings.LOGO_URL
     context["sentry_public_dsn"] = settings.SENTRY_PUBLIC_DSN
     return context
 

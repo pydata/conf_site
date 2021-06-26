@@ -8,6 +8,7 @@ django_database: "{{ conference_identifier }}"
 email_host_user: example@example.com
 environment_type: development
 google_analytics_id: UA-00000-0
+logo_url: "https://pydata.org/wp-content/uploads/2019/04/cropped-pydata-favicon-512-270x270.png"
 subdirectory: ""
 time_format: P
 timezone: US/Eastern

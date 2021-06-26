@@ -8,6 +8,7 @@ django_database: "{{ conference_identifier }}"
 github_oauth_client_id: ""
 github_oauth_client_secret: ""
 google_analytics_id: UA-41850464-X
+logo_url: ""
 postmark_api_token: ""
 ssl_enabled: false
 subdirectory: /{{ conference_identifier }}
