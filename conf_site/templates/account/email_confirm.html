@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block title %} - {% translate "Confirm Email" %}{% endblock %}
+{% block title %}{% translate "Confirm Email" %} | {% endblock %}
 
 {% block body %}
 <div class="container">
@@ -14,7 +14,7 @@
                     <fieldset>
                         {% csrf_token %}
                         <p>{% blocktranslate with email=confirmation.email_address.email %}Confirm email address <b>{{ email }}</b>?{% endblocktranslate %}</p>
-                        <button type="submit" class="btn btn-primary">{% translate "Confirm" %}</button>
+                        <button type="submit" class="btn btn-base-color">{% translate "Confirm" %}</button>
                     </fieldset>
                 </form>
             {% else %}

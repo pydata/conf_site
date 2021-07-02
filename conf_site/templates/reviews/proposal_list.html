@@ -2,7 +2,7 @@
 {% load crispy_forms_tags i18n review_tags %}
 {% load static %}
 
-{% block title %} - Reviewing {{ proposal_category }} {{ proposal_kind }}s{% endblock %}
+{% block title %}Reviewing {{ proposal_category }} {{ proposal_kind }}s | {% endblock %}
 
 {% block body %}
 <div class="container">
@@ -85,7 +85,7 @@
     <p><em>This will send an email message to all selected proposals.</em></p>
     {{ notification_form|crispy }}
     <div class="btn-group" role="group" style="margin-bottom: 1rem">
-      <button type="submit" class="btn btn-primary" name="send_notification" value="EHLO">
+      <button type="submit" class="btn btn-base-color" name="send_notification" value="EHLO">
         <i class="fa fa-envelope" aria-hidden="true"></i> Send Email Message
       </button>
     </div>

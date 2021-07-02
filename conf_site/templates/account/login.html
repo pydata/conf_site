@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block title %} - {% translate "Login" %}{% endblock %}
+{% block title %}{% translate "Login" %} | {% endblock %}
 
 {% block page_header %}{% translate "Login" %}{% endblock %}
 
@@ -16,7 +16,7 @@
             {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
-            <button type="submit" class="btn btn-primary">{% translate "Log in" %}</button>
+            <button type="submit" class="btn btn-base-color">{% translate "Log in" %}</button>
             <a href="{% url 'account_reset_password' %}" class="btn btn-link">{% translate "Forgot your password?" %}</a>
             {% include "_social_buttons.html" %}
         </form>

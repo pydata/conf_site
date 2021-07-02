@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block title %} - {% translate "Sign up" %}{% endblock %}
+{% block title %}{% translate "Sign up" %} | {% endblock %}
 
 {% block body %}
 <div class="container">
@@ -10,7 +10,7 @@
     <p>{% blocktranslate %}If you have signup code you can enter it below.{% endblocktranslate %}</p>
     <form method="get" action="">
         <div><input type="text" name="code" placeholder="Your signup code..." /></div>
-        <div><input type="submit" class="btn btn-primary"></div>
+        <div><input type="submit" class="btn btn-base-color"></div>
     </form>
 </div>
 {% endblock %}

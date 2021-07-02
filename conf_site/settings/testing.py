@@ -21,6 +21,7 @@ DATABASES = {
 }
 
 GOOGLE_ANALYTICS_PROPERTY_ID = "UA-000000-0"
+LOGO_URL = ""
 SECRET_KEY = "foobar"
 SENTRY_PUBLIC_DSN = False
 SETTINGS_EXPORT = [
@@ -29,3 +30,4 @@ SETTINGS_EXPORT = [
 ]
 STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.StaticFilesStorage")
+WEBSITE_URL = ""

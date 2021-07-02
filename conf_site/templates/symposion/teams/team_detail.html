@@ -2,7 +2,7 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %} - {{ team.name }}{% endblock %}
+{% block title %}{{ team.name }} | {% endblock %}
 
 {% block body_outer %}
 <div class="container">
@@ -13,7 +13,7 @@
     {% if can_join %}
         <form style="display:inline" method="post" action="{% url "team_join" team.slug %}">
             {% csrf_token %}
-            <input type="submit" class="btn btn-primary" value="join">
+            <input type="submit" class="btn btn-base-color" value="join">
         </form>
     {% endif %}
 
@@ -27,7 +27,7 @@
     {% if can_apply %}
         <form style="display:inline" method="post" action="{% url "team_apply" team.slug %}">
             {% csrf_token %}
-            <input type="submit" class="btn btn-primary" value="apply">
+            <input type="submit" class="btn btn-base-color" value="apply">
         </form>
     {% endif %}
     </div>
@@ -95,7 +95,7 @@
                 <legend>Invite User to Team</legend>
                 {{ invite_form|crispy }}
                 <div class="form-actions">
-                    <input class="btn btn-primary" type="submit" value="Invite" />
+                    <input class="btn btn-base-color" type="submit" value="Invite" />
                 </div>
             </form>
         {% endif %}

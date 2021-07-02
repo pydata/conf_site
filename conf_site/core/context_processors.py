@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.utils import timezone
 
 import pytz
@@ -7,8 +8,11 @@ import pytz
 def core_context(self):
     """Context processor for elements appearing on every page."""
     context = {}
+    context["conference_title"] = Site.objects.get_current().name
     context["google_analytics_id"] = settings.GOOGLE_ANALYTICS_PROPERTY_ID
+    context["logo_url"] = settings.LOGO_URL
     context["sentry_public_dsn"] = settings.SENTRY_PUBLIC_DSN
+    context["website_url"] = settings.WEBSITE_URL
     return context
 
 
