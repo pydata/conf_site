@@ -21,73 +21,7 @@
     <link rel='stylesheet' id='ova-dione-default-css' href='{{ website_url }}/wp-content/themes/ova-dione/assets/css/default.min.css' type='text/css' media='all'>
     <link rel='stylesheet' id='parent-stylesheet-css' href='{{ website_url }}/wp-content/themes/ova-dione/style.css' type='text/css' media='all'>
     <link rel='stylesheet' id='ova-dione-style-css' href='{{ website_url }}/wp-content/themes/ova-dione-child/style.css' type='text/css' media='all'>
-    <style id='ova-dione-style-inline-css' type='text/css'>
-        body{
-          font-family: Roboto, sans-serif;
-        }
-        .font-family-base,.ova_tab .vc_toggle_active .vc_toggle_title h4 {
-            font-family: Roboto, sans-serif !important;
-        }
-        .font-family-alt,.btn,.mfp-title,.mfp-counter, .ovatheme_header_default .dropdown-menu>.active>a, .header_v1 .dropdown-menu>.active>a{
-             font-family: Montserrat, sans-serif !important;
-        }
-        .title-sideline-base-color:before {
-            background-color: #4c9cb4;
-        }
-        .title-strikethrough-base-color:before {
-            background-color: #4c9cb4;
-        }
-        .text-base-color {
-            color: #4c9cb4 !important;
-        }
-        .text-hover-base-color:hover,
-        .text-hover-base-color:focus {
-            color: #4c9cb4 !important;
-        }
-        .bg-base-color {
-            background-color: #4c9cb4 !important;
-        }
-        .bg-hover-base-color:hover {
-            background-color: #4c9cb4 !important;
-        }
-        .border-base-color {
-            border-color: #4c9cb4 !important;
-        }
-        .btn.btn-base-color {
-            background-color: #4c9cb4;
-        }
-        .btn.btn-base-color.btn-hover-transparent:hover {
-            border-color: #4c9cb4;
-            color: #4c9cb4;
-        }
-        .btn.btn-outline-base-color {
-            border-color: #4c9cb4;
-            color: #4c9cb4;
-        }
-        .btn.btn-outline-base-color:hover,
-        .btn.btn-outline-base-color:focus {
-            background-color: #4c9cb4;
-        }
-        .btn.btn-outline-base-color.btn-hover-transparent:hover,
-        .btn.btn-outline-base-color.btn-hover-transparent:focus {
-            color: #4c9cb4;
-        }
-        .panel-group .panel.active .panel-heading {
-            background-color: #4c9cb4;
-        }
-        .timeline-item.highlight:before {
-            background-color: #4c9cb4;
-            border: #4c9cb4;
-        }
-        .navbar.navbar-white.shrink .navbar-nav > li > a.active,
-        .navbar .navbar-nav > li > a.active,
-        .navbar .navbar-nav > li.active>a{
-            color: #4c9cb4;
-        }
-        .header_v1 .dropdown-menu>.active>a, .header_v1  .dropdown-menu>.active>a:hover, .header_v1  .dropdown-menu>.active>a:focus{
-            color: #4c9cb4;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" type="text/css" media="all">
     <link rel='stylesheet' id='js_composer_front-css' href='{{ website_url }}/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=6.4.1' type='text/css' media='all'>
     <link rel='stylesheet' id='dione_plugin-css' href='{{ website_url }}/wp-content/plugins/ova-dione//dione-plugin.css' type='text/css' media='all'>
     <script type='text/javascript' src='{{ website_url }}/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=7.4.4' id='wp-polyfill-js'></script>
@@ -116,42 +50,6 @@
     <script type='text/javascript' src='{{ website_url }}/wp-content/themes/ova-dione/assets/js/main.js' id='main.js-js'></script>
     <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
     <link rel="icon" href="{{ logo_url }}">
-    <style type="text/css" id="wp-custom-css">
-        .page:not(.home) nav {
-            background-color: #000;
-        }
-        .eventbrite-btn {
-            font-family: Montserrat, sans-serif;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .patter_bg {
-            pointer-events: none;
-        }
-        a:link { color: #4c9cb4; }
-        a:hover { color: #f08c44; }
-        /*************************************/
-        .btn.btn-default {
-            border-color: #ccc;
-        }
-        .btn.btn-info:hover {
-            background-color: #1b6d85;
-        }
-        .btn.btn-success:hover {
-            background-color: #398439;
-        }
-        .btn.btn-warning:hover {
-            background-color: #ec971f;
-        }
-        .btn.btn-danger:hover {
-            background-color: #ac2925;
-        }
-        label.formfield-required:after {
-            color: red;
-            content:" *";
-        }
-    </style>
     {% block extra_head %}{% endblock %}
     {% if not request.user.is_superuser %}
     <script>
