@@ -2,7 +2,7 @@ admin_email: admin@pydata.org
 ansible_python_interpreter: /usr/bin/python3
 application_owner: mobolic
 cloudflare_enabled: true
-content_site_uri: ""
+content_site: ""
 database_host: localhost
 default_email: noreply@pydata.org
 email_host_user: noreply@pydata.org
