@@ -2,3 +2,7 @@ proxy_http_version 1.1;
 proxy_set_header Host $host;
 proxy_set_header SCRIPT_NAME "{{ subdirectory }}";
 proxy_set_header X-Forwarded-Host $server_name{% if environment_type == "development" %}:{{ website_port }}{% endif %};
+{% if cloudflare_enabled == true %}
+proxy_set_header X-Real-IP $http_cf_connecting_ip;
+proxy_set_header X-Forwarded-For $http_cf_connecting_ip;
+{% endif %}
