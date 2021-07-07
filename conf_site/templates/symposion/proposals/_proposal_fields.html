@@ -43,10 +43,10 @@
         {% endif %}
     {% endif %}
 
-    <dt>{% translate "Description" %}</dt>
+    <dt>{% translate "Brief Summary" %}</dt>
     <dd>{{ proposal.description }}&nbsp;</dd>
 
-    <dt>{% translate "Abstract" %}</dt>
+    <dt>{% translate "Description" %}</dt>
     <dd>{{ proposal.abstract_html|safe }}&nbsp;</dd>
 
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
