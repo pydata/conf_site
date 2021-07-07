@@ -150,6 +150,7 @@ INSTALLED_APPS = [
     "symposion.schedule",
     "symposion.speakers",
     "taggit",
+    "timezone_field",
 
     "conf_site",
     "conf_site.core",
