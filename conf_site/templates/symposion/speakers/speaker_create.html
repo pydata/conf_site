@@ -1,22 +1,7 @@
-{% extends "base.html" %}
+{% extends "symposion/speakers/speaker_edit.html" %}
 
-{% load crispy_forms_tags i18n %}
+{% load i18n %}
 
 {% block title %}{% translate "Create Speaker Profile" %} | {% endblock %}
 
-{% block body %}
-<div class="container">
-    <h1>{% translate "Create Speaker Profile" %}</h1>
-    <form method="POST" action="" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset>
-            <legend>An asterisk (<span style="color:red;font-weight:bold">*</span>) indicates a required field.</legend>
-            {{ speaker_form|crispy }}
-        </fieldset>
-        <div class="form-actions">
-            <input class="btn btn-base-color" type="submit" value="Save" />
-            <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
-        </div>
-    </form>
-</div>
-{% endblock %}
+{% block speaker_block %}{% translate "Create Speaker Profile" %}{% endblock %}
