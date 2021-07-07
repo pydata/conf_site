@@ -51,6 +51,9 @@
     <dt>{% translate "Brief Summary" %}</dt>
     <dd>{{ proposal.description }}&nbsp;</dd>
 
+    <dt>{% translate "Outline" %}</dt>
+    <dd>{{ proposal.outline_html|safe }}&nbsp;</dd>
+
     <dt>{% translate "Description" %}</dt>
     <dd>{{ proposal.abstract_html|safe }}&nbsp;</dd>
 

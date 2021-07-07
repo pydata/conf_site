@@ -9,6 +9,7 @@ from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
 
 from conf_site.reviews.models import ProposalVote
+from symposion.markdown_parser import parse
 
 
 class ProposalKeyword(TagBase):
@@ -99,6 +100,18 @@ class Proposal(ProposalBase):
             "the participant have some knowledge in:"
         ),
     )
+
+    outline = models.TextField(
+        "Brief Bullet Point Outline",
+        blank=True,
+        help_text=(
+            "Brief outline. Will be made public "
+            "if your proposal is accepted. Edit using "
+            "<a href='https://daringfireball.net/projects/markdown/basics' "
+            "target='_blank'>Markdown</a>."
+        ),
+    )
+    outline_html = models.TextField(blank=True, editable=False)
 
     slides_url = models.URLField(
         blank=True,
@@ -209,6 +222,9 @@ class Proposal(ProposalBase):
                 self.presentation.additional_speakers.add(speaker)
             self.presentation.section = self.section
             self.presentation.save()
+
+        # HTML-ize outline field.
+        self.outline_html = parse(self.outline)
 
         return super(Proposal, self).save(*args, **kwargs)
 
