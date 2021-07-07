@@ -15,6 +15,8 @@ class SpeakerForm(forms.ModelForm):
             "photo",
             "github_username",
             "twitter_username",
+            "linkedin_url",
+            "personal_url",
         ]
 
     def clean_twitter_username(self):
