@@ -8,6 +8,8 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
 from autoslug.fields import AutoSlugField
+from timezone_field import TimeZoneField
+
 from symposion.markdown_parser import parse
 
 
@@ -52,6 +54,7 @@ class Speaker(models.Model):
         verbose_name=_("Biography"),
     )
     biography_html = models.TextField(blank=True)
+    time_zone = TimeZoneField(verbose_name=_("Timezone"))
     photo = models.ImageField(
         upload_to="speaker_photos",
         blank=True,

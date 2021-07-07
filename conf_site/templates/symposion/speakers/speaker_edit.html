@@ -20,3 +20,11 @@
     </form>
 </div>
 {% endblock %}
+
+{% block extra_script %}
+<script>
+    jQuery(document).ready(function() {
+        jQuery("select#id_time_zone").select2();
+    });
+</script>
+{% endblock %}
