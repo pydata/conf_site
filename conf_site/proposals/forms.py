@@ -43,6 +43,11 @@ class ProposalForm(forms.ModelForm):
             "abstract",
             "first_time_at_pydata",
             "affiliation",
+            "under_represented_group",
+            "under_represented_details",
+            "under_represented_other",
+            "accessibility_needs",
+            "sponsoring_interest",
             "additional_notes",
             "recording_release",
             "phone_number",
@@ -51,6 +56,9 @@ class ProposalForm(forms.ModelForm):
             "official_keywords",
             "user_keywords",
         ]
+        widgets = {
+            "under_represented_details": forms.CheckboxSelectMultiple(),
+        }
 
     def __init__(self, *args, **kwargs):
         super(ProposalForm, self).__init__(*args, **kwargs)
