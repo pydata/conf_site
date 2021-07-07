@@ -27,14 +27,14 @@
 
 {% block extra_script %}
 <script>
-function checkbox_display(){
+function under_represented_checkbox_display(){
     if( jQuery("#id_under_represented_group").val() == "Y"){
         jQuery("div#div_id_under_represented_details").show();
     } else {
         jQuery("div#div_id_under_represented_details").hide();
     }
 };
-function other_field_display(){
+function under_represented_other_field_display(){
     if( jQuery("#id_under_represented_details_8").is(":checked") ){
         jQuery("div#div_id_under_represented_other").show();
     } else {
@@ -42,14 +42,14 @@ function other_field_display(){
     }
 };
 jQuery(document).ready(function(){
-    checkbox_display();
-    other_field_display();
+    under_represented_checkbox_display();
+    under_represented_other_field_display();
 });
 jQuery("#id_under_represented_group").change(function(){
-    checkbox_display();
+    under_represented_checkbox_display();
 });
 jQuery("#id_under_represented_details_8").change(function(){
-    other_field_display();
+    under_represented_other_field_display();
 });
 </script>
 {% endblock %}
