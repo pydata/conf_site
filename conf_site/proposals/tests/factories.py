@@ -13,7 +13,9 @@ class ProposalFactory(factory.django.DjangoModelFactory):
     abstract = factory.Faker("paragraph")
     kind = factory.SubFactory(ProposalKindFactory)
     speaker = factory.SubFactory(SpeakerFactory)
-    audience_level = factory.Faker("pyint")
+    prior_knowledge = factory.Faker(
+        "pystr_format", string_format="?", letters="NY"
+    )
 
     class Meta:
         model = Proposal

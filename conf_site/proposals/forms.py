@@ -38,7 +38,8 @@ class ProposalForm(forms.ModelForm):
         fields = [
             "kind",
             "title",
-            "audience_level",
+            "prior_knowledge",
+            "prior_knowledge_details",
             "description",
             "abstract",
             "first_time_at_pydata",

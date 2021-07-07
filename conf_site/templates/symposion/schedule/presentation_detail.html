@@ -20,8 +20,13 @@
 
     <h4>{% for speaker in presentation.speakers %}{% if speaker.name %}{% if not forloop.first %}, {% endif %}<a href="{% url "speaker_profile" speaker.pk speaker.slug %}">{{ speaker }}</a>{% endif %}{% endfor %}</h4>
     <dl class="dl-horizontal">
-        <dt>Audience level:</dt>
-        <dd style="margin-bottom: 0;">{{ presentation.proposal.get_audience_level_display }}</dd>
+        <dt>Prior knowledge:</dt>
+        <dd style="margin-bottom: 0;">
+            {{ presentation.proposal.get_prior_knowledge_display }}
+            {% if presentation.proposal.prior_knowledge == "Y" %}
+            <br>{{ presentation.proposal.prior_knowledge_details }}
+            {% endif %}
+        </dd>
     </dl>
 
     <h3>Summary</h3>

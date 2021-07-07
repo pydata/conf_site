@@ -19,7 +19,7 @@ class ExportProposalsViewTestCase(StaffOnlyCsvViewTestCase):
             self.assertContains(response, proposal.speaker.name)
             self.assertContains(response, proposal.kind.name)
             self.assertContains(
-                response, proposal.get_audience_level_display()
+                response, proposal.get_prior_knowledge_display()
             )
             self.assertContains(response, proposal.date_created)
             self.assertContains(response, proposal.date_last_modified)
