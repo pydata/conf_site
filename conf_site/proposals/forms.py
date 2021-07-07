@@ -41,6 +41,7 @@ class ProposalForm(forms.ModelForm):
             "prior_knowledge",
             "prior_knowledge_details",
             "description",
+            "outline",
             "abstract",
             "first_time_at_pydata",
             "affiliation",
