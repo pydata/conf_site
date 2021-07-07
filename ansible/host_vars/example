@@ -1,7 +1,7 @@
 ansible_ssh_host: 127.0.0.1
 conference_identifier: metropolis2000
 conference_name: "PyData Metropolis 2000"
-content_site_uri: ""
+content_site: ""
 database_user: "{{ conference_identifier }}"
 date_format: "l F j"
 django_database: "{{ conference_identifier }}"
