@@ -24,3 +24,32 @@
     </form>
 </div>
 {% endblock %}
+
+{% block extra_script %}
+<script>
+function checkbox_display(){
+    if( jQuery("#id_under_represented_group").val() == "Y"){
+        jQuery("div#div_id_under_represented_details").show();
+    } else {
+        jQuery("div#div_id_under_represented_details").hide();
+    }
+};
+function other_field_display(){
+    if( jQuery("#id_under_represented_details_8").is(":checked") ){
+        jQuery("div#div_id_under_represented_other").show();
+    } else {
+        jQuery("div#div_id_under_represented_other").hide();
+    }
+};
+jQuery(document).ready(function(){
+    checkbox_display();
+    other_field_display();
+});
+jQuery("#id_under_represented_group").change(function(){
+    checkbox_display();
+});
+jQuery("#id_under_represented_details_8").change(function(){
+    other_field_display();
+});
+</script>
+{% endblock %}

@@ -3,6 +3,7 @@ from django.core.cache import cache
 from django.db import models
 
 from constance import config
+from multiselectfield import MultiSelectField
 from symposion.proposals.models import ProposalBase, ProposalSection
 from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
@@ -52,6 +53,16 @@ class Proposal(ProposalBase):
     # https://en.wikipedia.org/wiki/Bartleby,_the_Scrivener
     YES_NO_OTHER_BARTLEBY = "O"
 
+    UNDER_REPRESENTED_ETHNICITY = "R"
+    UNDER_REPRESENTED_AGE = "A"
+    UNDER_REPRESENTED_GENDER = "G"
+    UNDER_REPRESENTED_SEXUAL_ORIENTATION = "S"
+    UNDER_REPRESENTED_DISABILITY = "D"
+    UNDER_REPRESENTED_SOCIOECON = "C"
+    UNDER_REPRESENTED_EDUCATION = "E"
+    UNDER_REPRESENTED_OPT_OUT = "O"
+    UNDER_REPRESENTED_OTHER = "X"
+
     AUDIENCE_LEVELS = [
         (AUDIENCE_LEVEL_NOVICE, "Novice"),
         (AUDIENCE_LEVEL_INTERMEDIATE, "Intermediate"),
@@ -62,6 +73,22 @@ class Proposal(ProposalBase):
         (YES_NO_OTHER_YES, "Yes"),
         (YES_NO_OTHER_NO, "No"),
         (YES_NO_OTHER_BARTLEBY, "Prefer not to say"),
+    )
+    YES_NO_SPONSOR_ANSWERS = (
+        ("", "----"),
+        (YES_NO_OTHER_YES, "Yes, I can make an introduction"),
+        (YES_NO_OTHER_NO, "No"),
+    )
+    UNDER_REPRESENTED_DETAILED_ANSWERS = (
+        (UNDER_REPRESENTED_GENDER, "Gender identity"),
+        (UNDER_REPRESENTED_SEXUAL_ORIENTATION, "Sexual orientation"),
+        (UNDER_REPRESENTED_ETHNICITY, "Race or ethnicity"),
+        (UNDER_REPRESENTED_AGE, "Age"),
+        (UNDER_REPRESENTED_EDUCATION, "Educational background"),
+        (UNDER_REPRESENTED_SOCIOECON, "Socioeconomic status or background"),
+        (UNDER_REPRESENTED_DISABILITY, "Disability status"),
+        (UNDER_REPRESENTED_OPT_OUT, "I decline to answer"),
+        (UNDER_REPRESENTED_OTHER, "Other (please specify)"),
     )
 
     audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
@@ -99,6 +126,38 @@ class Proposal(ProposalBase):
                   "to the conference organizers to record, edit, and release "
                   "audio and/or video of your presentation. If you do not "
                   "agree to this, please uncheck this box."
+    )
+
+    accessibility_needs = models.CharField(
+        "Do you have specific accessibility needs at the conference?",
+        blank=True,
+        max_length=1083,
+    )
+    under_represented_group = models.CharField(
+        (
+            "Do you identify as a member of an under-represented group "
+            "in computing?"
+        ),
+        choices=YES_NO_OTHER_ANSWERS,
+        default="",
+        max_length=1,
+    )
+    under_represented_details = MultiSelectField(
+        "I identify as a member of the following underrepresented group(s):",
+        blank=True,
+        choices=UNDER_REPRESENTED_DETAILED_ANSWERS,
+        max_choices=len(UNDER_REPRESENTED_DETAILED_ANSWERS),
+    )
+    # Text for an prospoal submitter to input additional details about
+    # their under represented dimensions.
+    under_represented_other = models.CharField(
+        "", blank=True, default="", max_length=200
+    )
+    sponsoring_interest = models.CharField(
+        "Would your company be interested in sponsoring the event?",
+        choices=YES_NO_SPONSOR_ANSWERS,
+        default="",
+        max_length=1,
     )
 
     editor_keywords = TaggableManager(
