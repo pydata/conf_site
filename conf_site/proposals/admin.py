@@ -33,7 +33,7 @@ class ProposalAdmin(admin.ModelAdmin):
         'title',
         'speaker',
         'kind',
-        'audience_level',
+        'prior_knowledge',
         'cancelled',
         "date_created",
         "date_last_modified",
@@ -41,7 +41,7 @@ class ProposalAdmin(admin.ModelAdmin):
     list_display_links = ("title",)
     list_filter = (
         'kind',
-        'audience_level',
+        'prior_knowledge',
         'cancelled',
         'recording_release',
     )

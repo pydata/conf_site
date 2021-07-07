@@ -27,6 +27,13 @@
 
 {% block extra_script %}
 <script>
+function prior_knowledge_details_display(){
+    if( jQuery("#id_prior_knowledge").val() == "Y"){
+        jQuery("div#div_id_prior_knowledge_details").show();
+    } else {
+        jQuery("div#div_id_prior_knowledge_details").hide();
+    }
+};
 function under_represented_checkbox_display(){
     if( jQuery("#id_under_represented_group").val() == "Y"){
         jQuery("div#div_id_under_represented_details").show();
@@ -42,8 +49,12 @@ function under_represented_other_field_display(){
     }
 };
 jQuery(document).ready(function(){
+    prior_knowledge_details_display();
     under_represented_checkbox_display();
     under_represented_other_field_display();
+});
+jQuery("#id_prior_knowledge").change(function(){
+    prior_knowledge_details_display();
 });
 jQuery("#id_under_represented_group").change(function(){
     under_represented_checkbox_display();

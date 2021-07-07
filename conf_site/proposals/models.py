@@ -45,9 +45,6 @@ class UserTaggedProposal(GenericTaggedItemBase):
 
 class Proposal(ProposalBase):
 
-    AUDIENCE_LEVEL_NOVICE = 1
-    AUDIENCE_LEVEL_EXPERIENCED = 2
-    AUDIENCE_LEVEL_INTERMEDIATE = 3
     YES_NO_OTHER_YES = "Y"
     YES_NO_OTHER_NO = "N"
     # https://en.wikipedia.org/wiki/Bartleby,_the_Scrivener
@@ -63,10 +60,9 @@ class Proposal(ProposalBase):
     UNDER_REPRESENTED_OPT_OUT = "O"
     UNDER_REPRESENTED_OTHER = "X"
 
-    AUDIENCE_LEVELS = [
-        (AUDIENCE_LEVEL_NOVICE, "Novice"),
-        (AUDIENCE_LEVEL_INTERMEDIATE, "Intermediate"),
-        (AUDIENCE_LEVEL_EXPERIENCED, "Experienced"),
+    KNOWLEDGE_LEVELS = [
+        (YES_NO_OTHER_NO, "No previous knowledge expected"),
+        (YES_NO_OTHER_YES, "Previous knowledge expected"),
     ]
     YES_NO_OTHER_ANSWERS = (
         ("", "----"),
@@ -91,7 +87,18 @@ class Proposal(ProposalBase):
         (UNDER_REPRESENTED_OTHER, "Other (please specify)"),
     )
 
-    audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
+    prior_knowledge = models.CharField(
+        choices=KNOWLEDGE_LEVELS, max_length=1, verbose_name="Prior Knowledge"
+    )
+    prior_knowledge_details = models.CharField(
+        blank=True,
+        max_length=200,
+        verbose_name=(
+            "To attend the presentation, "
+            "it would be recommended that "
+            "the participant have some knowledge in:"
+        ),
+    )
 
     slides_url = models.URLField(
         blank=True,
