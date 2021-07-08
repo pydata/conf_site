@@ -169,6 +169,15 @@ class Proposal(ProposalBase):
         default="",
         max_length=1)
     affiliation = models.CharField(max_length=200)
+    content_language = models.CharField(
+        blank=True,
+        max_length=200,
+        verbose_name=(
+            "Would this content be presented "
+            "in a language other than English? "
+            "If so, please indicate here."
+        ),
+    )
 
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",

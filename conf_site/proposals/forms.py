@@ -67,6 +67,7 @@ class ProposalForm(forms.ModelForm):
             "time_zone",
             "affiliation",
             "additional_notes",
+            "content_language",
             "accessibility_needs",
             "first_time_at_pydata",
             "under_represented_group",
