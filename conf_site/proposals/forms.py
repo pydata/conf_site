@@ -63,6 +63,7 @@ class ProposalForm(forms.ModelForm):
             "recording_url",
             "tracks",
             "official_keywords",
+            "country",
             "first_time_at_pydata",
             "affiliation",
             "under_represented_group",
