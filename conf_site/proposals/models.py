@@ -79,6 +79,10 @@ class Proposal(ProposalBase):
         (YES_NO_OTHER_NO, "No previous knowledge expected"),
         (YES_NO_OTHER_YES, "Previous knowledge expected"),
     ]
+    YES_NO_BOOL_ANSWERS = (
+        (True, "Yes"),
+        (False, "No"),
+    )
     YES_NO_OTHER_ANSWERS = (
         ("", "----"),
         (YES_NO_OTHER_YES, "Yes"),
@@ -162,6 +166,20 @@ class Proposal(ProposalBase):
         default="",
         max_length=1)
     affiliation = models.CharField(max_length=200)
+
+    mentorship = models.BooleanField(
+        choices=YES_NO_BOOL_ANSWERS,
+        default=False,
+        verbose_name=(
+            "Would you like to be considered "
+            "for our speaker mentorship program?"
+        ),
+    )
+    mentoring = models.BooleanField(
+        choices=YES_NO_BOOL_ANSWERS,
+        default=False,
+        verbose_name="Would you be interested in mentoring other speakers?",
+    )
 
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
