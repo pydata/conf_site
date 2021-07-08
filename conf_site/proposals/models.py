@@ -7,6 +7,7 @@ from multiselectfield import MultiSelectField
 from symposion.proposals.models import ProposalBase, ProposalSection
 from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
+from timezone_field import TimeZoneField
 
 from conf_site.reviews.models import ProposalVote
 from symposion.markdown_parser import parse
@@ -151,6 +152,14 @@ class Proposal(ProposalBase):
 
     country = models.CharField(
         max_length=200, verbose_name="What is your country of residence?"
+    )
+    time_zone = TimeZoneField(
+        help_text=(
+            "Please mention in the additional notes "
+            "if you will have multiple speakers "
+            "presenting from different timezones"
+        ),
+        verbose_name="What is your local timezone?",
     )
 
     first_time_at_pydata = models.CharField(
