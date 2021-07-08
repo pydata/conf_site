@@ -20,6 +20,12 @@ class ProposalKeyword(TagBase):
         verbose_name_plural = "Keywords"
 
 
+class ProposalTrack(TagBase):
+    class Meta:
+        verbose_name = "Track"
+        verbose_name_plural = "Tracks"
+
+
 class EditorTaggedProposal(GenericTaggedItemBase):
     tag = models.ForeignKey(
         ProposalKeyword,
@@ -39,6 +45,14 @@ class TaggedProposal(GenericTaggedItemBase):
 class UserTaggedProposal(GenericTaggedItemBase):
     tag = models.ForeignKey(
         ProposalKeyword,
+        on_delete=models.CASCADE,
+        related_name="%(app_label)s_%(class)s_items",
+    )
+
+
+class TrackTaggedProposal(GenericTaggedItemBase):
+    tag = models.ForeignKey(
+        ProposalTrack,
         on_delete=models.CASCADE,
         related_name="%(app_label)s_%(class)s_items",
     )
@@ -186,6 +200,12 @@ class Proposal(ProposalBase):
         choices=YES_NO_SPONSOR_ANSWERS,
         default="",
         max_length=1,
+    )
+    tracks = TaggableManager(
+        blank=True,
+        related_name="track_tagged_proposals",
+        through=TrackTaggedProposal,
+        verbose_name="Tracks",
     )
 
     editor_keywords = TaggableManager(
