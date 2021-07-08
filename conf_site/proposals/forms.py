@@ -2,7 +2,7 @@ from django import forms
 
 from constance import config
 
-from .models import Proposal, ProposalKeyword
+from .models import Proposal, ProposalKeyword, ProposalTrack
 
 
 class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
@@ -29,8 +29,24 @@ class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
 class ProposalForm(forms.ModelForm):
     required_css_class = "formfield-required"
 
+    YES_NO_CHOICES = ((True, "Yes"), (False, "No"))
+    recording_online = forms.ChoiceField(
+        choices=YES_NO_CHOICES,
+        initial=False,
+        label="Is there a recording of this talk/tutorial already online?",
+        required=True,
+    )
+
+    tracks = ModelMultipleTagChoiceField(
+        label=(
+            "Please choose one or more specialized tracks, "
+            "if any, your proposal would fit into"
+        ),
+        required=False,
+        queryset=ProposalTrack.objects.all(),
+    )
     official_keywords = ModelMultipleTagChoiceField(
-        label="Official Keywords",
+        label="Keywords",
         queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501
 
     class Meta:
@@ -38,23 +54,34 @@ class ProposalForm(forms.ModelForm):
         fields = [
             "kind",
             "title",
-            "audience_level",
+            "prior_knowledge",
+            "prior_knowledge_details",
             "description",
+            "outline",
             "abstract",
-            "first_time_at_pydata",
+            "recording_online",
+            "recording_url",
+            "tracks",
+            "official_keywords",
+            "country",
+            "time_zone",
             "affiliation",
+            "additional_notes",
+            "content_language",
+            "mentorship",
+            "mentoring",
+            "accessibility_needs",
+            "first_time_at_pydata",
             "under_represented_group",
             "under_represented_details",
             "under_represented_other",
-            "accessibility_needs",
             "sponsoring_interest",
-            "additional_notes",
+            "stipend",
+            "stipend_amount",
             "recording_release",
             "phone_number",
             "slides_url",
             "code_url",
-            "official_keywords",
-            "user_keywords",
         ]
         widgets = {
             "under_represented_details": forms.CheckboxSelectMultiple(),
@@ -71,7 +98,6 @@ class ProposalForm(forms.ModelForm):
         # Don't display keyword fields if keyword support is disabled.
         if not config.PROPOSAL_KEYWORDS:
             del self.fields["official_keywords"]
-            del self.fields["user_keywords"]
         # Don't display slide and code repo fields if support is disabled.
         if not config.PROPOSAL_URL_FIELDS:
             del self.fields["slides_url"]

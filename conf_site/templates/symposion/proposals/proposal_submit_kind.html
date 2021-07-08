@@ -27,29 +27,65 @@
 
 {% block extra_script %}
 <script>
-function checkbox_display(){
+function prior_knowledge_details_display(){
+    if( jQuery("#id_prior_knowledge").val() == "Y"){
+        jQuery("div#div_id_prior_knowledge_details").show();
+    } else {
+        jQuery("div#div_id_prior_knowledge_details").hide();
+    }
+};
+function recording_url_display(){
+    if( jQuery("#id_recording_online").val() == "True"){
+        jQuery("div#div_id_recording_url").show();
+    } else {
+        jQuery("div#div_id_recording_url").hide();
+    }
+}
+function under_represented_checkbox_display(){
     if( jQuery("#id_under_represented_group").val() == "Y"){
         jQuery("div#div_id_under_represented_details").show();
     } else {
         jQuery("div#div_id_under_represented_details").hide();
     }
 };
-function other_field_display(){
+function under_represented_other_field_display(){
     if( jQuery("#id_under_represented_details_8").is(":checked") ){
         jQuery("div#div_id_under_represented_other").show();
     } else {
         jQuery("div#div_id_under_represented_other").hide();
     }
 };
+function stipend_amount_display(){
+    if( jQuery("#id_stipend").is(":checked") ){
+        jQuery("div#div_id_stipend_amount").show();
+        jQuery("input#id_stipend_amount").attr("required", true);
+    } else {
+        jQuery("div#div_id_stipend_amount").hide();
+        jQuery("input#id_stipend_amount").removeAttr("required");
+    }
+};
 jQuery(document).ready(function(){
-    checkbox_display();
-    other_field_display();
+    jQuery("select#id_time_zone").select2();
+    prior_knowledge_details_display();
+    recording_url_display();
+    under_represented_checkbox_display();
+    under_represented_other_field_display();
+    stipend_amount_display();
+});
+jQuery("#id_prior_knowledge").change(function(){
+    prior_knowledge_details_display();
+});
+jQuery("#id_recording_online").change(function(){
+    recording_url_display();
 });
 jQuery("#id_under_represented_group").change(function(){
-    checkbox_display();
+    under_represented_checkbox_display();
 });
 jQuery("#id_under_represented_details_8").change(function(){
-    other_field_display();
+    under_represented_other_field_display();
+});
+jQuery("#id_stipend").change(function(){
+    stipend_amount_display();
 });
 </script>
 {% endblock %}
