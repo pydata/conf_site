@@ -115,6 +115,14 @@ class Proposal(ProposalBase):
     )
     outline_html = models.TextField(blank=True, editable=False)
 
+    recording_online = models.BooleanField(
+        "Is there a recording of this talk/tutorial already online?",
+        default=False,
+    )
+    recording_url = models.URLField(
+        blank=True, max_length=2083, verbose_name="If yes, what is the link?"
+    )
+
     slides_url = models.URLField(
         blank=True,
         default="",

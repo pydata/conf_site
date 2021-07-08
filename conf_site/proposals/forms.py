@@ -29,6 +29,14 @@ class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
 class ProposalForm(forms.ModelForm):
     required_css_class = "formfield-required"
 
+    YES_NO_CHOICES = ((True, "Yes"), (False, "No"))
+    recording_online = forms.ChoiceField(
+        choices=YES_NO_CHOICES,
+        initial=False,
+        label="Is there a recording of this talk/tutorial already online?",
+        required=True,
+    )
+
     official_keywords = ModelMultipleTagChoiceField(
         label="Official Keywords",
         queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501
@@ -43,6 +51,8 @@ class ProposalForm(forms.ModelForm):
             "description",
             "outline",
             "abstract",
+            "recording_online",
+            "recording_url",
             "first_time_at_pydata",
             "affiliation",
             "under_represented_group",
