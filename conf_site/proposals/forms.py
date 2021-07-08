@@ -46,7 +46,7 @@ class ProposalForm(forms.ModelForm):
         queryset=ProposalTrack.objects.all(),
     )
     official_keywords = ModelMultipleTagChoiceField(
-        label="Official Keywords",
+        label="Keywords",
         queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501
 
     class Meta:
@@ -62,6 +62,7 @@ class ProposalForm(forms.ModelForm):
             "recording_online",
             "recording_url",
             "tracks",
+            "official_keywords",
             "first_time_at_pydata",
             "affiliation",
             "under_represented_group",
@@ -74,8 +75,6 @@ class ProposalForm(forms.ModelForm):
             "phone_number",
             "slides_url",
             "code_url",
-            "official_keywords",
-            "user_keywords",
         ]
         widgets = {
             "under_represented_details": forms.CheckboxSelectMultiple(),
@@ -92,7 +91,6 @@ class ProposalForm(forms.ModelForm):
         # Don't display keyword fields if keyword support is disabled.
         if not config.PROPOSAL_KEYWORDS:
             del self.fields["official_keywords"]
-            del self.fields["user_keywords"]
         # Don't display slide and code repo fields if support is disabled.
         if not config.PROPOSAL_URL_FIELDS:
             del self.fields["slides_url"]

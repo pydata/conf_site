@@ -215,7 +215,7 @@ class Proposal(ProposalBase):
         related_name="editor_tagged_proposals",
         through=EditorTaggedProposal)
     official_keywords = TaggableManager(
-        "Official Keywords",
+        "Keywords",
         blank=True,
         help_text="",
         related_name="official_tagged_proposals",
