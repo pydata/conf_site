@@ -68,6 +68,8 @@ class ProposalForm(forms.ModelForm):
             "affiliation",
             "additional_notes",
             "content_language",
+            "mentorship",
+            "mentoring",
             "accessibility_needs",
             "first_time_at_pydata",
             "under_represented_group",
