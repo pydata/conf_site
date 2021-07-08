@@ -57,6 +57,11 @@
     <dt>{% translate "Description" %}</dt>
     <dd>{{ proposal.abstract_html|safe }}&nbsp;</dd>
 
+    {% if proposal.recording_online %}
+    <dt>{% translate "Previous Recording" %}</dt>
+    <dd><a href="{{ proposal.recording_url }}">{{ proposal.recording_url }}</a></dd>
+    {% endif %}
+
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
     <dt>{% translate "Notes" %}</dt>
     <dd>{{ proposal.additional_notes_html|safe }}&nbsp;</dd>

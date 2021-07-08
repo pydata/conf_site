@@ -34,6 +34,13 @@ function prior_knowledge_details_display(){
         jQuery("div#div_id_prior_knowledge_details").hide();
     }
 };
+function recording_url_display(){
+    if( jQuery("#id_recording_online").val() == "True"){
+        jQuery("div#div_id_recording_url").show();
+    } else {
+        jQuery("div#div_id_recording_url").hide();
+    }
+}
 function under_represented_checkbox_display(){
     if( jQuery("#id_under_represented_group").val() == "Y"){
         jQuery("div#div_id_under_represented_details").show();
@@ -50,11 +57,15 @@ function under_represented_other_field_display(){
 };
 jQuery(document).ready(function(){
     prior_knowledge_details_display();
+    recording_url_display();
     under_represented_checkbox_display();
     under_represented_other_field_display();
 });
 jQuery("#id_prior_knowledge").change(function(){
     prior_knowledge_details_display();
+});
+jQuery("#id_recording_online").change(function(){
+    recording_url_display();
 });
 jQuery("#id_under_represented_group").change(function(){
     under_represented_checkbox_display();
