@@ -160,7 +160,7 @@ class Proposal(ProposalBase):
     )
 
     first_time_at_pydata = models.CharField(
-        "Is this your first time speaking at a PyData event?",
+        "Are you a first-time speaker?",
         choices=YES_NO_OTHER_ANSWERS,
         blank=True,
         default="",
