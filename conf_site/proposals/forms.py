@@ -76,6 +76,8 @@ class ProposalForm(forms.ModelForm):
             "under_represented_details",
             "under_represented_other",
             "sponsoring_interest",
+            "stipend",
+            "stipend_amount",
             "recording_release",
             "phone_number",
             "slides_url",

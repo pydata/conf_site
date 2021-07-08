@@ -55,12 +55,22 @@ function under_represented_other_field_display(){
         jQuery("div#div_id_under_represented_other").hide();
     }
 };
+function stipend_amount_display(){
+    if( jQuery("#id_stipend").is(":checked") ){
+        jQuery("div#div_id_stipend_amount").show();
+        jQuery("input#id_stipend_amount").attr("required", true);
+    } else {
+        jQuery("div#div_id_stipend_amount").hide();
+        jQuery("input#id_stipend_amount").removeAttr("required");
+    }
+};
 jQuery(document).ready(function(){
     jQuery("select#id_time_zone").select2();
     prior_knowledge_details_display();
     recording_url_display();
     under_represented_checkbox_display();
     under_represented_other_field_display();
+    stipend_amount_display();
 });
 jQuery("#id_prior_knowledge").change(function(){
     prior_knowledge_details_display();
@@ -73,6 +83,9 @@ jQuery("#id_under_represented_group").change(function(){
 });
 jQuery("#id_under_represented_details_8").change(function(){
     under_represented_other_field_display();
+});
+jQuery("#id_stipend").change(function(){
+    stipend_amount_display();
 });
 </script>
 {% endblock %}
