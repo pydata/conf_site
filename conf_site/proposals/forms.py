@@ -2,7 +2,7 @@ from django import forms
 
 from constance import config
 
-from .models import Proposal, ProposalKeyword
+from .models import Proposal, ProposalKeyword, ProposalTrack
 
 
 class ModelMultipleTagChoiceField(forms.ModelMultipleChoiceField):
@@ -37,6 +37,14 @@ class ProposalForm(forms.ModelForm):
         required=True,
     )
 
+    tracks = ModelMultipleTagChoiceField(
+        label=(
+            "Please choose one or more specialized tracks, "
+            "if any, your proposal would fit into"
+        ),
+        required=False,
+        queryset=ProposalTrack.objects.all(),
+    )
     official_keywords = ModelMultipleTagChoiceField(
         label="Official Keywords",
         queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501
@@ -53,6 +61,7 @@ class ProposalForm(forms.ModelForm):
             "abstract",
             "recording_online",
             "recording_url",
+            "tracks",
             "first_time_at_pydata",
             "affiliation",
             "under_represented_group",
