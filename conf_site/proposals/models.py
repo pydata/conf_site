@@ -149,6 +149,10 @@ class Proposal(ProposalBase):
         max_length=2083,
         verbose_name="Repository")
 
+    country = models.CharField(
+        max_length=200, verbose_name="What is your country of residence?"
+    )
+
     first_time_at_pydata = models.CharField(
         "Is this your first time speaking at a PyData event?",
         choices=YES_NO_OTHER_ANSWERS,
