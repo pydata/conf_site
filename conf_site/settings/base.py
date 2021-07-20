@@ -112,7 +112,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "conf_site.core.middleware.TimeZoneMiddleware",
-    "reversion.middleware.RevisionMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -143,7 +142,6 @@ INSTALLED_APPS = [
     "easy_thumbnails",
     "pinax.eventlog",
     "rest_framework",
-    "reversion",
     "symposion",
     "symposion.conference",
     "symposion.proposals",
