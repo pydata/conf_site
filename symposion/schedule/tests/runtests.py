@@ -17,7 +17,6 @@ try:
             "django.contrib.auth",
             "django.contrib.contenttypes",
             "django.contrib.sites",
-            "reversion",
             "symposion",
             "symposion.conference",
             "symposion.speakers",
