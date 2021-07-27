@@ -15,18 +15,19 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views.generic import DetailView, FormView, View
 
+from sentry_sdk import capture_message
+
 from conf_site.core.forms import CsvUploadForm
 
 
-def csrf_failure(request, reason=""):
+def csrf_failure(request, reason="Unknown CSRF Failure"):
     """
     Custom view for users who encounter CSRF errors.
 
     https://docs.djangoproject.com/en/1.9/ref/settings/#csrf-failure-view
 
-    When we upgrade to Django 1.10, this view can be removed.
-
     """
+    capture_message(reason, level="error")
     response = TemplateResponse(
         request=request, template="403_csrf.html", status=403
     )
