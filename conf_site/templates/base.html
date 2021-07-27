@@ -67,17 +67,12 @@
     <script async src="{% static 'js/autotrack.js' %}"></script>
     {% endif %}
     {% if sentry_public_dsn %}
-    <script src="https://browser.sentry-cdn.com/5.19.1/bundle.apm.min.js"
-        integrity="sha384-qcuJnBVywcOnVTsYC4W46ENmLFtgTt1rojscXpw6pgE6BDJ+MSj3AgdT897AgysN"
-        crossorigin="anonymous"></script>
-    <script>
-        window.Sentry || document.write("<script src='{% static 'js/sentry-5.19.1.apm.min.js' %}'><\/script>");
-    </script>
+    <script src="{% static 'js/sentry-6.10.0-bundle.tracing.min.js' %}"></script>
     <script>
         Sentry.init({
             dsn: "{{ sentry_public_dsn }}",
             integrations: [
-                new Sentry.Integrations.Tracing(),
+                new Sentry.Integrations.BrowserTracing(),
             ],
             tracesSampleRate: 0.1,
             whitelistUrls: ["pydata.org"],
