@@ -6,4 +6,4 @@ factory_boy==3.2.0
 flake8==3.9.2
 ipython==7.25.0
 rstcheck==3.3.1
-sphinx==4.1.1
+sphinx==4.1.2
