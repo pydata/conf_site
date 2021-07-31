@@ -49,7 +49,7 @@
     <script type='text/javascript' src='{{ website_url }}/wp-content/themes/ova-dione/assets/js/animation.gsap.min.js' id='animation.gsap.min.js-js'></script>
     <script type='text/javascript' src='{{ website_url }}/wp-content/themes/ova-dione/assets/js/main.js' id='main.js-js'></script>
     <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
-    <link rel="icon" href="{{ logo_url }}">
+    <link rel="icon" href="{{ favicon_url }}">
     {% block extra_head %}{% endblock %}
     {% if not request.user.is_superuser %}
     <script>

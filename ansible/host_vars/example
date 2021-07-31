@@ -5,6 +5,7 @@ content_site: ""
 database_user: "{{ conference_identifier }}"
 date_format: "l F j"
 django_database: "{{ conference_identifier }}"
+favicon_url: ""
 github_oauth_client_id: ""
 github_oauth_client_secret: ""
 google_analytics_id: UA-41850464-X
