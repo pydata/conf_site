@@ -232,6 +232,11 @@ CONSTANCE_CONFIG = {
         "Hide identities of authors from reviewers.",
         bool,
     ),
+    "PRIVATE_REVIEWS": (
+        False,
+        "Hide content of reviews from other reviewers.",
+        bool,
+    ),
     "PROPOSAL_EDITING_WHEN_CFP_IS_CLOSED": (
         True,
         "If submitters can make changes to a proposal if the CFP is closed.",
@@ -256,7 +261,9 @@ CONSTANCE_CONFIG_FIELDSETS = {
         "PROPOSAL_URL_FIELDS",
         "PROPOSALS_PER_PAGE",
     ),
-    "Reviewing Options": ("BLIND_AUTHORS", "BLIND_REVIEWERS"),
+    "Reviewing Options": (
+        "BLIND_AUTHORS", "BLIND_REVIEWERS", "PRIVATE_REVIEWS"
+    ),
 }
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 CSRF_FAILURE_VIEW = "conf_site.core.views.csrf_failure"

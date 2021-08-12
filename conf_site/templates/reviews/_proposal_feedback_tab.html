@@ -8,8 +8,10 @@
       {% else %}
         <b>{{ feedback.author.get_full_name|default:feedback.author.username }}</b>:
       {% endif %}
-      {{ feedback.comment_html|safe }}
-    {% endfor %}
+      {% if request.user.is_superuser or not config.PRIVATE_REVIEWS or actor == "speaker" or feedback.author == proposal.speaker.user or feedback.author == request.user %}
+        {{ feedback.comment_html|safe }}
+      {% endif %}
+    </p>{% endfor %}
       <form method="POST" action="{% url 'review_proposal_feedback' proposal.id %}" class="review-form">
         <legend>Write Feedback:</legend>
         {% csrf_token %}

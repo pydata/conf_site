@@ -190,22 +190,29 @@ class ProposalFeedbackPostView(ReviewingView):
         )
         # Send email to reviewers.
         reviewer_email_addresses = []
-        for feedback in proposal.review_feedback.all():
-            if (
-                feedback.author.email
-                and feedback.author != self.request.user
-                and feedback.author.email not in reviewer_email_addresses
-            ):
-                reviewer_email_addresses.append(feedback.author.email)
-        send_email(
-            reviewer_email_addresses,
-            "proposal_new_message",
-            context={
-                "proposal": proposal,
-                "message": feedback,
-                "reviewer": True,
-            },
-        )
+        author_is_speaker = False
+        # Determine whether feedback author is a proposal speaker.
+        for speaker in proposal.speakers():
+            if self.request.user == speaker.user:
+                author_is_speaker = True
+                break
+        if not config.PRIVATE_REVIEWS or author_is_speaker:
+            for feedback in proposal.review_feedback.all():
+                if (
+                    feedback.author.email
+                    and feedback.author != self.request.user
+                    and feedback.author.email not in reviewer_email_addresses
+                ):
+                    reviewer_email_addresses.append(feedback.author.email)
+            send_email(
+                reviewer_email_addresses,
+                "proposal_new_message",
+                context={
+                    "proposal": proposal,
+                    "message": feedback,
+                    "reviewer": True,
+                },
+            )
         return HttpResponseRedirect(
             reverse("review_proposal_detail", args=[proposal.id])
         )

@@ -67,3 +67,16 @@ class ProposalFeedbackPostingTestCase(
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].to, [random_user.email])
         self.assertFalse(self._duplicate_email_addresses(mail.outbox[0]))
+
+    def test_do_not_send_updates_to_reviewers_during_private_reviewing(self):
+        self._add_to_reviewers_group()
+        random_user = UserFactory()
+        ProposalFeedbackFactory(proposal=self.proposal, author=random_user)
+
+        response = self._get_response()
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(len(mail.outbox), 2)
+        self.assertNotEqual(mail.outbox[0].to, [random_user.email])
+        self.assertNotEqual(mail.outbox[0].cc, [random_user.email])
+        self.assertNotEqual(mail.outbox[0].bcc, [random_user.email])
