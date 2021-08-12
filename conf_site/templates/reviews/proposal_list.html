@@ -8,12 +8,16 @@
 <div class="container">
   {% include "reviews/_proposal_mini_navigation.html" %}
   <h2>{% block page-title %}{{ proposal_category }} {{ proposal_kind }}s{% endblock %}</h2>
+  <p class="bg-info">
   {% if config.BLIND_REVIEWERS and request.user.is_superuser %}
-    <p class="bg-info">
       Your superuser status is ignoring the enabled
       <strong>BLIND_REVIEWERS</strong> setting.
-    </p>
   {% endif %}
+  {% if config.PRIVATE_REVIEWS and request.user.is_superuser %}
+      Your superuser status is ignoring the enabled
+      <strong>PRIVATE_REVIEWS</strong> setting.
+  {% endif %}
+</p>
   <p>
     <strong>{{ num_proposals }}</strong> proposal{{ num_proposals|pluralize }}
     (<strong>{{ num_talks }}</strong> talk{{ num_talks|pluralize }},
@@ -37,10 +41,12 @@
       <th>{% translate "Title" %}</th>
       <th>{% translate "Category" %}</th>
       <th><i class="fa fa-comment" title="{% translate 'Number of Messages' %}"></i></th>
+      {% if not config.PRIVATE_REVIEWS or request.user.is_superuser %}
       <th>{% translate "+1" %}</th>
       <th>{% translate "+0" %}</th>
       <th>{% translate "-0" %}</th>
       <th>{% translate "-1" %}</th>
+      {% endif %}
       <th><i class="fa fa-hashtag" title="{% translate 'Total Number of Reviews' %}"></i></th>
       <th class="sorter-user-scores"><a href="#" class="tip" title="{% translate 'Your Rating' %}"><i class="fa fa-user"></i></a></th>
       <th>{% translate "Status" %}</th>
@@ -61,10 +67,12 @@
         </td>
         <td>{{ proposal.kind.name }}</td>
         <td>{{ proposal.feedback_count }}</td>
+        {% if not config.PRIVATE_REVIEWS or request.user.is_superuser %}
         <td>{{ proposal.plus_one }}</td>
         <td>{{ proposal.plus_zero }}</td>
         <td>{{ proposal.minus_zero }}</td>
         <td>{{ proposal.minus_one }}</td>
+        {% endif %}
         <td>{{ proposal.total_votes }}</td>
         <td>{% user_score proposal request.user %}</td>
         <td>

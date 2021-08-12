@@ -11,12 +11,16 @@
   {% endif %}
   <h2>{{ proposal.title }}</h2>
 
-  {% if config.BLIND_REVIEWERS and request.user.is_superuser %}
-    <p class="bg-info">
-      Your superuser status is ignoring the enabled
-      <strong>BLIND_REVIEWERS</strong> setting.
-    </p>
-  {% endif %}
+  <p class="bg-info">
+    {% if config.BLIND_REVIEWERS and request.user.is_superuser %}
+        Your superuser status is ignoring the enabled
+        <strong>BLIND_REVIEWERS</strong> setting.
+    {% endif %}
+    {% if config.PRIVATE_REVIEWS and request.user.is_superuser %}
+        Your superuser status is ignoring the enabled
+        <strong>PRIVATE_REVIEWS</strong> setting.
+    {% endif %}
+  </p>
 
   <div class="pull-right" style="margin-top:-3rem">
     {% if not proposal.cancelled %}
@@ -60,7 +64,9 @@
       <li>
         <a href="#proposal-feedback" data-toggle="tab">
           {% translate "Speaker Feedback" %}
-          <span class="badge">{{ proposal.feedback_count }}</span>
+          {% if request.user.is_superuser or not config.PRIVATE_REVIEWS %}
+            <span class="badge">{{ proposal.feedback_count }}</span>
+          {% endif %}
         </a>
       </li>
     </ul>
@@ -71,7 +77,8 @@
     {# Only show reviews if user is a reviewer. #}
     {% if actor == "reviewer" %}<div class="tab-pane" id="proposal-reviews">
       <h3>Votes</h3>
-      {% for review_vote in proposal.review_votes.all %}<hr><p>
+      {% for review_vote in proposal.review_votes.all %}
+      {% if request.user.is_superuser or not config.PRIVATE_REVIEWS or review_vote.voter == request.user %}<hr><p>
         <h4>
           {% if not request.user.is_superuser and config.BLIND_REVIEWERS and review_vote.voter != request.user %}
             Anonymous
@@ -81,7 +88,8 @@
           ({{ review_vote.get_score_display }})
         </h4>
         {{ review_vote.comment_html|safe }}
-      </p>{% endfor %}
+      </p>{% endif %}
+      {% endfor %}
       <form method="POST" action="{% url 'review_proposal_vote' proposal.id %}" class="review-form">
         <legend>{% if existing_vote %}{% translate 'Update Review' %}{% else %}{% translate 'Submit Review' %}{% endif %}</legend>
         <p>

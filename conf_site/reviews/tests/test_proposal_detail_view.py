@@ -118,8 +118,8 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
         )
         self.assertContains(response, "div-proposal-result-buttons")
 
-    def test_reviewer_cannot_view_other_reviewers_names(self):
-        """Verify that a reviewer cannot view other reviewers' names."""
+    def test_reviewer_cannot_view_other_reviews(self):
+        """Verify that a reviewer cannot view other reviewers or reviews."""
         other_vote = ProposalVoteFactory(proposal=self.proposal)
         other_feedback = ProposalFeedbackFactory.create(proposal=self.proposal)
 
@@ -135,6 +135,13 @@ class ProposalDetailViewAccessTestCase(ReviewingTestCase, AccountsTestCase):
 
             self.assertNotContains(response, other_feedback.author.username)
             self.assertNotContains(response, other_feedback.author.email)
+
+        with override_config(PRIVATE_REVIEWS=True):
+            response = self.client.get(
+                reverse(self.reverse_view_name, args=self.reverse_view_args)
+            )
+            self.assertNotContains(response, other_vote.comment_html)
+            self.assertNotContains(response, other_feedback.comment_html)
 
     def _test_button_text(self, good_text, bad_text):
         self._add_to_reviewers_group()

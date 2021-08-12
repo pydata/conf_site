@@ -9,8 +9,9 @@ To review proposals, conference site users must be a member of the
 site's administration section) need to add users to this group in order for
 them to have access.
 
-Two dynamic settings (`BLIND_AUTHORS` and `BLIND_REVIEWERS`) determine the
-type of reviewing system:
+Three dynamic settings
+(`BLIND_AUTHORS`, `BLIND_REVIEWERS`, and `PRIVATE_REVIEWS`)
+determine the type of reviewing system:
 
   - **`BLIND_AUTHORS` is True and `BLIND_REVIEWERS` is False**:
     Authors cannot see the identities of reviewers, but
@@ -23,8 +24,11 @@ type of reviewing system:
   - **`BLIND_AUTHORS` is False and `BLIND_REVIEWERS` is True**:
     Authors can see reviewers' identities, but reviewers cannot see the
     identities of authors or other reviewers.
+  - **`PRIVATE_REVIEWS` is True**:
+    Reviewers cannot see other reviewers' scores or comments.
+    This setting is best used with `BLIND_REVIEWERS`.
 
-`BLIND_AUTHORS` is True and `BLIND_REVIEWERS` is False by default.
+`BLIND_AUTHORS` is True. All other settings are False by default.
 Like other dynamic settings, the reviewing settings
 can be modified from their defaults
 by editing them on the Constance Config page in the Django admin.
