@@ -5,11 +5,13 @@ from django.core import mail
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 
+from constance.test import override_config
 from faker import Faker
 
 from symposion.proposals.models import AdditionalSpeaker
 from symposion.schedule.tests.factories import (
-    ProposalKindFactory, SectionFactory
+    ProposalKindFactory,
+    SectionFactory,
 )
 
 from conf_site.accounts.tests import AccountsTestCase
@@ -220,3 +222,14 @@ class ProposalListViewTestCase(ReviewingTestCase, AccountsTestCase):
             "and has not been notified.".format(emailless_speaker.name)
         )
         self.assertContains(response, speaker_warning)
+
+    def test_private_reviewing_means_no_score_columns(self):
+        self._add_to_reviewers_group()
+        with override_config(PRIVATE_REVIEWS=True):
+            response = self.client.get(
+                reverse(self.reverse_view_name, args=self.reverse_view_args)
+            )
+        self.assertNotContains(response, "<th>+1</th>")
+        self.assertNotContains(response, "<th>+0</th>")
+        self.assertNotContains(response, "<th>-0</th>")
+        self.assertNotContains(response, "<th>-1</th>")
