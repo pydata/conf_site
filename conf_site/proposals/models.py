@@ -106,6 +106,15 @@ class Proposal(ProposalBase):
         (UNDER_REPRESENTED_OTHER, "Other (please specify)"),
     )
 
+    AFFILIATION_COMPANY = "C"
+    AFFILIATION_SCHOOL = "S"
+    AFFILIATION_INDEPENDENT = "I"
+    AFFILIATIONS = (
+        (AFFILIATION_COMPANY, "Company"),
+        (AFFILIATION_SCHOOL, "School"),
+        (AFFILIATION_INDEPENDENT, "Independent"),
+    )
+
     prior_knowledge = models.CharField(
         choices=KNOWLEDGE_LEVELS,
         max_length=1,
@@ -165,7 +174,7 @@ class Proposal(ProposalBase):
         blank=True,
         default="",
         max_length=1)
-    affiliation = models.CharField(max_length=200)
+    affiliation = models.CharField(choices=AFFILIATIONS, max_length=1)
 
     mentorship = models.BooleanField(
         choices=YES_NO_BOOL_ANSWERS,

@@ -7,7 +7,7 @@
     <dt>{% translate "Submitted by" %}</dt>
     <dd>{{ proposal.speaker.name }}</dd>
     <dt>Affiliation</dt>
-    <dd>{{ proposal.affiliation }}</dd>
+    <dd>{{ proposal.get_affiliation_display }}</dd>
     {% endif %}
 
     {% if config.PROPOSAL_KEYWORDS %}
