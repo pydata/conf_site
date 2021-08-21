@@ -46,7 +46,10 @@ class ProposalForm(forms.ModelForm):
         queryset=ProposalTrack.objects.all(),
     )
     official_keywords = ModelMultipleTagChoiceField(
-        label="Keywords",
+        label=(
+            "Please tag this proposal with relevant keywords"
+            " to assist us with a proposal review"
+        ),
         queryset=ProposalKeyword.objects.filter(official=True).order_by("name"))    # noqa: E501
 
     class Meta:
