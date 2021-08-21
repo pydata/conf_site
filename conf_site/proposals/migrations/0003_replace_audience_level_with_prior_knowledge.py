@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='prior_knowledge',
-            field=models.CharField(choices=[('N', 'No previous knowledge expected'), ('Y', 'Previous knowledge expected')], default='N', max_length=1, verbose_name="Prior Knowledge"),
+            field=models.CharField(choices=[('N', 'No previous knowledge expected'), ('Y', 'Previous knowledge expected')], default='N', max_length=1, verbose_name="Prior Knowledge Expected"),
             preserve_default=False,
         ),
     ]

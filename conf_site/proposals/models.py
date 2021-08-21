@@ -88,7 +88,9 @@ class Proposal(ProposalBase):
     )
 
     prior_knowledge = models.CharField(
-        choices=KNOWLEDGE_LEVELS, max_length=1, verbose_name="Prior Knowledge"
+        choices=KNOWLEDGE_LEVELS,
+        max_length=1,
+        verbose_name="Prior Knowledge Expected",
     )
     prior_knowledge_details = models.CharField(
         blank=True,
