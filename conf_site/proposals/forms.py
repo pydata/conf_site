@@ -73,6 +73,7 @@ class ProposalForm(forms.ModelForm):
             "mentoring",
             "accessibility_needs",
             "first_time_at_pydata",
+            "travel_at_own_expense",
             "under_represented_group",
             "under_represented_details",
             "under_represented_other",

@@ -174,6 +174,13 @@ class Proposal(ProposalBase):
         blank=True,
         default="",
         max_length=1)
+    travel_at_own_expense = models.BooleanField(
+        choices=YES_NO_BOOL_ANSWERS,
+        default=True,
+        verbose_name=(
+            "Are you able to travel to Eindhoven at your own expense?"
+        ),
+    )
     affiliation = models.CharField(choices=AFFILIATIONS, max_length=1)
 
     mentorship = models.BooleanField(
