@@ -9,6 +9,7 @@ from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
 
 from conf_site.reviews.models import ProposalVote
+from symposion.markdown_parser import parse
 
 
 class ProposalKeyword(TagBase):
@@ -17,6 +18,12 @@ class ProposalKeyword(TagBase):
     class Meta:
         verbose_name = "Keyword"
         verbose_name_plural = "Keywords"
+
+
+class ProposalTrack(TagBase):
+    class Meta:
+        verbose_name = "Track"
+        verbose_name_plural = "Tracks"
 
 
 class EditorTaggedProposal(GenericTaggedItemBase):
@@ -43,11 +50,16 @@ class UserTaggedProposal(GenericTaggedItemBase):
     )
 
 
+class TrackTaggedProposal(GenericTaggedItemBase):
+    tag = models.ForeignKey(
+        ProposalTrack,
+        on_delete=models.CASCADE,
+        related_name="%(app_label)s_%(class)s_items",
+    )
+
+
 class Proposal(ProposalBase):
 
-    AUDIENCE_LEVEL_NOVICE = 1
-    AUDIENCE_LEVEL_EXPERIENCED = 2
-    AUDIENCE_LEVEL_INTERMEDIATE = 3
     YES_NO_OTHER_YES = "Y"
     YES_NO_OTHER_NO = "N"
     # https://en.wikipedia.org/wiki/Bartleby,_the_Scrivener
@@ -63,11 +75,14 @@ class Proposal(ProposalBase):
     UNDER_REPRESENTED_OPT_OUT = "O"
     UNDER_REPRESENTED_OTHER = "X"
 
-    AUDIENCE_LEVELS = [
-        (AUDIENCE_LEVEL_NOVICE, "Novice"),
-        (AUDIENCE_LEVEL_INTERMEDIATE, "Intermediate"),
-        (AUDIENCE_LEVEL_EXPERIENCED, "Experienced"),
+    KNOWLEDGE_LEVELS = [
+        (YES_NO_OTHER_NO, "No previous knowledge expected"),
+        (YES_NO_OTHER_YES, "Previous knowledge expected"),
     ]
+    YES_NO_BOOL_ANSWERS = (
+        (True, "Yes"),
+        (False, "No"),
+    )
     YES_NO_OTHER_ANSWERS = (
         ("", "----"),
         (YES_NO_OTHER_YES, "Yes"),
@@ -91,7 +106,49 @@ class Proposal(ProposalBase):
         (UNDER_REPRESENTED_OTHER, "Other (please specify)"),
     )
 
-    audience_level = models.IntegerField(choices=AUDIENCE_LEVELS)
+    AFFILIATION_COMPANY = "C"
+    AFFILIATION_SCHOOL = "S"
+    AFFILIATION_INDEPENDENT = "I"
+    AFFILIATIONS = (
+        (AFFILIATION_COMPANY, "Company"),
+        (AFFILIATION_SCHOOL, "School"),
+        (AFFILIATION_INDEPENDENT, "Independent"),
+    )
+
+    prior_knowledge = models.CharField(
+        choices=KNOWLEDGE_LEVELS,
+        max_length=1,
+        verbose_name="Prior Knowledge Expected",
+    )
+    prior_knowledge_details = models.CharField(
+        blank=True,
+        max_length=200,
+        verbose_name=(
+            "To attend the presentation, "
+            "it would be recommended that "
+            "the participant have some knowledge in:"
+        ),
+    )
+
+    outline = models.TextField(
+        "Brief Bullet Point Outline",
+        blank=True,
+        help_text=(
+            "Brief outline. Will be made public "
+            "if your proposal is accepted. Edit using "
+            "<a href='https://daringfireball.net/projects/markdown/basics' "
+            "target='_blank'>Markdown</a>."
+        ),
+    )
+    outline_html = models.TextField(blank=True, editable=False)
+
+    recording_online = models.BooleanField(
+        "Is there a recording of this talk/tutorial already online?",
+        default=False,
+    )
+    recording_url = models.URLField(
+        blank=True, max_length=2083, verbose_name="If yes, what is the link?"
+    )
 
     slides_url = models.URLField(
         blank=True,
@@ -107,13 +164,38 @@ class Proposal(ProposalBase):
         max_length=2083,
         verbose_name="Repository")
 
+    country = models.CharField(
+        max_length=200, verbose_name="What is your country of residence?"
+    )
+
     first_time_at_pydata = models.CharField(
-        "Is this your first time speaking at a PyData event?",
+        "Are you a first-time speaker?",
         choices=YES_NO_OTHER_ANSWERS,
         blank=True,
         default="",
         max_length=1)
-    affiliation = models.CharField(max_length=200)
+    travel_at_own_expense = models.BooleanField(
+        choices=YES_NO_BOOL_ANSWERS,
+        default=True,
+        verbose_name=(
+            "Are you able to travel to Eindhoven at your own expense?"
+        ),
+    )
+    affiliation = models.CharField(choices=AFFILIATIONS, max_length=1)
+
+    mentorship = models.BooleanField(
+        choices=YES_NO_BOOL_ANSWERS,
+        default=False,
+        verbose_name=(
+            "Would you like to be considered "
+            "for our speaker mentorship program?"
+        ),
+    )
+    mentoring = models.BooleanField(
+        choices=YES_NO_BOOL_ANSWERS,
+        default=False,
+        verbose_name="Would you be interested in mentoring other speakers?",
+    )
 
     phone_number = models.CharField(
         "Phone number - to be used for last-minute schedule changes",
@@ -159,6 +241,12 @@ class Proposal(ProposalBase):
         default="",
         max_length=1,
     )
+    tracks = TaggableManager(
+        blank=True,
+        related_name="track_tagged_proposals",
+        through=TrackTaggedProposal,
+        verbose_name="Tracks",
+    )
 
     editor_keywords = TaggableManager(
         "Editor Keywords",
@@ -167,7 +255,7 @@ class Proposal(ProposalBase):
         related_name="editor_tagged_proposals",
         through=EditorTaggedProposal)
     official_keywords = TaggableManager(
-        "Official Keywords",
+        "Keywords",
         blank=True,
         help_text="",
         related_name="official_tagged_proposals",
@@ -202,6 +290,9 @@ class Proposal(ProposalBase):
                 self.presentation.additional_speakers.add(speaker)
             self.presentation.section = self.section
             self.presentation.save()
+
+        # HTML-ize outline field.
+        self.outline_html = parse(self.outline)
 
         return super(Proposal, self).save(*args, **kwargs)
 

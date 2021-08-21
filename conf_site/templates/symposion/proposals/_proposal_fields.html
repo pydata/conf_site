@@ -7,7 +7,7 @@
     <dt>{% translate "Submitted by" %}</dt>
     <dd>{{ proposal.speaker.name }}</dd>
     <dt>Affiliation</dt>
-    <dd>{{ proposal.affiliation }}</dd>
+    <dd>{{ proposal.get_affiliation_display }}</dd>
     {% endif %}
 
     {% if config.PROPOSAL_KEYWORDS %}
@@ -29,8 +29,13 @@
     {% endfor %}</dd>
     {% endif %}
 
-    <dt>{% translate "Audience Level" %}</dt>
-    <dd>{{ proposal.get_audience_level_display }}&nbsp;</dd>
+    <dt>{% translate "Prior Knowledge?" %}</dt>
+    <dd>
+        {{ proposal.get_prior_knowledge_display }}&nbsp;
+        {% if proposal.prior_knowledge == "Y" %}
+            <br>{{ proposal.prior_knowledge_details }}
+        {% endif %}
+    </dd>
 
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
         {% if proposal.additional_speakers.all %}
@@ -43,11 +48,19 @@
         {% endif %}
     {% endif %}
 
-    <dt>{% translate "Description" %}</dt>
+    <dt>{% translate "Brief Summary" %}</dt>
     <dd>{{ proposal.description }}&nbsp;</dd>
 
-    <dt>{% translate "Abstract" %}</dt>
+    <dt>{% translate "Outline" %}</dt>
+    <dd>{{ proposal.outline_html|safe }}&nbsp;</dd>
+
+    <dt>{% translate "Description" %}</dt>
     <dd>{{ proposal.abstract_html|safe }}&nbsp;</dd>
+
+    {% if proposal.recording_online %}
+    <dt>{% translate "Previous Recording" %}</dt>
+    <dd><a href="{{ proposal.recording_url }}">{{ proposal.recording_url }}</a></dd>
+    {% endif %}
 
     {% if not config.BLIND_REVIEWERS or request.user.is_superuser %}
     <dt>{% translate "Notes" %}</dt>

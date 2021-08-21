@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from conf_site.proposals.models import Proposal, ProposalKeyword
+from conf_site.proposals.models import Proposal, ProposalKeyword, ProposalTrack
 
 
 class ProposalAdditionalSpeakerThrough(Proposal.additional_speakers.through):
@@ -25,6 +25,12 @@ class KeywordAdmin(admin.ModelAdmin):
     list_filter = ("official",)
 
 
+@admin.register(ProposalTrack)
+class ProposalTrackAdmin(admin.ModelAdmin):
+    list_display = ["name", "slug"]
+    search_fields = ["name", "slug"]
+
+
 @admin.register(Proposal)
 class ProposalAdmin(admin.ModelAdmin):
     inlines = [AdditionalSpeakerInline]
@@ -33,7 +39,7 @@ class ProposalAdmin(admin.ModelAdmin):
         'title',
         'speaker',
         'kind',
-        'audience_level',
+        'prior_knowledge',
         'cancelled',
         "date_created",
         "date_last_modified",
@@ -41,7 +47,7 @@ class ProposalAdmin(admin.ModelAdmin):
     list_display_links = ("title",)
     list_filter = (
         'kind',
-        'audience_level',
+        'prior_knowledge',
         'cancelled',
         'recording_release',
     )
