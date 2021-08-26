@@ -118,7 +118,7 @@ class ExportSubmissionsView(CsvView):
     header_row = [
         "Speaker",
         "Title",
-        "Audience Level",
+        "Prior Knowledge",
         "Affiliation",
         "Slides",
         "Repository",
@@ -169,7 +169,7 @@ class ExportSubmissionsView(CsvView):
                 [
                     proposal.speaker.name,
                     proposal.title,
-                    proposal.get_audience_level_display(),
+                    proposal.get_prior_knowledge_display(),
                     proposal.affiliation,
                     proposal.slides_url,
                     proposal.code_url,
