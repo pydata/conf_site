@@ -12,7 +12,7 @@
             <tr>
                 <td class="time">{{ row.time }}</td>
                 {% for slot in row.slots %}
-                    <td class="slot slot-{{ slot.content.proposal.kind.slug }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
+                    <td class="slot slot-{% if slot.content.proposal %}{{ slot.content.proposal.kind.slug }}{% else %}{{ slot.kind.label|lower }}{% endif %}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
                       {% if slot.content %}
                           <span class="title">
                                 <a href="{% url "schedule_presentation_detail" slot.content.pk slot.content.slug %}">
