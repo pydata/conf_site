@@ -103,7 +103,7 @@ input[type="checkbox"] {
 }
 
 table.calendar tr{min-height:36px}
-table.calendar th{background-color:#ee9041;text-align:center}
+table.calendar th{background-color:#ee904199;text-align:center}
 table.calendar th.time{width:60px}
 table.calendar td{text-align:center;vertical-align:middle}
 table.calendar td p {font-size:14px;}
