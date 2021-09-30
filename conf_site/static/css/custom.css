@@ -103,20 +103,19 @@ input[type="checkbox"] {
 }
 
 table.calendar tr{min-height:36px}
-table.calendar th{background-color:#ee9041;text-align:center}
+table.calendar th{background-color:#ee904199;text-align:center}
 table.calendar th.time{width:60px}
 table.calendar td{text-align:center;vertical-align:middle}
 table.calendar td p {font-size:14px;}
 table.calendar td.time{vertical-align:top;padding-top:0;margin-top:0;color:#444;font-size:11px}
 table.calendar td.slot{font-weight:bold;text-shadow:#fff 0 1px 0;vertical-align:middle}
-/* Colors for different slot kinds. Currently disabled.
-table.calendar td.slot.slot-break{background-color:#ecffff}
-*/
-table.calendar td.slot.slot-plenary{background-color:#e1edf7}
+/* Colors for different slot kinds. */
+table.calendar td.slot.slot-break{background-color:#eee}
+table.calendar td.slot.slot-plenary{background-color:#b8d9e3}
+table.calendar td.slot.slot-discussion{background-color:#e1edf7}
 /*
 table.calendar td.slot.slot-talk{background-color:#e1edf7}
 table.calendar td.slot.slot-tutorial{background-color:#fbe5d4}
-table.calendar td.slot.slot-discussion{background-color:#b8d9e3}
 */
 table.calendar td.slot p{padding:0;margin:0;line-height:20px}
 table.calendar td span.title{font-weight:bold;display:block}
