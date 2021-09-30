@@ -4,7 +4,7 @@ django-analytical==2.6.0
 django-anymail[postmark]==8.4
 django-autoslug==1.9.8
 django-constance[redis]==2.8.0
-django-crispy-forms==1.12.0
+django-crispy-forms==1.13.0
 django-model-utils==4.1.1
 django-multiselectfield==0.1.12
 django-redis-cache==3.0.0
