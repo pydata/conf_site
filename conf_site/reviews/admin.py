@@ -32,4 +32,4 @@ class ProposalResultAdmin(admin.ModelAdmin):
 @admin.register(ProposalVote)
 class ProposalVoteAdmin(admin.ModelAdmin):
     list_display = ("proposal", "voter", "score", "comment")
-    list_filter = ("score",)
+    list_filter = ["score", "voter"]
