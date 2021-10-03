@@ -81,11 +81,11 @@ class CsvImportView(FormView):
     def post(self, request, *args, **kwargs):
         form = self.get_form(self.get_form_class())
         if form.is_valid():
-            excel_file = request.FILES["csv_file"]
+            csv_file = request.FILES["csv_file"]
             # Save file to temporary folder. We only need it for
             # a short period of time.
             temp_file, filename = mkstemp(suffix=".csv")
-            for chunk in excel_file.chunks():
+            for chunk in csv_file.chunks():
                 os.write(temp_file, chunk)
             os.fsync(temp_file)
             os.close(temp_file)
