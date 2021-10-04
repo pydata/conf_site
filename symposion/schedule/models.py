@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -143,13 +144,17 @@ class Slot(models.Model):
         self.content_override_html = parse(self.content_override)
         super(Slot, self).save(*args, **kwargs)
 
+    @admin.display(description="Rooms")
+    def rooms_display(self):
+        return ", ".join(map(lambda r: r.__str__(), self.rooms))
+
     def __str__(self):
         return "{!s} {!s} ({!s} - {!s}) {!s}".format(
             self.day,
             self.kind,
             self.start,
             self.end,
-            " ".join(map(lambda r: r.__str__(), self.rooms)),
+            self.rooms_display(),
         )
 
     class Meta:
