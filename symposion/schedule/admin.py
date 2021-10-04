@@ -33,19 +33,27 @@ class SlotRoomInline(admin.TabularInline):
 
 class SlotAdmin(admin.ModelAdmin):
     list_filter = ("day", "kind")
-    list_display = ("day", "start", "end", "kind", "content_override")
+    list_display = [
+        "day",
+        "start",
+        "end",
+        "kind",
+        "rooms_display",
+        "content_override",
+    ]
     inlines = [SlotRoomInline]
 
 
 class RoomAdmin(admin.ModelAdmin):
     list_display = ["name", "order", "schedule"]
     list_filter = ["schedule"]
+    ordering = ["order"]
 
 
 class PresentationAdmin(admin.ModelAdmin):
     model = Presentation
     list_display = ("title", "slug", "speaker", "section", "slot")
-    list_filter = ("section", "cancelled", "slot")
+    list_filter = ["section", "slot__kind", "cancelled"]
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ("title", "speaker__name")
 
