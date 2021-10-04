@@ -46,7 +46,7 @@ class RoomAdmin(admin.ModelAdmin):
 class PresentationAdmin(admin.ModelAdmin):
     model = Presentation
     list_display = ("title", "slug", "speaker", "section", "slot")
-    list_filter = ("section", "cancelled", "slot")
+    list_filter = ["section", "slot__kind", "cancelled"]
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ("title", "speaker__name")
 
