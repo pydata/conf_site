@@ -181,7 +181,10 @@ class Proposal(ProposalBase):
             "Are you able to travel to Eindhoven at your own expense?"
         ),
     )
-    affiliation = models.CharField(choices=AFFILIATIONS, max_length=1)
+    affiliation = models.CharField(
+        max_length=200,
+        verbose_name="Affilation (Company, School, Independent)",
+    )
 
     mentorship = models.BooleanField(
         choices=YES_NO_BOOL_ANSWERS,
