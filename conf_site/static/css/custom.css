@@ -108,7 +108,8 @@ table.calendar th.time{width:60px}
 table.calendar td{text-align:center;vertical-align:middle}
 table.calendar td p {font-size:14px;}
 table.calendar td.time{vertical-align:top;padding-top:0;margin-top:0;color:#444;font-size:11px}
-table.calendar td.slot{font-weight:bold;text-shadow:#fff 0 1px 0;vertical-align:middle;width:25%}
+table.calendar td.slot{font-weight:bold;text-shadow:#fff 0 1px 0;vertical-align:middle;width:16%}
+table.calendar-day-2021-10-30 td.slot {width:14%}
 /* Colors for different slot kinds. */
 table.calendar td.slot.slot-break{background-color:#eee}
 table.calendar td.slot.slot-plenary{background-color:#b8d9e3}
