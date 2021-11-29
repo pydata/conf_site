@@ -4,6 +4,6 @@ ansible-lint[yamllint]==5.2.1
 coverage==6.1.2
 factory_boy==3.2.1
 flake8==4.0.1
-ipython==7.29.0
+ipython==7.30.0
 rstcheck==3.3.1
 sphinx==4.3.0
