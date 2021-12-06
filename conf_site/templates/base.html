@@ -67,7 +67,7 @@
     <script async src="{% static 'js/autotrack.js' %}"></script>
     {% endif %}
     {% if sentry_public_dsn %}
-    <script src="{% static 'js/sentry-6.10.0-bundle.tracing.min.js' %}"></script>
+    <script src="{% static 'js/sentry-6.15.0-bundle.tracing.min.js' %}"></script>
     <script>
         Sentry.init({
             dsn: "{{ sentry_public_dsn }}",
