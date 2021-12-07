@@ -1,4 +1,4 @@
-django==3.2.9
+django==3.2.10
 django-allauth==0.46.0
 django-analytical==3.0.0
 django-anymail[postmark]==8.4
