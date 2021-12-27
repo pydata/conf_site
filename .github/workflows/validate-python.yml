@@ -30,7 +30,7 @@ jobs:
             ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-
             ${{ runner.os }}-python3.7-venv-v3-
       - name: Install Python dependencies
-        uses: mobolic/install-python-dependencies@v0.2.0
+        uses: mobolic/install-python-dependencies@v0.3.0
         with:
           virtualenv-location: "~/venv/current"
       - name: Run flake8 linting
@@ -71,7 +71,7 @@ jobs:
             ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-
             ${{ runner.os }}-python3.7-venv-v3-
       - name: Install Python dependencies
-        uses: mobolic/install-python-dependencies@v0.2.0
+        uses: mobolic/install-python-dependencies@v0.3.0
         with:
           virtualenv-location: "~/venv/current"
       - name: Check for missing database migrations
