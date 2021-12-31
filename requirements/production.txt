@@ -20,4 +20,4 @@ psycopg2==2.9.3
 pytz==2021.3
 redis==3.5.3
 sentry-sdk==1.5.1
-virtualenv==20.10.0
+virtualenv==20.11.2
