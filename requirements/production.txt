@@ -19,5 +19,5 @@ pip==22.0.2
 psycopg2==2.9.3
 pytz==2021.3
 redis==3.5.3
-sentry-sdk==1.5.4
+sentry-sdk==1.5.5
 virtualenv==20.13.0
