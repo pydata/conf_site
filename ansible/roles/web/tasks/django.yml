@@ -126,3 +126,10 @@
   ansible.builtin.command:
     cmd: "{{ virtualenv_root }}/current/bin/python -m pretalx rebuild"
   notify: restart nginx
+
+- name: add pretalx cron job
+  ansible.builtin.cron:
+    job: "{{ virtualenv_root }}/current/bin/python -m pretalx runperiodic"
+    name: "pretalx runperiodic"
+    minute: "*/5"
+    state: present
