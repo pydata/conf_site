@@ -1,3 +1,5 @@
+import os
+
 from conf_site.settings.base import *    # noqa: F401,F403
 
 DEBUG = False
@@ -14,7 +16,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "testing_db",
         "USER": "postgres",
-        "PASSWORD": "",
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", ""),
         "HOST": "postgres",
         "PORT": "",
     }

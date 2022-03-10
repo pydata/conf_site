@@ -11,6 +11,7 @@ env:
   CC_TEST_REPORTER_ID: cf5093a40c8088ad26a5aca3e968037f90076dcbc825e5d10187dc3c81166e1a
   DJANGO_SETTINGS_MODULE: "conf_site.settings.testing"
   ENVIRONMENT: testing
+  POSTGRES_PASSWORD: ${{ github.run_id }}-${{ github.run_attempt }}
   PYTHONWARNINGS: all
 jobs:
   python-lint:
@@ -44,6 +45,7 @@ jobs:
       postgres:
         image: postgres:13-bullseye
         env:
+          POSTGRES_PASSWORD: ${{ github.run_id }}-${{ github.run_attempt }}
           POSTGRES_USER: postgres
           POSTGRES_DB: testing_db
         options: >-
