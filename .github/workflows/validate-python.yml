@@ -16,7 +16,7 @@ jobs:
   python-lint:
     name: Lint Python code
     runs-on: ubuntu-latest
-    container: python:3.7-buster
+    container: python:3.9-bullseye
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.4.0
@@ -24,11 +24,11 @@ jobs:
         uses: actions/cache@v2.1.7
         with:
           path: ~/venv/current
-          key: ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          key: ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
-            ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-
-            ${{ runner.os }}-python3.7-venv-v3-
+            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.9-venv-v0-
       - name: Install Python dependencies
         uses: mobolic/install-python-dependencies@v0.3.0
         with:
@@ -39,10 +39,10 @@ jobs:
     name: Test Python code
     needs: python-lint
     runs-on: ubuntu-latest
-    container: python:3.7-buster
+    container: python:3.9-bullseye
     services:
       postgres:
-        image: postgres:11.6
+        image: postgres:13-bullseye
         env:
           POSTGRES_USER: postgres
           POSTGRES_DB: testing_db
@@ -52,7 +52,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
       redis:
-        image: redis:5.0-buster
+        image: redis:6.0-bullseye
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -65,11 +65,11 @@ jobs:
         uses: actions/cache@v2.1.7
         with:
           path: ~/venv/current
-          key: ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          key: ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
-            ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-
-            ${{ runner.os }}-python3.7-venv-v3-
+            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.9-venv-v0-
       - name: Install Python dependencies
         uses: mobolic/install-python-dependencies@v0.3.0
         with:
