@@ -1,0 +1,29 @@
+[filesystem]
+data = {{ project_root }}/pretalx/data
+static = {{ project_root }}/pretalx/static
+
+[site]
+debug = False
+url = {{ website_url }}/
+secret = {{ django_secret_key }}
+
+[database]
+backend = postgresql
+name = {{ django_database }}
+user = {{ database_user }}
+password = {{ database_password }}
+host = {{ database_host }}
+
+[mail]
+from = {{ default_email }}
+host = {{ email_host_name }}
+port = 587
+user = {{ email_host_user }}
+password = {{ email_host_password }}
+tls = True
+
+[redis]
+location = redis://@localhost:6379/1
+
+[locale]
+timezone = {{ timezone }}

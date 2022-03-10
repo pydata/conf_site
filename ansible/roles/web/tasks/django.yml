@@ -102,84 +102,27 @@
     - restart supervisor
     - restart gunicorn
 
-- name: create sensitive settings file
-  template: src=sensitive-settings.py
-            dest={{ project_root }}/conf_site/settings/secrets.py
-            mode=0644
+- name: create pretalx configuration directory if necessary
+  ansible.builtin.file:
+    owner: "{{ ansible_user_id }}"
+    path: "/etc/pretalx"
+    state: "directory"
+  become: true
+
+- name: add custom pretalx configuration file
+  ansible.builtin.template:
+    dest: "/etc/pretalx/pretalx.cfg"
+    mode: 0644
+    owner: "{{ ansible_user_id }}"
+    src: "pretalx.cfg.j2"
   notify: restart gunicorn
 
 - name: database migrate
-  django_manage: command="migrate"
-                 app_path={{ project_root }}
-                 settings=conf_site.settings.{{ environment_type }}
-                 virtualenv={{ virtualenv_root }}/current
+  ansible.builtin.command:
+    cmd: "{{ virtualenv_root }}/current/bin/python -m pretalx migrate"
   notify: restart gunicorn
-
-- name: figure out whether fixtures have already been applied
-  stat:
-    path: "{{ project_root }}/fixtures/.applied"
-  register: fixtures_applied
-  tags:
-    - fixtures
-    - testing
-
-# https://serverfault.com/a/616976/48777
-- name: create list of fixture templates
-  shell: |
-    set -eo pipefail
-    ls roles/web/templates/fixtures/* | sed 's~.*/~~g'
-  args:
-    executable: /bin/bash
-  delegate_to: localhost
-  register: fixture_templates
-  when: not fixtures_applied.stat.exists
-  tags:
-    - fixtures
-    - testing
-
-- name: create fixtures from templates
-  template:
-    dest: "{{ project_root }}/fixtures/{{ item }}"
-    src: "templates/fixtures/{{ item }}"
-    mode: 0600
-  with_items: "{{ fixture_templates.stdout.splitlines() }}"
-  when: not fixtures_applied.stat.exists
-  tags:
-    - fixtures
-    - testing
-
-- name: validate fixtures
-  shell: |
-    python3 -m json.tool < {{ project_root }}/fixtures/{{ item }} > /dev/null
-  with_items: "{{ fixture_templates.stdout.splitlines() }}"
-  when: not fixtures_applied.stat.exists
-  tags:
-    - fixtures
-    - testing
-
-- name: load fixtures
-  django_manage:
-    app_path: "{{ project_root }}"
-    command: loaddata
-    fixtures: "{{ project_root }}/fixtures/{{ item }}"
-    settings: "conf_site.settings.{{ environment_type }}"
-    virtualenv: "{{ virtualenv_root }}/current"
-  with_items: "{{ fixture_templates.stdout.splitlines() }}"
-  when: not fixtures_applied.stat.exists
-  notify: mark fixtures as applied
-  tags:
-    - fixtures
 
 - name: collect static files
-  django_manage: command="collectstatic --noinput --clear"
-                 app_path={{ project_root }}
-                 settings=conf_site.settings.{{ environment_type }}
-                 virtualenv={{ virtualenv_root }}/current
+  ansible.builtin.command:
+    cmd: "{{ virtualenv_root }}/current/bin/python -m pretalx rebuild"
   notify: restart nginx
-
-- name: create reviewers user group
-  django_manage: command=create_review_group
-                 app_path={{ project_root }}
-                 settings=conf_site.settings.{{ environment_type }}
-                 virtualenv={{ virtualenv_root }}/current
-  notify: restart gunicorn
