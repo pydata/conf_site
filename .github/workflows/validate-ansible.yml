@@ -13,7 +13,7 @@ jobs:
   ansible-lint:
     name: Lint Ansible playbooks
     runs-on: ubuntu-latest
-    container: python:3.7-buster
+    container: python:3.9-bullseye
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.4.0
@@ -21,11 +21,11 @@ jobs:
         uses: actions/cache@v2.1.7
         with:
           path: ~/venv/current
-          key: ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          key: ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
-            ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-
-            ${{ runner.os }}-python3.7-venv-v3-
+            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.9-venv-v0-
       - name: Install Python dependencies
         uses: mobolic/install-python-dependencies@v0.3.0
         with:
@@ -38,7 +38,7 @@ jobs:
     name: Test Ansible playbooks
     needs: ansible-lint
     runs-on: ubuntu-latest
-    container: python:3.7-buster
+    container: python:3.9-bullseye
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.4.0
@@ -46,11 +46,11 @@ jobs:
         uses: actions/cache@v2.1.7
         with:
           path: ~/venv/current
-          key: ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          key: ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
-            ${{ runner.os }}-python3.7-venv-v3-${{ hashFiles('**/requirements/development.txt') }}-
-            ${{ runner.os }}-python3.7-venv-v3-
+            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.9-venv-v0-
       - name: Install Python dependencies
         uses: mobolic/install-python-dependencies@v0.3.0
         with:

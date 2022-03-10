@@ -13,7 +13,7 @@
       - gpg
       - logrotate
       - ntp
-      - python-pycurl
+      - python3-pycurl
       - supervisor
       - unattended-upgrades
       - vim
