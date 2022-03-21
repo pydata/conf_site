@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2.4.0
       - name: Virtualenv caching
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: ~/venv/current
           key: ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
@@ -43,7 +43,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2.4.0
       - name: Virtualenv caching
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: ~/venv/current
           key: ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
