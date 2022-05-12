@@ -6,8 +6,8 @@ DEBUG = False
 
 CACHES = {
     "default": {
-        "BACKEND": "redis_cache.RedisCache",
-        "LOCATION": "redis:6379",
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379",
     }
 }
 CONSTANCE_REDIS_CONNECTION = "redis://redis:6379/0"
