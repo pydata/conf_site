@@ -5,7 +5,10 @@ cloudflare_enabled: true
 content_site: ""
 database_host: localhost
 default_email: noreply@pydata.org
+email_host_email: ""
+email_host_name: ""
 email_host_user: noreply@pydata.org
+email_host_password: ""
 git_version: main
 gunicorn_port: 10501
 project_root: "/srv/pydata"
