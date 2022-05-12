@@ -13,6 +13,7 @@ testing:
 
 production:
   hosts:
-    eindhoven2021:
-    dask2021:
-    global2021:
+    la2022:
+    london2022:
+    test2022:
+    yerevan2022:
