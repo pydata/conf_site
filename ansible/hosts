@@ -15,5 +15,6 @@ production:
   hosts:
     la2022:
     london2022:
+    pythonatscale2022:
     test2022:
     yerevan2022:
