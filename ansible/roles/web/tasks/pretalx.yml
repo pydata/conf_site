@@ -13,6 +13,13 @@
     src: "pretalx.cfg.j2"
   notify: restart gunicorn
 
+- name: add custom pretalx template
+  ansible.builtin.template:
+    dest: "{{ project_root }}/pretalx/data/templates/common/base.html"
+    mode: 0400
+    owner: "{{ ansible_user_id }}"
+    src: "pretalx/common/base.html"
+
 - name: database migrate
   ansible.builtin.command:
     cmd: "{{ virtualenv_root }}/current/bin/python -m pretalx migrate"
