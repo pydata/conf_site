@@ -1,7 +1,7 @@
 ansible_ssh_host: 127.0.0.1
 conference_identifier: metropolis2000
 conference_name: "PyData Metropolis 2000"
-content_site: ""
+content_site: https://pydata.org{{ subdirectory }}
 database_user: "{{ conference_identifier }}"
 date_format: "l F j"
 django_database: "{{ conference_identifier }}"
@@ -15,5 +15,5 @@ ssl_enabled: false
 subdirectory: /{{ conference_identifier }}
 time_format: "g:i A"
 timezone: America/New_York
-website_domain: pydata.org
-website_url: https://pydata.org{{ subdirectory }}
+website_domain: { conference_identifier }}.pydata.org
+website_url: https://{{ website_domain }}
