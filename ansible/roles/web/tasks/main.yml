@@ -2,3 +2,4 @@
 - include: nginx.yml
 - include: letsencrypt.yml
 - include: django.yml
+- include: pretalx.yml
