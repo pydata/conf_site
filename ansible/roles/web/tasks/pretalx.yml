@@ -1,5 +1,6 @@
 - name: create pretalx configuration directory if necessary
   ansible.builtin.file:
+    mode: 0755
     owner: "{{ ansible_user_id }}"
     path: "/etc/pretalx"
     state: "directory"
@@ -24,11 +25,15 @@
   ansible.builtin.command:
     cmd: "{{ virtualenv_root }}/current/bin/python -m pretalx migrate"
   notify: restart gunicorn
+  tags:
+    - skip_ansible_lint
 
 - name: collect static files
   ansible.builtin.command:
     cmd: "{{ virtualenv_root }}/current/bin/python -m pretalx rebuild"
   notify: restart nginx
+  tags:
+    - skip_ansible_lint
 
 - name: add pretalx cron job
   ansible.builtin.cron:

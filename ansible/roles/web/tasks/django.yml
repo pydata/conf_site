@@ -57,15 +57,17 @@
   tags:
     - skip_ansible_lint
 
+- name: get target of old "current" virtualenv symlink
+  ansible.builtin.stat:
+    path: "{{ virtualenv_root }}/current"
+  register: old_current_virtualenv
+
 - name: add/update "previous" virtualenv symlink
-  shell: >
-    ln -sfn
-    $(readlink {{ virtualenv_root }}/current)
-    {{ virtualenv_root }}/previous
-  args:
-    warn: false
-  when: venv_dir.stat.isdir is not defined
-  ignore_errors: true
+  ansible.builtin.file:
+    path: "{{ virtualenv_root }}/previous"
+    src: "{{ old_current_virtualenv.stat.lnk_source }}"
+    state: link
+  when: venv_dir.stat.isdir is not defined and old_current_virtualenv.stat.islnk is true
 
 - name: add/update "current" virtualenv symlink
   file:
