@@ -1,2 +1,2 @@
 -r production.txt
-django-debug-toolbar==3.2.4
+django-debug-toolbar==3.5.0
