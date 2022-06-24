@@ -1,5 +1,6 @@
 - name: create pretalx configuration directory if necessary
   ansible.builtin.file:
+    mode: 0755
     owner: "{{ ansible_user_id }}"
     path: "/etc/pretalx"
     state: "directory"
