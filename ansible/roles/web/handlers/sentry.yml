@@ -1,5 +1,5 @@
 - name: create new Sentry release
-  uri:
+  ansible.builtin.uri:
     body: "{'projects': ['{{ sentry_project_name }}'], 'version': '{{ git_status.stdout }}'}"
     body_format: "json"
     headers:
@@ -10,7 +10,7 @@
     url: "https://sentry.io/api/0/organizations/{{ application_owner }}/releases/"
 
 - name: send Sentry notification of deployment
-  uri:
+  ansible.builtin.uri:
     body: "{'environment': '{{ environment_type }}'}"
     body_format: "json"
     headers:

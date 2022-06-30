@@ -1,5 +1,5 @@
 - name: install PostgreSQL packages
-  apt:
+  ansible.builtin.apt:
     name:
       - libpq-dev
       - postgresql
@@ -10,17 +10,19 @@
 - name: create a PostgreSQL database for this project
   become: true
   become_user: postgres
-  postgresql_db: name={{ django_database }}
-                 encoding="UTF-8"
-                 state=present
-                 template=template0
+  ansible.builtin.postgresql_db:
+    encoding: "UTF-8"
+    name: "{{ django_database }}"
+    state: present
+    template: template0
 
 - name: create a PostgreSQL user for this project
   become: true
   become_user: postgres
-  postgresql_user: db={{ django_database }}
-                   name={{ database_user }}
-                   password={{ database_password }}
-                   priv=ALL
-                   role_attr_flags=CREATEDB
-                   state=present
+  ansible.builtin.postgresql_user:
+    db: "{{ django_database }}"
+    name: "{{ database_user }}"
+    password: "{{ database_password }}"
+    priv: ALL
+    role_attr_flags: CREATEDB
+    state: present

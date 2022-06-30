@@ -1,13 +1,15 @@
 - name: install certbot
-  apt: name=certbot
-       state=present
+  ansible.builtin.apt:
+    name: certbot
+    state: present
   become: true
   when: ssl_enabled
 
 - name: create .well-known directory
-  file: path={{ project_root }}/.well-known
-        state=directory
-        mode=0755
+  ansible.builtin.file:
+    mode: 0755
+    path: "{{ project_root }}/.well-known"
+    state: directory
   become: true
   when: ssl_enabled
 
@@ -15,7 +17,7 @@
 # so the webroot method will not work when we provision the certificate for
 # the first time.
 - name: run certbot and generate certificate
-  command: >
+  ansible.builtin.command: >
     certbot certonly -n --standalone --agree-tos
     -d {{ website_domain }}
     -m {{ admin_email }}

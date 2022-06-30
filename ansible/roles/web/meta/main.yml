@@ -5,10 +5,8 @@ galaxy_info:
   description: Ansible role for web servers.
   company: NumFOCUS
   license: MIT
-  min_ansible_version: 2.7
+  min_ansible_version: "2.12"
   platforms:
     - name: Debian
       versions:
-        - stretch
-        - buster
         - bullseye
