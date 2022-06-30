@@ -1,9 +1,9 @@
 - name: pull repository from Github to project directory
   ansible.builtin.git:
-    accept_hostkey: yes
+    accept_hostkey: true
     dest: "{{ project_root }}"
     repo: https://github.com/pydata/conf_site.git
-    update: yes
+    update: true
     version: "{{ git_version }}"
   become: true
   when: environment_type != "development"

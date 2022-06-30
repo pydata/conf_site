@@ -13,7 +13,7 @@
 
 - name: update package list to get latest nginx
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
   become: true
 
 - name: install nginx
@@ -33,7 +33,7 @@
 - name: add customized nginx global configuration file
   ansible.builtin.template:
     dest: "/etc/nginx/nginx.conf"
-    force: yes
+    force: true
     group: root
     mode: 0644
     owner: root

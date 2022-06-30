@@ -7,8 +7,8 @@
 - name: update package list & upgrade existing packages
   ansible.builtin.apt:
     cache_valid_time: 3600
-    update_cache: yes
-    upgrade: yes
+    update_cache: true
+    upgrade: true
   become: true
 
 - name: install common packages
