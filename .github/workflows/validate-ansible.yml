@@ -33,7 +33,7 @@ jobs:
       - name: Run ansible-lint
         run: |
           bash -c "source ~/venv/current/bin/activate &&
-          ansible-lint ansible/roles/common ansible/roles/db ansible/roles/web"
+          ansible-lint ansible/"
   ansible-test:
     name: Test Ansible playbooks
     needs: ansible-lint
