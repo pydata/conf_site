@@ -1,9 +1,10 @@
 - name: pull repository from Github to project directory
-  git: accept_hostkey=yes
-       dest={{ project_root }}
-       repo=https://github.com/pydata/conf_site.git
-       update=yes
-       version={{ git_version }}
+  ansible.builtin.git:
+    accept_hostkey: yes
+    dest: "{{ project_root }}"
+    repo: https://github.com/pydata/conf_site.git
+    update: yes
+    version: "{{ git_version }}"
   become: true
   when: environment_type != "development"
   notify:
@@ -13,7 +14,7 @@
     - send Sentry notification of deployment
 
 - name: install python packages and associated libraries
-  apt:
+  ansible.builtin.apt:
     name:
       - gettext
       - python3-dev
@@ -33,7 +34,7 @@
   notify: restart gunicorn
 
 - name: change ownership of everything to this user
-  file:
+  ansible.builtin.file:
     path: "{{ project_root }}"
     recurse: true
     owner: "{{ ansible_user_id }}"
@@ -41,17 +42,19 @@
   become: true
 
 - name: manually figure out latest Git commit
-  command: git rev-parse HEAD chdir={{ project_root }}
+  ansible.builtin.command: git rev-parse HEAD chdir={{ project_root }}
   register: git_status
   tags:
     - skip_ansible_lint
 
 - name: determine if virtualenv exists
-  stat: path={{ virtualenv_root }}/{{ git_status.stdout }}
+  ansible.builtin.stat:
+    path: "{{ virtualenv_root }}/{{ git_status.stdout }}"
   register: venv_dir
 
 - name: create virtualenv if necessary
-  command: python3 -m virtualenv -p python3 {{ virtualenv_root }}/{{ git_status.stdout }}
+  ansible.builtin.command: >
+    python3 -m virtualenv -p python3 {{ virtualenv_root }}/{{ git_status.stdout }}
   when: venv_dir.stat.isdir is not defined
   notify: delete other virtualenvs
   tags:
@@ -70,25 +73,26 @@
   when: venv_dir.stat.isdir is not defined and old_current_virtualenv.stat.islnk is true
 
 - name: add/update "current" virtualenv symlink
-  file:
+  ansible.builtin.file:
     state: link
     path: "{{ virtualenv_root }}/current"
     src: "{{ virtualenv_root }}/{{ git_status.stdout }}"
 
 - name: use symlink for easier virtualenv management
-  file: state=link
-        path={{ virtualenv_root }}/current
-        src={{ virtualenv_root }}/{{ git_status.stdout }}
+  ansible.builtin.file:
+    path: "{{ virtualenv_root }}/current"
+    src: "{{ virtualenv_root }}/{{ git_status.stdout }}"
+    state: link
 
 - name: install latest version of pip
-  pip:
+  ansible.builtin.pip:
     extra_args: "--upgrade"
     name: pip
     state: present
     virtualenv: "{{ virtualenv_root }}/current"
 
 - name: update virtualenv with requirements
-  pip:
+  ansible.builtin.pip:
     extra_args: "--upgrade"
     requirements: "{{ project_root }}/requirements/{{ environment_type }}.txt"
     state: present
@@ -96,9 +100,10 @@
   notify: restart gunicorn
 
 - name: add supervisor configuration file for gunicorn
-  template: src=supervisor.conf
-            dest=/etc/supervisor/conf.d/gunicorn.conf
-            mode=0644
+  ansible.builtin.template:
+    dest: "/etc/supervisor/conf.d/gunicorn.conf"
+    mode: 0644
+    src: supervisor.conf
   become: true
   notify:
     - restart supervisor
