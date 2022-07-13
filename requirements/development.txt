@@ -1,7 +1,7 @@
 -r staging.txt
 ansible==6.0.0
 ansible-lint[yamllint]==6.3.0
-coverage==6.4.1
+coverage==6.4.2
 factory_boy==3.2.1
 flake8==4.0.1
 ipython==8.4.0
