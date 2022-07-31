@@ -15,5 +15,5 @@ ssl_enabled: false
 subdirectory: /{{ conference_identifier }}
 time_format: "g:i A"
 timezone: America/New_York
-website_domain: { conference_identifier }}.pydata.org
+website_domain: "{{ conference_identifier }}.pydata.org"
 website_url: https://{{ website_domain }}
