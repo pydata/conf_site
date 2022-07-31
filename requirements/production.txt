@@ -1,4 +1,4 @@
-django==3.2.13
+django==3.2.14
 -e git+https://github.com/pennersr/django-allauth@7a719b64154840a8c6ff5c4301568f897721fcc0#egg=django-allauth
 django-analytical==3.1.0
 django-anymail[postmark]==8.6
