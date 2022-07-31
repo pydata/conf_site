@@ -14,7 +14,6 @@ testing:
 production:
   hosts:
     global2022:
-    la2022:
     london2022:
     miami2022:
     nyc2022:
