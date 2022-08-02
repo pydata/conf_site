@@ -3,7 +3,7 @@ ansible==6.1.0
 ansible-lint[yamllint]==6.4.0
 coverage==6.4.2
 factory_boy==3.2.1
-flake8==4.0.1
+flake8==5.0.3
 ipython==8.4.0
 rstcheck==5.0.0
 sphinx==5.1.1
