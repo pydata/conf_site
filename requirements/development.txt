@@ -5,5 +5,5 @@ coverage==6.4.3
 factory_boy==3.2.1
 flake8==5.0.4
 ipython==8.4.0
-rstcheck==5.0.0
+rstcheck==6.0.0.post1
 sphinx==5.1.1
