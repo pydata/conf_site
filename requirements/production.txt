@@ -17,5 +17,5 @@ pip==22.2.2
 -e git+https://github.com/pretalx/pretalx@27aafeba79e9f33fc07e148b141773180e938883#egg=pretalx[redis]&subdirectory=src
 psycopg2==2.9.3
 pytz==2022.1
-sentry-sdk==1.9.4
+sentry-sdk==1.9.5
 virtualenv==20.16.3
