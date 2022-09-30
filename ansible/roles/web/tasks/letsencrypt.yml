@@ -1,11 +1,11 @@
-- name: install certbot
+- name: Install certbot
   ansible.builtin.apt:
     name: certbot
     state: present
   become: true
   when: ssl_enabled
 
-- name: create .well-known directory
+- name: Create .well-known directory
   ansible.builtin.file:
     mode: 0755
     path: "{{ project_root }}/.well-known"
@@ -16,7 +16,7 @@
 # We use the "standalone" method because nginx needs a certificate to run,
 # so the webroot method will not work when we provision the certificate for
 # the first time.
-- name: run certbot and generate certificate
+- name: Run certbot and generate certificate
   ansible.builtin.command: >
     certbot certonly -n --standalone --agree-tos
     -d {{ website_domain }}

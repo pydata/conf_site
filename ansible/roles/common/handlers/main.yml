@@ -1,10 +1,10 @@
-- name: restart fail2ban
+- name: Restart fail2ban
   ansible.builtin.service:
     name: fail2ban
     state: restarted
   become: true
 
-- name: restart supervisor
+- name: Restart supervisor
   ansible.builtin.service:
     name: supervisor
     state: restarted

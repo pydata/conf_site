@@ -1,4 +1,4 @@
-- name: install PostgreSQL packages
+- name: Install PostgreSQL packages
   ansible.builtin.apt:
     name:
       - libpq-dev
@@ -7,7 +7,7 @@
     state: present
   become: true
 
-- name: create a PostgreSQL database for this project
+- name: Create a PostgreSQL database for this project
   become: true
   become_user: postgres
   ansible.builtin.postgresql_db:
@@ -16,7 +16,7 @@
     state: present
     template: template0
 
-- name: create a PostgreSQL user for this project
+- name: Create a PostgreSQL user for this project
   become: true
   become_user: postgres
   ansible.builtin.postgresql_user:

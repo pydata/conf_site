@@ -1,4 +1,4 @@
-- name: create pretalx configuration directory if necessary
+- name: Create pretalx configuration directory if necessary
   ansible.builtin.file:
     mode: 0755
     owner: "{{ ansible_user_id }}"
@@ -6,36 +6,36 @@
     state: "directory"
   become: true
 
-- name: add custom pretalx configuration file
+- name: Add custom pretalx configuration file
   ansible.builtin.template:
     dest: "/etc/pretalx/pretalx.cfg"
     mode: 0644
     owner: "{{ ansible_user_id }}"
     src: "pretalx.cfg.j2"
-  notify: restart gunicorn
+  notify: Restart gunicorn
 
-- name: add custom pretalx template
+- name: Add custom pretalx template
   ansible.builtin.template:
     dest: "{{ project_root }}/pretalx/data/templates/common/base.html"
     mode: 0400
     owner: "{{ ansible_user_id }}"
     src: "pretalx/common/base.html"
 
-- name: database migrate
+- name: Database migrate
   ansible.builtin.command:
     cmd: "{{ virtualenv_root }}/current/bin/python -m pretalx migrate"
-  notify: restart gunicorn
+  notify: Restart gunicorn
   tags:
     - skip_ansible_lint
 
-- name: collect static files
+- name: Collect static files
   ansible.builtin.command:
     cmd: "{{ virtualenv_root }}/current/bin/python -m pretalx rebuild"
-  notify: restart nginx
+  notify: Restart nginx
   tags:
     - skip_ansible_lint
 
-- name: add pretalx cron job
+- name: Add pretalx cron job
   ansible.builtin.cron:
     job: "{{ virtualenv_root }}/current/bin/python -m pretalx runperiodic"
     name: "pretalx runperiodic"

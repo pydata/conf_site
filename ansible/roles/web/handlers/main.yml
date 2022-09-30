@@ -1,16 +1,16 @@
-- name: restart redis
+- name: Restart redis
   ansible.builtin.service:
     name: redis-server
     state: restarted
   become: true
 
-- name: restart nginx
+- name: Restart nginx
   ansible.builtin.service:
     name: nginx
     state: restarted
   become: true
 
-- name: delete other virtualenvs
+- name: Delete other virtualenvs
   ansible.builtin.shell: find  -maxdepth 1
          ! -path '.'
          ! -path './'$(basename $(readlink current))
@@ -19,13 +19,13 @@
   args:
     chdir: "{{ virtualenv_root }}"
 
-- name: restart gunicorn
+- name: Restart gunicorn
   ansible.builtin.supervisorctl:
     name: gunicorn
     state: restarted
   become: true
 
-- name: mark fixtures as applied
+- name: Mark fixtures as applied
   ansible.builtin.file:
     path: "{{ project_root }}/fixtures/.applied"
     state: touch

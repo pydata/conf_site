@@ -1,36 +1,36 @@
-- name: add nginx package key
+- name: Add nginx package key
   ansible.builtin.apt_key:
     id: 7BD9BF62
     state: present
     url: http://nginx.org/keys/nginx_signing.key
   become: true
 
-- name: add mainline nginx repository
+- name: Add mainline nginx repository
   ansible.builtin.apt_repository:
     repo: "deb http://nginx.org/packages/mainline/debian/ {{ ansible_lsb.codename }} nginx"
     state: present
   become: true
 
-- name: update package list to get latest nginx
+- name: Update package list to get latest nginx
   ansible.builtin.apt:
     update_cache: true
   become: true
 
-- name: install nginx
+- name: Install nginx
   ansible.builtin.apt:
     pkg: nginx
     state: present
   become: true
-  notify: restart nginx
+  notify: Restart nginx
 
-- name: remove default nginx global configuration file
+- name: Remove default nginx global configuration file
   ansible.builtin.file:
     path: "/etc/nginx/nginx.conf"
     state: absent
   become: true
-  notify: restart nginx
+  notify: Restart nginx
 
-- name: add customized nginx global configuration file
+- name: Add customized nginx global configuration file
   ansible.builtin.template:
     dest: "/etc/nginx/nginx.conf"
     force: true
@@ -39,15 +39,15 @@
     owner: root
     src: nginx-global.conf
   become: true
-  notify: restart nginx
+  notify: Restart nginx
 
-- name: remove default nginx site configuration file
+- name: Remove default nginx site configuration file
   ansible.builtin.file:
     path: "/etc/nginx/conf.d/default.conf"
     state: absent
   become: true
 
-- name: add customized http nginx site configuration file
+- name: Add customized http nginx site configuration file
   ansible.builtin.template:
     dest: "/etc/nginx/conf.d/{{ website_domain }}.conf"
     group: root
@@ -55,10 +55,10 @@
     owner: root
     src: nginx-site-http.conf
   become: true
-  notify: restart nginx
+  notify: Restart nginx
   when: not ssl_enabled or environment_type == "development"
 
-- name: add customized https nginx site configuration file
+- name: Add customized https nginx site configuration file
   ansible.builtin.template:
     dest: "/etc/nginx/conf.d/{{ website_domain }}.conf"
     group: root
@@ -66,17 +66,17 @@
     owner: root
     src: nginx-site-https.conf
   become: true
-  notify: restart nginx
+  notify: Restart nginx
   when: ssl_enabled and environment_type != "development"
 
-- name: remove default nginx ssl site configuration file
+- name: Remove default nginx ssl site configuration file
   ansible.builtin.file:
     path: "/etc/nginx/conf.d/example-ssl.conf"
     state: absent
   become: true
-  notify: restart nginx
+  notify: Restart nginx
 
-- name: add custom logrotate configuration for nginx
+- name: Add custom logrotate configuration for nginx
   ansible.builtin.template:
     dest: "/etc/logrotate.d/nginx"
     group: root
