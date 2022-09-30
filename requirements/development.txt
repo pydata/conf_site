@@ -1,5 +1,5 @@
 -r staging.txt
-ansible==6.2.0
+ansible==6.4.0
 ansible-lint[yamllint]==6.4.0
 coverage==6.4.4
 factory_boy==3.2.1
