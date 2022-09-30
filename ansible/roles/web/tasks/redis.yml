@@ -1,7 +1,7 @@
-- name: install redis package
+- name: Install redis package
   ansible.builtin.apt:
     pkg: redis-server
     state: present
   become: true
   notify:
-    - restart redis
+    - Restart redis

@@ -1,17 +1,17 @@
-- name: install python3-apt
+- name: Install python3-apt
   ansible.builtin.apt:
     pkg: python3-apt
     state: present
   become: true
 
-- name: update package list & upgrade existing packages
+- name: Update package list & upgrade existing packages
   ansible.builtin.apt:
     cache_valid_time: 3600
     update_cache: true
     upgrade: true
   become: true
 
-- name: install common packages
+- name: Install common packages
   ansible.builtin.apt:
     name:
       - git
@@ -25,14 +25,14 @@
     state: present
   become: true
 
-- name: copy apt configuration file (20auto-upgrades)
+- name: Copy apt configuration file (20auto-upgrades)
   ansible.builtin.template:
     dest: "/etc/apt/apt.conf.d/20auto-upgrades"
     mode: 0644
     src: 20auto-upgrades
   become: true
 
-- name: copy apt configuration file (50unattended-upgrades)
+- name: Copy apt configuration file (50unattended-upgrades)
   ansible.builtin.template:
     dest: "/etc/apt/apt.conf.d/50unattended-upgrades"
     mode: 0644

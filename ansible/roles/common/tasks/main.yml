@@ -1,2 +1,2 @@
-- include: apt.yml
-- include: security.yml
+- import_tasks: apt.yml
+- import_tasks: security.yml
