@@ -27,4 +27,4 @@ jobs:
         with:
           virtualenv-location: "~/venv/current"
       - name: Run rstcheck
-        run: ~/venv/current/bin/rstcheck --report warning docs/source/*.rst
+        run: ~/venv/current/bin/rstcheck --report-level warning docs/source/*.rst
