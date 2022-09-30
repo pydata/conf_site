@@ -33,4 +33,4 @@
   tags:
     - fixtures
 
-- include: sentry.yml
+- import_tasks: sentry.yml

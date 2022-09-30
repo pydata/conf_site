@@ -1,5 +1,5 @@
-- include: redis.yml
-- include: nginx.yml
-- include: letsencrypt.yml
-- include: django.yml
-- include: pretalx.yml
+- import_tasks: redis.yml
+- import_tasks: nginx.yml
+- import_tasks: letsencrypt.yml
+- import_tasks: django.yml
+- import_tasks: pretalx.yml
