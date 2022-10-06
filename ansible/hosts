@@ -13,11 +13,13 @@ testing:
 
 production:
   hosts:
+    eindhoven2022:
     global2022:
     london2022:
     miami2022:
     nyc2022:
     pythonatscale2022:
+    seattle2023:
     telaviv2022:
     test2022:
     yerevan2022:
