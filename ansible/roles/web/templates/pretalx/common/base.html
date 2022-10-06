@@ -96,7 +96,7 @@
                     </div>
                     <a class="nav-link" href="{{ content_site }}/job-board/">Job Board</a>
                     <a class="nav-link" href="{{ content_site }}/sponsors/">Sponsor</a>
-                    <a class="nav-link" href="{{ content_site }}/tickets/">Tickets</a>
+                    {% if nav_tickets_enabled %}<a class="nav-link" href="{{ content_site }}/tickets/">Tickets</a>{% endif %}
                     <a class="nav-link" href="{{ content_site }}/schedule/">Schedule</a>
                 </nav>
 {% raw %}
