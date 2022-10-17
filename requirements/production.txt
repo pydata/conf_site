@@ -13,7 +13,7 @@ django-timezone-field==4.2.3
 easy-thumbnails==2.8.3
 gunicorn==20.1.0
 pinax-eventlog==5.1.1
-pip==22.2.2
+pip==22.3
 -e git+https://github.com/pretalx/pretalx@11652a5857316b2280b16305621a0088d19adf12#egg=pretalx[redis]&subdirectory=src
 psycopg2==2.9.3
 pytz==2022.4
