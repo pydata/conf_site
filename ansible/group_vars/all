@@ -11,6 +11,7 @@ email_host_user: noreply@pydata.org
 email_host_password: ""
 git_version: main
 gunicorn_port: 10501
+nav_enabled: true
 nav_tickets_enabled: true
 project_root: "/srv/pydata"
 postmark_api_token: ""

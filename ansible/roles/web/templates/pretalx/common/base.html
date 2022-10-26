@@ -80,7 +80,7 @@
                         {% endif %}
                     </a>
                 </h1>
-{% endraw %}
+{% endraw %}{% if nav_enabled %}
                 <nav class="nav bg-white mb-0" role="navigation">
                     <a class="nav-link" href="{{ content_site }}/">Home</a>
                     <div class="nav-item dropdown">
@@ -99,7 +99,7 @@
                     {% if nav_tickets_enabled %}<a class="nav-link" href="{{ content_site }}/tickets/">Tickets</a>{% endif %}
                     <a class="nav-link" href="{{ content_site }}/schedule/">Schedule</a>
                 </nav>
-{% raw %}
+{% endif %}{% raw %}
                 <div class="d-flex" id="header-row">
                     {% if request.event and request.event.locales|length > 1 and not is_html_export %}
                         <div class="locales">
