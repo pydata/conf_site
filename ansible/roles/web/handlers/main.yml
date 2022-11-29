@@ -20,7 +20,7 @@
     chdir: "{{ virtualenv_root }}"
 
 - name: Restart gunicorn
-  ansible.builtin.supervisorctl:
+  community.general.supervisorctl:
     name: gunicorn
     state: restarted
   become: true
@@ -33,4 +33,5 @@
   tags:
     - fixtures
 
-- import_tasks: sentry.yml
+- name: Import sentry tasks
+  ansible.builtin.import_tasks: sentry.yml
