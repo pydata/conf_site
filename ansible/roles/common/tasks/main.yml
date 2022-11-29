@@ -1,2 +1,2 @@
-- import_tasks: apt.yml
-- import_tasks: security.yml
+- ansible.builtin.import_tasks: apt.yml
+- ansible.builtin.import_tasks: security.yml

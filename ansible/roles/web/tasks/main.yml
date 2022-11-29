@@ -1,5 +1,5 @@
-- import_tasks: redis.yml
-- import_tasks: nginx.yml
-- import_tasks: letsencrypt.yml
-- import_tasks: django.yml
-- import_tasks: pretalx.yml
+- ansible.builtin.import_tasks: redis.yml
+- ansible.builtin.import_tasks: nginx.yml
+- ansible.builtin.import_tasks: letsencrypt.yml
+- ansible.builtin.import_tasks: django.yml
+- ansible.builtin.import_tasks: pretalx.yml
