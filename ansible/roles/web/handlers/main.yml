@@ -33,4 +33,5 @@
   tags:
     - fixtures
 
-- ansible.builtin.import_tasks: sentry.yml
+- name: Import sentry tasks
+  ansible.builtin.import_tasks: sentry.yml
