@@ -20,7 +20,7 @@
     chdir: "{{ virtualenv_root }}"
 
 - name: Restart gunicorn
-  ansible.builtin.supervisorctl:
+  community.general.supervisorctl:
     name: gunicorn
     state: restarted
   become: true

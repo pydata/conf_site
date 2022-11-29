@@ -10,7 +10,7 @@
 - name: Create a PostgreSQL database for this project
   become: true
   become_user: postgres
-  ansible.builtin.postgresql_db:
+  community.postgresql.postgresql_db:
     encoding: "UTF-8"
     name: "{{ django_database }}"
     state: present
@@ -19,7 +19,7 @@
 - name: Create a PostgreSQL user for this project
   become: true
   become_user: postgres
-  ansible.builtin.postgresql_user:
+  community.postgresql.postgresql_user:
     db: "{{ django_database }}"
     name: "{{ database_user }}"
     password: "{{ database_password }}"
