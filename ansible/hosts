@@ -15,6 +15,7 @@ production:
   hosts:
     eindhoven2022:
     global2022:
+    jupytercon2023:
     london2022:
     miami2022:
     nyc2022:
