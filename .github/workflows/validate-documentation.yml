@@ -12,7 +12,7 @@ jobs:
     container: python:3.9-bullseye
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.1.0
+        uses: actions/checkout@v3.2.0
       - name: Virtualenv caching
         uses: actions/cache@v3.0.11
         with:
