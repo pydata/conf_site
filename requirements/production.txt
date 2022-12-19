@@ -1,7 +1,7 @@
 django==3.2.16
 django-allauth==0.51.0
 django-analytical==3.1.0
-django-anymail[postmark]==8.6
+django-anymail[postmark]==9.0
 django-autoslug==1.9.8
 django-constance[redis]==2.9.1
 django-crispy-forms==1.14.0
