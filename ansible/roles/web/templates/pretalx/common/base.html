@@ -18,14 +18,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="{% if request.event and request.event.primary_color %}{{ request.event.primary_color }}{% else %}#3aa57c{% endif %}">
         <meta name="HandheldFriendly" content="True"/>
-        {% block meta_image %}{% if request.event and request.event.logo %}<meta property="thumbnail" content="{{ request.event.urls.logo.full }}">
-            <meta property="og:image" content="{{ request.event.urls.logo.full }}">{% endif %}{% endblock %}
+        {% block meta_image %}{% if request.event %}<meta property="thumbnail" content="{{ request.event.urls.social_image.full }}">
+            <meta property="og:image" content="{{ request.event.urls.social_image.full }}">
+        {% endif %}{% endblock %}
         <meta property="og:title" content="{% block social_title %}{% endblock %} {% if request.event %}{{ request.event.name }}{% endif %}">
         <meta property="og:description" content="{% block social_description %}{% if request.event %}Schedule, talks and talk submissions for {{ request.event.name }}{% else %}Talks and talk submissions by pretalx{% endif %}{% endblock %}">
-        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+        <meta property="og:url" content="{% if request.event and request.event.display_settings.html_export_url %}{{ request.event.display_settings.html_export_url }}{{ request.path|slice:"1:" }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
         <meta property="twitter:card" content="summary">
 
-        {% if development_warning %}
+        {% if development_mode %}
             <link rel="icon" type="image/png" sizes="32x32" href="{% static "common/img/favicon-32x32_debug.png" %}">
             <link rel="icon" type="image/png" sizes="16x16" href="{% static "common/img/favicon-16x16_debug.png" %}">
         {% else %}
@@ -51,7 +52,7 @@
             <script defer src="{% static "vendored/tether/tether.min.js" %}"></script>
             <script defer src="{% static "vendored/bootstrap/dist/js/bootstrap.bundle.min.js" %}"></script>
             <script defer src="{% static "vendored/moment-with-locales.js" %}"></script>
-            <script defer src="{% static "vendored/moment-timezone-with-data-2012-2022.js" %}"></script>
+            <script defer src="{% static "vendored/moment-timezone-with-data-10-year-range.js" %}"></script>
         {% endcompress %}
         {% block custom_header %}{% endblock %}
     </head>
