@@ -85,13 +85,11 @@ jobs:
       - name: Collect static files
         run: |
              ~/venv/current/bin/python3 ./manage.py collectstatic --noinput
-      - name: Download CodeClimate test reporter utility
-        run: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
       - name: Run automated tests
         run: |
-            ./cc-test-reporter before-build
             ~/venv/current/bin/coverage run --source='.' manage.py test --noinput
             ~/venv/current/bin/coverage xml
-            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
