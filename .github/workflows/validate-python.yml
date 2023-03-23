@@ -25,11 +25,11 @@ jobs:
         uses: actions/cache@v3.3.1
         with:
           path: ~/venv/current
-          key: ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          key: ${{ runner.os }}-python3.9-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
-            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-
-            ${{ runner.os }}-python3.9-venv-v0-
+            ${{ runner.os }}-python3.9-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.9-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.9-venv-v1-
       - name: Install Python dependencies
         uses: mobolic/install-python-dependencies@v0.3.0
         with:
@@ -67,11 +67,11 @@ jobs:
         uses: actions/cache@v3.3.1
         with:
           path: ~/venv/current
-          key: ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+          key: ${{ runner.os }}-python3.9-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
-            ${{ runner.os }}-python3.9-venv-v0-${{ hashFiles('**/requirements/development.txt') }}-
-            ${{ runner.os }}-python3.9-venv-v0-
+            ${{ runner.os }}-python3.9-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-${{ hashFiles('**/requirements/production.txt') }}
+            ${{ runner.os }}-python3.9-venv-v1-${{ hashFiles('**/requirements/development.txt') }}-
+            ${{ runner.os }}-python3.9-venv-v1-
       - name: Install Python dependencies
         uses: mobolic/install-python-dependencies@v0.3.0
         with:
