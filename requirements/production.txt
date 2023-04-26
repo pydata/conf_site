@@ -17,4 +17,4 @@ pip==23.1.1
 psycopg2==2.9.6
 pytz==2023.3
 sentry-sdk==1.19.1
-virtualenv==20.21.0
+virtualenv==20.22.0
