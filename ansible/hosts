@@ -13,14 +13,19 @@ testing:
 
 production:
   hosts:
+    amsterdam2023:
+    bogota2023:
     eindhoven2022:
     global2022:
     jupytercon2023:
     london2022:
+    london2023:
     miami2022:
     nyc2022:
-    pythonatscale2022:
+    packagingcon2023:
     seattle2023:
+    scipy2023:
     telaviv2022:
+    telaviv2023:
     test2022:
     yerevan2022:
