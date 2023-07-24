@@ -12,7 +12,7 @@ django-timezone-field==5.1
 easy-thumbnails==2.8.5
 gunicorn==20.1.0
 pinax-eventlog==5.1.1
-pip==23.1.2
+pip==23.2.1
 -e git+https://github.com/pydata/pretalx@add-submission-type-to-widget-json#egg=pretalx[redis]&subdirectory=src
 psycopg2==2.9.6
 pytz==2023.3
