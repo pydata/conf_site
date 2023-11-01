@@ -75,30 +75,28 @@
                 <h1>
                     <a href="{% block nav_link %}{% endblock %}">
                         {% if request.event and request.event.logo %}
-                            <img src="{{ request.event.logo.url }}" id="event-logo" alt="{% translate "The event's logo" %}">
-                        {% elif request.event %}
-                            {{ request.event.name }}
+                            <img src="{{ request.event.logo.url }}" id="event-logo" alt="PyData logo" style="max-height:50px;">
                         {% endif %}
                     </a>
                 </h1>
 {% endraw %}{% if nav_enabled %}
                 <nav class="nav bg-white mb-0" role="navigation">
-                    <a class="nav-link" href="{{ content_site }}/">Home</a>
+                    <a class="nav-link" href="{{ content_site }}">Home</a>
                     <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ content_site }}/about/" role="button" aria-expanded="false">About</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ content_site }}/about" role="button" aria-expanded="false">About</a>
                         <div class="dropdown-menu">
-                            <a class="nav-link" href="{{ content_site }}/about/#overview">Conference Overview</a>
-                            <a class="nav-link" href="{{ content_site }}/keynotes/">Keynote Speakers</a></li>
+                            <a class="nav-link" href="{{ content_site }}/about#overview">Conference Overview</a>
                             <a class="nav-link" href="{{ content_site }}/about/#pydata">About Pydata</a>
-                            <a class="nav-link" href="{{ content_site }}/about/#committee">Organizing Committee</a>
-                            <a class="nav-link" href="{{ content_site }}/conduct/">Conduct</a>
-                            <a class="nav-link" href="{{ content_site }}/diversity/">Diversity</a>
+                            <a class="nav-link" href="{{ content_site }}/about/#conduct">Code of Conduct</a>
+                            <a class="nav-link" href="{{ content_site }}/about/#diversity">Diversity</a>
                         </div>
                     </div>
-                    <a class="nav-link" href="{{ content_site }}/job-board/">Job Board</a>
-                    <a class="nav-link" href="{{ content_site }}/sponsors/">Sponsor</a>
-                    {% if nav_tickets_enabled %}<a class="nav-link" href="{{ content_site }}/tickets/">Tickets</a>{% endif %}
-                    <a class="nav-link" href="{{ content_site }}/schedule/">Schedule</a>
+                    <a class="nav-link" href="{{ content_site }}/sprints">PyData NYC Sprints</a>
+                    <a class="nav-link" href="{{ content_site }}/extracurriculars">Extracurriculars</a>
+                    <a class="nav-link" href="{{ content_site }}/sponsor">Sponsor</a>
+                    <a class="nav-link" href="{{ content_site }}/job-board">Job Board</a>
+                    <a class="nav-link" href="{{ content_site }}/schedule">Schedule</a>
+                    {% if nav_tickets_enabled %}<a class="nav-link" href="{{ content_site }}/tickets">Tickets</a>{% endif %}
                 </nav>
 {% endif %}{% raw %}
                 <div class="d-flex" id="header-row">
