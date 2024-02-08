@@ -1,5 +1,5 @@
 django==3.2.24
-django-allauth==0.54.0
+django-allauth==0.61.0
 django-analytical==3.1.0
 django-anymail[postmark]==10.0
 django-autoslug==1.9.9
