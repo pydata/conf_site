@@ -4,6 +4,6 @@ ansible-lint==6.9.0
 coverage==7.2.7
 factory_boy==3.2.1
 flake8==6.0.0
-ipython==8.14.0
+ipython==8.24.0
 rstcheck==6.1.2
 sphinx==7.0.1
