@@ -84,21 +84,13 @@
 {% endraw %}{% if nav_enabled %}
                 <nav class="nav bg-white mb-0" role="navigation">
                     <a class="nav-link" href="{{ content_site }}/">Home</a>
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ content_site }}/about/" role="button" aria-expanded="false">About</a>
-                        <div class="dropdown-menu">
-                            <a class="nav-link" href="{{ content_site }}/about/#overview">Conference Overview</a>
-                            <a class="nav-link" href="{{ content_site }}/keynotes/">Keynote Speakers</a></li>
-                            <a class="nav-link" href="{{ content_site }}/about/#pydata">About Pydata</a>
-                            <a class="nav-link" href="{{ content_site }}/about/#committee">Organizing Committee</a>
-                            <a class="nav-link" href="{{ content_site }}/conduct/">Conduct</a>
-                            <a class="nav-link" href="{{ content_site }}/diversity/">Diversity</a>
-                        </div>
-                    </div>
-                    <a class="nav-link" href="{{ content_site }}/job-board/">Job Board</a>
-                    <a class="nav-link" href="{{ content_site }}/sponsors/">Sponsor</a>
-                    {% if nav_tickets_enabled %}<a class="nav-link" href="{{ content_site }}/tickets/">Tickets</a>{% endif %}
-                    <a class="nav-link" href="{{ content_site }}/schedule/">Schedule</a>
+                    <a class="nav-link" href="{{ content_site }}/about/">About</a>
+                    <a class="nav-link" href="{{ content_site }}/blog/">News & Updates</a>
+                    <a class="nav-link" href="{{ content_site }}/sponsor/">Sponsor</a>
+                    <a class="nav-link" href="{{ content_site }}/galleries/">Gallery</a>
+                    <a class="nav-link" href="{{ content_site }}/tickets/">Tickets</a>
+                    <a class="nav-link" href="https://amsterdam2024.pydata.org/cfp/cfp">Submit a Talk</a>
+                    <a class="nav-link" href="{{ content_site }}/faq/">FAQ</a>
                 </nav>
 {% endif %}{% raw %}
                 <div class="d-flex" id="header-row">
