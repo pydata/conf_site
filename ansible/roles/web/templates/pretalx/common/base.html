@@ -85,20 +85,24 @@
                 <nav class="nav bg-white mb-0" role="navigation">
                     <a class="nav-link" href="{{ content_site }}/">Home</a>
                     <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ content_site }}/about/" role="button" aria-expanded="false">About</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ content_site }}/about-folder" role="button" aria-expanded="false">About</a>
                         <div class="dropdown-menu">
-                            <a class="nav-link" href="{{ content_site }}/about/#overview">Conference Overview</a>
-                            <a class="nav-link" href="{{ content_site }}/keynotes/">Keynote Speakers</a></li>
-                            <a class="nav-link" href="{{ content_site }}/about/#pydata">About Pydata</a>
-                            <a class="nav-link" href="{{ content_site }}/about/#committee">Organizing Committee</a>
-                            <a class="nav-link" href="{{ content_site }}/conduct/">Conduct</a>
-                            <a class="nav-link" href="{{ content_site }}/diversity/">Diversity</a>
+                            <a class="nav-link" href="{{ content_site }}/speakers-1">Organizers</a>
+                            <a class="nav-link" href="{{ content_site }}/code-of-conduct">Code of Conduct</a>
                         </div>
                     </div>
-                    <a class="nav-link" href="{{ content_site }}/job-board/">Job Board</a>
-                    <a class="nav-link" href="{{ content_site }}/sponsors/">Sponsor</a>
-                    {% if nav_tickets_enabled %}<a class="nav-link" href="{{ content_site }}/tickets/">Tickets</a>{% endif %}
-                    <a class="nav-link" href="{{ content_site }}/schedule/">Schedule</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ content_site }}/conference-info" role="button" aria-expanded="false">General Info</a>
+                        <div class="dropdown-menu">
+                            <a class="nav-link" href="{{ content_site }}/info">Travel</a>
+                            <a class="nav-link" href="{{ content_site }}/speakers-2">Speakers</a>
+                            <a class="nav-link" href="{{ content_site }}/workshops">Workshops</a>
+                        </div>
+                    </div>
+                    <a class="nav-link" href="{{ content_site }}/registration">Registration</a>
+                    <a class="nav-link" href="{{ content_site }}/schedule">Schedule</a>
+                    <a class="nav-link" href="{{ content_site }}/sponsorship-opportunities">Sponsors</a>
+                    <a class="nav-link" href="{{ content_site }}/call-for-proposals">Call for Prosposals</a>
                 </nav>
 {% endif %}{% raw %}
                 <div class="d-flex" id="header-row">
