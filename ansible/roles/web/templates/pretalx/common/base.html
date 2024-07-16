@@ -71,16 +71,16 @@
             </div>
         {% endif %}
         <div class="container{% block container_width %}{% endblock %}" id="main-container">
-            <header>
-                <h1>
-                    <a href="{% block nav_link %}{% endblock %}">
-                        {% if request.event and request.event.logo %}
-                            <img src="{{ request.event.logo.url }}" id="event-logo" alt="{% translate "The event's logo" %}">
-                        {% elif request.event %}
-                            {{ request.event.name }}
-                        {% endif %}
-                    </a>
-                </h1>
+            <h1>
+                <a href="{% block nav_link %}{% endblock %}">
+                    {% if request.event and request.event.logo %}
+                        <img src="{{ request.event.logo.url }}" id="event-logo" alt="{% translate "The event's logo" %}">
+                    {% elif request.event %}
+                        {{ request.event.name }}
+                    {% endif %}
+                </a>
+            </h1>
+            <header style="height:100%">
 {% endraw %}{% if nav_enabled %}
                 <nav class="nav bg-white mb-0" role="navigation">
                     <a class="nav-link" href="{{ content_site }}/">Home</a>
