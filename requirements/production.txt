@@ -17,5 +17,5 @@ pip==24.2
 -e git+https://github.com/pydata/pretalx@add-submission-type-to-widget-json#egg=pretalx[redis]&subdirectory=src
 psycopg2==2.9.9
 pytz==2023.3
-sentry-sdk==1.25.1
+sentry-sdk==2.16.0
 virtualenv==20.26.3
