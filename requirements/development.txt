@@ -1,5 +1,5 @@
 -r staging.txt
-ansible==7.5.0
+ansible==8.5.0
 ansible-lint==6.9.0
 coverage==7.2.7
 factory_boy==3.3.0
